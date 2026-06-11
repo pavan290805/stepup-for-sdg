@@ -1,6 +1,17 @@
+'use client'
+import { useState } from 'react'
+
 export default function LoginPage() {
+  const [daysLeft] = useState(() => {
+    const diff = Math.ceil(
+      (new Date('2030-01-01').getTime() - Date.now()) / (1000 * 60 * 60 * 24)
+    )
+    return diff.toLocaleString()
+  })
+
   return (
     <>
+
       <style>{`
         .login-page {
          min-height:100vh; 
@@ -49,8 +60,12 @@ export default function LoginPage() {
               <img src="/sdg-logo.png" alt="StepUp for SDG" style={{ width:64, height:64, borderRadius:16, objectFit:'cover', margin:'0 auto 16px', display:'block' }} />
               <h1 style={{ color:'white', fontSize:20, fontWeight:600, marginBottom:6 }}>StepUp for SDG</h1>
               <p style={{ color:'rgba(255,255,255,0.45)', fontSize:12, lineHeight:1.7 }}>
-                Tracking India's progress<br/>toward 2030 Global Goals
+                Tracking India&apos;s progress<br/>toward 2030 Global Goals
               </p>
+               <div style={{ background:'rgba(255,255,255,0.07)', borderRadius:12, padding:'12px 24px' }}>
+                <div style={{ color:'#f4b400', fontSize:22, fontWeight:600 }}>{daysLeft}</div>
+                <div style={{ color:'rgba(255,255,255,0.4)', fontSize:11, marginTop:4 }}>days to 2030</div>
+              </div>
             </div>
           </div>
           <div className="right-panel">
