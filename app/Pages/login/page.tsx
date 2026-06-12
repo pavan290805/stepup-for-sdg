@@ -106,10 +106,45 @@ export default function LoginPage() {
     }
   }, [])
 
-  return (
+ return (
     <div className="min-h-screen w-full flex items-center justify-center font-sans relative overflow-hidden">
       <canvas ref={canvasRef} className="absolute inset-0 z-0 w-full h-full" />
-      <h1 className="relative z-10 text-white">Login Page</h1>
+
+      <div className="container relative z-10 max-w-3xl mx-auto px-4 py-8">
+        <div className="backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden border border-white/20 grid md:grid-cols-12 min-h-[480px]">
+
+          {/* LEFT PANEL */}
+          <div
+            className="md:col-span-6 p-6 md:p-8 flex flex-col justify-between relative overflow-hidden border-r border-white/20"
+            style={{ background: 'linear-gradient(135deg, #0066cc 0%, #00a8a8 50%, #1d5948 100%)' }}
+          >
+            <div className="relative z-10 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/20 border border-white/30 text-white font-semibold text-xs">
+                UN-SDG Monitoring Hub
+              </div>
+              <div className="space-y-2">
+                <h1 className="text-2xl font-bold text-white">StepUp SDG Portal</h1>
+                <p className="text-white/80 text-xs leading-relaxed max-w-sm">
+                  Tracking and aligning local actions to the UN Sustainable Development Goals.
+                </p>
+              </div>
+            </div>
+            <div className="relative z-10 pt-4 border-t border-white/20 text-[11px] text-white/60 text-center font-semibold">
+              Authorized Liaison Coordinate System
+            </div>
+          </div>
+
+          {/* RIGHT PANEL */}
+          <div
+            className="md:col-span-6 p-6 md:p-10 flex flex-col justify-center"
+            style={{ background: 'linear-gradient(160deg, #fefefe 0%, #f0fdf4 40%, #eff6ff 100%)' }}
+          >
+            <h2 className="text-xl font-bold text-slate-900">Sign in to Admin Portal</h2>
+          </div>
+
+        </div>
+      </div>
     </div>
   )
+
 }
