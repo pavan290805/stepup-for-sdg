@@ -120,10 +120,13 @@ export default function LoginPage() {
           >
             <div className="relative z-10 space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/20 border border-white/30 text-white font-semibold text-xs">
-                UN-SDG Monitoring Hub
+                🌐 UN-SDG Monitoring Hub
               </div>
               <div className="space-y-2">
-                <h1 className="text-2xl font-bold text-white">StepUp SDG Portal</h1>
+                <div className="flex items-center gap-3">
+                  <img src="/SDG_LOGO-removebg-preview.png" alt="StepUp for SDG" className="w-20 h-20 object-contain flex-shrink-0" />
+                  <h1 className="text-2xl font-bold text-white">StepUp SDG</h1>
+                </div>
                 <p className="text-white/80 text-xs leading-relaxed max-w-sm">
                   Tracking and aligning local actions to the UN Sustainable Development Goals.
                 </p>
@@ -139,12 +142,19 @@ export default function LoginPage() {
             className="md:col-span-6 p-6 md:p-10 flex flex-col justify-center"
             style={{ background: 'linear-gradient(160deg, #fefefe 0%, #f0fdf4 40%, #eff6ff 100%)' }}
           >
-            <h2 className="text-xl font-bold text-slate-900">Sign in to Admin Portal</h2>
+            <div className="w-full max-w-sm mx-auto space-y-2">
+              <img src="/SDG_LOGO-removebg-preview.png" alt="StepUp for SDG" className="w-14 h-14 object-contain" />
+              <h2 className="text-xl font-bold text-slate-900 tracking-tight">
+                Sign in to Administrator Portal
+              </h2>
+              <p className="text-xs text-slate-500 font-medium">
+                Provide authorized liaison credentials to coordinate metrics
+              </p>
+            </div>
           </div>
 
         </div>
       </div>
     </div>
   )
-
 }
