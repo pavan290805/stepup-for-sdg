@@ -105,13 +105,33 @@ export default function LoginPage() {
       window.removeEventListener("resize", handleResize)
     }
   }, [])
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setError(null)
+    setLoading(true)
 
- return (
+    setTimeout(() => {
+      if (!email.trim() || !password.trim()) {
+        setError("Please fill in both email and password fields.")
+        setLoading(false)
+        return
+      }
+      if (email === "admin@stepup.org" && password === "admin1234") {
+        if (rememberMe) localStorage.setItem("stepup_admin_session", email)
+        window.location.href = "/Pages/dashboard"
+      } else {
+        setError("Invalid email or password. Try admin@stepup.org / admin1234")
+        setLoading(false)
+      }
+    }, 750)
+  }
+
+  return (
     <div className="min-h-screen w-full flex items-center justify-center font-sans relative overflow-hidden">
       <canvas ref={canvasRef} className="absolute inset-0 z-0 w-full h-full" />
 
       <div className="container relative z-10 max-w-3xl mx-auto px-4 py-8">
-        <div className="backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden border border-white/20 grid md:grid-cols-12 min-h-[480px]">
+        <div className="backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden border border-white/20 grid md:grid-cols-12 min-h-120">
 
           {/* LEFT PANEL */}
           <div
@@ -124,7 +144,7 @@ export default function LoginPage() {
               </div>
               <div className="space-y-2">
                 <div className="flex items-center gap-3">
-                  <img src="/SDG_LOGO-removebg-preview.png" alt="StepUp for SDG" className="w-20 h-20 object-contain flex-shrink-0" />
+                  <img src="/SDG_LOGO-removebg-preview.png" alt="StepUp for SDG" className="w-20 h-20 object-contain shrink-0" />
                   <h1 className="text-2xl font-bold text-white">StepUp SDG</h1>
                 </div>
                 <p className="text-white/80 text-xs leading-relaxed max-w-sm">
@@ -142,14 +162,48 @@ export default function LoginPage() {
             className="md:col-span-6 p-6 md:p-10 flex flex-col justify-center"
             style={{ background: 'linear-gradient(160deg, #fefefe 0%, #f0fdf4 40%, #eff6ff 100%)' }}
           >
-            <div className="w-full max-w-sm mx-auto space-y-2">
-              <img src="/SDG_LOGO-removebg-preview.png" alt="StepUp for SDG" className="w-14 h-14 object-contain" />
-              <h2 className="text-xl font-bold text-slate-900 tracking-tight">
-                Sign in to Administrator Portal
-              </h2>
-              <p className="text-xs text-slate-500 font-medium">
-                Provide authorized liaison credentials to coordinate metrics
-              </p>
+            <div className="w-full max-w-sm mx-auto space-y-4">
+              <div className="space-y-1">
+                <img src="/SDG_LOGO-removebg-preview.png" alt="StepUp for SDG" className="w-14 h-14 object-contain" />
+                <h2 className="text-xl font-bold text-slate-900 tracking-tight">
+                  Sign in to Administrator Portal
+                </h2>
+                <p className="text-xs text-slate-500 font-medium">
+                  Provide authorized liaison credentials to coordinate metrics
+                </p>
+              </div>
+              <form onSubmit={handleSubmit} className="space-y-4 pt-2">
+                <div className="space-y-1.5">
+                  <label className="block text-[10px] uppercase font-bold text-slate-500 tracking-wider">Email</label>
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="admin@stepup.org"
+                    className="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-950 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 bg-slate-50/50"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label className="block text-[10px] uppercase font-bold text-slate-500 tracking-wider">Password</label>
+                  <input
+                    type="password"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="••••••••"
+                    className="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-950 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 bg-slate-50/50"
+                  />
+                </div>
+                {error && <p className="text-xs text-red-500">{error}</p>}
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg transition-colors disabled:opacity-60"
+                >
+                  {loading ? "Signing in..." : "SIGN IN"}
+                </button>
+              </form>
             </div>
           </div>
 
