@@ -228,6 +228,15 @@ export default function LoginPage() {
                 >
                   {loading ? "Signing in..." : "Sign In"}
                 </button>
+                <div className="text-center pt-4 border-t border-slate-100 text-[11px] text-slate-500 font-medium">
+                  New to StepUp SDG?{" "}
+                  <button
+                    onClick={() => setIsSignUp(true)}
+                    className="text-emerald-600 hover:text-emerald-700 hover:underline font-bold ml-1 bg-transparent border-0 cursor-pointer"
+                  >
+                    Register Account
+                  </button>
+                </div>
               </form>
             </div>
           </div>
