@@ -216,13 +216,17 @@ export default function LoginPage() {
                     Save my sign-in session
                   </label>
                 </div>
-                {error && <p className="text-xs text-red-500">{error}</p>}
+                {error && (
+                  <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs font-semibold">
+                    {error}
+                  </div>
+                )}
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg transition-colors disabled:opacity-60"
+                  className="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-md transition-all disabled:opacity-50 flex justify-center items-center gap-2"
                 >
-                  {loading ? "Signing in..." : "SIGN IN"}
+                  {loading ? "Signing in..." : "Sign In"}
                 </button>
               </form>
             </div>
