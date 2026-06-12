@@ -152,8 +152,8 @@ export default function LoginPage() {
                 </p>
               </div>
             </div>
-            <div className="relative z-10 pt-4 border-t border-white/20 text-[11px] text-white/60 text-center font-semibold">
-              Authorized Liaison Coordinate System
+            <div className="relative z-10 pt-4 border-t border-white/20 text-[11px] text-white/60 text-center font-semibold tracking-widest uppercase">
+              Empowering Change · SDG 2030
             </div>
           </div>
 
@@ -169,7 +169,7 @@ export default function LoginPage() {
                   Sign in to Administrator Portal
                 </h2>
                 <p className="text-xs text-slate-500 font-medium">
-                  Provide authorized liaison credentials to coordinate metrics
+                  Track global goals. Drive local change.
                 </p>
               </div>
               <form onSubmit={handleSubmit} className="space-y-4 pt-2">
