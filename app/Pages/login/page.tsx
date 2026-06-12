@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useRef, useEffect } from "react"
-import { Mail, Lock, Eye, EyeOff } from "lucide-react"
+import { Eye, EyeOff, Globe } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
 export default function LoginPage() {
   const [email, setEmail] = useState("admin@stepup.org")
   const [password, setPassword] = useState("admin1234")
@@ -107,6 +108,7 @@ export default function LoginPage() {
   }, [])
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    if (isSignUp) return
     setError(null)
     setLoading(true)
 
@@ -140,7 +142,8 @@ export default function LoginPage() {
           >
             <div className="relative z-10 space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/20 border border-white/30 text-white font-semibold text-xs">
-                🌐 UN-SDG Monitoring Hub
+                <Globe className="w-3.5 h-3.5 text-emerald-300" />
+                <span>UN-SDG Monitoring Hub</span>
               </div>
               <div className="space-y-2">
                 <div className="flex items-center gap-3">
@@ -150,10 +153,15 @@ export default function LoginPage() {
                 <p className="text-white/80 text-xs leading-relaxed max-w-sm">
                   Tracking and aligning local actions to the UN Sustainable Development Goals.
                 </p>
+                <div className="mt-3 rounded-2xl overflow-hidden border border-white/10 shadow-lg">
+                  <img src="/sdg_illustration_1781192627956.jpg" alt="SDG Illustration" className="w-full object-cover" />
+                </div>
               </div>
             </div>
-            <div className="relative z-10 pt-4 border-t border-white/20 text-[11px] text-white/60 text-center font-semibold tracking-widest uppercase">
-              Empowering Change · SDG 2030
+            <div className="relative z-10 pt-4 border-t border-white/20">
+              <p className="text-[11px] text-white/60 text-center font-semibold tracking-widest uppercase">
+                Empowering Change · SDG 2030
+              </p>
             </div>
           </div>
 
@@ -163,81 +171,83 @@ export default function LoginPage() {
             style={{ background: 'linear-gradient(160deg, #fefefe 0%, #f0fdf4 40%, #eff6ff 100%)' }}
           >
             <div className="w-full max-w-sm mx-auto space-y-4">
-              <div className="space-y-1">
-                <img src="/SDG_LOGO-removebg-preview.png" alt="StepUp for SDG" className="w-14 h-14 object-contain" />
-                <h2 className="text-xl font-bold text-slate-900 tracking-tight">
-                  Sign in to Administrator Portal
-                </h2>
-                <p className="text-xs text-slate-500 font-medium">
-                  Track global goals. Drive local change.
-                </p>
-              </div>
-              <form onSubmit={handleSubmit} className="space-y-4 pt-2">
-                <div className="space-y-1.5">
-                  <label className="block text-[10px] uppercase font-bold text-slate-500 tracking-wider">Email</label>
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="admin@stepup.org"
-                    className="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-950 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 bg-slate-50/50"
-                  />
-                </div>
-                <div className="space-y-1.5">
-                  <label className="block text-[10px] uppercase font-bold text-slate-500 tracking-wider">Password</label>
-                  <div className="relative">
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      required
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="••••••••"
-                      className="w-full px-4 pr-10 py-2 border border-slate-200 rounded-lg text-slate-950 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 bg-slate-50/50"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 bg-transparent border-0 cursor-pointer"
-                    >
-                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                    </button>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between pt-1">
-                  <label className="flex items-center gap-2 cursor-pointer text-xs text-slate-600 font-semibold">
-                    <input
-                      type="checkbox"
-                      checked={rememberMe}
-                      onChange={(e) => setRememberMe(e.target.checked)}
-                      className="rounded text-blue-600 border-slate-300 w-4 h-4"
-                    />
-                    Save my sign-in session
-                  </label>
-                </div>
-                {error && (
-                  <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs font-semibold">
-                    {error}
-                  </div>
+              <AnimatePresence mode="wait">
+                {!isSignUp ? (
+                  <motion.div key="login" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.2 }} className="space-y-4">
+                    <div className="space-y-1">
+                      <img src="/SDG_LOGO-removebg-preview.png" alt="StepUp for SDG" className="w-14 h-14 object-contain" />
+                      <h2 className="text-xl font-bold text-slate-900 tracking-tight">Sign in to Administrator Portal</h2>
+                      <p className="text-xs text-slate-500 font-medium">Track global goals. Drive local change.</p>
+                    </div>
+                    <form onSubmit={handleSubmit} className="space-y-4 pt-2">
+                      <div className="space-y-1.5">
+                        <label className="block text-[10px] uppercase font-bold text-slate-500 tracking-wider">Email</label>
+                        <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="admin@stepup.org" className="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-950 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 bg-slate-50/50" />
+                      </div>
+                      <div className="space-y-1.5">
+                        <label className="block text-[10px] uppercase font-bold text-slate-500 tracking-wider">Password</label>
+                        <div className="relative">
+                          <input type={showPassword ? "text" : "password"} required value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" className="w-full px-4 pr-10 py-2 border border-slate-200 rounded-lg text-slate-950 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 bg-slate-50/50" />
+                          <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 bg-transparent border-0 cursor-pointer">
+                            {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                          </button>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between pt-1">
+                        <label className="flex items-center gap-2 cursor-pointer text-xs text-slate-600 font-semibold">
+                          <input type="checkbox" checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} className="rounded text-blue-600 border-slate-300 w-4 h-4" />
+                          Save my sign-in session
+                        </label>
+                      </div>
+                      {error && <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs font-semibold">{error}</div>}
+                      <button type="submit" disabled={loading} className="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-md transition-all disabled:opacity-50 flex justify-center items-center gap-2">
+                        {loading ? "Signing in..." : "Sign In"}
+                      </button>
+                      <div className="text-center pt-4 border-t border-slate-100 text-[11px] text-slate-500 font-medium">
+                        New to StepUp SDG?{" "}
+                        <button type="button" onClick={() => { setIsSignUp(true); setEmail(""); setPassword(""); setError(null) }} className="text-emerald-600 hover:text-emerald-700 hover:underline font-bold ml-1 bg-transparent border-0 cursor-pointer">
+                          Register Account
+                        </button>
+                      </div>
+                    </form>
+                  </motion.div>
+                ) : (
+                  <motion.div key="register" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.2 }} className="space-y-4">
+                    <div className="space-y-1">
+                      <img src="/SDG_LOGO-removebg-preview.png" alt="StepUp for SDG" className="w-14 h-14 object-contain" />
+                      <h2 className="text-xl font-bold text-slate-900 tracking-tight">Create an Account</h2>
+                      <p className="text-xs text-slate-500 font-medium">Join the SDG movement today.</p>
+                    </div>
+                    <form className="space-y-3 pt-2" onSubmit={(e) => { e.preventDefault(); alert("Account created! Please sign in."); setIsSignUp(false); setEmail("admin@stepup.org"); setPassword("admin1234") }}>
+                      <div className="space-y-1.5">
+                        <label className="block text-[10px] uppercase font-bold text-slate-500 tracking-wider">Full Name</label>
+                        <input type="text" required placeholder="Your full name" className="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-950 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 bg-slate-50/50" />
+                      </div>
+                      <div className="space-y-1.5">
+                        <label className="block text-[10px] uppercase font-bold text-slate-500 tracking-wider">Email</label>
+                        <input type="email" required placeholder="you@example.com" className="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-950 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 bg-slate-50/50" />
+                      </div>
+                      <div className="space-y-1.5">
+                        <label className="block text-[10px] uppercase font-bold text-slate-500 tracking-wider">Password</label>
+                        <input type="password" required placeholder="••••••••" className="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-950 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 bg-slate-50/50" />
+                      </div>
+                      <div className="space-y-1.5">
+                        <label className="block text-[10px] uppercase font-bold text-slate-500 tracking-wider">Confirm Password</label>
+                        <input type="password" required placeholder="••••••••" className="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-950 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 bg-slate-50/50" />
+                      </div>
+                      <button type="submit" className="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-md transition-all flex justify-center items-center gap-2">
+                        Register
+                      </button>
+                      <div className="text-center pt-4 border-t border-slate-100 text-[11px] text-slate-500 font-medium">
+                        Already have an account?{" "}
+                        <button type="button" onClick={() => { setIsSignUp(false); setEmail("admin@stepup.org"); setPassword("admin1234"); setError(null) }} className="text-blue-600 hover:text-blue-700 hover:underline font-bold ml-1 bg-transparent border-0 cursor-pointer">
+                          Sign In
+                        </button>
+                      </div>
+                    </form>
+                  </motion.div>
                 )}
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-md transition-all disabled:opacity-50 flex justify-center items-center gap-2"
-                >
-                  {loading ? "Signing in..." : "Sign In"}
-                </button>
-                <div className="text-center pt-4 border-t border-slate-100 text-[11px] text-slate-500 font-medium">
-                  New to StepUp SDG?{" "}
-                  <button
-                    onClick={() => setIsSignUp(true)}
-                    className="text-emerald-600 hover:text-emerald-700 hover:underline font-bold ml-1 bg-transparent border-0 cursor-pointer"
-                  >
-                    Register Account
-                  </button>
-                </div>
-              </form>
+              </AnimatePresence>
             </div>
           </div>
 
