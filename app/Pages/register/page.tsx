@@ -9,24 +9,6 @@ const PARTICLE_COLORS = [
   "#ff7a00", "#ff5e5b", "#d63384", "#7b61ff", "#0cc0df"
 ]
 
-function EyeIcon() {
-  return (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-      <circle cx="12" cy="12" r="3" />
-    </svg>
-  )
-}
-
-function EyeOffIcon() {
-  return (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
-      <line x1="1" y1="1" x2="23" y2="23" />
-    </svg>
-  )
-}
-
 function GlobeIcon() {
   return (
     <svg className="w-3.5 h-3.5 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -36,14 +18,8 @@ function GlobeIcon() {
   )
 }
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const router = useRouter()
-  const [email, setEmail] = useState("admin@stepup.org")
-  const [password, setPassword] = useState("admin1234")
-  const [showPassword, setShowPassword] = useState(false)
-  const [rememberMe, setRememberMe] = useState(true)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
 
   useEffect(() => {
@@ -126,23 +102,10 @@ export default function LoginPage() {
     }
   }, [])
 
-  function handleLogin(e: React.FormEvent) {
+  function handleRegister(e: React.FormEvent) {
     e.preventDefault()
-    if (!email.trim() || !password.trim()) {
-      setError("Please fill in both fields.")
-      return
-    }
-    setError(null)
-    setLoading(true)
-    setTimeout(() => {
-      if (email === "admin@stepup.org" && password === "admin1234") {
-        if (rememberMe) localStorage.setItem("stepup_admin_session", email)
-        window.location.href = "/Pages/dashboard"
-      } else {
-        setError("Invalid email or password.")
-        setLoading(false)
-      }
-    }, 750)
+    alert("Account created! Please sign in.")
+    router.push("/Pages/login")
   }
 
   return (
@@ -195,76 +158,66 @@ export default function LoginPage() {
             >
               <div className="space-y-1">
                 <img src="/SDG_LOGO-removebg-preview.png" alt="StepUp for SDG" className="w-14 h-14 object-contain" />
-                <h2 className="text-xl font-bold text-slate-900 tracking-tight">Sign in to Administrator Portal</h2>
-                <p className="text-xs text-slate-500 font-medium">Track global goals. Drive local change.</p>
+                <h2 className="text-xl font-bold text-slate-900 tracking-tight">Create an Account</h2>
+                <p className="text-xs text-slate-500 font-medium">Join the SDG movement today.</p>
               </div>
 
-              <form onSubmit={handleLogin} className="space-y-4 pt-2">
+              <form onSubmit={handleRegister} className="space-y-3 pt-2">
+                <div className="space-y-1.5">
+                  <label className="block text-[10px] uppercase font-bold text-slate-500 tracking-wider">Full Name</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Your full name"
+                    className="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-950 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 bg-slate-50/50"
+                  />
+                </div>
+
                 <div className="space-y-1.5">
                   <label className="block text-[10px] uppercase font-bold text-slate-500 tracking-wider">Email</label>
                   <input
                     type="email"
                     required
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    placeholder="admin@stepup.org"
-                    className="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-950 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 bg-slate-50/50"
+                    placeholder="you@example.com"
+                    className="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-950 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 bg-slate-50/50"
                   />
                 </div>
 
                 <div className="space-y-1.5">
                   <label className="block text-[10px] uppercase font-bold text-slate-500 tracking-wider">Password</label>
-                  <div className="relative">
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      required
-                      value={password}
-                      onChange={e => setPassword(e.target.value)}
-                      placeholder="••••••••"
-                      className="w-full px-4 pr-10 py-2 border border-slate-200 rounded-lg text-slate-950 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 bg-slate-50/50"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 bg-transparent border-0 cursor-pointer"
-                    >
-                      {showPassword ? <EyeOffIcon /> : <EyeIcon />}
-                    </button>
-                  </div>
+                  <input
+                    type="password"
+                    required
+                    placeholder="••••••••"
+                    className="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-950 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 bg-slate-50/50"
+                  />
                 </div>
 
-                <label className="flex items-center gap-2 cursor-pointer text-xs text-slate-600 font-semibold">
+                <div className="space-y-1.5">
+                  <label className="block text-[10px] uppercase font-bold text-slate-500 tracking-wider">Confirm Password</label>
                   <input
-                    type="checkbox"
-                    checked={rememberMe}
-                    onChange={e => setRememberMe(e.target.checked)}
-                    className="rounded text-blue-600 border-slate-300 w-4 h-4"
+                    type="password"
+                    required
+                    placeholder="••••••••"
+                    className="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-950 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 bg-slate-50/50"
                   />
-                  Save my sign-in session
-                </label>
-
-                {error && (
-                  <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs font-semibold">
-                    {error}
-                  </div>
-                )}
+                </div>
 
                 <button
                   type="submit"
-                  disabled={loading}
-                  className="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-md transition-all disabled:opacity-50 flex justify-center items-center gap-2"
+                  className="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-md transition-all"
                 >
-                  {loading ? "Signing in..." : "Sign In"}
+                  Register
                 </button>
 
                 <div className="text-center pt-4 border-t border-slate-100 text-[11px] text-slate-500 font-medium">
-                  New to StepUp SDG?{" "}
+                  Already have an account?{" "}
                   <button
                     type="button"
-                    onClick={() => router.push("/Pages/register")}
-                    className="text-emerald-600 hover:text-emerald-700 hover:underline font-bold ml-1 bg-transparent border-0 cursor-pointer"
+                    onClick={() => router.push("/Pages/login")}
+                    className="text-blue-600 hover:text-blue-700 hover:underline font-bold ml-1 bg-transparent border-0 cursor-pointer"
                   >
-                    Register Account
+                    Sign In
                   </button>
                 </div>
               </form>
