@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 80">
+  <text x="10" y="30" font-size="16" font-weight="bold" fill="#E30512">TCS</text>
+  <text x="10" y="50" font-size="9" fill="#666">Tata Consultancy</text>
+  <circle cx="100" cy="40" r="15" fill="#E30512" opacity="0.2"/>
+</svg>
