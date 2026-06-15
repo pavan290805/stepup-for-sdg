@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { LayoutDashboard, Target, Users, FileCheck, Phone, LogOut, Moon, Bell, Settings, AlertCircle, GraduationCap, School, CheckCircle, Heart, UserPlus, BookOpen, Trophy, FileText } from 'lucide-react'
+import { LayoutDashboard, Target, Users, FileCheck, Phone, LogOut, Moon, Bell, Settings, AlertCircle, GraduationCap, School, CheckCircle, Heart, UserPlus, BookOpen, Trophy, FileText, Download } from 'lucide-react'
 import { Line, Doughnut } from 'react-chartjs-2'
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip } from 'chart.js'
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip)
@@ -317,9 +317,26 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </div>
           </div>
 
-          {/* Platform Health placeholder for commit 8 */}
-          <div style={{ background: '#0f3460', borderRadius: 14, padding: 20 }}>
-            <h3 style={{ fontSize: 15, fontWeight: 600, color: 'white' }}>Platform Health</h3>
+          {/* Platform Health */}
+          <div style={{ background: '#0f3460', borderRadius: 14, padding: 20, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div>
+              <h3 style={{ fontSize: 15, fontWeight: 600, color: 'white', marginBottom: 8 }}>Platform Health</h3>
+              <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.6)', lineHeight: 1.6 }}>
+                Your administration panel is running at optimal performance. Security protocols are up to date.
+              </p>
+            </div>
+            <div style={{ marginTop: 20 }}>
+              <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>LAST BACKUP</div>
+              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.7)', marginBottom: 12 }}>12.04.2024 - 04:30 AM</div>
+              <button style={{
+                background: '#00b8d4', color: 'white', border: 'none',
+                borderRadius: 8, padding: '8px 16px', fontSize: 11, fontWeight: 600,
+                cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6
+              }}>
+                <Download size={13} />
+                Export Data
+              </button>
+            </div>
           </div>
         </div>
 
