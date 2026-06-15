@@ -178,7 +178,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         }}>
           <div>
             <div style={{ fontSize: 16, fontWeight: 700, color: c.textPrimary, lineHeight: 1 }}>Admin Dashboard</div>
-            <div style={{ fontSize: 11, color: c.textMuted, marginTop: 3 }}>Welcome back, Alex Rivera</div>
+            <div style={{ fontSize: 11, color: c.textMuted, marginTop: 3 }}>Welcome back, Lasya</div>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -282,7 +282,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             {/* User avatar */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }}>
               <div style={{ textAlign: 'right' }}>
-                <div style={{ fontSize: 13, fontWeight: 600, color: c.textPrimary, lineHeight: 1 }}>Alex Rivera</div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: c.textPrimary, lineHeight: 1 }}>Lasya</div>
                 <div style={{ fontSize: 10.5, color: c.textMuted, marginTop: 2 }}>Super Admin</div>
               </div>
               <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#3b6ef6,#8b5cf6)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 14, fontWeight: 700 }}>A</div>
