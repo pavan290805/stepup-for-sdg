@@ -4,6 +4,9 @@ import { useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { LayoutDashboard, Target, Users, FileCheck, Phone, LogOut, Moon, Bell, Settings, AlertCircle, GraduationCap, School, CheckCircle, Heart, UserPlus, BookOpen, Trophy, FileText } from 'lucide-react'
+import { Line, Doughnut } from 'react-chartjs-2'
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip } from 'chart.js'
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip)
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter()
@@ -238,6 +241,85 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* Student Growth / Partner Ecosystem / Platform Health */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16, margin: '24px 28px 0' }}>
+
+          {/* Student Growth */}
+          <div style={{ background: 'white', borderRadius: 14, padding: 20, border: '1px solid #eef0f2' }}>
+            <h3 style={{ fontSize: 15, fontWeight: 600, color: '#1a1a2e' }}>Student Growth</h3>
+            <p style={{ fontSize: 11, color: '#9aa3ad', marginBottom: 12 }}>Monthly trend (Last 6 Months)</p>
+            <div style={{ height: 140 }}>
+              <Line
+                data={{
+                  labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN'],
+                  datasets: [{
+                    data: [3000, 3200, 4000, 5500, 8500, 12450],
+                    borderColor: '#00b8d4',
+                    backgroundColor: 'rgba(0,184,212,0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 3,
+                  }]
+                }}
+                options={{
+                  responsive: true, maintainAspectRatio: false,
+                  plugins: { legend: { display: false } },
+                  scales: { y: { display: false }, x: { grid: { display: false } } }
+                }}
+              />
+            </div>
+            <p style={{ fontSize: 11, color: '#00b050', marginTop: 8 }}>↗ 24.5% Overall Increase</p>
+          </div>
+
+          {/* Partner Ecosystem */}
+          <div style={{ background: 'white', borderRadius: 14, padding: 20, border: '1px solid #eef0f2' }}>
+            <h3 style={{ fontSize: 15, fontWeight: 600, color: '#1a1a2e', marginBottom: 16 }}>Partner Ecosystem</h3>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+              <div style={{ width: 100, height: 100, position: 'relative' }}>
+                <Doughnut
+                  data={{
+                    labels: ['Schools', 'NGOs', 'Companies'],
+                    datasets: [{
+                      data: [45, 35, 20],
+                      backgroundColor: ['#0f3460', '#00b8d4', '#cdeaf2'],
+                      borderWidth: 0,
+                    }]
+                  }}
+                  options={{
+                    responsive: true, maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: { legend: { display: false } }
+                  }}
+                />
+                <div style={{
+                  position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)',
+                  textAlign: 'center'
+                }}>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: '#1a1a2e' }}>56</div>
+                  <div style={{ fontSize: 9, color: '#9aa3ad' }}>TOTAL</div>
+                </div>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                {[
+                  { label: 'Schools (45%)', color: '#0f3460' },
+                  { label: 'NGOs (35%)', color: '#00b8d4' },
+                  { label: 'Companies (20%)', color: '#cdeaf2' },
+                ].map((item, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <div style={{ width: 8, height: 8, borderRadius: '50%', background: item.color }} />
+                    <span style={{ fontSize: 11, color: '#6b7888' }}>{item.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Platform Health placeholder for commit 8 */}
+          <div style={{ background: '#0f3460', borderRadius: 14, padding: 20 }}>
+            <h3 style={{ fontSize: 15, fontWeight: 600, color: 'white' }}>Platform Health</h3>
           </div>
         </div>
 
