@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { LayoutDashboard, Target, Users, FileCheck, Phone, LogOut, Moon, Bell, Settings } from 'lucide-react'
+import { LayoutDashboard, Target, Users, FileCheck, Phone, LogOut, Moon, Bell, Settings, AlertCircle } from 'lucide-react'
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter()
@@ -139,6 +139,31 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </div>
           </div>
         </header>
+
+        {/* Banner */}
+        <div style={{
+          background: '#e6f7fb', border: '1px solid #b3e8f2',
+          borderRadius: 14, padding: '16px 20px',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          marginBottom: 24, margin: '24px 28px 0'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <AlertCircle size={20} color="#00b8d4" />
+            <div>
+              <div style={{ fontSize: 14, fontWeight: 600, color: '#0f3460' }}>Awaiting Your Action</div>
+              <div style={{ fontSize: 12, color: '#6b7888', marginTop: 2 }}>
+                There are 12 new partner applications and 4 project reviews pending.
+              </div>
+            </div>
+          </div>
+          <button style={{
+            background: '#0f3460', color: 'white', border: 'none',
+            borderRadius: 8, padding: '10px 18px', fontSize: 12, fontWeight: 600,
+            cursor: 'pointer', whiteSpace: 'nowrap'
+          }}>
+            Review Now →
+          </button>
+        </div>
 
         {children}
       </div>
