@@ -193,6 +193,33 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           ))}
         </div>
 
+        {/* Impact Across 17 SDGs */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: 16, margin: '24px 28px 0' }}>
+          <div style={{ background: 'white', borderRadius: 14, padding: 20, border: '1px solid #eef0f2' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+              <h3 style={{ fontSize: 15, fontWeight: 600, color: '#1a1a2e' }}>Impact Across 17 SDGs</h3>
+              <span style={{ fontSize: 11, background: '#f5f7fa', color: '#9aa3ad', padding: '4px 10px', borderRadius: 6 }}>Year 2024</span>
+            </div>
+            <div style={{ height: 200, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 4, padding: '0 4px' }}>
+              {Array.from({ length: 17 }, (_, i) => (
+                <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1 }}>
+                  <div style={{
+                    width: '60%', height: `${30 + Math.random() * 130}px`,
+                    background: ['#c03538','#d63384','#00b050','#0066cc','#ff7a00','#00a8a8','#f4b400','#8cc63f','#ff5e5b','#7b61ff','#0cc0df','#1d5948','#c03538','#0066cc','#00a8a8','#f4b400','#7b61ff'][i],
+                    borderRadius: '4px 4px 0 0', opacity: 0.85
+                  }} />
+                  <span style={{ fontSize: 9, color: '#9aa3ad', marginTop: 4 }}>{i + 1}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Recent Activity placeholder for commit 6 */}
+          <div style={{ background: 'white', borderRadius: 14, padding: 20, border: '1px solid #eef0f2' }}>
+            <h3 style={{ fontSize: 15, fontWeight: 600, color: '#1a1a2e' }}>Recent Activity</h3>
+          </div>
+        </div>
+
         {children}
       </div>
     </div>
