@@ -489,7 +489,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <div className="card-hover" style={card}>
             <div style={{ padding: '20px 22px', borderBottom: `1px solid ${c.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
-                <div style={{ fontSize: 14, fontWeight: 700, color: c.textPrimary }}>Active Platform Youth Initiatives</div>
+                <div style={{ fontSize: 14, fontWeight: 700, color: c.textPrimary }}>Youth Initiatives</div>
                 <div style={{ fontSize: 11.5, color: c.textMuted, marginTop: 3 }}>Milestone percentage of approved community proposals</div>
               </div>
               <span style={{ fontSize: 11.5, fontWeight: 600, color: c.textSecond, background: c.surfaceAlt, border: `1px solid ${c.border}`, borderRadius: 20, padding: '5px 14px' }}>4 Active</span>
@@ -519,12 +519,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </div>
           </div>
 
-          {/* Partnership Request Pending Queue */}
+          {/* Partnership Request  */}
           <div className="card-hover" style={card}>
             <div style={{ padding: '20px 22px', borderBottom: `1px solid ${c.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
-                <div style={{ fontSize: 14, fontWeight: 700, color: c.textPrimary, marginBottom: 4 }}>Partnership Request Pending Queue</div>
-                <div style={{ fontSize: 11.5, color: c.textMuted }}>Critical approval pipeline of registered entities requiring state authorization.</div>
+                <div style={{ fontSize: 14, fontWeight: 700, color: c.textPrimary, marginBottom: 4 }}>Partnership Request</div>
+                 <div style={{ fontSize: 11.5, color: c.textMuted, marginTop: 3 }}>Approval of entities</div>
               </div>
               <span style={{ fontSize: 12, fontWeight: 600, color: c.accentText, cursor: 'pointer', whiteSpace: 'nowrap' }}>Open Review Center &rsaquo;</span>
             </div>
