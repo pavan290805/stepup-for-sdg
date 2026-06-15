@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { LayoutDashboard, Target, Users, FileCheck, Phone, LogOut, Moon, Bell, Settings, AlertCircle, GraduationCap, School, CheckCircle, Heart } from 'lucide-react'
+import { LayoutDashboard, Target, Users, FileCheck, Phone, LogOut, Moon, Bell, Settings, AlertCircle, GraduationCap, School, CheckCircle, Heart, UserPlus, BookOpen, Trophy, FileText } from 'lucide-react'
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter()
@@ -214,9 +214,30 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </div>
           </div>
 
-          {/* Recent Activity placeholder for commit 6 */}
           <div style={{ background: 'white', borderRadius: 14, padding: 20, border: '1px solid #eef0f2' }}>
-            <h3 style={{ fontSize: 15, fontWeight: 600, color: '#1a1a2e' }}>Recent Activity</h3>
+            <h3 style={{ fontSize: 15, fontWeight: 600, color: '#1a1a2e', marginBottom: 16 }}>Recent Activity</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              {[
+                { icon: UserPlus, title: 'New partner application', desc: 'GreenEarth NGO submitted a formal request.', time: '2 hours ago', color: '#0066cc', bg: '#e6f0ff' },
+                { icon: BookOpen, title: 'New School Enrolled', desc: 'Bright Futures Academy joined SDG 4 initiative.', time: '5 hours ago', color: '#00a8a8', bg: '#e6f7fb' },
+                { icon: Trophy, title: 'Project Milestone', desc: 'Water Access Project in Kenya reached 100%.', time: 'Yesterday', color: '#00b050', bg: '#e6f7ec' },
+                { icon: FileText, title: 'Report Submitted', desc: "Partner 'EcoSolutions' uploaded Q3 impact report.", time: '2 days ago', color: '#f4b400', bg: '#fff8e1' },
+              ].map((act, i) => (
+                <div key={i} style={{ display: 'flex', gap: 12 }}>
+                  <div style={{
+                    width: 32, height: 32, borderRadius: 8, background: act.bg,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
+                  }}>
+                    <act.icon size={15} color={act.color} />
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: '#1a1a2e' }}>{act.title}</div>
+                    <div style={{ fontSize: 11, color: '#9aa3ad', marginTop: 2 }}>{act.desc}</div>
+                    <div style={{ fontSize: 10, color: '#c0c7cd', marginTop: 4 }}>{act.time}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
