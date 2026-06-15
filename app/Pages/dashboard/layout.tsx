@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { LayoutDashboard, Target, Users, FileCheck, Phone, LogOut, Moon, Bell, Settings, AlertCircle } from 'lucide-react'
+import { LayoutDashboard, Target, Users, FileCheck, Phone, LogOut, Moon, Bell, Settings, AlertCircle, GraduationCap, School, CheckCircle, Heart } from 'lucide-react'
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter()
@@ -163,6 +163,34 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           }}>
             Review Now →
           </button>
+        </div>
+
+        {/* Stat Cards */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, margin: '24px 28px 0' }}>
+          {[
+            { icon: GraduationCap, label: 'TOTAL STUDENTS', value: '12,450', tag: '+12%', tagColor: '#00b050', iconBg: '#e6f7fb', iconColor: '#00b8d4' },
+            { icon: School, label: 'SCHOOLS SUPPORTED', value: '142', tag: '+5', tagColor: '#00b050', iconBg: '#e6f7fb', iconColor: '#00b8d4' },
+            { icon: CheckCircle, label: 'PROJECTS COMPLETED', value: '89', tag: 'Stable', tagColor: '#9aa3ad', iconBg: '#fff3e0', iconColor: '#f4b400' },
+            { icon: Heart, label: 'ACTIVE PARTNERS', value: '56', tag: '+3', tagColor: '#00b050', iconBg: '#fde8ec', iconColor: '#ff5e5b' },
+          ].map((stat, i) => (
+            <div key={i} style={{ background: 'white', borderRadius: 14, padding: 18, border: '1px solid #eef0f2' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
+                <div style={{
+                  width: 38, height: 38, borderRadius: 10,
+                  background: stat.iconBg, display: 'flex', alignItems: 'center', justifyContent: 'center'
+                }}>
+                  <stat.icon size={18} color={stat.iconColor} />
+                </div>
+                <span style={{ fontSize: 11, fontWeight: 600, color: stat.tagColor }}>{stat.tag}</span>
+              </div>
+              <div style={{ fontSize: 11, color: '#9aa3ad', fontWeight: 600, letterSpacing: '0.05em', marginBottom: 4 }}>
+                {stat.label}
+              </div>
+              <div style={{ fontSize: 24, fontWeight: 700, color: '#1a1a2e' }}>
+                {stat.value}
+              </div>
+            </div>
+          ))}
         </div>
 
         {children}
