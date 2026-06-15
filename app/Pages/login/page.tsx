@@ -9,33 +9,6 @@ const PARTICLE_COLORS = [
   "#ff7a00", "#ff5e5b", "#d63384", "#7b61ff", "#0cc0df"
 ]
 
-function EyeIcon() {
-  return (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-      <circle cx="12" cy="12" r="3" />
-    </svg>
-  )
-}
-
-function EyeOffIcon() {
-  return (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
-      <line x1="1" y1="1" x2="23" y2="23" />
-    </svg>
-  )
-}
-
-function GlobeIcon() {
-  return (
-    <svg className="w-3.5 h-3.5 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="10" />
-      <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-    </svg>
-  )
-}
-
 export default function LoginPage() {
   const router = useRouter()
   const [email, setEmail] = useState("admin@stepup.org")
@@ -77,10 +50,25 @@ export default function LoginPage() {
     const draw = () => {
       ctx.clearRect(0, 0, w, h)
       const bg = ctx.createLinearGradient(0, 0, w, h)
-      bg.addColorStop(0, "#080b11")
-      bg.addColorStop(0.5, "#0f172a")
-      bg.addColorStop(1, "#03060a")
+      bg.addColorStop(0, "#0a0f2e")
+      bg.addColorStop(0.4, "#0d2b4e")
+      bg.addColorStop(0.7, "#0a3d2e")
+      bg.addColorStop(1, "#050d1a")
       ctx.fillStyle = bg
+      ctx.fillRect(0, 0, w, h)
+
+      // radial glow top-right
+      const glow1 = ctx.createRadialGradient(w, 0, 0, w, 0, w * 0.6)
+      glow1.addColorStop(0, "rgba(0,120,255,0.18)")
+      glow1.addColorStop(1, "transparent")
+      ctx.fillStyle = glow1
+      ctx.fillRect(0, 0, w, h)
+
+      // radial glow bottom-left
+      const glow2 = ctx.createRadialGradient(0, h, 0, 0, h, h * 0.6)
+      glow2.addColorStop(0, "rgba(0,180,120,0.13)")
+      glow2.addColorStop(1, "transparent")
+      ctx.fillStyle = glow2
       ctx.fillRect(0, 0, w, h)
 
       dots.forEach((dot, i) => {
@@ -159,7 +147,7 @@ export default function LoginPage() {
           >
             <div className="relative z-10 space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/20 border border-white/30 text-white font-semibold text-xs">
-                <GlobeIcon />
+                <i className="fa-solid fa-globe text-emerald-300 text-xs"></i>
                 <span>UN-SDG Monitoring Hub</span>
               </div>
               <div className="space-y-2">
@@ -228,7 +216,7 @@ export default function LoginPage() {
                       onClick={() => setShowPassword(!showPassword)}
                       className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 bg-transparent border-0 cursor-pointer"
                     >
-                      {showPassword ? <EyeOffIcon /> : <EyeIcon />}
+                      <i className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'} text-sm`}></i>
                     </button>
                   </div>
                 </div>
