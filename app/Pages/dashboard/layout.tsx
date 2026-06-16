@@ -205,13 +205,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     <span style={{ fontSize: 10, fontWeight: 700, color: '#fff', background: c.red, borderRadius: 20, padding: '2px 9px' }}>3 new</span>
                   </div>
                   {[
-                    { icon: '🤝', title: 'New partner application', desc: 'GreenEarth NGO submitted a request', time: '2h ago', unread: true },
-                    { icon: '🏫', title: 'New School Enrolled', desc: 'Bright Futures Academy joined SDG 4', time: '5h ago', unread: true },
-                    { icon: '✅', title: 'Project Milestone', desc: 'Water Access Project reached 100%', time: 'Yesterday', unread: true },
-                    { icon: '📄', title: 'Report Submitted', desc: 'EcoSolutions uploaded Q3 impact report', time: '2d ago', unread: false },
+                    { title: 'New partner application', desc: 'GreenEarth NGO submitted a request', time: '2h ago', unread: true },
+                    { title: 'New School Enrolled', desc: 'Bright Futures Academy joined SDG 4', time: '5h ago', unread: true },
+                    { title: 'Project Milestone', desc: 'Water Access Project reached 100%', time: 'Yesterday', unread: true },
+                    { title: 'Report Submitted', desc: 'EcoSolutions uploaded Q3 impact report', time: '2d ago', unread: false },
                   ].map((n, i, arr) => (
                     <div key={i} style={{ display: 'flex', gap: 12, padding: '11px 18px', borderBottom: i < arr.length - 1 ? `1px solid ${c.border}` : 'none', background: n.unread ? c.accentLight : 'transparent', cursor: 'pointer' }}>
-                      <span style={{ fontSize: 18, lineHeight: 1, flexShrink: 0, marginTop: 1 }}>{n.icon}</span>
                       <div style={{ flex: 1 }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                           <span style={{ fontSize: 12, fontWeight: 600, color: c.textPrimary }}>{n.title}</span>
@@ -566,7 +565,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <footer style={{ borderTop: `1px solid ${c.border}`, background: c.surface, padding: '14px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ fontSize: 12.5, fontWeight: 700, color: c.textPrimary }}>StepUp SDG Platform <span style={{ fontWeight: 400, color: c.textMuted }}>© 2026</span></div>
           <div style={{ fontSize: 11.5, fontWeight: 600, color: c.red }}>Restricted — Authorized Admins Only</div>
-          <div style={{ fontSize: 11.5, color: c.textMuted }}>v1.0.0 · Session active</div>
+
         </footer>
 
         {children}
