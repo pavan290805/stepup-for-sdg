@@ -145,7 +145,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </aside>
 
         {/* MAIN */}
-        <div style={{ flex: 1, marginLeft: 248, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ flex: 1, marginLeft: 248, minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
 
           {/* Topbar */}
           <header style={{
@@ -266,7 +266,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </header>
 
           {/* PAGE CONTENT */}
-          {children}
+          <div style={{ flex: 1 }}>{children}</div>
 
           {/* Footer */}
           <footer style={{ borderTop: `1px solid ${c.border}`, background: c.surface, padding: '14px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

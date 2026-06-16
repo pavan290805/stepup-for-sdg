@@ -117,7 +117,55 @@ export default function SDGManagementPage() {
               </div>
             </div>
           )}
-          {activeTab === 'activities' && <div>Activities content</div>}
+          {activeTab === 'activities' && (
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+                <p style={{ fontSize: 13, color: '#6b7888' }}>Organize SDG-aligned activities and upcoming events</p>
+                <button style={{
+                  background: '#0f3460', color: 'white', border: 'none',
+                  borderRadius: 8, padding: '9px 16px', fontSize: 12, fontWeight: 600, cursor: 'pointer'
+                }}>
+                  + New Activity
+                </button>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {[
+                  { title: 'Beach Cleanup Drive', sdg: 'SDG 14', date: '22 Jun 2026', location: 'Visakhapatnam Coast', participants: 84, status: 'Upcoming' },
+                  { title: 'Tree Plantation Marathon', sdg: 'SDG 13', date: '15 Jun 2026', location: 'KL University Campus', participants: 210, status: 'Ongoing' },
+                  { title: 'Digital Literacy Workshop', sdg: 'SDG 4', date: '02 Jun 2026', location: 'Govt School, Vijayawada', participants: 56, status: 'Completed' },
+                ].map((act, i) => (
+                  <div key={i} style={{
+                    background: 'white', borderRadius: 12, padding: 18,
+                    border: '1px solid #eef0f2', display: 'flex',
+                    justifyContent: 'space-between', alignItems: 'center'
+                  }}>
+                    <div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+                        <span style={{ fontSize: 14, fontWeight: 600, color: '#1a1a2e' }}>{act.title}</span>
+                        <span style={{
+                          fontSize: 9.5, fontWeight: 600, padding: '3px 8px',
+                          borderRadius: 5, background: '#e6f0ff', color: '#0066cc'
+                        }}>
+                          {act.sdg}
+                        </span>
+                      </div>
+                      <div style={{ fontSize: 11.5, color: '#9aa3ad' }}>
+                        {act.date} · {act.location} · {act.participants} participants
+                      </div>
+                    </div>
+                    <span style={{
+                      fontSize: 11, fontWeight: 600, padding: '5px 12px', borderRadius: 6,
+                      background: act.status === 'Upcoming' ? '#fff3e0' : act.status === 'Ongoing' ? '#e6f7fb' : '#e6f7ec',
+                      color: act.status === 'Upcoming' ? '#f4b400' : act.status === 'Ongoing' ? '#00a8a8' : '#00b050'
+                    }}>
+                      {act.status}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
           {activeTab === 'cases' && <div>Case Studies content</div>}
           {activeTab === 'opportunities' && <div>Opportunities content</div>}
           {activeTab === 'impact' && <div>Impact content</div>}
