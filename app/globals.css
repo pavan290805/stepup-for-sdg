@@ -24,7 +24,14 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
-@keyframes earthRotate {
+
+@layer utilities {
+  .transform-gpu {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes rotate-earth {
   from {
     transform: rotate(0deg);
   }
@@ -33,6 +40,30 @@ body {
   }
 }
 
-.earth-rotate {
-  animation: earthRotate 40s linear infinite;
+@keyframes rotate-sdg-ring {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-rotate-earth {
+  animation: rotate-earth 60s linear infinite;
+  will-change: transform;
+}
+
+.animate-rotate-sdg-ring {
+  animation: rotate-sdg-ring 35s linear infinite;
+  will-change: transform;
 }
