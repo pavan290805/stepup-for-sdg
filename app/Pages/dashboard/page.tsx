@@ -48,6 +48,41 @@ export default function DashboardPage() {
         </button>
       </div>
 
+      {/* SDG Overview Cards */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 14 }}>
+        {[
+          { label: 'Total Partners',       value: '1,248', change: '+12% this month', up: true,  color: '#3b6ef6' },
+          { label: 'Total Projects',        value: '386',   change: '+6% this month',  up: true,  color: '#8b5cf6' },
+          { label: 'Total SDGs',            value: '17/17', change: 'All active',      up: null,  color: '#10b981' },
+          { label: 'Total Events',          value: '156',   change: '+18% this month', up: true,  color: '#f59e0b' },
+        ].map((s, i) => (
+          <div key={i} className="card-hover fade-up" style={{ ...card, padding: '20px', animationDelay: `${i * .06}s`, overflow: 'hidden', position: 'relative' }}>
+            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: s.color, borderRadius: '14px 14px 0 0' }} />
+            <div style={{ fontSize: 11, fontWeight: 600, color: c.textMuted, textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 6 }}>{s.label}</div>
+            <div style={{ fontSize: 30, fontWeight: 800, color: c.textPrimary, lineHeight: 1, marginBottom: 8 }}>{s.value}</div>
+            <div style={{ fontSize: 11.5, fontWeight: 500, color: s.up === true ? c.green : s.up === false ? c.red : c.textMuted }}>
+              {s.up === true ? '↑ ' : ''}{s.change}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 14 }}>
+        {[
+          { label: 'Student Contributions', value: '4,820', change: '+24% this month',  up: true,  color: '#06b6d4' },
+          { label: 'Pending Requests',       value: '24',    change: 'Action required',  up: null,  color: '#ef4444' },
+          { label: 'Active Campaigns',       value: '38',    change: '+3 this week',     up: true,  color: '#10b981' },
+        ].map((s, i) => (
+          <div key={i} className="card-hover fade-up" style={{ ...card, padding: '20px', animationDelay: `${i * .06}s`, overflow: 'hidden', position: 'relative' }}>
+            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: s.color, borderRadius: '14px 14px 0 0' }} />
+            <div style={{ fontSize: 11, fontWeight: 600, color: c.textMuted, textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 6 }}>{s.label}</div>
+            <div style={{ fontSize: 30, fontWeight: 800, color: c.textPrimary, lineHeight: 1, marginBottom: 8 }}>{s.value}</div>
+            <div style={{ fontSize: 11.5, fontWeight: 500, color: s.up === true ? c.green : s.up === false ? c.red : c.textMuted }}>
+              {s.up === true ? '↑ ' : ''}{s.change}
+            </div>
+          </div>
+        ))}
+      </div>
+
       {/* Stat Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 14 }}>
         {[
@@ -297,6 +332,23 @@ export default function DashboardPage() {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Quick Actions */}
+      <div className="card-hover" style={{ background: 'linear-gradient(120deg,#1e3a8a 0%,#2563eb 55%,#0ea5e9 100%)', borderRadius: 14, padding: '24px 28px', boxShadow: '0 4px 20px rgba(37,99,235,.3)' }}>
+        <div style={{ fontSize: 15, fontWeight: 700, color: '#fff', marginBottom: 4 }}>Quick Actions</div>
+        <div style={{ fontSize: 12.5, color: 'rgba(255,255,255,.6)', marginBottom: 18 }}>Jump to the most common workflows.</div>
+        <div style={{ display: 'flex', gap: 12 }}>
+          {[
+            { icon: '👤+', label: 'Add Partner' },
+            { icon: '+',   label: 'New SDG Entry' },
+            { icon: '↗',   label: 'Review Requests' },
+          ].map((a, i) => (
+            <button key={i} style={{ background: 'rgba(255,255,255,.15)', border: '1px solid rgba(255,255,255,.3)', color: '#fff', borderRadius: 9, padding: '9px 20px', fontSize: 13, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}>
+              <span>{a.icon}</span>{a.label}
+            </button>
+          ))}
+        </div>
       </div>
 
     </main>

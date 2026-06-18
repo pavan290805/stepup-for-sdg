@@ -169,7 +169,7 @@ export default function SDGManagementPage() {
           {activeTab === 'cases' && <div>Case Studies content</div>}
           {activeTab === 'opportunities' && <div>Opportunities content</div>}
           {activeTab === 'impact' && <div>Impact content</div>}
-          {activeTab === 'campaigns' && <div>Campaigns content</div>}
+          {activeTab === 'campaigns' && null}
         </div>
 
       </div>
