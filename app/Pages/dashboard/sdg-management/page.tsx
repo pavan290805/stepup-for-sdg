@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useDashboardTheme } from '../ThemeContext'
 
 // Add new project-related SDGs here — they auto-appear everywhere
 const sdgs = [
@@ -43,6 +44,26 @@ function getDetail(num: number) {
 }
 
 export default function SDGManagementPage() {
+  const { dark } = useDashboardTheme()
+  const c = {
+    bg:          dark ? '#0f1117' : '#f5f6fa',
+    surface:     dark ? '#1a1d27' : '#ffffff',
+    surfaceAlt:  dark ? '#1f2335' : '#f8f9fc',
+    border:      dark ? 'rgba(255,255,255,.07)' : '#eef0f2',
+    textPrimary: dark ? '#f0f2f8' : '#111827',
+    textSecond:  dark ? '#8891aa' : '#6b7888',
+    textMuted:   dark ? '#4a5168' : '#9aa3ad',
+  }
+  const { dark } = useDashboardTheme()
+  const c = {
+    bg:          dark ? '#0f1117' : '#f5f6fa',
+    surface:     dark ? '#1a1d27' : '#ffffff',
+    surfaceAlt:  dark ? '#1f2335' : '#f8f9fc',
+    border:      dark ? 'rgba(255,255,255,.07)' : '#eef0f2',
+    textPrimary: dark ? '#f0f2f8' : '#111827',
+    textSecond:  dark ? '#8891aa' : '#6b7888',
+    textMuted:   dark ? '#4a5168' : '#9aa3ad',
+  }
   const [activeTab, setActiveTab] = useState('info')
   const [selectedSDG] = useState(4)
 
@@ -101,8 +122,8 @@ export default function SDGManagementPage() {
   const sdg = sdgs.find(s => s.num === selectedSDG)!
   const detail = getDetail(selectedSDG)
 
-  const inputStyle = { width: '100%', padding: '8px 10px', borderRadius: 7, border: '1px solid #e0e0e0', fontSize: 13, outline: 'none', boxSizing: 'border-box' as const }
-  const labelStyle = { fontSize: 12, fontWeight: 600 as const, color: '#444', marginBottom: 4, display: 'block' as const }
+  const inputStyle = { width: '100%', padding: '8px 10px', borderRadius: 7, border: `1px solid ${dark ? 'rgba(255,255,255,.12)' : '#e0e0e0'}`, fontSize: 13, outline: 'none', boxSizing: 'border-box' as const, background: dark ? '#1f2335' : 'white', color: c.textPrimary }
+  const labelStyle = { fontSize: 12, fontWeight: 600 as const, color: c.textSecond, marginBottom: 4, display: 'block' as const }
 
   return (
     <div style={{ padding: 24 }}>
