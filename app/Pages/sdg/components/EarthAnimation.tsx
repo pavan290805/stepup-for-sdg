@@ -2,9 +2,6 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import GoldenRing from "./GoldenRing";
-import CssSDGRing from "./CssSDGRing";
-import TransitionOverlay from "./TransitionOverlay";
 
 type Props = {
   isLaunching: boolean;
@@ -14,86 +11,84 @@ type Props = {
 
 export default function EarthAnimation({ isLaunching, onExplore, reduceMotion }: Props) {
   return (
-    <div className="flex flex-col items-center text-center">
+    <div className="relative z-10 flex min-h-screen w-full items-center justify-center overflow-hidden px-4 text-center">
+      <motion.div
+        aria-hidden="true"
+        className="absolute left-1/2 top-1/2 h-[min(72vh,46rem)] w-[min(72vh,46rem)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/15 blur-3xl"
+        initial={false}
+        animate={isLaunching ? { opacity: 0.95, scale: reduceMotion ? 1 : 1.22 } : { opacity: 0.45, scale: 1 }}
+        transition={{ duration: reduceMotion ? 0.2 : 0.65, delay: isLaunching ? 0.6 : 0, ease: [0.22, 1, 0.36, 1] }}
+      />
+
       <motion.button
         aria-label="Explore the Sustainable Development Goals"
-        className="group relative flex items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/80 focus-visible:ring-offset-4 focus-visible:ring-offset-[#020617] w-[300px] h-[300px] sm:w-[420px] sm:h-[420px]"
+        className="group relative flex h-[clamp(20rem,52vw,35rem)] w-[clamp(20rem,52vw,35rem)] items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/90 focus-visible:ring-offset-4 focus-visible:ring-offset-[#020617] transform-gpu"
         disabled={isLaunching}
         initial={false}
         onClick={onExplore}
-        animate={isLaunching ? "launching" : "idle"}
-        variants={{
-          idle: { scale: 1, y: 0 },
-          launching: {
-            scale: reduceMotion ? 1 : 4,
-            transition: { duration: 2, ease: [0.22, 1, 0.36, 1], delay: 0.7 },
-          },
-        }}
-        whileHover={!isLaunching && !reduceMotion ? { scale: 1.02, y: -6 } : undefined}
+        animate={
+          isLaunching
+            ? {
+                scale: reduceMotion ? 1.02 : [1, 1, 1.08, 1.62],
+                transition: { duration: reduceMotion ? 0.2 : 0.95, times: [0, 0.3, 0.55, 1], ease: [0.22, 1, 0.36, 1] },
+              }
+            : { scale: 1 }
+        }
+        whileHover={!isLaunching && !reduceMotion ? { scale: 1.015 } : undefined}
         whileTap={!isLaunching ? { scale: 0.985 } : undefined}
       >
-        <div className="absolute inset-[-16%] rounded-full bg-cyan-400/15 blur-3xl" />
-        <div className="absolute inset-[-26%] rounded-full bg-sky-500/10 blur-[130px]" />
-
-        <CssSDGRing isLaunching={isLaunching} reduceMotion={reduceMotion} />
-        <GoldenRing isActive={isLaunching} reduceMotion={reduceMotion} />
-
-        <div className="relative z-20 aspect-square w-[250px] sm:w-[360px] overflow-hidden rounded-full border border-white/10 bg-black shadow-[0_0_50px_rgba(56,189,248,0.28)] transform-gpu animate-rotate-earth">
+        <motion.div
+          aria-hidden="true"
+          className="absolute inset-[2%] z-20 transform-gpu will-change-transform"
+          initial={false}
+          animate={
+            isLaunching
+              ? {
+                  opacity: reduceMotion ? 0 : [1, 1, 0],
+                  scale: reduceMotion ? 1 : [1, 1.02, 1.08],
+                  transition: { duration: reduceMotion ? 0.2 : 0.78, times: [0, 0.5, 1], ease: "easeInOut" },
+                }
+              : { opacity: 1, scale: 1 }
+          }
+        >
           <Image
-            alt="Rotating Earth"
-            className="object-cover object-center scale-[1.06]"
+            alt=""
+            className="object-contain animate-rotate-sdg-ring"
             fill
             priority
-            sizes="(max-width: 640px) 250px, 360px"
-            src="/sdg/earth.png"
+            sizes="(max-width: 768px) 92vw, 35rem"
+            src="/sdgring.png"
           />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_34%_28%,rgba(255,255,255,0.3),transparent_18%),radial-gradient(circle_at_68%_76%,transparent_24%,rgba(1,4,18,0.64)_88%)]" />
-        </div>
-      </motion.button>
-
-      <motion.div
-        className="relative z-20 mt-10 max-w-4xl space-y-4 px-4"
-        initial={false}
-        animate={isLaunching ? { opacity: 0, y: 18, transition: { duration: 0.5, delay: 0.2 } } : { opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <motion.p
-          className="text-xs uppercase tracking-[0.48em] text-sky-200/75 sm:text-sm"
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        >
-          STEPUP FOR SDG
-        </motion.p>
-        <motion.h1
-          className="text-4xl font-semibold tracking-[0.16em] text-white sm:text-5xl lg:text-6xl"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.32, duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-          style={{ fontFamily: "\"Arial Narrow\", \"Trebuchet MS\", sans-serif" }}
-        >
-          STEPUP FOR SDG
-        </motion.h1>
-        <motion.p
-          className="mx-auto max-w-2xl text-balance text-base leading-7 text-slate-200/80 sm:text-lg"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.44, duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-        >
-          Educating Students on UN Sustainable Development Goals
-        </motion.p>
-        <motion.div
-          className="flex items-center justify-center pt-2"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.56, duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <span className="inline-flex rounded-full border border-white/15 bg-white/6 px-5 py-2 text-sm tracking-[0.28em] text-sky-100 shadow-[0_0_30px_rgba(56,189,248,0.14)]">
-            Click the Earth to Explore
-          </span>
         </motion.div>
-      </motion.div>
-      <TransitionOverlay isActive={isLaunching} reduceMotion={reduceMotion} />
+
+        <div className="relative z-10 aspect-square w-[75%] overflow-hidden rounded-full shadow-[0_0_58px_rgba(56,189,248,0.38)] transform-gpu animate-rotate-earth will-change-transform">
+          <Image
+            alt="Rotating Earth"
+            className="object-cover object-center scale-[1.28]"
+            fill
+            priority
+            sizes="(max-width: 768px) 72vw, 27rem"
+            src="/earth.png"
+          />
+        </div>
+
+        <motion.div
+          className="pointer-events-none absolute left-1/2 top-1/2 z-30 w-screen max-w-[94vw] -translate-x-1/2 -translate-y-1/2 space-y-3 px-4 text-center"
+          initial={false}
+          animate={isLaunching ? { opacity: 0, y: 18 } : { opacity: 1, y: 0 }}
+          transition={{ duration: reduceMotion ? 0.15 : 0.38, delay: isLaunching ? 0.2 : 0.25, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <h1 className="whitespace-nowrap font-serif text-[clamp(1.55rem,3.6vw,3rem)] font-semibold leading-none text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.9)]">
+            STEPUP FOR SDG
+          </h1>
+          <p className="mx-auto max-w-2xl text-[clamp(0.72rem,1.5vw,1rem)] font-medium text-slate-100 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+            Educating Students on UN Sustainable Development Goals
+          </p>
+          <p className="text-[clamp(0.7rem,1.25vw,0.95rem)] font-medium text-white/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+            17 Goals. One Shared Future.
+          </p>
+        </motion.div>
+      </motion.button>
     </div>
   );
 }

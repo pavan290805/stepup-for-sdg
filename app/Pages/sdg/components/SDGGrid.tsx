@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import type { RefObject } from "react";
 import { motion } from "framer-motion";
 import { sdgs } from "../data/sdgs";
 import SDGCard from "./SDGCard";
@@ -7,43 +9,32 @@ import SDGCard from "./SDGCard";
 type Props = {
   isVisible: boolean;
   reduceMotion: boolean;
+  sectionRef: RefObject<HTMLElement | null>;
 };
 
-export default function SDGGrid({ isVisible, reduceMotion }: Props) {
+export default function SDGGrid({ isVisible, reduceMotion, sectionRef }: Props) {
   return (
     <motion.section
-      className="absolute inset-0 z-40 overflow-y-auto bg-black"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: isVisible ? 1 : 0 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      ref={sectionRef}
+      aria-hidden={!isVisible}
+      className="relative z-20 min-h-screen overflow-hidden px-4 pb-20 pt-12 sm:px-6 lg:px-10"
+      id="goals"
+      initial={false}
+      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: reduceMotion ? 0 : 40 }}
+      transition={{ duration: reduceMotion ? 0.12 : 0.42, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(14,165,233,0.1),transparent_30%),radial-gradient(circle_at_bottom,rgba(59,130,246,0.08),transparent_36%)]" />
-      <div className="absolute inset-0 opacity-10 [background-image:linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:4rem_4rem]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_0%,rgba(56,189,248,0.18),transparent_28%),radial-gradient(circle_at_40%_100%,rgba(45,212,191,0.18),transparent_34%),linear-gradient(180deg,rgba(3,7,18,0.15),rgba(3,18,31,0.62))]" />
+      <div className="absolute -right-[18vh] -top-[24vh] h-[58vh] w-[58vh] opacity-35 sm:opacity-50">
+        <div className="relative h-full w-full overflow-hidden rounded-full transform-gpu animate-rotate-earth will-change-transform">
+          <Image alt="" className="object-cover scale-[1.22]" fill sizes="58vh" src="/earth.png" />
+        </div>
+      </div>
 
-      <div className="relative mx-auto flex min-h-full w-full max-w-7xl flex-col px-4 pb-16 pt-16 sm:px-6 lg:px-10">
-        <motion.div
-          className="mx-auto max-w-3xl text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-          transition={{ delay: reduceMotion ? 0 : 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <span className="inline-flex rounded-full border border-sky-300/20 bg-white/5 px-4 py-2 text-xs uppercase tracking-widest text-sky-100/80">
-            United Nations Sustainable Development Goals
-          </span>
-          <h2
-            className="mt-6 text-balance text-4xl font-bold tracking-wide text-white sm:text-5xl"
-            style={{ fontFamily: "\"Arial Narrow\", \"Trebuchet MS\", sans-serif" }}
-          >
-            17 Goals. One Shared Future.
-          </h2>
-          <p className="mt-4 text-balance text-base leading-7 text-slate-200/70 sm:text-lg">
-            Explore each goal through a cinematic entry point designed to feel like a mission briefing for global action.
-          </p>
-        </motion.div>
-
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="relative mx-auto w-full max-w-6xl">
+        <h2 className="sr-only">Sustainable Development Goal cards</h2>
+        <div className="grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
           {sdgs.map((sdg, index) => (
-            <SDGCard key={sdg.id} index={index} reduceMotion={reduceMotion} sdg={sdg} />
+            <SDGCard key={sdg.id} index={index} isVisible={isVisible} reduceMotion={reduceMotion} sdg={sdg} />
           ))}
         </div>
       </div>

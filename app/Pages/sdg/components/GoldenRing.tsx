@@ -36,7 +36,7 @@ export default function GoldenRing({ isActive, reduceMotion }: Props) {
         className="object-contain brightness-125 saturate-150"
         fill
         sizes="(max-width: 640px) 96vw, (max-width: 1024px) 78vw, 40rem"
-        src="/sdg/ring.png"
+        src="/sdgring.png"
       />
     </motion.div>
   );

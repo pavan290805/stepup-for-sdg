@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getSdgById, sdgs, withAlpha } from "../data/sdgs";
@@ -28,98 +29,48 @@ export default async function SDGDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const previousGoal = sdgs[(sdg.id + sdgs.length - 2) % sdgs.length];
-  const nextGoal = sdgs[sdg.id % sdgs.length];
+  const imagePath = `/sdg/goal-${String(sdg.id).padStart(2, "0")}.png`;
 
   return (
-    <main className="min-h-screen bg-black text-white">
-      <div className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#020617_0%,#020817_58%,#000000_100%)]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.16),transparent_30%),radial-gradient(circle_at_80%_20%,rgba(99,102,241,0.16),transparent_28%),radial-gradient(circle_at_bottom,rgba(14,165,233,0.12),transparent_34%)]" />
-        <div className="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full blur-[150px]" style={{ backgroundColor: withAlpha(sdg.color, 0.26) }} />
+    <main className="relative min-h-screen overflow-hidden bg-black px-5 py-8 text-white sm:px-8 lg:px-12">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(56,189,248,0.22),transparent_28%),radial-gradient(circle_at_18%_88%,rgba(45,212,191,0.16),transparent_32%),linear-gradient(180deg,#020617_0%,#06172a_52%,#000_100%)]" />
+      <div className="absolute inset-0 opacity-50 [background-image:radial-gradient(circle,rgba(255,255,255,0.72)_1px,transparent_1px)] [background-size:34px_34px]" />
 
-        <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <Link
-              className="inline-flex w-fit items-center gap-3 rounded-full border border-white/10 bg-white/6 px-5 py-3 text-sm tracking-[0.2em] text-slate-100/88 transition hover:border-white/20 hover:bg-white/10"
-              href="/sdg"
-            >
-              Back to all goals
-            </Link>
-            <span className="text-xs uppercase tracking-[0.38em] text-sky-100/62">Goal detail placeholder</span>
+      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-4rem)] w-full max-w-6xl flex-col justify-center">
+        <Link
+          className="mb-8 inline-flex w-fit rounded-full border border-white/14 bg-white/8 px-5 py-3 text-sm font-semibold text-slate-100 backdrop-blur-md transition hover:border-cyan-200/60 hover:bg-white/12"
+          href="/Pages/sdg"
+        >
+          Back to Goals
+        </Link>
+
+        <section
+          className="grid items-center gap-10 rounded-lg border border-white/12 bg-white/8 p-5 shadow-[0_28px_80px_-44px_rgba(0,0,0,0.95)] backdrop-blur-md sm:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:p-10"
+          style={{ boxShadow: `0 28px 90px -46px ${withAlpha(sdg.color, 0.78)}` }}
+        >
+          <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-lg shadow-[0_22px_52px_-28px_rgba(0,0,0,0.9)]">
+            <Image
+              alt={`SDG Goal ${sdg.id}: ${sdg.title}`}
+              className="object-cover"
+              fill
+              priority
+              sizes="(max-width: 1024px) 80vw, 24rem"
+              src={imagePath}
+            />
           </div>
 
-          <article
-            className="relative mt-10 overflow-hidden rounded-[2rem] border bg-white/6 p-6 shadow-[0_24px_80px_-32px_rgba(0,0,0,0.9)] backdrop-blur-xl sm:p-8 lg:p-10"
-            style={{
-              borderColor: withAlpha(sdg.color, 0.42),
-              boxShadow: `0 30px 90px -40px ${withAlpha(sdg.color, 0.5)}`,
-            }}
-          >
-            <div className="absolute inset-x-0 top-0 h-2" style={{ backgroundColor: sdg.color }} />
-
-            <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-              <div>
-                <span
-                  className="inline-flex rounded-full px-4 py-2 text-xs uppercase tracking-[0.36em] text-white"
-                  style={{ backgroundColor: withAlpha(sdg.color, 0.26) }}
-                >
-                  Goal {String(sdg.id).padStart(2, "0")}
-                </span>
-                <h1
-                  className="mt-6 text-balance text-4xl font-semibold tracking-[0.12em] text-white sm:text-5xl"
-                  style={{ fontFamily: "\"Arial Narrow\", \"Trebuchet MS\", sans-serif" }}
-                >
-                  {sdg.title}
-                </h1>
-                <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200/78">{sdg.summary}</p>
-                <p className="mt-6 max-w-2xl text-base leading-7 text-slate-300/68">
-                  This page is a polished placeholder route for your team project. It is ready to receive richer content such as
-                  student learning modules, local case studies, actions, data stories, and impact metrics for this goal.
-                </p>
-
-                <div className="mt-10 flex flex-wrap gap-4">
-                  <Link
-                    className="rounded-full border border-white/12 bg-white/6 px-5 py-3 text-sm tracking-[0.18em] text-slate-100/88 transition hover:border-white/24 hover:bg-white/10"
-                    href={`/sdg/${previousGoal.id}`}
-                  >
-                    Previous goal
-                  </Link>
-                  <Link
-                    className="rounded-full border border-white/12 bg-white/6 px-5 py-3 text-sm tracking-[0.18em] text-slate-100/88 transition hover:border-white/24 hover:bg-white/10"
-                    href={`/sdg/${nextGoal.id}`}
-                  >
-                    Next goal
-                  </Link>
-                </div>
-              </div>
-
-              <div className="space-y-5">
-                <section className="rounded-[1.6rem] border border-white/10 bg-black/20 p-6">
-                  <p className="text-xs uppercase tracking-[0.34em] text-sky-100/58">Focus areas</p>
-                  <div className="mt-5 space-y-3">
-                    {sdg.focusAreas.map((focusArea) => (
-                      <div
-                        key={focusArea}
-                        className="rounded-2xl border border-white/8 px-4 py-4 text-sm leading-6 text-slate-100/82"
-                        style={{ backgroundColor: withAlpha(sdg.color, 0.08) }}
-                      >
-                        {focusArea}
-                      </div>
-                    ))}
-                  </div>
-                </section>
-
-                <section className="rounded-[1.6rem] border border-white/10 bg-black/20 p-6">
-                  <p className="text-xs uppercase tracking-[0.34em] text-sky-100/58">Page status</p>
-                  <p className="mt-4 text-sm leading-7 text-slate-200/72">
-                    Placeholder content is live for all 17 SDGs so navigation works today, while leaving space for your team to
-                    expand each goal page later without reworking the route structure.
-                  </p>
-                </section>
-              </div>
-            </div>
-          </article>
-        </div>
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.32em] text-cyan-100/80">
+              Goal Number {sdg.id}
+            </p>
+            <h1 className="mt-5 text-balance text-[clamp(2.4rem,6vw,5rem)] font-extrabold leading-none text-white">
+              {sdg.title}
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-100/82">
+              Detailed information about SDG Goal {sdg.id}.
+            </p>
+          </div>
+        </section>
       </div>
     </main>
   );
