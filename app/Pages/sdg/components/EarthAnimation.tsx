@@ -11,7 +11,7 @@ type Props = {
 
 export default function EarthAnimation({ isLaunching, onExplore, reduceMotion }: Props) {
   return (
-    <div className="relative z-10 flex min-h-screen w-full items-center justify-center overflow-hidden px-4 text-center">
+    <div className="relative z-10 flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-4 text-center gap-8">
       <motion.div
         aria-hidden="true"
         className="absolute left-1/2 top-1/2 h-[min(72vh,46rem)] w-[min(72vh,46rem)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/15 blur-3xl"
@@ -20,6 +20,25 @@ export default function EarthAnimation({ isLaunching, onExplore, reduceMotion }:
         transition={{ duration: reduceMotion ? 0.2 : 0.65, delay: isLaunching ? 0.6 : 0, ease: [0.22, 1, 0.36, 1] }}
       />
 
+      {/* Text above globe */}
+      <motion.div
+        className="pointer-events-none z-30 space-y-3 text-center"
+        initial={false}
+        animate={isLaunching ? { opacity: 0, y: -18 } : { opacity: 1, y: 0 }}
+        transition={{ duration: reduceMotion ? 0.15 : 0.38, delay: isLaunching ? 0.1 : 0.25, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <h1 className="font-serif text-[clamp(2rem,4vw,3.4rem)] font-bold uppercase tracking-[0.18em] text-white drop-shadow-[0_2px_24px_rgba(0,0,0,1)]">
+          StepUp for SDG
+        </h1>
+        <p className="text-[clamp(0.85rem,1.6vw,1.1rem)] font-medium tracking-wide text-cyan-200 drop-shadow-[0_2px_12px_rgba(0,0,0,1)]">
+          Educating Students on UN Sustainable Development Goals
+        </p>
+        <p className="text-[clamp(0.75rem,1.2vw,0.95rem)] tracking-widest text-white/60">
+          17 Goals · One Shared Future
+        </p>
+      </motion.div>
+
+      {/* Globe */}
       <motion.button
         aria-label="Explore the Sustainable Development Goals"
         className="group relative flex h-[clamp(20rem,52vw,35rem)] w-[clamp(20rem,52vw,35rem)] items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/90 focus-visible:ring-offset-4 focus-visible:ring-offset-[#020617] transform-gpu"
@@ -71,23 +90,6 @@ export default function EarthAnimation({ isLaunching, onExplore, reduceMotion }:
             src="/earth.png"
           />
         </div>
-
-        <motion.div
-          className="pointer-events-none absolute left-1/2 top-1/2 z-30 w-screen max-w-[94vw] -translate-x-1/2 -translate-y-1/2 space-y-3 px-4 text-center"
-          initial={false}
-          animate={isLaunching ? { opacity: 0, y: 18 } : { opacity: 1, y: 0 }}
-          transition={{ duration: reduceMotion ? 0.15 : 0.38, delay: isLaunching ? 0.2 : 0.25, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <h1 className="whitespace-nowrap font-serif text-[clamp(1.55rem,3.6vw,3rem)] font-semibold leading-none text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.9)]">
-            STEPUP FOR SDG
-          </h1>
-          <p className="mx-auto max-w-2xl text-[clamp(0.72rem,1.5vw,1rem)] font-medium text-slate-100 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
-            Educating Students on UN Sustainable Development Goals
-          </p>
-          <p className="text-[clamp(0.7rem,1.25vw,0.95rem)] font-medium text-white/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
-            17 Goals. One Shared Future.
-          </p>
-        </motion.div>
       </motion.button>
     </div>
   );
