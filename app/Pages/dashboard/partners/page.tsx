@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useDashboardTheme } from '../ThemeContext'
+import { usePartners } from '../PartnersContext'
 
 const SDG_COLORS: Record<string, string> = {
   'SDG 1': '#e5243b', 'SDG 2': '#dda63a', 'SDG 3': '#4c9f38', 'SDG 4': '#c5192d',
@@ -10,67 +11,9 @@ const SDG_COLORS: Record<string, string> = {
   'SDG 13': '#3f7e44', 'SDG 14': '#0a97d9', 'SDG 15': '#56c02b', 'SDG 16': '#00689d', 'SDG 17': '#19486a',
 }
 
-const initialPartners = [
-  {
-    img: 'https://images.unsplash.com/photo-1562774053-701939374585?w=80&q=80',
-    name: 'Oakridge Science High School', sector: 'SCHOOL', focus: 'Quality Education',
-    location: 'California, USA', email: 'info@oakridge.edu', phone: '+1 555 0101',
-    website: 'https://oakridge.edu',
-    verified: true, visible: true, sdgs: ['SDG 3', 'SDG 4', 'SDG 13'], type: 'school',
-    desc: 'A premier public science high school dedicated to equipping tomorrow\'s leaders with practical sustainability, engineering literacy, and global civic consciousness.'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=80&q=80',
-    name: 'Green Horizon Alliance', sector: 'NGO', focus: 'Climate Action',
-    location: 'Nairobi, Kenya', email: 'hello@greenhorizon.org', phone: '+254 712 000',
-    website: 'https://greenhorizon.org',
-    verified: true, visible: true, sdgs: ['SDG 6', 'SDG 7', 'SDG 13', 'SDG 15'], type: 'ngo',
-    desc: 'Global NGO advancing ecological conservation, clean electricity scaling, and biodiversity stewardship through community-driven youth action leagues.'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=80&q=80',
-    name: 'Solaris Global Renewables', sector: 'COMPANY', focus: 'Affordable Energy',
-    location: 'San Francisco, CA', email: 'contact@solaris.com', phone: '+1 415 222',
-    website: 'https://solaris.com',
-    verified: true, visible: true, sdgs: ['SDG 7', 'SDG 13'], type: 'company',
-    desc: 'Leading renewable energy enterprise developing smart solar infrastructure and offering technology grants, internships, and educational supplies to partner schools.'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&q=80',
-    name: 'Youth Empowerment Initiative', sector: 'NGO', focus: 'Gender Equality',
-    location: 'Mumbai, India', email: 'team@yei.org', phone: '+91 22 3456',
-    website: 'https://yei.org',
-    verified: false, visible: true, sdgs: ['SDG 4', 'SDG 5'], type: 'ngo',
-    desc: 'Grassroots organization providing career mentorship, leadership incubators, and civic advocacy seminars for underprivileged teenage girls.'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=80&q=80',
-    name: 'Blue Marine Institute', sector: 'NGO', focus: 'Life Below Water',
-    location: 'London, UK', email: 'hello@bluemarine.org', phone: '+44 20 7946',
-    website: 'https://bluemarine.org',
-    verified: true, visible: true, sdgs: ['SDG 14'], type: 'ngo',
-    desc: 'Global NGO advancing ocean conservation, marine biodiversity research, and coastal community education programs across 40+ countries.'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=80&q=80',
-    name: 'Green Canopy Foundation', sector: 'NGO', focus: 'Life on Land',
-    location: 'São Paulo, Brazil', email: 'hi@greencanopy.org', phone: '+55 11 2233',
-    website: 'https://greencanopy.org',
-    verified: true, visible: true, sdgs: ['SDG 15', 'SDG 13'], type: 'ngo',
-    desc: 'Conservation foundation focused on reforestation, biodiversity protection, and indigenous land rights advocacy across the Amazon basin.'
-  },
-]
-
-const inputStyle: React.CSSProperties = {
-  width: '100%', padding: '9px 12px', borderRadius: 8,
-  border: '1px solid #e0e0e0', fontSize: 13, outline: 'none', boxSizing: 'border-box'
-}
-const labelStyle: React.CSSProperties = {
-  fontSize: 11.5, fontWeight: 600, color: '#444', marginBottom: 4, display: 'block'
-}
-
 export default function PartnerManagementPage() {
   const { dark } = useDashboardTheme()
+  const { partners, setPartners } = usePartners()
   const c = {
     bg:          dark ? '#0f1117' : '#f5f6fa',
     surface:     dark ? '#1a1d27' : '#ffffff',
@@ -90,7 +33,6 @@ export default function PartnerManagementPage() {
   const labelStyle: React.CSSProperties = {
     fontSize: 11.5, fontWeight: 600, color: c.textSecond, marginBottom: 4, display: 'block'
   }
-  const [partners, setPartners] = useState(initialPartners)
   const [view, setView] = useState<'table' | 'cards'>('cards')
   const [filter, setFilter] = useState('all')
   const [search, setSearch] = useState('')
@@ -341,6 +283,7 @@ export default function PartnerManagementPage() {
                 { id: 'school', label: 'Schools' },
                 { id: 'ngo', label: 'NGOs' },
                 { id: 'company', label: 'Companies' },
+                { id: 'volunteer', label: 'Volunteers' },
               ].map(f => (
                 <button key={f.id} onClick={() => setFilter(f.id)} style={{
                   padding: '7px 14px', borderRadius: 6, border: 'none',

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { ThemeContext } from './ThemeContext'
+import { PartnersProvider } from './PartnersContext'
 import {
   Chart as ChartJS, CategoryScale, LinearScale, PointElement,
   LineElement, ArcElement, Tooltip, BarElement, Filler
@@ -64,6 +65,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   return (
     <ThemeContext.Provider value={{ dark }}>
+      <PartnersProvider>
       <div style={{ display: 'flex', minHeight: '100vh', background: c.bg, fontFamily: "'Inter','Segoe UI',system-ui,sans-serif", transition: 'background .3s' }}>
         <style>{`
           @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -275,6 +277,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </footer>
         </div>
       </div>
+      </PartnersProvider>
     </ThemeContext.Provider>
   )
 }

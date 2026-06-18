@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useDashboardTheme } from '../ThemeContext'
+import { usePartners } from '../PartnersContext'
 
 const applications = [
   {
@@ -32,6 +33,7 @@ const applications = [
 
 export default function PartnershipReviewPage() {
   const { dark } = useDashboardTheme()
+  const { addPartnerFromApplication } = usePartners()
   const c = {
     bg:          dark ? '#0f1117' : '#f5f6fa',
     surface:     dark ? '#1a1d27' : '#ffffff',
@@ -163,7 +165,7 @@ export default function PartnershipReviewPage() {
 
             {/* Action buttons */}
             <div style={{ display: 'flex', gap: 10, marginTop: 20 }}>
-              <button onClick={() => setStatus('verified')} style={{
+              <button onClick={() => { setStatus('verified'); addPartnerFromApplication(app) }} style={{
                 display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, fontWeight: 600,
                 padding: '9px 20px', borderRadius: 8, border: 'none',
                 background: '#10b981', color: 'white', cursor: 'pointer'

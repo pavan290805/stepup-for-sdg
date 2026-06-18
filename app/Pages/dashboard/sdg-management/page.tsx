@@ -54,16 +54,6 @@ export default function SDGManagementPage() {
     textSecond:  dark ? '#8891aa' : '#6b7888',
     textMuted:   dark ? '#4a5168' : '#9aa3ad',
   }
-  const { dark } = useDashboardTheme()
-  const c = {
-    bg:          dark ? '#0f1117' : '#f5f6fa',
-    surface:     dark ? '#1a1d27' : '#ffffff',
-    surfaceAlt:  dark ? '#1f2335' : '#f8f9fc',
-    border:      dark ? 'rgba(255,255,255,.07)' : '#eef0f2',
-    textPrimary: dark ? '#f0f2f8' : '#111827',
-    textSecond:  dark ? '#8891aa' : '#6b7888',
-    textMuted:   dark ? '#4a5168' : '#9aa3ad',
-  }
   const [activeTab, setActiveTab] = useState('info')
   const [selectedSDG] = useState(4)
 
