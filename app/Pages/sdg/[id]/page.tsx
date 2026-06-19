@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ExternalLink } from "lucide-react";
 import { getSdgById, sdgs, withAlpha } from "../data/sdgs";
 
 type PageProps = {
@@ -30,9 +31,24 @@ export default async function SDGDetailPage({ params }: PageProps) {
   }
 
   const imagePath = `/sdg/goal-${String(sdg.id).padStart(2, "0")}.png`;
+  const officialUnUrl = `https://sdgs.un.org/goals/goal${sdg.id}`;
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-black px-5 py-8 text-white sm:px-8 lg:px-12">
+      <style>
+        {`
+          @keyframes sdgInfoFadeInUp {
+            from {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+        `}
+      </style>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(56,189,248,0.22),transparent_28%),radial-gradient(circle_at_18%_88%,rgba(45,212,191,0.16),transparent_32%),linear-gradient(180deg,#020617_0%,#06172a_52%,#000_100%)]" />
       <div className="absolute inset-0 opacity-50 [background-image:radial-gradient(circle,rgba(255,255,255,0.72)_1px,transparent_1px)] [background-size:34px_34px]" />
 
@@ -69,6 +85,24 @@ export default async function SDGDetailPage({ params }: PageProps) {
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-100/82">
               Detailed information about SDG Goal {sdg.id}.
             </p>
+
+            <div className="mt-8 rounded-[24px] border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.05)] p-8 shadow-[0_24px_80px_-32px_rgba(56,189,248,0.72)] backdrop-blur-xl [animation:sdgInfoFadeInUp_700ms_ease-out_160ms_both]">
+              <h2 className="text-2xl font-bold text-white">About this Goal</h2>
+              <p className="mt-4 text-base leading-8 text-slate-100/78">
+                This Sustainable Development Goal focuses on improving global conditions and encouraging collective
+                action. 
+              </p>
+
+              <a
+                className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-sky-500 via-cyan-400 to-blue-600 px-5 py-3 text-center text-sm font-bold leading-5 text-white shadow-[0_16px_42px_-18px_rgba(56,189,248,0.9)] transition duration-300 hover:shadow-[0_18px_54px_-16px_rgba(56,189,248,1)] sm:w-fit sm:px-6"
+                href={officialUnUrl}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <span>Visit Official UN SDG Page</span>
+                <ExternalLink aria-hidden="true" className="h-4 w-4 shrink-0" />
+              </a>
+            </div>
           </div>
         </section>
       </div>

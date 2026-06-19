@@ -28,7 +28,7 @@ export default function EarthAnimation({ isLaunching, onExplore, reduceMotion }:
         transition={{ duration: reduceMotion ? 0.15 : 0.38, delay: isLaunching ? 0.1 : 0.25, ease: [0.22, 1, 0.36, 1] }}
       >
         <h1 className="font-serif text-[clamp(2rem,4vw,3.4rem)] font-bold uppercase tracking-[0.18em] text-white drop-shadow-[0_2px_24px_rgba(0,0,0,1)]">
-          StepUp for SDG
+          StepUp for SDg
         </h1>
         <p className="text-[clamp(0.85rem,1.6vw,1.1rem)] font-medium tracking-wide text-cyan-200 drop-shadow-[0_2px_12px_rgba(0,0,0,1)]">
           Educating Students on UN Sustainable Development Goals
