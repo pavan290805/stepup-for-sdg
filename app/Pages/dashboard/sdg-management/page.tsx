@@ -13,17 +13,8 @@ const sdgs = [
   { num: 5,  name: 'Gender Equality',           color: '#ff3a21', campaigns: 3  },
 ]
 
-const detailData: Record<number, { desc: string, pts: string, youths: string, awareCampaigns: string, themeColor: string, cases: { id: string, title: string, desc: string, outcome: string, img: string }[], activities: { title: string, date: string, location: string, category: string, subscribers: number }[] }> = {
-  14: {
-    desc: 'Conserve and sustainably use the oceans, seas and marine resources for sustainable development.',
-    pts: '3,100 pts', youths: '198 youths', awareCampaigns: '2 active', themeColor: '#0a97d9',
-    cases: [{ id: 'CASE #14-1 • COASTAL REEF BARRIER • 2024', title: 'Artificial Coral Reef Sinking Project', desc: 'Marine biology students assisted with remote underwater camera tracking and health charting.', outcome: 'Outcome Secured: Placed 30 bio-compatible structural dome clusters resulting in 200% increment of fish variety in 12 months.', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80' }],
-    activities: [{ title: 'Seashore Plastic Micro-audit', date: '2026-06-29', location: 'North Coast Marine Area', category: 'VOLUNTEER', subscribers: 48 }],
-  },
-}
-
 function getDetail(num: number) {
-  return detailData[num] ?? {
+  return {
     desc: `Support and accelerate progress on SDG ${num} through youth-led initiatives and community campaigns.`,
     pts: '2,400 pts', youths: '120 youths', awareCampaigns: '3 active', themeColor: sdgs.find(s => s.num === num)?.color ?? '#333',
     cases: [
@@ -56,6 +47,7 @@ export default function SDGManagementPage() {
   }
   const [activeTab, setActiveTab] = useState('info')
   const [selectedSDG] = useState(4)
+  const sdgColor = sdgs.find(s => s.num === selectedSDG)?.color ?? '#333'
 
   // Modal state
   const [modal, setModal] = useState<null | { type: string, data?: any }>(null)
@@ -108,9 +100,6 @@ export default function SDGManagementPage() {
     (infoStatusFilter === 'all' || p.status === infoStatusFilter) &&
     (p.title.toLowerCase().includes(infoSearch.toLowerCase()))
   )
-
-  const sdg = sdgs.find(s => s.num === selectedSDG)!
-  const detail = getDetail(selectedSDG)
 
   const inputStyle = { width: '100%', padding: '8px 10px', borderRadius: 7, border: `1px solid ${dark ? 'rgba(255,255,255,.12)' : '#e0e0e0'}`, fontSize: 13, outline: 'none', boxSizing: 'border-box' as const, background: dark ? '#1f2335' : 'white', color: c.textPrimary }
   const labelStyle = { fontSize: 12, fontWeight: 600 as const, color: c.textSecond, marginBottom: 4, display: 'block' as const }
@@ -488,7 +477,7 @@ export default function SDGManagementPage() {
               <div style={{ fontSize: 14, fontWeight: 700, color: '#111827' }}>Youth Contribution Activities & Campaigns</div>
               <div style={{ fontSize: 11.5, color: '#9aa3ad', marginTop: 3 }}>Interactive ecological assignments open to schools and individuals.</div>
             </div>
-            <button onClick={() => setModal({ type: 'schedule-event' })} style={{ fontSize: 12, fontWeight: 600, color: 'white', background: sdg.color, border: 'none', borderRadius: 8, padding: '8px 16px', cursor: 'pointer' }}>+ Schedule Event</button>
+            <button onClick={() => setModal({ type: 'schedule-event' })} style={{ fontSize: 12, fontWeight: 600, color: 'white', background: sdgColor, border: 'none', borderRadius: 8, padding: '8px 16px', cursor: 'pointer' }}>+ Schedule Event</button>
           </div>
           <div style={{ background: 'white', borderRadius: 14, border: '1px solid #eef0f2', overflow: 'hidden' }}>
             <div style={{ display: 'grid', gridTemplateColumns: '2fr 1.2fr 1.5fr 1fr 1fr 1fr', gap: 8, padding: '10px 16px', background: '#f8f9fc', borderBottom: '1px solid #eef0f2' }}>
@@ -620,60 +609,6 @@ export default function SDGManagementPage() {
         </div>
       )}
 
-      {activeTab === 'campaigns' && (
-        <div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
-            <div>
-              <div style={{ fontSize: 14, fontWeight: 700, color: '#111827' }}>Awareness Campaigns</div>
-              <div style={{ fontSize: 12, color: '#9aa3ad', marginTop: 3 }}>Manage and track all SDG awareness drives across schools and communities</div>
-            </div>
-            <button style={{ fontSize: 12, fontWeight: 600, color: 'white', background: '#0f3460', border: 'none', borderRadius: 8, padding: '9px 18px', cursor: 'pointer' }}>+ New Campaign</button>
-          </div>
-
-          {/* Campaign Stats */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14, marginBottom: 20 }}>
-            {[
-              { label: 'Total Campaigns', value: '24', sub: '8 active now', color: '#3b6ef6' },
-              { label: 'Total Reach', value: '18,400', sub: 'Students & volunteers', color: '#10b981' },
-              { label: 'Completion Rate', value: '73%', sub: 'Of scheduled campaigns', color: '#f59e0b' },
-            ].map((s, i) => (
-              <div key={i} style={{ background: 'white', borderRadius: 12, padding: '18px 20px', border: '1px solid #eef0f2', boxShadow: '0 1px 4px rgba(0,0,0,.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div>
-                  <div style={{ fontSize: 11, fontWeight: 600, color: '#9aa3ad', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 4 }}>{s.label}</div>
-                  <div style={{ fontSize: 26, fontWeight: 800, color: '#111827', lineHeight: 1, marginBottom: 4 }}>{s.value}</div>
-                  <div style={{ fontSize: 11, color: '#6b7888' }}>{s.sub}</div>
-                </div>
-                <div style={{ width: 44, height: 44, borderRadius: 12, background: s.color + '18', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20 }}>
-                  {''}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Campaigns Table */}
-          <div style={{ background: 'white', borderRadius: 14, border: '1px solid #eef0f2', boxShadow: '0 1px 4px rgba(0,0,0,.05)', overflow: 'hidden' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr 1fr', gap: 8, padding: '10px 22px', background: '#f8f9fc', borderBottom: '1px solid #eef0f2' }}>
-              {['CAMPAIGN', 'SDG', 'TYPE', 'REACH', 'STATUS', 'ACTION'].map((h, i) => (
-                <div key={i} style={{ fontSize: 10, fontWeight: 700, color: '#9aa3ad', letterSpacing: '0.5px' }}>{h}</div>
-              ))}
-            </div>
-            {campaigns.map((row, i, arr) => (
-              <div key={i} style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr 1fr', gap: 8, padding: '14px 22px', borderBottom: i < arr.length - 1 ? '1px solid #f5f5f5' : 'none', alignItems: 'center' }}>
-                <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{row.name}</span>
-                <span style={{ fontSize: 10, fontWeight: 700, color: 'white', background: row.color, borderRadius: 5, padding: '3px 8px', width: 'fit-content' }}>SDG {row.sdg}</span>
-                <span style={{ fontSize: 12, color: '#6b7888' }}>{row.type}</span>
-                <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{row.reach.toLocaleString()}</span>
-                <span style={{
-                  fontSize: 11, fontWeight: 600, padding: '4px 10px', borderRadius: 20, width: 'fit-content',
-                  background: row.status === 'Active' ? '#e6f7ec' : row.status === 'Upcoming' ? '#fff3e0' : '#f0f0f0',
-                  color: row.status === 'Active' ? '#00b050' : row.status === 'Upcoming' ? '#f4b400' : '#888'
-                }}>{row.status}</span>
-                <button style={{ fontSize: 11, fontWeight: 600, color: '#0f3460', background: '#e6f0ff', border: 'none', borderRadius: 7, padding: '6px 12px', cursor: 'pointer', width: 'fit-content' }}>View →</button>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
 
     </div>
   )

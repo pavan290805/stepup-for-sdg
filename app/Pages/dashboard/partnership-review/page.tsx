@@ -1,37 +1,56 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useDashboardTheme } from '../ThemeContext'
 import { usePartners } from '../PartnersContext'
+import { useSearchParams } from 'next/navigation'
 
 const applications = [
   {
+    initials: 'AE', color: '#fcc30b', name: 'Apex Eco-Logistics Corp', contact: 'Apex Eco-Logistics Corp',
+    date: '2026-06-08', status: 'pending', sdgFocus: 'Affordable & Clean Energy', category: 'COMPANY',
+    sdgs: [{n:7,c:'#fcc30b'},{n:13,c:'#3f7e44'}],
+    docs: ['apex-application.pdf', 'apex-company-profile.pdf'],
+    remarks: [],
+  },
+  {
+    initials: 'RS', color: '#c5192d', name: 'Riverdale Eco-Secondary School', contact: 'Riverdale Eco-Secondary School',
+    date: '2026-06-10', status: 'pending', sdgFocus: 'Quality Education', category: 'SCHOOL',
+    sdgs: [{n:4,c:'#c5192d'},{n:6,c:'#26bde2'},{n:13,c:'#3f7e44'},{n:15,c:'#56c02b'}],
+    docs: ['riverdale-application.pdf', 'riverdale-school-profile.pdf'],
+    remarks: [],
+  },
+  {
     initials: 'MS', color: '#10b981', name: 'Sunrise Cooperative', contact: 'Maria Rodriguez',
-    date: '2024-09-21', status: 'pending', sdgFocus: 'Zero Hunger',
+    date: '2024-09-21', status: 'pending', sdgFocus: 'Zero Hunger', category: 'NGO',
+    sdgs: [{n:2,c:'#dda63a'}],
     docs: ['application-doc-1.pdf', 'application-doc-2.pdf', 'application-doc-3.pdf'],
     remarks: [{ author: 'Marcus Thorne', text: 'Documents verified. Awaiting board sign-off.', time: 'Yesterday' }],
   },
   {
     initials: 'DP', color: '#3b6ef6', name: 'OceanGuard Initiative', contact: 'Daniel Park',
-    date: '2024-09-18', status: 'pending', sdgFocus: 'Life Below Water',
+    date: '2024-09-18', status: 'pending', sdgFocus: 'Life Below Water', category: 'NGO',
+    sdgs: [{n:14,c:'#0a97d9'}],
     docs: ['oceanguard-application.pdf', 'org-profile.pdf'],
     remarks: [],
   },
   {
     initials: 'AB', color: '#f59e0b', name: 'Lagos Youth Lab', contact: 'Aisha Bello',
-    date: '2024-09-12', status: 'pending', sdgFocus: 'Quality Education',
+    date: '2024-09-12', status: 'pending', sdgFocus: 'Quality Education', category: 'NGO',
+    sdgs: [{n:4,c:'#c5192d'}],
     docs: ['lagos-docs.pdf'],
     remarks: [{ author: 'Sarah Kim', text: 'Initial review done. Need more financial documents.', time: '2 days ago' }],
   },
   {
     initials: 'LO', color: '#10b981', name: 'Rewild Europe', contact: "Liam O'Brien",
-    date: '2024-09-04', status: 'verified', sdgFocus: 'Life on Land',
+    date: '2024-09-04', status: 'verified', sdgFocus: 'Life on Land', category: 'NGO',
+    sdgs: [{n:15,c:'#56c02b'}],
     docs: ['rewild-application.pdf', 'rewild-financials.pdf'],
     remarks: [{ author: 'Marcus Thorne', text: 'All documents cleared. Approved by board.', time: '3 days ago' }],
   },
 ]
 
-export default function PartnershipReviewPage() {
+function PartnershipReviewInner() {
   const { dark } = useDashboardTheme()
   const { addPartnerFromApplication } = usePartners()
   const c = {
@@ -43,7 +62,15 @@ export default function PartnershipReviewPage() {
     textSecond:  dark ? '#8891aa' : '#6b7888',
     textMuted:   dark ? '#4a5168' : '#9aa3ad',
   }
-  const [selected, setSelected] = useState(0)
+  const searchParams = useSearchParams()
+  const [selected, setSelected] = useState(() => {
+    const idx = searchParams.get('idx')
+    return idx !== null ? parseInt(idx) : 0
+  })
+  useEffect(() => {
+    const idx = searchParams.get('idx')
+    if (idx !== null) setSelected(parseInt(idx))
+  }, [searchParams])
   const [statuses, setStatuses] = useState(applications.map(a => a.status))
   const [remarks, setRemarks] = useState(applications.map(a => [...a.remarks]))
   const [previewDoc, setPreviewDoc] = useState<string | null>(null)
@@ -227,5 +254,13 @@ export default function PartnershipReviewPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function PartnershipReviewPage() {
+  return (
+    <Suspense fallback={<div style={{ padding: 28 }}>Loading...</div>}>
+      <PartnershipReviewInner />
+    </Suspense>
   )
 }

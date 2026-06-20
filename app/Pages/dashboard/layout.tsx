@@ -5,12 +5,6 @@ import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { ThemeContext } from './ThemeContext'
 import { PartnersProvider } from './PartnersContext'
-import {
-  Chart as ChartJS, CategoryScale, LinearScale, PointElement,
-  LineElement, ArcElement, Tooltip, BarElement, Filler
-} from 'chart.js'
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, BarElement, Filler)
-
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter()
   const pathname = usePathname()
@@ -50,10 +44,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg> },
     { label: 'SDG Management',     href: '/Pages/dashboard/sdg-management',
       icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> },
-    { label: 'Partner Management', href: '/Pages/dashboard/partners',
-      icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> },
     { label: 'Partnership Review', href: '/Pages/dashboard/partnership-review',
       icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg> },
+    { label: 'Partner Management', href: '/Pages/dashboard/partners',
+      icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> },
     { label: 'Contact Centre',     href: '/Pages/dashboard/contact',
       icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> },
   ]
@@ -244,18 +238,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   </div>
                 )}
               </div>
-
-              {/* Dark toggle */}
-              <button onClick={toggleDark} style={{
-                width: 48, height: 26, borderRadius: 13, cursor: 'pointer', border: `1px solid ${c.border}`,
-                background: dark ? '#2a2f42' : '#e8eaf0', position: 'relative', transition: 'background .3s',
-              }}>
-                <span style={{ position: 'absolute', left: 6, top: '50%', transform: 'translateY(-50%)', fontSize: 11, opacity: dark ? .25 : 1, transition: 'opacity .3s' }}>☀️</span>
-                <span style={{ position: 'absolute', right: 6, top: '50%', transform: 'translateY(-50%)', fontSize: 11, opacity: dark ? 1 : .25, transition: 'opacity .3s' }}>🌙</span>
-                <div style={{ width: 19, height: 19, borderRadius: '50%', background: dark ? c.accent : '#fff', boxShadow: '0 1px 4px rgba(0,0,0,.2)', position: 'absolute', top: '50%', transform: 'translateY(-50%)', left: dark ? 'calc(100% - 22px)' : '3px', transition: 'left .28s cubic-bezier(.4,0,.2,1)', zIndex: 1 }} />
-              </button>
-
-              <div style={{ width: 1, height: 26, background: c.border }} />
 
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }}>
                 <div style={{ textAlign: 'right' }}>

@@ -6,10 +6,12 @@ import {
   LineElement, ArcElement, Tooltip, BarElement, Filler
 } from 'chart.js'
 import { useDashboardTheme } from './ThemeContext'
+import { useRouter } from 'next/navigation'
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, BarElement, Filler)
 
 export default function DashboardPage() {
   const { dark } = useDashboardTheme()
+  const router = useRouter()
 
   const c = {
     bg:          dark ? '#0f1117' : '#f5f6fa',
@@ -43,7 +45,7 @@ export default function DashboardPage() {
           <div style={{ fontSize: 14.5, fontWeight: 700, color: '#fff', marginBottom: 4 }}>12 applications &amp; 4 reviews pending your approval</div>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,.6)' }}>Review partner requests and project submissions before the deadline.</div>
         </div>
-        <button style={{ background: 'rgba(255,255,255,.15)', color: '#fff', border: '1px solid rgba(255,255,255,.25)', borderRadius: 9, padding: '9px 20px', fontSize: 12.5, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+        <button onClick={() => router.push('/Pages/dashboard/partnership-review')} style={{ background: 'rgba(255,255,255,.15)', color: '#fff', border: '1px solid rgba(255,255,255,.25)', borderRadius: 9, padding: '9px 20px', fontSize: 12.5, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}>
           Review Now →
         </button>
       </div>
@@ -170,7 +172,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Bottom Row */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
 
         {/* Student Growth */}
         <div className="card-hover" style={card}>
@@ -240,28 +242,6 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Platform Health */}
-        <div className="card-hover" style={{ ...card, background: 'linear-gradient(145deg,#1e3a8a 0%,#1d4ed8 60%,#0ea5e9 100%)', border: 'none', boxShadow: '0 4px 20px rgba(37,99,235,.25)' }}>
-          <div style={{ padding: '20px 22px', display: 'flex', flexDirection: 'column', height: '100%' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 14 }}>
-              <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#4ade80', boxShadow: '0 0 6px #4ade80', animation: 'pulse 2s ease infinite' }} />
-              <span style={{ fontSize: 10, fontWeight: 700, color: 'rgba(255,255,255,.5)', letterSpacing: '1.2px', textTransform: 'uppercase' }}>All Systems Operational</span>
-            </div>
-            <div style={{ fontSize: 16, fontWeight: 700, color: '#fff', marginBottom: 8 }}>Platform Health</div>
-            <div style={{ fontSize: 12, color: 'rgba(255,255,255,.55)', lineHeight: 1.6, marginBottom: 18 }}>Running at optimal performance. Security protocols are current.</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 20 }}>
-              {[['Uptime','99.9%','#4ade80'],['Security','Active','#67e8f9'],['Last Backup','12 Apr 2024','rgba(255,255,255,.5)']].map(([lbl,val,col],i) => (
-                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: 11.5, color: 'rgba(255,255,255,.35)', fontWeight: 500 }}>{lbl}</span>
-                  <span style={{ fontSize: 11.5, fontWeight: 600, color: col }}>{val}</span>
-                </div>
-              ))}
-            </div>
-            <button style={{ marginTop: 'auto', background: 'rgba(255,255,255,.12)', border: '1px solid rgba(255,255,255,.2)', color: '#fff', borderRadius: 9, padding: '9px 16px', fontSize: 12, fontWeight: 600, cursor: 'pointer', textAlign: 'left' }}>
-              ↓ Export Data
-            </button>
-          </div>
-        </div>
       </div>
 
       {/* Youth Initiatives */}
@@ -305,7 +285,7 @@ export default function DashboardPage() {
             <div style={{ fontSize: 14, fontWeight: 700, color: c.textPrimary, marginBottom: 4 }}>Partnership Request</div>
             <div style={{ fontSize: 11.5, color: c.textMuted, marginTop: 3 }}>Approval of entities</div>
           </div>
-          <span style={{ fontSize: 12, fontWeight: 600, color: c.accentText, cursor: 'pointer', whiteSpace: 'nowrap' }}>Open Review Center &rsaquo;</span>
+          <span onClick={() => router.push('/Pages/dashboard/partnership-review')} style={{ fontSize: 12, fontWeight: 600, color: c.accentText, cursor: 'pointer', whiteSpace: 'nowrap' }}>Open Review Center ›</span>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1.4fr 2fr 1.5fr', gap: 8, padding: '10px 22px', borderBottom: `1px solid ${c.border}`, background: c.surfaceAlt }}>
           {['Organization','Category','Registry Inquiry Date','Target SDGs','Actions'].map((h, i) => (
@@ -313,8 +293,8 @@ export default function DashboardPage() {
           ))}
         </div>
         {[
-          { org: 'Apex Eco-Logistics Corp',       date: '2026-06-08', category: 'COMPANY', sdgs: [{n:7,c:'#fcc30b'},{n:13,c:'#3f7e44'}] },
-          { org: 'Riverdale Eco-Secondary School', date: '2026-06-10', category: 'SCHOOL',  sdgs: [{n:4,c:'#c5192d'},{n:6,c:'#26bde2'},{n:13,c:'#3f7e44'},{n:15,c:'#56c02b'}] },
+          { org: 'Apex Eco-Logistics Corp',       date: '2026-06-08', category: 'COMPANY', sdgs: [{n:7,c:'#fcc30b'},{n:13,c:'#3f7e44'}], idx: 0 },
+          { org: 'Riverdale Eco-Secondary School', date: '2026-06-10', category: 'SCHOOL',  sdgs: [{n:4,c:'#c5192d'},{n:6,c:'#26bde2'},{n:13,c:'#3f7e44'},{n:15,c:'#56c02b'}], idx: 1 },
         ].map((row, i, arr) => (
           <div key={i} style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1.4fr 2fr 1.5fr', gap: 8, padding: '15px 22px', borderBottom: i < arr.length - 1 ? `1px solid ${c.border}` : 'none', alignItems: 'center' }}>
             <span style={{ fontSize: 13, fontWeight: 600, color: c.textPrimary }}>{row.org}</span>
@@ -326,7 +306,7 @@ export default function DashboardPage() {
               ))}
             </div>
             <div style={{ textAlign: 'right' }}>
-              <button style={{ fontSize: 11.5, fontWeight: 600, color: c.accentText, background: c.accentLight, border: `1px solid ${c.accent}30`, borderRadius: 8, padding: '7px 16px', cursor: 'pointer' }}>
+              <button onClick={() => router.push(`/Pages/dashboard/partnership-review?idx=${row.idx}`)} style={{ fontSize: 11.5, fontWeight: 600, color: c.accentText, background: c.accentLight, border: `1px solid ${c.accent}30`, borderRadius: 8, padding: '7px 16px', cursor: 'pointer' }}>
                 Inspect Application
               </button>
             </div>
@@ -340,11 +320,11 @@ export default function DashboardPage() {
         <div style={{ fontSize: 12.5, color: 'rgba(255,255,255,.6)', marginBottom: 18 }}>Jump to the most common workflows.</div>
         <div style={{ display: 'flex', gap: 12 }}>
           {[
-            { icon: '👤+', label: 'Add Partner' },
-            { icon: '+',   label: 'New SDG Entry' },
-            { icon: '↗',   label: 'Review Requests' },
+            { icon: '👤+', label: 'Add Partner',     href: '/Pages/dashboard/partners' },
+            { icon: '+',   label: 'New SDG Entry',   href: '/Pages/dashboard/sdg-management' },
+            { icon: '↗',   label: 'Review Requests', href: '/Pages/dashboard/partnership-review' },
           ].map((a, i) => (
-            <button key={i} style={{ background: 'rgba(255,255,255,.15)', border: '1px solid rgba(255,255,255,.3)', color: '#fff', borderRadius: 9, padding: '9px 20px', fontSize: 13, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}>
+            <button key={i} onClick={() => a.href && router.push(a.href)} style={{ background: 'rgba(255,255,255,.15)', border: '1px solid rgba(255,255,255,.3)', color: '#fff', borderRadius: 9, padding: '9px 20px', fontSize: 13, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}>
               <span>{a.icon}</span>{a.label}
             </button>
           ))}

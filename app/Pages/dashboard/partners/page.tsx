@@ -119,7 +119,7 @@ export default function PartnerManagementPage() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 13 }}>
 
               {/* ── SCHOOL FORM ── */}
-              {(editIdx !== null || partnerTab === 'school') && (editIdx !== null ? true : partnerTab === 'school') && partnerTab === 'school' && editIdx === null && (
+              {partnerTab === 'school' && editIdx === null && (
                 <>
                   <div><label style={labelStyle}>School Name *</label><input style={inputStyle} value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="e.g. Oakridge Science High School" /></div>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
@@ -348,23 +348,7 @@ export default function PartnerManagementPage() {
                     <a href={`mailto:${p.email}`} style={{ cursor: 'pointer', color: c.textSecond, textDecoration: 'none' }}>✉ Email</a>
                   </div>
                   {/* Actions row */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div style={{ display: 'flex', gap: 8 }}>
-                      <button onClick={() => toggleVerified(p.realIdx)} style={{
-                        fontSize: 11.5, fontWeight: 600, padding: '6px 13px', borderRadius: 7, cursor: 'pointer',
-                        border: '1px solid #c0e8c0', background: '#e6f7ec', color: '#00b050'
-                      }}>
-                        {p.verified ? 'De-authorize' : 'Verify Authority'}
-                      </button>
-                      <button onClick={() => toggleVisible(p.realIdx)} style={{
-                        fontSize: 11.5, fontWeight: 600, padding: '6px 13px', borderRadius: 7, cursor: 'pointer',
-                        border: p.visible ? '1px solid #cce0fa' : '1px solid #fde68a',
-                        background: p.visible ? '#e6f0ff' : '#fffbeb',
-                        color: p.visible ? '#0066cc' : '#d97706',
-                      }}>
-                        {p.visible ? '👁 Visible' : '🚫 Hidden'}
-                      </button>
-                    </div>
+                  <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                       <button onClick={() => toggleVerified(p.realIdx)} title="Toggle Verify" style={{ cursor: 'pointer', background: 'none', border: 'none', padding: '5px 6px', borderRadius: 6, color: '#00b050', display: 'flex', alignItems: 'center' }}>
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
