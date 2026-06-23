@@ -137,8 +137,8 @@ export default function LoginPage() {
     <div className="min-h-screen w-full flex items-center justify-center font-sans relative overflow-hidden">
       <canvas ref={canvasRef} className="absolute inset-0 z-0 w-full h-full" />
 
-      <div className="container relative z-10 max-w-3xl mx-auto px-4 py-8">
-        <div className="backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden border border-white/20 grid md:grid-cols-12 min-h-120">
+      <div className="container relative z-10 max-w-5xl mx-auto px-4 py-8">
+        <div className="backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden border border-white/20 grid md:grid-cols-12" style={{ minHeight: '580px' }}>
 
           {/* left side */}
           <div
@@ -152,14 +152,14 @@ export default function LoginPage() {
               </div>
               <div className="space-y-2">
                 <div className="flex items-center gap-3">
-                  <img src="/SDG_LOGO-removebg-preview.png" alt="StepUp for SDG" className="w-20 h-20 object-contain shrink-0" />
+                  <img src="/SDG_LOGO-removebg-preview.png" alt="StepUp for SDG" className="w-20 h-20 object-contain shrink-0" style={{ filter: 'brightness(1.3) drop-shadow(0 0 10px rgba(255,255,255,0.4))' }} />
                   <h1 className="text-2xl font-bold text-white">StepUp SDG</h1>
                 </div>
                 <p className="text-white/80 text-xs leading-relaxed max-w-sm">
                   Tracking and aligning local actions to the UN Sustainable Development Goals.
                 </p>
                 <div className="mt-3 rounded-2xl overflow-hidden border border-white/10 shadow-lg">
-                  <img src="/sdg_illustration_1781192627956.jpg" alt="SDG Illustration" className="w-full object-cover" />
+                  <img src="/SDG illustration.png" alt="SDG Illustration" className="w-full object-cover" />
                 </div>
               </div>
             </div>
@@ -182,7 +182,7 @@ export default function LoginPage() {
               className="w-full max-w-sm mx-auto space-y-4"
             >
               <div className="space-y-1">
-                <img src="/SDG_LOGO-removebg-preview.png" alt="StepUp for SDG" className="w-14 h-14 object-contain" />
+                <img src="/SDG_LOGO-removebg-preview.png" alt="StepUp for SDG" className="w-20 h-20 object-contain" />
                 <h2 className="text-xl font-bold text-slate-900 tracking-tight">Sign in to Administrator Portal</h2>
                 <p className="text-xs text-slate-500 font-medium">Track global goals. Drive local change.</p>
               </div>

@@ -127,14 +127,14 @@ export default function RegisterPage() {
               </div>
               <div className="space-y-2">
                 <div className="flex items-center gap-3">
-                  <img src="/SDG_LOGO-removebg-preview.png" alt="StepUp for SDG" className="w-20 h-20 object-contain shrink-0" />
+                  <img src="/SDG_LOGO-removebg-preview.png" alt="StepUp for SDG" className="w-20 h-20 object-contain shrink-0" style={{ filter: 'brightness(1.3) drop-shadow(0 0 10px rgba(255,255,255,0.4))' }} />
                   <h1 className="text-2xl font-bold text-white">StepUp SDG</h1>
                 </div>
                 <p className="text-white/80 text-xs leading-relaxed max-w-sm">
                   Tracking and aligning local actions to the UN Sustainable Development Goals.
                 </p>
                 <div className="mt-3 rounded-2xl overflow-hidden border border-white/10 shadow-lg">
-                  <img src="/sdg_illustration_1781192627956.jpg" alt="SDG Illustration" className="w-full object-cover" />
+                  <img src="/SDG illustration.png" alt="SDG Illustration" className="w-full object-cover" />
                 </div>
               </div>
             </div>
