@@ -3,11 +3,11 @@
 import { Line, Doughnut } from 'react-chartjs-2'
 import {
   Chart as ChartJS, CategoryScale, LinearScale, PointElement,
-  LineElement, ArcElement, Tooltip, BarElement, Filler
+  LineElement, ArcElement, Tooltip, Filler
 } from 'chart.js'
 import { useDashboardTheme } from './ThemeContext'
 import { useRouter } from 'next/navigation'
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, BarElement, Filler)
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, Filler)
 
 export default function DashboardPage() {
   const { dark } = useDashboardTheme()
@@ -293,8 +293,8 @@ export default function DashboardPage() {
           ))}
         </div>
         {[
-          { org: 'Apex Eco-Logistics Corp',       date: '2026-06-08', category: 'COMPANY', sdgs: [{n:7,c:'#fcc30b'},{n:13,c:'#3f7e44'}], idx: 0 },
-          { org: 'Riverdale Eco-Secondary School', date: '2026-06-10', category: 'SCHOOL',  sdgs: [{n:4,c:'#c5192d'},{n:6,c:'#26bde2'},{n:13,c:'#3f7e44'},{n:15,c:'#56c02b'}], idx: 1 },
+          { org: 'Apex Eco-Logistics Corp',       date: '2026-06-08', category: 'COMPANY', sdgs: [{n:7,c:'#fcc30b'},{n:13,c:'#3f7e44'}] },
+          { org: 'Riverdale Eco-Secondary School', date: '2026-06-10', category: 'SCHOOL',  sdgs: [{n:4,c:'#c5192d'},{n:6,c:'#26bde2'},{n:13,c:'#3f7e44'},{n:15,c:'#56c02b'}] },
         ].map((row, i, arr) => (
           <div key={i} style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1.4fr 2fr 1.5fr', gap: 8, padding: '15px 22px', borderBottom: i < arr.length - 1 ? `1px solid ${c.border}` : 'none', alignItems: 'center' }}>
             <span style={{ fontSize: 13, fontWeight: 600, color: c.textPrimary }}>{row.org}</span>
@@ -306,7 +306,7 @@ export default function DashboardPage() {
               ))}
             </div>
             <div style={{ textAlign: 'right' }}>
-              <button onClick={() => router.push(`/Pages/dashboard/partnership-review?idx=${row.idx}`)} style={{ fontSize: 11.5, fontWeight: 600, color: c.accentText, background: c.accentLight, border: `1px solid ${c.accent}30`, borderRadius: 8, padding: '7px 16px', cursor: 'pointer' }}>
+              <button onClick={() => router.push('/Pages/dashboard/partnership-review')} style={{ fontSize: 11.5, fontWeight: 600, color: c.accentText, background: c.accentLight, border: `1px solid ${c.accent}30`, borderRadius: 8, padding: '7px 16px', cursor: 'pointer' }}>
                 Inspect Application
               </button>
             </div>

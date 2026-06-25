@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { ThemeContext } from './ThemeContext'
-import { PartnersProvider } from './PartnersContext'
+import { PartnersProvider } from './partnership-review/PartnersContext'
+import { PartnershipFormProvider } from './partnership-review/PartnershipFormContext'
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter()
   const pathname = usePathname()
@@ -59,6 +60,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   return (
     <ThemeContext.Provider value={{ dark }}>
+      <PartnershipFormProvider>
       <PartnersProvider>
       <div style={{ display: 'flex', minHeight: '100vh', background: c.bg, fontFamily: "'Inter','Segoe UI',system-ui,sans-serif", transition: 'background .3s' }}>
         <style>{`
@@ -260,6 +262,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </div>
       </div>
       </PartnersProvider>
+      </PartnershipFormProvider>
     </ThemeContext.Provider>
   )
 }

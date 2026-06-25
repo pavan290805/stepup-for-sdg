@@ -72,38 +72,18 @@ const initialPartners: Partner[] = [
 type PartnersContextType = {
   partners: Partner[]
   setPartners: React.Dispatch<React.SetStateAction<Partner[]>>
-  addPartnerFromApplication: (app: { name: string, contact: string, sdgFocus: string, docs: string[] }) => void
 }
 
 const PartnersContext = createContext<PartnersContextType>({
   partners: initialPartners,
   setPartners: () => {},
-  addPartnerFromApplication: () => {},
 })
 
 export function PartnersProvider({ children }: { children: ReactNode }) {
   const [partners, setPartners] = useState<Partner[]>(initialPartners)
 
-  const addPartnerFromApplication = (app: { name: string, contact: string, sdgFocus: string, docs: string[] }) => {
-    setPartners(ps => [...ps, {
-      img: `https://ui-avatars.com/api/?name=${encodeURIComponent(app.name)}&background=10b981&color=fff&size=80`,
-      name: app.name,
-      sector: 'NGO',
-      focus: app.sdgFocus,
-      location: 'Unknown',
-      email: '',
-      phone: '',
-      website: '',
-      verified: true,
-      visible: true,
-      sdgs: [app.sdgFocus],
-      type: 'ngo',
-      desc: `Approved partner. Submitted by ${app.contact}.`,
-    }])
-  }
-
   return (
-    <PartnersContext.Provider value={{ partners, setPartners, addPartnerFromApplication }}>
+    <PartnersContext.Provider value={{ partners, setPartners }}>
       {children}
     </PartnersContext.Provider>
   )
