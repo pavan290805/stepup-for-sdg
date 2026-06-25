@@ -23,14 +23,7 @@ function getDetail(num: number) {
       { id: 'NGO PARTNERSHIP • 2025', title: 'Clean Energy Awareness Campaign', desc: 'Partnership with GreenEarth NGO to raise awareness about renewable energy among school students.', outcome: 'Outcome Secured: Reached 1,200 students across 8 districts with hands-on solar demonstration kits.', img: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&q=80' },
       { id: 'CORPORATE COLLABORATION • 2026', title: 'Urban Reforestation with Tech Monitoring', desc: 'Students used IoT sensors to monitor soil and moisture during a large-scale tree plantation drive.', outcome: 'Outcome Secured: 3,000 saplings planted with 91% survival rate tracked over 6 months.', img: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&q=80' },
     ],
-    activities: [
-      { title: 'Community Awareness Drive',       date: '2026-07-10', location: 'Local Community Center',     category: 'VOLUNTEER',  subscribers: 32  },
-      { title: 'Beach Cleanup Drive',             date: '2026-06-22', location: 'Visakhapatnam Coast',         category: 'VOLUNTEER',  subscribers: 84  },
-      { title: 'Tree Plantation Marathon',         date: '2026-06-15', location: 'KL University Campus',        category: 'ACTIVITY',   subscribers: 210 },
-      { title: 'Digital Literacy Workshop',        date: '2026-06-02', location: 'Govt School, Vijayawada',     category: 'WORKSHOP',   subscribers: 56  },
-      { title: 'Solar Panel Demo Session',         date: '2026-07-18', location: 'Techno Park, Hyderabad',      category: 'WORKSHOP',   subscribers: 74  },
-      { title: 'Water Quality Testing Camp',       date: '2026-08-05', location: 'Rural Area, Guntur',          category: 'FIELDWORK',  subscribers: 48  },
-    ],
+    activities: [],
   }
 }
 
@@ -48,6 +41,7 @@ export default function SDGManagementPage() {
   const [activeTab, setActiveTab] = useState('info')
   const [selectedSDG] = useState(4)
   const sdgColor = sdgs.find(s => s.num === selectedSDG)?.color ?? '#333'
+  void sdgColor // used in modal buttons
 
   // Modal state
   const [modal, setModal] = useState<null | { type: string, data?: any }>(null)
@@ -67,26 +61,10 @@ export default function SDGManagementPage() {
   const [editForm, setEditForm] = useState<any>(null)
   const [cases, setCases] = useState(getDetail(4).cases)
   const [caseForm, setCaseForm] = useState({ title: '', org: '', desc: '', outcome: '', img: '' })
-  const [activities, setActivities] = useState(getDetail(4).activities)
-  const [eventForm, setEventForm] = useState({ title: '', date: '', category: 'VOLUNTEER', location: '' })
-  const [campaigns, setCampaigns] = useState([
-    { name: 'Clean Ocean Awareness Week',     sdg: 14, color: '#0a97d9', type: 'Social Media', reach: 3200, status: 'Active'    },
-    { name: 'Zero Hunger School Drive',       sdg: 2,  color: '#dda63a', type: 'On-Ground',    reach: 1800, status: 'Active'    },
-    { name: 'Climate Change Youth Summit',    sdg: 13, color: '#3f7e44', type: 'Event',        reach: 5400, status: 'Upcoming'  },
-    { name: 'Girls in STEM Initiative',       sdg: 5,  color: '#ff3a21', type: 'Workshop',     reach: 920,  status: 'Active'    },
-    { name: 'Green Energy Poster Contest',    sdg: 7,  color: '#fcc30b', type: 'Social Media', reach: 2100, status: 'Completed' },
-    { name: 'Clean Water Village Project',    sdg: 6,  color: '#26bde2', type: 'On-Ground',    reach: 640,  status: 'Upcoming'  },
-    { name: 'Digital Literacy for All',       sdg: 4,  color: '#c5192d', type: 'Workshop',     reach: 4300, status: 'Completed' },
-    { name: 'No Poverty Awareness March',     sdg: 1,  color: '#e5243b', type: 'On-Ground',    reach: 870,  status: 'Upcoming'  },
-    { name: 'Good Health School Campaign',    sdg: 3,  color: '#4c9f38', type: 'Workshop',     reach: 1560, status: 'Active'    },
-    { name: 'Biodiversity Youth Photo Drive', sdg: 15, color: '#56c02b', type: 'Social Media', reach: 2900, status: 'Completed' },
-  ])
-  const [campaignForm, setCampaignForm] = useState({ name: '', sdgNum: 4, type: 'Social Media', reach: '' })
 
   const tabs = [
     { id: 'info', label: 'SDG Info Pages' },
     { id: 'cases', label: 'Case Studies' },
-    { id: 'activities', label: 'Activities & Campaigns' },
     { id: 'impact', label: 'Impact Monitor' },
   ]
 
@@ -199,103 +177,6 @@ export default function SDGManagementPage() {
                     setCaseForm({ title: '', org: '', desc: '', outcome: '', img: '' })
                     closeModal()
                   }} style={{ fontSize: 13, fontWeight: 600, padding: '8px 18px', borderRadius: 8, border: 'none', background: '#0f3460', color: 'white', cursor: 'pointer' }}>Save</button>
-                </div>
-              </>
-            )}
-
-            {/* Schedule Event */}
-            {modal.type === 'schedule-event' && (
-              <>
-                <div style={{ fontSize: 16, fontWeight: 700, color: '#111827', marginBottom: 18 }}>Schedule New Event</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-                  <div><label style={labelStyle}>Campaign Title</label><input style={inputStyle} value={eventForm.title} onChange={e => setEventForm({ ...eventForm, title: e.target.value })} placeholder="Event title" /></div>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-                    <div><label style={labelStyle}>Date</label><input type="date" style={inputStyle} value={eventForm.date} onChange={e => setEventForm({ ...eventForm, date: e.target.value })} /></div>
-                    <div><label style={labelStyle}>Category</label>
-                      <select style={inputStyle} value={eventForm.category} onChange={e => setEventForm({ ...eventForm, category: e.target.value })}>
-                        <option>VOLUNTEER</option><option>ACTIVITY</option><option>WORKSHOP</option><option>FIELDWORK</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div><label style={labelStyle}>Location</label><input style={inputStyle} value={eventForm.location} onChange={e => setEventForm({ ...eventForm, location: e.target.value })} placeholder="Venue / location" /></div>
-                </div>
-                <div style={{ display: 'flex', gap: 10, marginTop: 20, justifyContent: 'flex-end' }}>
-                  <button onClick={closeModal} style={{ fontSize: 13, padding: '8px 18px', borderRadius: 8, border: '1px solid #e0e0e0', background: 'white', cursor: 'pointer' }}>Cancel</button>
-                  <button onClick={() => {
-                    if (!eventForm.title.trim()) return
-                    setActivities([...activities, { title: eventForm.title, date: eventForm.date, location: eventForm.location, category: eventForm.category, subscribers: 0 }])
-                    setEventForm({ title: '', date: '', category: 'VOLUNTEER', location: '' })
-                    closeModal()
-                  }} style={{ fontSize: 13, fontWeight: 600, padding: '8px 18px', borderRadius: 8, border: 'none', background: '#0f3460', color: 'white', cursor: 'pointer' }}>Schedule</button>
-                </div>
-              </>
-            )}
-
-            {/* New Campaign */}
-            {modal.type === 'new-campaign' && (
-              <>
-                <div style={{ fontSize: 16, fontWeight: 700, color: '#111827', marginBottom: 18 }}>New Awareness Campaign</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-                  <div><label style={labelStyle}>Campaign Name</label><input style={inputStyle} value={campaignForm.name} onChange={e => setCampaignForm({ ...campaignForm, name: e.target.value })} placeholder="Campaign name" /></div>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-                    <div><label style={labelStyle}>SDG</label>
-                      <select style={inputStyle} value={campaignForm.sdgNum} onChange={e => setCampaignForm({ ...campaignForm, sdgNum: Number(e.target.value) })}>
-                        {sdgs.map(s => <option key={s.num} value={s.num}>SDG {s.num} — {s.name}</option>)}
-                      </select>
-                    </div>
-                    <div><label style={labelStyle}>Type</label>
-                      <select style={inputStyle} value={campaignForm.type} onChange={e => setCampaignForm({ ...campaignForm, type: e.target.value })}>
-                        <option>Social Media</option><option>On-Ground</option><option>Event</option><option>Workshop</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div><label style={labelStyle}>Target Reach</label><input type="number" style={inputStyle} value={campaignForm.reach} onChange={e => setCampaignForm({ ...campaignForm, reach: e.target.value })} placeholder="Expected reach" /></div>
-                </div>
-                <div style={{ display: 'flex', gap: 10, marginTop: 20, justifyContent: 'flex-end' }}>
-                  <button onClick={closeModal} style={{ fontSize: 13, padding: '8px 18px', borderRadius: 8, border: '1px solid #e0e0e0', background: 'white', cursor: 'pointer' }}>Cancel</button>
-                  <button onClick={() => {
-                    if (!campaignForm.name.trim()) return
-                    const sdgObj = sdgs.find(s => s.num === campaignForm.sdgNum)!
-                    setCampaigns([...campaigns, { name: campaignForm.name, sdg: campaignForm.sdgNum, color: sdgObj.color, type: campaignForm.type, reach: Number(campaignForm.reach) || 0, status: 'Upcoming' }])
-                    setCampaignForm({ name: '', sdgNum: 4, type: 'Social Media', reach: '' })
-                    closeModal()
-                  }} style={{ fontSize: 13, fontWeight: 600, padding: '8px 18px', borderRadius: 8, border: 'none', background: '#0f3460', color: 'white', cursor: 'pointer' }}>Create</button>
-                </div>
-              </>
-            )}
-
-            {/* View Activity */}
-            {modal.type === 'view-activity' && (
-              <>
-                <div style={{ fontSize: 16, fontWeight: 700, color: '#111827', marginBottom: 16 }}>{modal.data?.title}</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                  {[['Date', modal.data?.date], ['Location', modal.data?.location], ['Category', modal.data?.category], ['Subscribers', modal.data?.subscribers]].map(([k, v]) => (
-                    <div key={k} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #f0f0f0' }}>
-                      <span style={{ fontSize: 12, color: '#9aa3ad', fontWeight: 600 }}>{k}</span>
-                      <span style={{ fontSize: 13, color: '#111827', fontWeight: 500 }}>{v}</span>
-                    </div>
-                  ))}
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 20 }}>
-                  <button onClick={closeModal} style={{ fontSize: 13, fontWeight: 600, padding: '8px 18px', borderRadius: 8, border: 'none', background: '#0f3460', color: 'white', cursor: 'pointer' }}>Close</button>
-                </div>
-              </>
-            )}
-
-            {/* View Campaign */}
-            {modal.type === 'view-campaign' && (
-              <>
-                <div style={{ fontSize: 16, fontWeight: 700, color: '#111827', marginBottom: 16 }}>{modal.data?.name}</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                  {[['SDG', `SDG ${modal.data?.sdg}`], ['Type', modal.data?.type], ['Reach', modal.data?.reach?.toLocaleString()], ['Status', modal.data?.status]].map(([k, v]) => (
-                    <div key={k} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #f0f0f0' }}>
-                      <span style={{ fontSize: 12, color: '#9aa3ad', fontWeight: 600 }}>{k}</span>
-                      <span style={{ fontSize: 13, color: '#111827', fontWeight: 500 }}>{v}</span>
-                    </div>
-                  ))}
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 20 }}>
-                  <button onClick={closeModal} style={{ fontSize: 13, fontWeight: 600, padding: '8px 18px', borderRadius: 8, border: 'none', background: '#0f3460', color: 'white', cursor: 'pointer' }}>Close</button>
                 </div>
               </>
             )}
@@ -466,82 +347,6 @@ export default function SDGManagementPage() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      )}
-
-      {activeTab === 'activities' && (
-        <div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-            <div>
-              <div style={{ fontSize: 14, fontWeight: 700, color: '#111827' }}>Youth Contribution Activities & Campaigns</div>
-              <div style={{ fontSize: 11.5, color: '#9aa3ad', marginTop: 3 }}>Interactive ecological assignments open to schools and individuals.</div>
-            </div>
-            <button onClick={() => setModal({ type: 'schedule-event' })} style={{ fontSize: 12, fontWeight: 600, color: 'white', background: sdgColor, border: 'none', borderRadius: 8, padding: '8px 16px', cursor: 'pointer' }}>+ Schedule Event</button>
-          </div>
-          <div style={{ background: 'white', borderRadius: 14, border: '1px solid #eef0f2', overflow: 'hidden' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1.2fr 1.5fr 1fr 1fr 1fr', gap: 8, padding: '10px 16px', background: '#f8f9fc', borderBottom: '1px solid #eef0f2' }}>
-              {['CAMPAIGN TITLE','SCHEDULING DATE','LOCATION VENUE','CATEGORY','SUBSCRIBERS','ACTION'].map((h, i) => (
-                <div key={i} style={{ fontSize: 10, fontWeight: 700, color: '#9aa3ad', letterSpacing: '0.5px' }}>{h}</div>
-              ))}
-            </div>
-            {activities.map((a, i, arr) => (
-              <div key={i} style={{ display: 'grid', gridTemplateColumns: '2fr 1.2fr 1.5fr 1fr 1fr 1fr', gap: 8, padding: '14px 16px', borderBottom: i < arr.length - 1 ? '1px solid #f0f0f0' : 'none', alignItems: 'center' }}>
-                <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{a.title}</span>
-                <span style={{ fontSize: 12, color: '#6b7888' }}>{a.date}</span>
-                <span style={{ fontSize: 12, color: '#6b7888' }}>{a.location}</span>
-                <span style={{ fontSize: 10, fontWeight: 700, color: '#0066cc', background: '#e6f0ff', borderRadius: 5, padding: '3px 8px', width: 'fit-content' }}>{a.category}</span>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <span style={{ fontSize: 14 }}>👤</span>
-                  <span style={{ fontSize: 12, fontWeight: 600, color: '#111827' }}>{a.subscribers}</span>
-                </div>
-                <button onClick={() => setModal({ type: 'view-activity', data: a })} style={{ fontSize: 11, fontWeight: 600, color: '#0f3460', background: '#e6f0ff', border: 'none', borderRadius: 7, padding: '6px 12px', cursor: 'pointer', width: 'fit-content' }}>View →</button>
-              </div>
-            ))}
-          </div>
-
-          {/* Awareness Campaigns */}
-          <div style={{ marginTop: 28 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-              <div>
-                <div style={{ fontSize: 14, fontWeight: 700, color: '#111827' }}>Awareness Campaigns</div>
-                <div style={{ fontSize: 12, color: '#9aa3ad', marginTop: 3 }}>Manage and track all SDG awareness drives across schools and communities</div>
-              </div>
-              <button onClick={() => setModal({ type: 'new-campaign' })} style={{ fontSize: 12, fontWeight: 600, color: 'white', background: '#0f3460', border: 'none', borderRadius: 8, padding: '9px 18px', cursor: 'pointer' }}>+ New Campaign</button>
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14, marginBottom: 16 }}>
-              {[
-                { label: 'Total Campaigns', value: '24',     sub: '8 active now',             color: '#3b6ef6' },
-                { label: 'Total Reach',     value: '18,400', sub: 'Students & volunteers',     color: '#10b981' },
-                { label: 'Completion Rate', value: '73%',    sub: 'Of scheduled campaigns',    color: '#f59e0b' },
-              ].map((s, i) => (
-                <div key={i} style={{ background: 'white', borderRadius: 12, padding: '18px 20px', border: '1px solid #eef0f2', boxShadow: '0 1px 4px rgba(0,0,0,.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <div>
-                    <div style={{ fontSize: 11, fontWeight: 600, color: '#9aa3ad', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 4 }}>{s.label}</div>
-                    <div style={{ fontSize: 26, fontWeight: 800, color: '#111827', lineHeight: 1, marginBottom: 4 }}>{s.value}</div>
-                    <div style={{ fontSize: 11, color: '#6b7888' }}>{s.sub}</div>
-                  </div>
-                  <div style={{ width: 44, height: 44, borderRadius: 12, background: s.color + '18' }} />
-                </div>
-              ))}
-            </div>
-            <div style={{ background: 'white', borderRadius: 14, border: '1px solid #eef0f2', overflow: 'hidden' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr 1fr', gap: 8, padding: '10px 22px', background: '#f8f9fc', borderBottom: '1px solid #eef0f2' }}>
-                {['CAMPAIGN', 'SDG', 'TYPE', 'REACH', 'STATUS', 'ACTION'].map((h, i) => (
-                  <div key={i} style={{ fontSize: 10, fontWeight: 700, color: '#9aa3ad', letterSpacing: '0.5px' }}>{h}</div>
-                ))}
-              </div>
-              {campaigns.map((row, i, arr) => (
-                <div key={i} style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr 1fr', gap: 8, padding: '14px 22px', borderBottom: i < arr.length - 1 ? '1px solid #f5f5f5' : 'none', alignItems: 'center' }}>
-                  <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{row.name}</span>
-                  <span style={{ fontSize: 10, fontWeight: 700, color: 'white', background: row.color, borderRadius: 5, padding: '3px 8px', width: 'fit-content' }}>SDG {row.sdg}</span>
-                  <span style={{ fontSize: 12, color: '#6b7888' }}>{row.type}</span>
-                  <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{row.reach.toLocaleString()}</span>
-                  <span style={{ fontSize: 11, fontWeight: 600, padding: '4px 10px', borderRadius: 20, width: 'fit-content', background: row.status === 'Active' ? '#e6f7ec' : row.status === 'Upcoming' ? '#fff3e0' : '#f0f0f0', color: row.status === 'Active' ? '#00b050' : row.status === 'Upcoming' ? '#f4b400' : '#888' }}>{row.status}</span>
-                  <button onClick={() => setModal({ type: 'view-campaign', data: row })} style={{ fontSize: 11, fontWeight: 600, color: '#0f3460', background: '#e6f0ff', border: 'none', borderRadius: 7, padding: '6px 12px', cursor: 'pointer', width: 'fit-content' }}>View →</button>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       )}
