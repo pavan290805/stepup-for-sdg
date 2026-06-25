@@ -114,30 +114,30 @@ export default function Hero() {
                     17 Goals to Transform Our World
                   </p>
 
-                  <div className="mt-9 flex flex-wrap gap-4">
-                    <button
-                      className="rounded-full border border-cyan-200/55 bg-white/10 px-7 py-3 text-sm font-semibold text-white shadow-[0_0_28px_rgba(34,211,238,0.28)] backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:border-cyan-100 hover:bg-cyan-300/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/80"
-                      onClick={handleRevealGoals}
-                      type="button"
-                    >
-                      Explore Goals
-                    </button>
-                    <button
-                      className="rounded-full border border-fuchsia-200/45 bg-white/5 px-7 py-3 text-sm font-semibold text-white shadow-[0_0_24px_rgba(217,70,239,0.18)] backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:border-fuchsia-100 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-200/70"
-                      onClick={handleRevealGoals}
-                      type="button"
-                    >
-                      Learn More
-                    </button>
-                  </div>
-                </motion.div>
-              </div>
-            </section>
+<div className="mt-9 flex flex-wrap gap-4">
+  <button
+    className="rounded-full border border-cyan-200/55 bg-white/10 px-7 py-3 text-sm font-semibold text-white shadow-[0_0_28px_rgba(34,211,238,0.28)] backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:border-cyan-100 hover:bg-cyan-300/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/80"
+    onClick={handleRevealGoals}
+    type="button"
+  >
+    Explore Goals
+  </button>
+</div>
 
-            {showGoals && <SDGGrid isVisible={showGoals} reduceMotion={reduceMotion} sectionRef={goalsRef} />}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </main>
-  );
+</motion.div>
+</div>
+</section>
+
+{showGoals && (
+  <SDGGrid
+    isVisible={showGoals}
+    reduceMotion={reduceMotion}
+    sectionRef={goalsRef}
+  />
+)}
+</motion.div>
+)}
+</AnimatePresence>
+</main>
+);
 }
