@@ -353,14 +353,13 @@ const heroFloatingCards = [
   { label: "SDG Projects",      value: "186+",   sub: "Currently active",   delay: 0.15, floatDur: 4.0, floatAmt: 6  },
   { label: "Schools Connected", value: "142+",   sub: "Across India",       delay: 0.3,  floatDur: 3.6, floatAmt: 10 },
   { label: "Verified Partners", value: "260+",   sub: "Organizations",      delay: 0.45, floatDur: 3.8, floatAmt: 7  },
-  { label: "Impact Reports",    value: "100%",   sub: "Audited & verified", delay: 0.6,  floatDur: 4.2, floatAmt: 9  },
 ];
 
 const ecosystemRoles: { type: PartnerType | "Hub"; title: string; role: string }[] = [
   { type: "School",     title: "Schools",     role: "SDG education & awareness"           },
   { type: "NGO",        title: "NGOs",        role: "Ground execution & community impact" },
   { type: "Hub",        title: "StepUp SDG",  role: "Coordination & impact tracking"      },
-  { type: "Company",    title: "Companies",   role: "CSR funding & resources"             },
+  { type: "Company",    title: "Companies",   role: "funding & resources"             },
   { type: "University", title: "Universities",role: "Research, innovation & volunteers"   },
 ];
 
@@ -371,8 +370,8 @@ const partnershipModels = [
 ];
 
 const audienceCards: { title: string; type: PartnerType; benefits: string[] }[] = [
-  { title: "For Companies (CSR)",        type: "Company",    benefits: ["Verified impact reports for your board", "Direct line to 12,000+ students", "Brand visibility across 6 states"] },
-  { title: "For Schools & Universities", type: "School",     benefits: ["Ready SDG curriculum and materials", "Funded workshops at zero cost", "Student leadership opportunities"]      },
+  { title: "For Companies ",        type: "Company",    benefits: ["Verified impact reports for your board", "Direct line to 12,000+ students", "Brand visibility across 6 states"] },
+  { title: "For Schools / Universities", type: "School",     benefits: ["Ready SDG curriculum and materials", "Funded workshops at zero cost", "Student leadership opportunities"]      },
   { title: "For NGOs",                   type: "NGO",        benefits: ["Co-design programs with companies", "Reach across 8 partner cities", "Joint grant opportunities"]              },
 ];
 
@@ -710,10 +709,20 @@ function PartnerModal({ partner, onClose, theme, isDark }: { partner: Partner; o
   const cfg = typeConfig[partner.type];
   const metrics = METRICS_BY_TYPE[partner.type];
   useEffect(() => {
-    const esc = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
-    window.addEventListener("keydown", esc);
-    return () => window.removeEventListener("keydown", esc);
-  }, [onClose]);
+    const saved = localStorage.getItem("stepup-theme");
+    if (saved) setIsDark(saved === "dark");
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (dialRef.current && !dialRef.current.contains(e.target as Node)) {
+        setDialOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
@@ -908,19 +917,22 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 /* ─── MAIN PAGE ───────────────────────────────────────────────────────────── */
 export default function PartnersPage() {
-  const [isDark, setIsDark]            = useState(true);
-  const [activeTab, setActiveTab]      = useState<Tab>("All");
-  const [selectedPartner, setSelected] = useState<Partner | null>(null);
-  const [searchQuery, setSearchQuery]  = useState("");
-  const [mounted, setMounted]          = useState(false);
-  const [form, setForm]                = useState<ApplyForm>(EMPTY_FORM);
-  const [submitted, setSubmitted]      = useState(false);
+  const [isDark, setIsDark]               = useState(true);
+  const [activeTab, setActiveTab]         = useState<Tab>("All");
+  const [selectedPartner, setSelected]    = useState<Partner | null>(null);
+  const [searchQuery, setSearchQuery]     = useState("");
+  const [mounted, setMounted]             = useState(false);
+  const [form, setForm]                   = useState<ApplyForm>(EMPTY_FORM);
+  const [submitted, setSubmitted]         = useState(false);
   const [searchFocused, setSearchFocused] = useState(false);
-  const theme: T = isDark ? DARK : LIGHT;
+  const [dialCode, setDialCode]           = useState("+91");
+  const [dialOpen, setDialOpen]           = useState(false);
+  const theme: T = isDark ? DARK : LIGHT;  // ← must be LAST, after all useState
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const heroRef = useRef<HTMLDivElement>(null);
+  const dialRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem("stepup-theme");
@@ -958,24 +970,24 @@ export default function PartnersPage() {
       <motion.nav initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
         className="sticky top-0 z-50 flex items-center justify-between px-6 md:px-10"
         style={{
-          background: isDark ? "rgba(6,10,16,0.88)" : "rgba(250,251,253,0.9)",
+          background: isDark ? "rgba(6,10,16,0.92)" : "rgba(250,251,253,0.95)",
           borderBottom: `1px solid ${theme.border}`,
-          backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", height: 68,
+          backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)", height: 80,
+          padding: "0 40px",
         }}>
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl"
-            style={{ background: `linear-gradient(135deg, ${theme.accent}20, ${theme.accent}10)`, border: `1px solid ${theme.accent}30` }}>
-            <img src="/logo.png" alt="StepUp SDG" style={{ width: 24, height: 24, objectFit: "contain" }} />
+          <div className="flex h-11 w-11 items-center justify-center rounded-full overflow-hidden"
+          style={{ border: `2px solid ${theme.accent}40` }}>
+          <img src="/logo.png" alt="StepUp SDG" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%" }} />
           </div>
-          <div className="font-black text-[16px] tracking-tight">
+          <div className="font-black text-[19px] tracking-tight">
             <span style={{ color: theme.accent }}>STEPUP</span>
             <span style={{ color: theme.accentRed }}> FOR SDG</span>
           </div>
         </div>
         <div className="hidden gap-8 md:flex">
           {["Home", "About Us", "SDG Goals", "Partners", "Contact"].map(link => (
-            <a key={link} href="#" className="text-[13px] font-medium transition-colors hover:opacity-100"
-              style={{ color: link === "Partners" ? theme.accent : theme.muted, opacity: link === "Partners" ? 1 : 0.7 }}>
+            <a key={link} href="#" className="text-[14px] font-semibold transition-colors hover:opacity-100"              style={{ color: link === "Partners" ? theme.accent : theme.muted, opacity: link === "Partners" ? 1 : 0.7 }}>
               {link}
             </a>
           ))}
@@ -995,146 +1007,129 @@ export default function PartnersPage() {
       </motion.nav>
 
       {/* HERO */}
-      <section ref={heroRef} onMouseMove={handleHeroMouseMove}
-        className="relative overflow-hidden px-6 md:px-10"
-        style={{ borderBottom: `1px solid ${theme.border}`, minHeight: "90vh", display: "flex", alignItems: "center" }}>
-        <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-          <div className="mesh-blob absolute rounded-full blur-[120px]" style={{ width: 600, height: 600, top: "-15%", left: "-10%", background: theme.meshA }} />
-          <div className="mesh-blob-2 absolute rounded-full blur-[100px]" style={{ width: 400, height: 400, top: "20%", right: "-5%", background: theme.meshB }} />
-          <div className="mesh-blob-3 absolute rounded-full blur-[80px]" style={{ width: 300, height: 300, bottom: "5%", left: "40%", background: theme.meshC }} />
-        </div>
-        <div className="pointer-events-none absolute inset-0" aria-hidden style={{
-          backgroundImage: `linear-gradient(${theme.gridLine} 1px, transparent 1px), linear-gradient(90deg, ${theme.gridLine} 1px, transparent 1px)`,
-          backgroundSize: "48px 48px",
-        }} />
-        <motion.div className="pointer-events-none absolute rounded-full blur-[80px] opacity-30" aria-hidden
-          style={{
-            width: 400, height: 400,
-            x: useTransform(mouseX, v => v - 200),
-            y: useTransform(mouseY, v => v - 200),
-            background: `radial-gradient(circle, ${theme.accent}40, transparent 70%)`,
-          }} />
+<section ref={heroRef} onMouseMove={handleHeroMouseMove}
+  className="relative overflow-hidden px-6 md:px-10"
+  style={{ borderBottom: `1px solid ${theme.border}`, minHeight: "calc(100vh - 80px)", display: "flex", alignItems: "center" }}>
+  <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+    <div className="mesh-blob absolute rounded-full blur-[120px]" style={{ width: 600, height: 600, top: "-15%", left: "-10%", background: theme.meshA }} />
+    <div className="mesh-blob-2 absolute rounded-full blur-[100px]" style={{ width: 400, height: 400, top: "20%", right: "-5%", background: theme.meshB }} />
+    <div className="mesh-blob-3 absolute rounded-full blur-[80px]" style={{ width: 300, height: 300, bottom: "5%", left: "40%", background: theme.meshC }} />
+  </div>
+  <div className="pointer-events-none absolute inset-0" aria-hidden style={{
+    backgroundImage: `linear-gradient(${theme.gridLine} 1px, transparent 1px), linear-gradient(90deg, ${theme.gridLine} 1px, transparent 1px)`,
+    backgroundSize: "48px 48px",
+  }} />
+  <motion.div className="pointer-events-none absolute rounded-full blur-[80px] opacity-30" aria-hidden
+    style={{
+      width: 400, height: 400,
+      x: useTransform(mouseX, v => v - 200),
+      y: useTransform(mouseY, v => v - 200),
+      background: `radial-gradient(circle, ${theme.accent}40, transparent 70%)`,
+    }} />
 
-        <div className="relative z-10 w-full grid items-center gap-16 md:grid-cols-2 py-24">
-          <motion.div initial={{ opacity: 0, y: 32 }} animate={mounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }} className="md:pl-4 lg:pl-8">
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={mounted ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="mb-6 inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[11px] font-semibold tracking-wide"
-              style={{ border: `1px solid ${theme.accent}30`, background: `${theme.accent}08`, color: theme.accent }}>
-              <Icon.Globe className="w-3 h-3" />
-              India&apos;s SDG Partnership Network
-            </motion.div>
-            <motion.h1 initial={{ opacity: 0, y: 20 }} animate={mounted ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.15 }}
-              className="text-[42px] md:text-[56px] font-black leading-[1.04] tracking-[-0.03em] mb-5">
-              <span style={{ color: theme.text }}>Building impact</span>
-              <br />
-              <span className="gradient-text-hero">through collaboration.</span>
-            </motion.h1>
-            <motion.p initial={{ opacity: 0, y: 16 }} animate={mounted ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.22 }}
-              className="text-[16px] md:text-[18px] leading-relaxed mb-8 max-w-[440px]" style={{ color: theme.muted }}>
-              Schools, NGOs, universities, and companies united around the 17 UN SDGs. Every partnership creates a ripple.
-            </motion.p>
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={mounted ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.3 }} className="flex flex-wrap gap-3">
-              <motion.a href="#partner-form" whileHover={{ scale: 1.02, y: -1 }} whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-[14px] font-bold"
-                style={{ background: `linear-gradient(135deg, ${theme.accent}, #0284c7)`, color: "#fff", boxShadow: `0 4px 20px ${theme.accent}40` }}>
-                Partner With Us <Icon.Arrow />
-              </motion.a>
+  <div className="relative z-10 w-full grid items-center gap-16 md:grid-cols-2 py-16 mt-[-40px]">
+
+    {/* LEFT COLUMN */}
+    <motion.div initial={{ opacity: 0, y: 32 }} animate={mounted ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+      className="md:pl-16 lg:pl-23 flex flex-col justify-center" style={{ minHeight: 420 }}>
+
+      <motion.div initial={{ opacity: 0, y: 12 }} animate={mounted ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="mb-6 inline-flex w-fit items-center gap-2 rounded-full px-3.5 py-1.5 text-[11px] font-semibold tracking-wide"
+        style={{ border: `1px solid ${theme.accent}30`, background: `${theme.accent}08`, color: theme.accent }}>
+        <Icon.Globe className="w-3 h-3" />
+        India&apos;s SDG Partnership Network
+      </motion.div>
+
+      <motion.h1 initial={{ opacity: 0, y: 20 }} animate={mounted ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7, delay: 0.15 }}
+        className="text-[42px] md:text-[56px] font-black leading-[1.04] tracking-[-0.03em] mb-5">
+        <span style={{ color: theme.text }}>Building impact</span>
+        <br />
+        <span className="gradient-text-hero">through collaboration.</span>
+      </motion.h1>
+
+      <motion.p initial={{ opacity: 0, y: 16 }} animate={mounted ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7, delay: 0.22 }}
+        className="text-[16px] md:text-[18px] leading-relaxed mb-8 max-w-[440px]" style={{ color: theme.muted }}>
+        Schools, NGOs, universities, and companies united around the 17 UN SDGs. Every partnership creates a ripple.
+      </motion.p>
+
+      <motion.div initial={{ opacity: 0, y: 12 }} animate={mounted ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, delay: 0.3 }} className="flex flex-wrap gap-3">
+        <motion.a href="#partner-form" whileHover={{ scale: 1.02, y: -1 }} whileTap={{ scale: 0.98 }}
+          className="inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-[14px] font-bold"
+          style={{ background: `linear-gradient(135deg, ${theme.accent}, #0284c7)`, color: "#fff", boxShadow: `0 4px 20px ${theme.accent}40` }}>
+          Partner With Us <Icon.Arrow />
+        </motion.a>
+      </motion.div>
+
+      {/* Mini stats row */}
+      
+    </motion.div>
+
+    {/* RIGHT COLUMN — desktop floating cards */}
+    <div className="relative hidden md:flex items-center justify-center" style={{ minHeight: 440 }}>
+      <div className="absolute inset-0 flex items-center justify-center opacity-10">
+        <svg viewBox="0 0 320 320" className="w-[320px] h-[320px]">
+          <circle cx="160" cy="160" r="90" fill="none" stroke={theme.accent} strokeWidth="0.5" strokeDasharray="3 6" />
+          <circle cx="160" cy="160" r="130" fill="none" stroke={theme.accent} strokeWidth="0.3" strokeDasharray="1.5 5" />
+          {[[160, 70], [240, 160], [160, 250], [80, 160]].map(([x, y], i) => (
+            <g key={i}>
+              <line x1="160" y1="160" x2={x} y2={y} stroke={theme.accent} strokeWidth="0.7" />
+              <circle cx={x} cy={y} r="5" fill={theme.card} stroke={theme.accent} strokeWidth="1.5" />
+            </g>
+          ))}
+          <circle cx="160" cy="160" r="22" fill={theme.card} stroke={theme.accent} strokeWidth="1" />
+          <text x="160" y="157" textAnchor="middle" fill={theme.accent} fontSize="6.5" fontWeight="700" fontFamily="Inter">STEPUP</text>
+          <text x="160" y="166" textAnchor="middle" fill={theme.accent} fontSize="5.5" fontFamily="Inter">FOR SDG</text>
+        </svg>
+      </div>
+      <div className="relative w-full h-[440px]">
+        {[
+          { card: heroFloatingCards[0], top: "0%",  left: "54%" },
+          { card: heroFloatingCards[1], top: "20%", left: "0%"  },
+          { card: heroFloatingCards[2], top: "52%", left: "50%" },
+          { card: heroFloatingCards[3], top: "76%", left: "0%"  },
+        ].map(({ card, top, left }, i) => (
+          <motion.div key={card.label} className="absolute" style={{ top, left }}
+            initial={{ opacity: 0, y: 24, scale: 0.9 }}
+            animate={mounted ? { opacity: 1, y: 0, scale: 1 } : {}}
+            transition={{ duration: 0.6, delay: card.delay + 0.35, ease: "easeOut" }}>
+            <motion.div animate={{ y: [0, -card.floatAmt, 0] }}
+              transition={{ duration: card.floatDur, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
+              className="rounded-2xl px-4 py-3.5 min-w-[152px]"
+              style={{
+                background: isDark ? "rgba(13,22,37,0.88)" : "rgba(255,255,255,0.9)",
+                backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
+                border: `1px solid ${theme.glassBorder}`,
+                boxShadow: isDark ? "0 12px 40px rgba(0,0,0,0.5)" : "0 8px 32px rgba(0,0,0,0.1)",
+              }}>
+              <div className="text-[9px] font-semibold uppercase tracking-widest mb-1" style={{ color: theme.dim }}>{card.label}</div>
+              <div className="text-[24px] font-black tracking-tight leading-none" style={{ color: theme.accent }}>{card.value}</div>
+              <div className="text-[10px] mt-1.5" style={{ color: theme.muted }}>{card.sub}</div>
             </motion.div>
           </motion.div>
+        ))}
+      </div>
+    </div>
 
-          <div className="relative hidden md:flex items-center justify-center" style={{ minHeight: 440 }}>
-            <div className="absolute inset-0 flex items-center justify-center opacity-10">
-              <svg viewBox="0 0 320 320" className="w-[320px] h-[320px]">
-                <circle cx="160" cy="160" r="90" fill="none" stroke={theme.accent} strokeWidth="0.5" strokeDasharray="3 6" />
-                <circle cx="160" cy="160" r="130" fill="none" stroke={theme.accent} strokeWidth="0.3" strokeDasharray="1.5 5" />
-                {[[160, 70], [240, 160], [160, 250], [80, 160]].map(([x, y], i) => (
-                  <g key={i}>
-                    <line x1="160" y1="160" x2={x} y2={y} stroke={theme.accent} strokeWidth="0.7" />
-                    <circle cx={x} cy={y} r="5" fill={theme.card} stroke={theme.accent} strokeWidth="1.5" />
-                  </g>
-                ))}
-                <circle cx="160" cy="160" r="22" fill={theme.card} stroke={theme.accent} strokeWidth="1" />
-                <text x="160" y="157" textAnchor="middle" fill={theme.accent} fontSize="6.5" fontWeight="700" fontFamily="Inter">STEPUP</text>
-                <text x="160" y="166" textAnchor="middle" fill={theme.accent} fontSize="5.5" fontFamily="Inter">FOR SDG</text>
-              </svg>
-            </div>
-            <div className="relative w-full h-[440px]">
-              {[
-                { card: heroFloatingCards[0], top: "2%",  left: "52%" },
-                { card: heroFloatingCards[1], top: "18%", left: "2%"  },
-                { card: heroFloatingCards[2], top: "56%", left: "58%" },
-                { card: heroFloatingCards[3], top: "74%", left: "4%"  },
-                { card: heroFloatingCards[4], top: "36%", left: "26%" },
-              ].map(({ card, top, left }, i) => (
-                <motion.div key={card.label} className="absolute" style={{ top, left }}
-                  initial={{ opacity: 0, y: 24, scale: 0.9 }}
-                  animate={mounted ? { opacity: 1, y: 0, scale: 1 } : {}}
-                  transition={{ duration: 0.6, delay: card.delay + 0.35, ease: "easeOut" }}>
-                  <motion.div animate={{ y: [0, -card.floatAmt, 0] }}
-                    transition={{ duration: card.floatDur, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
-                    className="rounded-2xl px-4 py-3.5 min-w-[152px]"
-                    style={{
-                      background: isDark ? "rgba(13,22,37,0.88)" : "rgba(255,255,255,0.9)",
-                      backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
-                      border: `1px solid ${theme.glassBorder}`,
-                      boxShadow: isDark ? "0 12px 40px rgba(0,0,0,0.5)" : "0 8px 32px rgba(0,0,0,0.1)",
-                    }}>
-                    <div className="text-[9px] font-semibold uppercase tracking-widest mb-1" style={{ color: theme.dim }}>{card.label}</div>
-                    <div className="text-[24px] font-black tracking-tight leading-none" style={{ color: theme.accent }}>{card.value}</div>
-                    <div className="text-[10px] mt-1.5" style={{ color: theme.muted }}>{card.sub}</div>
-                  </motion.div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          <div className="md:hidden grid grid-cols-2 gap-3">
-            {heroFloatingCards.slice(0, 4).map(card => (
-              <div key={card.label} className="rounded-2xl px-4 py-3"
-                style={{ background: theme.glass, backdropFilter: "blur(16px)", border: `1px solid ${theme.glassBorder}` }}>
-                <div className="text-[9px] font-semibold uppercase tracking-widest mb-1" style={{ color: theme.dim }}>{card.label}</div>
-                <div className="text-[20px] font-black tracking-tight" style={{ color: theme.accent }}>{card.value}</div>
-                <div className="text-[10px] mt-0.5" style={{ color: theme.muted }}>{card.sub}</div>
-              </div>
-            ))}
-          </div>
+    {/* MOBILE floating cards */}
+    <div className="md:hidden grid grid-cols-2 gap-3">
+      {heroFloatingCards.slice(0, 4).map(card => (
+        <div key={card.label} className="rounded-2xl px-4 py-3"
+          style={{ background: theme.glass, backdropFilter: "blur(16px)", border: `1px solid ${theme.glassBorder}` }}>
+          <div className="text-[9px] font-semibold uppercase tracking-widest mb-1" style={{ color: theme.dim }}>{card.label}</div>
+          <div className="text-[20px] font-black tracking-tight" style={{ color: theme.accent }}>{card.value}</div>
+          <div className="text-[10px] mt-0.5" style={{ color: theme.muted }}>{card.sub}</div>
         </div>
-      </section>
+      ))}
+    </div>
 
-      {/* MEASURABLE IMPACT */}
-      <section className="px-6 md:px-10 py-16" style={{ borderBottom: `1px solid ${theme.border}` }}>
-        <Reveal>
-          <p className="text-[10px] font-semibold uppercase tracking-widest mb-6" style={{ color: theme.muted }}>Measurable impact</p>
-        </Reveal>
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-          {[
-            { icon: <Icon.Users className="w-5 h-5" />, value: "12,450+", label: "Students Impacted",      sub: "Through SDG programs",          color: theme.accent },
-            { glyph: "Rs",                               value: fundingStat, label: "Funding Facilitated",  sub: "Driving projects across India",  color: "#34d399"    },
-            { icon: <Icon.Calendar className="w-5 h-5" />, value: "186+",  label: "Workshops Conducted",   sub: "Building awareness",             color: "#f87171"    },
-            { icon: <Icon.TrendUp className="w-3.5 h-3.5" />, value: "96%",label: "Partner Satisfaction",  sub: "High satisfaction rate",         color: "#fbbf24"    },
-          ].map(({ icon, glyph, value, label, sub, color }, idx) => (
-            <Reveal key={label} delay={idx * 0.05}>
-              <motion.div whileHover={{ y: -4, boxShadow: `0 16px 48px ${color}15` }}
-                className="rounded-2xl p-6 transition-shadow"
-                style={{ background: `${color}08`, border: `1px solid ${color}20` }}>
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl" style={{ background: `${color}18`, color }}>
-                  {icon || <span className="text-base font-extrabold">{glyph}</span>}
-                </div>
-                <div className="text-[26px] font-black tracking-tight leading-none mb-1">
-                  <AnimatedCounter value={value} theme={theme} />
-                </div>
-                <div className="text-[13px] font-semibold mt-0.5" style={{ color: theme.text }}>{label}</div>
-                <div className="text-xs mt-1" style={{ color: theme.muted }}>{sub}</div>
-              </motion.div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+  </div>
+</section>
+      
 
       {/* ECOSYSTEM FLOW */}
       <section className="px-6 md:px-10 py-16" style={{ borderBottom: `1px solid ${theme.border}`, background: theme.sectionAlt }}>
@@ -1158,12 +1153,13 @@ export default function PartnersPage() {
                     <motion.div whileHover={{ scale: 1.08, y: -2 }}
                       className={`flex items-center justify-center rounded-full border-2 ${isHub ? "h-20 w-20" : "h-16 w-16"}`}
                       style={{
-                        background: isHub ? `${theme.accent}12` : cfg?.gradient,
+                        background: isHub ? "transparent" : cfg?.gradient,
                         borderColor: isHub ? theme.accent : cfg?.border,
                         boxShadow: isHub ? `0 0 28px ${theme.accent}20` : `0 4px 16px ${cfg?.color}18`,
+                        position: "relative", overflow: "hidden", padding: 0,
                       }}>
                       {isHub
-                        ? <Icon.Globe className="w-7 h-7" style={{ color: theme.accent }} />
+                        ? <img src="/logo.png" alt="StepUp SDG" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%", position: "absolute", inset: 0 }} />
                         : cfg && <span style={{ color: cfg.color }}><cfg.IconEl className="w-6 h-6" /></span>
                       }
                     </motion.div>
@@ -1366,53 +1362,128 @@ export default function PartnersPage() {
                     </p>
                   </motion.div>
                 ) : (
+
                   <motion.form key="form" onSubmit={e => { e.preventDefault(); setSubmitted(true); }} className="flex flex-col gap-4">
-                    {([
-                      { label: "Full Name",    type: "text",  ph: "Your name",           key: "name"         },
-                      { label: "Organization", type: "text",  ph: "Your organization",    key: "organization" },
-                      { label: "Work email",   type: "email", ph: "you@organization.com", key: "email"        },
-                    ] as const).map(f => (
-                      <div key={f.key}>
-                        <label className="mb-1.5 block text-[11px] font-medium" style={{ color: theme.muted }}>{f.label}</label>
-                        <input required type={f.type} placeholder={f.ph} value={form[f.key]}
-                          onChange={e => updateForm(f.key, e.target.value)}
-                          className="glass-input w-full rounded-xl px-4 py-2.5 text-[13px]"
-                          style={{ background: theme.inputBg, border: `1.5px solid ${theme.border}`, color: theme.text }} />
-                      </div>
-                    ))}
-                    <div className="grid grid-cols-2 gap-3">
-                      {[
-                        { label: "Type",       key: "type",   opts: ["Company / CSR", "School", "NGO", "University"] },
-                        { label: "CSR budget", key: "budget", opts: ["Under Rs10L", "Rs10L-Rs50L", "Rs50L-Rs2Cr", "Above Rs2Cr"] },
-                      ].map(({ label, key, opts }) => (
-                        <div key={key}>
-                          <label className="mb-1.5 block text-[11px] font-medium" style={{ color: theme.muted }}>{label}</label>
-                          <select value={form[key as keyof ApplyForm]}
-                            onChange={e => updateForm(key as keyof ApplyForm, e.target.value)}
-                            className="glass-input w-full rounded-xl px-3 py-2.5 text-[13px]"
-                            style={{ background: theme.inputBg, border: `1.5px solid ${theme.border}`, color: form[key as keyof ApplyForm] ? theme.text : theme.muted }}>
-                            <option value="">Select</option>
-                            {opts.map(o => <option key={o} style={{ background: theme.card }}>{o}</option>)}
-                          </select>
-                        </div>
+                  {/* Full Name */}
+                  <div>
+                    <label className="mb-1.5 block text-[11px] font-medium" style={{ color: theme.muted }}>Full Name</label>
+                    <input required type="text" placeholder="Your name" value={form.name}
+                      onChange={e => updateForm("name", e.target.value)}
+                      className="glass-input w-full rounded-xl px-4 py-2.5 text-[13px]"
+                      style={{ background: theme.inputBg, border: `1.5px solid ${theme.border}`, color: theme.text }} />
+                  </div>
+
+                  {/* Type */}
+                  <div>
+                    <label className="mb-1.5 block text-[11px] font-medium" style={{ color: theme.muted }}>Type</label>
+                    <select value={form.type} onChange={e => updateForm("type", e.target.value)}
+                      className="glass-input w-full rounded-xl px-3 py-2.5 text-[13px]"
+                      style={{ background: theme.inputBg, border: `1.5px solid ${theme.border}`, color: form.type ? theme.text : theme.muted }}>
+                      <option value="">Select</option>
+                      {["Company", "School", "NGO", "University"].map(o => (
+                        <option key={o} style={{ background: theme.card }}>{o}</option>
                       ))}
-                    </div>
-                    <div>
-                      <label className="mb-1.5 block text-[11px] font-medium" style={{ color: theme.muted }}>How do you want to collaborate?</label>
-                      <textarea rows={3} placeholder="Tell us about your SDG goals..."
-                        value={form.message} onChange={e => updateForm("message", e.target.value)}
-                        className="glass-input w-full resize-none rounded-xl px-4 py-2.5 text-[13px]"
-                        style={{ background: theme.inputBg, border: `1.5px solid ${theme.border}`, color: theme.text }} />
-                    </div>
-                    <motion.button type="submit" whileHover={{ scale: 1.01, y: -1 }} whileTap={{ scale: 0.99 }}
-                      className="mt-1 flex items-center justify-center gap-2 rounded-xl py-3 text-[14px] font-bold"
-                      style={{ background: `linear-gradient(135deg, ${theme.accent}, #0284c7)`, color: "#fff", boxShadow: `0 4px 20px ${theme.accent}35` }}>
-                      Send partnership request <Icon.Arrow />
-                    </motion.button>
-                    <p className="text-center text-[11px]" style={{ color: theme.muted }}>
-                      By submitting you agree to our <a href="#" style={{ color: theme.accent }}>partnership terms</a>.
-                    </p>
-                  </motion.form>
+                    </select>
+                  </div>
+
+                  {/* Organization */}
+                  <div>
+                    <label className="mb-1.5 block text-[11px] font-medium" style={{ color: theme.muted }}>Organization Name</label>
+                    <input required type="text" placeholder="Your organization" value={form.organization}
+                      onChange={e => updateForm("organization", e.target.value)}
+                      className="glass-input w-full rounded-xl px-4 py-2.5 text-[13px]"
+                      style={{ background: theme.inputBg, border: `1.5px solid ${theme.border}`, color: theme.text }} />
+                  </div>
+
+                  {/* Work Email */}
+                  <div>
+                    <label className="mb-1.5 block text-[11px] font-medium" style={{ color: theme.muted }}>Work email</label>
+                    <input required type="email" placeholder="you@organization.com" value={form.email}
+                      onChange={e => updateForm("email", e.target.value)}
+                      className="glass-input w-full rounded-xl px-4 py-2.5 text-[13px]"
+                      style={{ background: theme.inputBg, border: `1.5px solid ${theme.border}`, color: theme.text }} />
+                  </div>
+
+                  {/* WhatsApp Number */}
+                 <div>
+  <label className="mb-1.5 block text-[11px] font-medium" style={{ color: theme.muted }}>WhatsApp Number</label>
+  <div className="flex rounded-xl overflow-visible" style={{ border: `1.5px solid ${theme.border}`, background: theme.inputBg }}>
+    <div ref={dialRef} className="relative shrink-0" style={{ borderRight: `1.5px solid ${theme.border}` }}>
+      <button type="button" onClick={() => setDialOpen(o => !o)}
+        className="flex items-center gap-2 px-3 py-2.5 text-[13px] font-semibold focus:outline-none w-[100px]"
+        style={{ color: theme.text }}>
+        <span>{[
+          { code: "+91", flag: "🇮🇳" }, { code: "+1", flag: "🇺🇸" }, { code: "+44", flag: "🇬🇧" },
+          { code: "+971", flag: "🇦🇪" }, { code: "+65", flag: "🇸🇬" }, { code: "+61", flag: "🇦🇺" },
+          { code: "+49", flag: "🇩🇪" }, { code: "+33", flag: "🇫🇷" }, { code: "+81", flag: "🇯🇵" },
+          { code: "+86", flag: "🇨🇳" }, { code: "+880", flag: "🇧🇩" }, { code: "+92", flag: "🇵🇰" },
+        ].find(c => c.code === dialCode)?.flag ?? "🌐"}</span>
+        <span>{dialCode}</span>
+        <svg className="w-3 h-3 ml-auto shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: theme.muted }}>
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </button>
+
+      {dialOpen && (
+        <div className="absolute left-0 top-[calc(100%+6px)] z-[100] w-[200px] rounded-xl overflow-hidden shadow-2xl"
+          style={{ background: theme.card, border: `1px solid ${theme.border}` }}>
+          {[
+            { code: "+91",  flag: "🇮🇳", label: "India"       },
+            { code: "+1",   flag: "🇺🇸", label: "USA"         },
+            { code: "+44",  flag: "🇬🇧", label: "UK"          },
+            { code: "+971", flag: "🇦🇪", label: "UAE"         },
+            { code: "+65",  flag: "🇸🇬", label: "Singapore"   },
+            { code: "+61",  flag: "🇦🇺", label: "Australia"   },
+            { code: "+49",  flag: "🇩🇪", label: "Germany"     },
+            { code: "+33",  flag: "🇫🇷", label: "France"      },
+            { code: "+81",  flag: "🇯🇵", label: "Japan"       },
+            { code: "+86",  flag: "🇨🇳", label: "China"       },
+            { code: "+880", flag: "🇧🇩", label: "Bangladesh"  },
+            { code: "+92",  flag: "🇵🇰", label: "Pakistan"    },
+            { code: "+94",  flag: "🇱🇰", label: "Sri Lanka"   },
+            { code: "+977", flag: "🇳🇵", label: "Nepal"       },
+          ].map(c => (
+            <button key={c.code} type="button"
+              onClick={() => { setDialCode(c.code); setDialOpen(false); }}
+              className="flex w-full items-center gap-2.5 px-3 py-2 text-[12px] transition-opacity hover:opacity-70"
+              style={{
+                background: dialCode === c.code ? `${theme.accent}15` : "transparent",
+                color: dialCode === c.code ? theme.accent : theme.text,
+              }}>
+              <span className="text-[16px]">{c.flag}</span>
+              <span className="flex-1 text-left">{c.label}</span>
+              <span className="font-semibold text-[11px]" style={{ color: theme.muted }}>{c.code}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+
+    <input type="tel" placeholder="00000 00000" value={form.budget}
+      onChange={e => updateForm("budget", e.target.value)}
+      className="flex-1 px-4 py-2.5 text-[13px] bg-transparent focus:outline-none"
+      style={{ color: theme.text }} />
+  </div>
+</div>
+
+                  {/* How do you want to collaborate? */}
+                  <div>
+                    <label className="mb-1.5 block text-[11px] font-medium" style={{ color: theme.muted }}>How do you want to collaborate?</label>
+                    <textarea rows={3} placeholder="Tell us about your SDG goals..."
+                      value={form.message} onChange={e => updateForm("message", e.target.value)}
+                      className="glass-input w-full resize-none rounded-xl px-4 py-2.5 text-[13px]"
+                      style={{ background: theme.inputBg, border: `1.5px solid ${theme.border}`, color: theme.text }} />
+                  </div>
+
+                  <motion.button type="submit" whileHover={{ scale: 1.01, y: -1 }} whileTap={{ scale: 0.99 }}
+                    className="mt-1 flex items-center justify-center gap-2 rounded-xl py-3 text-[14px] font-bold"
+                    style={{ background: `linear-gradient(135deg, ${theme.accent}, #0284c7)`, color: "#fff", boxShadow: `0 4px 20px ${theme.accent}35` }}>
+                    Send partnership request <Icon.Arrow />
+                  </motion.button>
+                  <p className="text-center text-[11px]" style={{ color: theme.muted }}>
+                    By submitting you agree to our <a href="#" style={{ color: theme.accent }}>partnership terms</a>.
+                  </p>
+                </motion.form>
                 )}
               </AnimatePresence>
             </div>
@@ -1485,4 +1556,3 @@ export default function PartnersPage() {
     </div>
   );
 }
-                      
