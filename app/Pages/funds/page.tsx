@@ -36,15 +36,15 @@ export default function FundsPage() {
   }
 
   const inputStyle: React.CSSProperties = {
-    width: '100%', border: '1.5px solid #e2e8f0', borderRadius: 10,
+    width: '100%', border: '1.5px solid rgba(170,182,200,0.2)', borderRadius: 10,
     padding: '12px 14px', fontSize: 13.5, outline: 'none',
-    color: '#1a1a2e', background: '#fff', boxSizing: 'border-box',
+    color: '#ffffff', background: 'rgba(255,255,255,0.06)', boxSizing: 'border-box',
     transition: 'border-color 0.2s',
   }
 
   const labelStyle: React.CSSProperties = {
     display: 'block', fontSize: 11.5, fontWeight: 700,
-    color: '#64748b', letterSpacing: '0.06em',
+    color: '#AAB6C8', letterSpacing: '0.06em',
     textTransform: 'uppercase', marginBottom: 8,
   }
 
@@ -112,12 +112,15 @@ export default function FundsPage() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f1f5f9', fontFamily: 'Inter, sans-serif' }}>
+    <div style={{ minHeight: '100vh', fontFamily: 'Inter, sans-serif', background: 'linear-gradient(180deg, #050B18 0%, #07101F 50%, #050B18 100%)', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ position: 'fixed', top: '-10%', right: '-5%', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(21,93,252,0.18) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
+      <div style={{ position: 'fixed', bottom: '10%', left: '-5%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(0,194,255,0.10) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
 
       {/* Hero */}
       <div style={{
-        background: 'linear-gradient(135deg, #0f3460 0%, #0e6fa3 60%, #00b8d4 100%)',
-        padding: '64px 28px 52px', textAlign: 'center', position: 'relative', overflow: 'hidden',
+        background: 'linear-gradient(135deg, rgba(21,93,252,0.35) 0%, rgba(0,194,255,0.18) 60%, rgba(0,168,168,0.15) 100%)',
+        borderBottom: '1px solid rgba(0,194,255,0.15)',
+        padding: '64px 28px 52px', textAlign: 'center', position: 'relative', overflow: 'hidden', zIndex: 1,
       }}>
         {/* decorative circles */}
         <div style={{
@@ -156,11 +159,13 @@ export default function FundsPage() {
       </div>
 
       {/* Form */}
-      <div style={{ maxWidth: 600, margin: '0 auto', padding: '40px 20px 60px' }}>
+      <div style={{ maxWidth: 600, margin: '0 auto', padding: '40px 20px 60px', position: 'relative', zIndex: 1 }}>
         <div style={{
-          background: 'white', borderRadius: 22,
-          boxShadow: '0 8px 40px rgba(0,0,0,0.1)',
-          overflow: 'hidden', border: '1px solid #e8edf5',
+          background: 'linear-gradient(180deg, rgba(16,29,51,0.85), rgba(11,20,38,0.9))',
+          backdropFilter: 'blur(16px)',
+          borderRadius: 22,
+          boxShadow: '0 8px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,194,255,0.12)',
+          overflow: 'hidden', border: '1px solid rgba(0,194,255,0.18)',
         }}>
 
           {/* Form Header */}
@@ -183,7 +188,7 @@ export default function FundsPage() {
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} style={{ padding: '28px 28px 24px' }}>
+          <form onSubmit={handleSubmit} style={{ padding: '28px 28px 24px', background: 'transparent' }}>
 
             {/* Personal Info */}
             <div style={{ marginBottom: 24 }}>
@@ -194,8 +199,8 @@ export default function FundsPage() {
                   onChange={e => setName(e.target.value)}
                   placeholder="Full Name"
                   style={{ ...inputStyle, flex: 1 }}
-                  onFocus={e => e.target.style.borderColor = '#00b8d4'}
-                  onBlur={e => e.target.style.borderColor = '#e2e8f0'}
+                  onFocus={e => e.target.style.borderColor = '#00C2FF'}
+                  onBlur={e => e.target.style.borderColor = 'rgba(170,182,200,0.2)'}
                 />
                 <input
                   required value={phone}
@@ -203,8 +208,8 @@ export default function FundsPage() {
                   placeholder="Phone Number"
                   type="tel"
                   style={{ ...inputStyle, flex: 1 }}
-                  onFocus={e => e.target.style.borderColor = '#00b8d4'}
-                  onBlur={e => e.target.style.borderColor = '#e2e8f0'}
+                  onFocus={e => e.target.style.borderColor = '#00C2FF'}
+                  onBlur={e => e.target.style.borderColor = 'rgba(170,182,200,0.2)'}
                 />
               </div>
               <input
@@ -213,8 +218,8 @@ export default function FundsPage() {
                 placeholder="Email Address"
                 type="email"
                 style={inputStyle}
-                onFocus={e => e.target.style.borderColor = '#00b8d4'}
-                onBlur={e => e.target.style.borderColor = '#e2e8f0'}
+                onFocus={e => e.target.style.borderColor = '#00C2FF'}
+                onBlur={e => e.target.style.borderColor = 'rgba(170,182,200,0.2)'}
               />
             </div>
 
@@ -240,14 +245,14 @@ export default function FundsPage() {
                       style={{
                         width: '100%', padding: '12px 0', borderRadius: 10,
                         border: amount === String(a) && !customAmount
-                          ? '2px solid #0f3460' : '1.5px solid #e2e8f0',
+                          ? '2px solid #00C2FF' : '1.5px solid rgba(170,182,200,0.2)',
                         background: amount === String(a) && !customAmount
-                          ? 'linear-gradient(135deg, #0f3460, #0e6fa3)' : '#fafbfc',
-                        color: amount === String(a) && !customAmount ? 'white' : '#475569',
+                          ? 'linear-gradient(135deg, #155DFC, #00C2FF)' : 'rgba(255,255,255,0.05)',
+                        color: amount === String(a) && !customAmount ? 'white' : '#AAB6C8',
                         fontSize: 13.5, fontWeight: 700, cursor: 'pointer',
                         transition: 'all 0.2s',
                         boxShadow: amount === String(a) && !customAmount
-                          ? '0 4px 12px rgba(15,52,96,0.25)' : 'none',
+                          ? '0 4px 12px rgba(0,194,255,0.3)' : 'none',
                       }}
                     >
                       ₹{a.toLocaleString()}
@@ -267,8 +272,8 @@ export default function FundsPage() {
                   type="number"
                   min="1"
                   style={{ ...inputStyle, paddingLeft: 28 }}
-                  onFocus={e => e.target.style.borderColor = '#00b8d4'}
-                  onBlur={e => e.target.style.borderColor = '#e2e8f0'}
+                  onFocus={e => e.target.style.borderColor = '#00C2FF'}
+                  onBlur={e => e.target.style.borderColor = 'rgba(170,182,200,0.2)'}
                 />
               </div>
             </div>
@@ -285,16 +290,16 @@ export default function FundsPage() {
                   ...inputStyle, resize: 'none',
                   fontFamily: 'Inter, sans-serif', lineHeight: 1.6,
                 }}
-                onFocus={e => e.target.style.borderColor = '#00b8d4'}
-                onBlur={e => e.target.style.borderColor = '#e2e8f0'}
+                onFocus={e => e.target.style.borderColor = '#00C2FF'}
+                onBlur={e => e.target.style.borderColor = 'rgba(170,182,200,0.2)'}
               />
             </div>
 
             {/* Summary */}
             {finalAmount && (
               <div style={{
-                background: 'linear-gradient(135deg, #f0fdf4, #dcfce7)',
-                border: '1.5px solid #86efac',
+                background: 'rgba(0,176,80,0.12)',
+                border: '1.5px solid rgba(0,176,80,0.4)',
                 borderRadius: 12, padding: '14px 18px', marginBottom: 22,
                 display: 'flex', alignItems: 'center', gap: 10,
               }}>
@@ -304,7 +309,7 @@ export default function FundsPage() {
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   fontSize: 13, fontWeight: 700, flexShrink: 0,
                 }}>✓</span>
-                <p style={{ fontSize: 13, color: '#15803d', fontWeight: 600, margin: 0 }}>
+                <p style={{ fontSize: 13, color: '#4ade80', fontWeight: 600, margin: 0 }}>
                   You are donating{' '}
                   <span style={{ fontSize: 15, fontWeight: 800 }}>₹{Number(finalAmount).toLocaleString()}</span>
                   {' '}to SDG projects
@@ -320,10 +325,10 @@ export default function FundsPage() {
                 width: '100%', border: 'none', borderRadius: 12,
                 padding: '15px', fontSize: 14.5, fontWeight: 800,
                 color: 'white', cursor: !finalAmount || !name || !email || !phone ? 'not-allowed' : 'pointer',
-                background: 'linear-gradient(135deg, #0f3460, #00b8d4)',
+                background: 'linear-gradient(135deg, #155DFC, #00C2FF)',
                 opacity: (!finalAmount || !name || !email || !phone) ? 0.45 : 1,
                 transition: 'opacity 0.2s',
-                boxShadow: (!finalAmount || !name || !email || !phone) ? 'none' : '0 6px 20px rgba(15,52,96,0.35)',
+                boxShadow: (!finalAmount || !name || !email || !phone) ? 'none' : '0 6px 20px rgba(0,194,255,0.35)',
                 letterSpacing: '0.02em',
               }}
             >
