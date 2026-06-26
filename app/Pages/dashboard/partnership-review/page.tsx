@@ -2,7 +2,7 @@
 
 import { useState, Suspense } from 'react'
 import { useDashboardTheme } from '../ThemeContext'
-import { usePartnershipForms } from './PartnershipFormContext'
+import { usePartnershipForms } from '../PartnershipFormContext'
 
 function PartnershipReviewInner() {
   const { dark } = useDashboardTheme()

@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { ThemeContext } from './ThemeContext'
-import { PartnersProvider } from './partnership-review/PartnersContext'
-import { PartnershipFormProvider } from './partnership-review/PartnershipFormContext'
+import { PartnersProvider } from './PartnersContext'
+import { PartnershipFormProvider } from './PartnershipFormContext'
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter()
   const pathname = usePathname()
