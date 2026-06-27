@@ -1,6 +1,7 @@
 "use client";
 
 import { GraduationCap, Users, Sparkles, HeartHandshake, BookOpen, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const floatIcons = [
   { Icon: GraduationCap, cls: "f2 left-[6%] top-[22%]", color: "#00a8a8" },
@@ -72,12 +73,12 @@ export function EventHero() {
             >
               Explore Events <ArrowRight className="h-4 w-4" />
             </a>
-            <a
-              href="#host"
+            <Link
+              href="/get-involved/host-event"
               className="evt-glow-cool inline-flex items-center justify-center gap-2 rounded-full border border-white/40 bg-white/10 px-7 py-3 text-sm font-semibold text-white backdrop-blur hover:bg-white/20"
             >
               Host an Event
-            </a>
+            </Link>
           </div>
         </div>
       </div>

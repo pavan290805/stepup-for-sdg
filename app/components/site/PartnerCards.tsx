@@ -1,4 +1,5 @@
 import { ArrowRight, Building2, GraduationCap, HeartHandshake } from "lucide-react";
+import Link from "next/link";
 import { FadeUp } from "./FadeUp";
 
 const cards = [
@@ -7,14 +8,16 @@ const cards = [
     title: "Companies",
     body: "Channel CSR funding into transparent, measurable education programs and track impact in real time.",
     cta: "Explore Partnership",
+    href: "/get-involved/sponsor",
     gradient: "linear-gradient(135deg,#155DFC,#00C2FF)",
     glow: "rgba(21,93,252,0.25)",
   },
   {
     icon: GraduationCap,
-    title: "Schools",
+    title: "Schools / Colleges",
     body: "Join our network to access resources, infrastructure support and quality learning programs.",
     cta: "Join as School",
+    href: "/get-involved/host-event",
     gradient: "linear-gradient(135deg,#00A8A8,#00B050)",
     glow: "rgba(0,168,168,0.25)",
   },
@@ -23,6 +26,7 @@ const cards = [
     title: "NGOs",
     body: "Collaborate on the ground to uplift communities and deliver lasting, sustainable social change.",
     cta: "Collaborate Now",
+    href: "/get-involved/ngo-partner",
     gradient: "linear-gradient(135deg,#FF7A00,#FFB070)",
     glow: "rgba(255,122,0,0.25)",
   },
@@ -57,12 +61,13 @@ export function PartnerCards() {
                 <p className="mt-2 text-sm leading-relaxed flex-1" style={{ color: "var(--muted-text)" }}>
                   {c.body}
                 </p>
-                <button
+                <Link
+                  href={c.href}
                   className="btn-arrow mt-6 text-sm font-semibold flex items-center gap-1 transition-colors"
                   style={{ color: "var(--cyan-glow)" }}
                 >
                   {c.cta} <ArrowRight className="arr h-4 w-4" />
-                </button>
+                </Link>
               </div>
             </FadeUp>
           ))}

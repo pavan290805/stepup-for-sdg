@@ -7,19 +7,13 @@ import { PartnerCards } from "@/app/components/site/PartnerCards";
 import { LiveImpactMap } from "@/app/components/site/LiveImpactMap";
 import { VisionBanner } from "@/app/components/site/VisionBanner";
 import { FadeUp } from "@/app/components/site/FadeUp";
-import LandingExperience from "@/app/components/landing/LandingExperience";
-
 export const metadata = {
   title: "StepUp for SDG — Global Education Impact Platform",
   description: "Connecting schools, NGOs, companies and communities to improve education through SDG 4.",
 };
 
 export default function Home() {
-  return (
-    <LandingExperience>
-      <RahiniHome />
-    </LandingExperience>
-  );
+  return <RahiniHome />;
 }
 
 function RahiniHome() {

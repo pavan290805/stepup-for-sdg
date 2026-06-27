@@ -47,18 +47,6 @@ export function RotatingEarth({
               "0 0 0 4px rgba(0,194,255,0.25), 0 0 20px rgba(0,194,255,0.7)",
           }}
         />
-        <span
-          className="impact-node"
-          style={{
-            top: "28%",
-            left: "60%",
-            animationDelay: "2s",
-            background: "#00B050",
-            boxShadow:
-              "0 0 0 4px rgba(0,176,80,0.25), 0 0 20px rgba(0,176,80,0.7)",
-          }}
-        />
-
         {showCards && (
           <>
             <div className="float-card" style={{ top: "8%", left: "-6%" }}>

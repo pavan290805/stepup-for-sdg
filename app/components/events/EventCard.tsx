@@ -1,6 +1,6 @@
 "use client";
 
-import { MapPin, ArrowUpRight, Share2, Linkedin, Twitter, Instagram } from "lucide-react";
+import { MapPin, ArrowUpRight, Share2, Linkedin, Instagram } from "lucide-react";
 import type { SdgEvent } from "./eventsData";
 
 export function EventCard({ event }: { event: SdgEvent }) {
@@ -70,22 +70,29 @@ export function EventCard({ event }: { event: SdgEvent }) {
         {/* Footer */}
         <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
           <div className="flex items-center gap-3 text-muted-text">
-            <a href="#" aria-label="Share on LinkedIn" className="transition hover:text-cyan-glow">
+            <a
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : 'https://stepupforsdg.org')}`}
+              target="_blank" rel="noopener noreferrer"
+              aria-label="Share on LinkedIn" className="transition hover:text-cyan-glow">
               <Linkedin className="h-4 w-4" />
             </a>
-            <a href="#" aria-label="Share on Twitter" className="transition hover:text-cyan-glow">
-              <Twitter className="h-4 w-4" />
-            </a>
-            <a href="#" aria-label="Share on Instagram" className="transition hover:text-cyan-glow">
+            <a
+              href="https://www.instagram.com/stepupforsdg"
+              target="_blank" rel="noopener noreferrer"
+              aria-label="Instagram" className="transition hover:text-cyan-glow">
               <Instagram className="h-4 w-4" />
             </a>
-            <a href="#" aria-label="Share" className="transition hover:text-cyan-glow">
+            <a
+              href={`https://wa.me/?text=${encodeURIComponent(event.title + ' - StepUp for SDG')}`}
+              target="_blank" rel="noopener noreferrer"
+              aria-label="Share" className="transition hover:text-cyan-glow">
               <Share2 className="h-4 w-4" />
             </a>
           </div>
 
           <a
-            href="#"
+            href={`/events/${event.id}`}
+            target="_blank" rel="noopener noreferrer"
             className="btn-arrow inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold text-white transition hover:brightness-110"
             style={{ backgroundColor: event.accent }}
           >

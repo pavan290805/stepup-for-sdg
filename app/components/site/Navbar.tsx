@@ -14,6 +14,7 @@ const navLinks = [
   { to: "/sdg", label: "SDG", disabled: true },
   { to: "/partners", label: "Partners", disabled: true },
   { to: "/contact", label: "Contact", disabled: true },
+  { to: "/funds", label: "Funds", disabled: false },
 ] as const;
 
 function LanguageToggle() {
@@ -61,24 +62,25 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border">
-      <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 group">
-          <span className="relative inline-flex h-9 w-9 items-center justify-center rounded-lg overflow-hidden">
+      <div className="mx-auto max-w-7xl px-8 h-20 flex items-center justify-between w-full">
+        <Link href="/" className="flex items-center gap-3 group">
+          <span className="relative inline-flex h-20 w-20 items-center justify-center rounded-xl overflow-hidden">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/SDG_LOGO-removebg-preview.png" alt="SDG Logo" className="h-full w-full object-contain" />
+            <img src="/assets/SDG_LOGO-removebg-preview.png" alt="SDG Logo" className="h-full w-full object-contain drop-shadow-[0_0_8px_rgba(0,194,255,0.6)]" />
           </span>
+
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-10">
           {navLinks.map((l) =>
             l.disabled ? (
               <span key={l.to}
-                className="text-sm font-medium text-muted-text cursor-default select-none">
+                className="text-lg font-semibold text-muted-text cursor-default select-none">
                 {l.label}
               </span>
             ) : (
               <Link key={l.to} href={l.to}
-                className={`text-sm font-medium transition-colors ${
+                className={`text-lg font-semibold transition-colors ${
                   (l.to === "/" ? pathname === "/" : pathname.startsWith(l.to))
                     ? "text-cyan-glow"
                     : "text-muted-text hover:text-foreground"
@@ -89,11 +91,11 @@ export function Navbar() {
           )}
         </nav>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-4">
           <LanguageToggle />
           <ThemeToggle />
           <Link href="/partners"
-            className="inline-flex items-center gap-2 rounded-full bg-cta px-4 py-2 text-sm font-semibold text-white shadow-[0_0_20px_rgba(255,122,0,0.45)] hover:brightness-110 transition">
+            className="inline-flex items-center gap-2 rounded-full bg-cta px-5 py-2.5 text-base font-semibold text-white shadow-[0_0_20px_rgba(255,122,0,0.45)] hover:brightness-110 transition">
             Work With Us
           </Link>
         </div>
@@ -116,7 +118,11 @@ export function Navbar() {
               </span>
             ) : (
               <Link key={l.to} href={l.to} onClick={() => setMobileOpen(false)}
-                className="block text-muted-text hover:text-foreground">
+                className={`block transition-colors ${
+                  (l.to === "/" ? pathname === "/" : pathname.startsWith(l.to))
+                    ? "text-cyan-glow"
+                    : "text-muted-text hover:text-foreground"
+                }`}>
                 {l.label}
               </Link>
             )

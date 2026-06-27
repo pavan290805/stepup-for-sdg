@@ -1,5 +1,9 @@
 {
-  "/about/page": "app/about/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/events/page": "app/events/page.js",
+  "/about/page": "app/about/page.js",
+  "/get-involved/ngo-partner/page": "app/get-involved/ngo-partner/page.js",
+  "/partners/page": "app/partners/page.js",
+  "/get-involved/sponsor/page": "app/get-involved/sponsor/page.js",
   "/page": "app/page.js"
 }

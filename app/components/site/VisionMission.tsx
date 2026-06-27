@@ -191,7 +191,6 @@ function PremiumCard({ data }: { data: CardData }) {
           <div className="grid grid-cols-3 gap-3 border-t border-white/10 pt-5">
             {data.stats.map((s) => (
               <div key={s.label} className="text-center">
-                <div className="text-xl">{s.icon}</div>
                 <div className="vm-stat mt-1 font-display text-lg font-bold md:text-xl">
                   <Counter to={s.to} suffix={s.suffix} />
                 </div>
@@ -218,12 +217,7 @@ export function VisionMission() {
         <span className="vm-blob vm-blob-green" />
         <span className="vm-rays" />
         <span className="vm-particles" />
-        {/* Floating education particles */}
-        {eduParticles.map((p, i) => (
-          <span key={i} className={`vm-edu vm-edu-${i + 1}`} aria-hidden>
-            {p}
-          </span>
-        ))}
+
       </div>
 
       {/* Header */}

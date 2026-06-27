@@ -1,4 +1,4 @@
-// File: C:\Users\Rahini sai\Downloads\stepup-for-sdg-rahinibranch\stepup-for-sdg-rahinibranch\app\about\page.tsx
+// File: D:\internship\stepup-for-sdg\app\about\page.tsx
 import * as entry from '../../../../app/about/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

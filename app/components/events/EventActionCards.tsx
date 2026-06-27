@@ -2,6 +2,7 @@
 
 import { CalendarPlus, HandHeart, Building2, BadgeDollarSign, ArrowRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import Link from "next/link";
 import { FadeUp } from "@/app/components/site/FadeUp";
 
 type Action = {
@@ -9,6 +10,7 @@ type Action = {
   title: string;
   text: string;
   link: string;
+  href: string;
   gradient: string;
 };
 
@@ -18,6 +20,7 @@ const actions: Action[] = [
     title: "Host an SDG Event",
     text: "Bring an education drive or workshop to your school or community.",
     link: "Start hosting",
+    href: "/get-involved/host-event",
     gradient: "linear-gradient(135deg,#1f3a5f,#0066cc,#00a8a8)",
   },
   {
@@ -25,6 +28,7 @@ const actions: Action[] = [
     title: "Volunteer With Us",
     text: "Mentor students and support learning sessions on the ground.",
     link: "Join as volunteer",
+    href: "/get-involved/volunteer",
     gradient: "linear-gradient(135deg,#00a8a8,#00b050,#8cc63f)",
   },
   {
@@ -32,6 +36,7 @@ const actions: Action[] = [
     title: "Partner as NGO",
     text: "Collaborate, share resources, and scale rural school support.",
     link: "Become a partner",
+    href: "/get-involved/ngo-partner",
     gradient: "linear-gradient(135deg,#00b050,#0066cc,#7b61ff)",
   },
   {
@@ -39,6 +44,7 @@ const actions: Action[] = [
     title: "Sponsor Education Impact",
     text: "Fund transparent, measurable CSR education programs.",
     link: "Sponsor a program",
+    href: "/get-involved/sponsor",
     gradient: "linear-gradient(135deg,#7b61ff,#0066cc,#f4b400)",
   },
 ];
@@ -61,8 +67,8 @@ export function EventActionCards() {
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {actions.map((a, i) => (
             <FadeUp key={a.title} delay={i * 80} className="h-full">
-              <a
-                href="#"
+              <Link
+                href={a.href}
                 className="evt-tilt evt-grad-move group flex h-full flex-col rounded-3xl border border-white/15 p-7 text-white shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)]"
                 style={{ backgroundImage: a.gradient }}
               >
@@ -77,7 +83,7 @@ export function EventActionCards() {
                   </span>
                   <ArrowRight className="arr h-4 w-4" />
                 </span>
-              </a>
+              </Link>
             </FadeUp>
           ))}
         </div>

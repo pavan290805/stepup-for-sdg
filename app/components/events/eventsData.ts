@@ -20,7 +20,8 @@ export type SdgEvent = {
   category: EventCategory;
   tags: string[];
   image: string;
-  accent: string; // brand colour used for badges / glow per card
+  accent: string;
+  whatToExpect: string[];
 };
 
 export const FILTERS = [
@@ -52,6 +53,13 @@ export const EVENTS: SdgEvent[] = [
     tags: ["SDG 4", "Education", "Volunteers"],
     image: img("photo-1577896851231-70ef18881754"),
     accent: "#0066cc",
+    whatToExpect: [
+      "Hands-on classroom renovation and decoration activities",
+      "Setting up learning corners with books, charts and materials",
+      "Student engagement games and interactive learning sessions",
+      "Volunteer coordination with school teachers and principals",
+      "Certificate of participation for all volunteers",
+    ],
   },
   {
     id: "csr-education-partnership-meet",
@@ -67,6 +75,13 @@ export const EVENTS: SdgEvent[] = [
     tags: ["CSR", "Partnership", "SDG 17"],
     image: img("photo-1542744173-8e7e53415bb0"),
     accent: "#7b61ff",
+    whatToExpect: [
+      "Panel discussions on transparent CSR funding models",
+      "Presentations by NGOs on measurable education outcomes",
+      "Live networking with corporate CSR heads and decision makers",
+      "Case studies of successful CSR-education partnerships",
+      "Open Q&A and partnership matching session",
+    ],
   },
   {
     id: "digital-learning-workshop",
@@ -82,6 +97,13 @@ export const EVENTS: SdgEvent[] = [
     tags: ["SDG 4", "Digital", "Students"],
     image: img("photo-1531545514256-b1400bc00f31"),
     accent: "#00a8a8",
+    whatToExpect: [
+      "Introduction to AI tools and their use in education",
+      "Hands-on digital literacy exercises for students",
+      "Safe internet usage and online safety awareness",
+      "Live demo of ed-tech platforms and learning apps",
+      "Participation certificate for all attendees",
+    ],
   },
   {
     id: "ngo-collaboration-summit",
@@ -97,6 +119,13 @@ export const EVENTS: SdgEvent[] = [
     tags: ["NGO", "Community", "SDG 17"],
     image: img("photo-1488521787991-ed7bbaae773c"),
     accent: "#00b050",
+    whatToExpect: [
+      "Resource sharing between NGOs working in rural education",
+      "Volunteer database and coordination planning",
+      "Discussion on rural school support strategies",
+      "Collaborative project planning across organizations",
+      "Networking with community leaders and educators",
+    ],
   },
   {
     id: "sdg-youth-innovation-challenge",
@@ -112,6 +141,13 @@ export const EVENTS: SdgEvent[] = [
     tags: ["SDG 4", "Innovation", "Youth"],
     image: img("photo-1521737604893-d14cc237f11d"),
     accent: "#f4b400",
+    whatToExpect: [
+      "Student pitch presentations on SDG 4 innovation ideas",
+      "Mentoring sessions with education and tech experts",
+      "Judging panel with NGO leaders and corporate mentors",
+      "Cash prizes and incubation support for top 3 ideas",
+      "Certificate and recognition for all participants",
+    ],
   },
   {
     id: "teacher-empowerment-session",
@@ -127,6 +163,13 @@ export const EVENTS: SdgEvent[] = [
     tags: ["SDG 4", "Teachers", "Inclusion"],
     image: img("photo-1544717305-2782549b5136"),
     accent: "#ff7a00",
+    whatToExpect: [
+      "Training on interactive and activity-based teaching methods",
+      "Building inclusive classrooms for diverse learners",
+      "Student motivation strategies and positive reinforcement",
+      "Peer learning and group discussion among teachers",
+      "Certificate of completion for all participating teachers",
+    ],
   },
 ];
 

@@ -45,10 +45,55 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
   type __Unused = __Check
 }
 
+// Validate ../../app/events/[id]/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/events/[id]">> = Specific
+  const handler = {} as typeof import("../../app/events/[id]/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/events/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/events">> = Specific
   const handler = {} as typeof import("../../app/events/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/get-involved/host-event/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/get-involved/host-event">> = Specific
+  const handler = {} as typeof import("../../app/get-involved/host-event/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/get-involved/ngo-partner/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/get-involved/ngo-partner">> = Specific
+  const handler = {} as typeof import("../../app/get-involved/ngo-partner/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/get-involved/sponsor/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/get-involved/sponsor">> = Specific
+  const handler = {} as typeof import("../../app/get-involved/sponsor/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/get-involved/volunteer/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/get-involved/volunteer">> = Specific
+  const handler = {} as typeof import("../../app/get-involved/volunteer/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
