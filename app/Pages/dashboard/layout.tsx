@@ -81,7 +81,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: c.bg, fontFamily: "'Inter','Segoe UI',system-ui,sans-serif", transition: 'background .3s' }}>
+    <div style={{ display: 'flex', height: '100vh', overflow: 'hidden', background: c.bg, fontFamily: "'Inter','Segoe UI',system-ui,sans-serif", transition: 'background .3s' }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -167,7 +167,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </aside>
 
       {/* ── MAIN ──────────────────────────────────────── */}
-      <div style={{ flex: 1, marginLeft: 248, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ flex: 1, marginLeft: 248, height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
 
         {/* Topbar */}
         <header style={{
@@ -291,7 +291,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </header>
 
         {/* ── PAGE CONTENT ── */}
-        <main style={{ flex: 1, padding: '24px 28px 40px', display: 'flex', flexDirection: 'column', gap: 18 }}>
+        <main style={{ flex: 1, padding: '18px 24px', display: 'flex', flexDirection: 'column', gap: 14, overflowY: 'auto' }}>
 
           {/* Banner */}
           <div style={{ background: 'linear-gradient(120deg,#1e3a8a 0%,#2563eb 55%,#0ea5e9 100%)', borderRadius: 14, padding: '18px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxShadow: '0 4px 20px rgba(37,99,235,.3)' }}>
