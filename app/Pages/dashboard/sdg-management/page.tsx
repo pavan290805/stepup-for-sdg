@@ -23,7 +23,6 @@ function getDetail(num: number) {
       { id: 'NGO PARTNERSHIP • 2025', title: 'Clean Energy Awareness Campaign', desc: 'Partnership with GreenEarth NGO to raise awareness about renewable energy among school students.', outcome: 'Outcome Secured: Reached 1,200 students across 8 districts with hands-on solar demonstration kits.', img: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&q=80' },
       { id: 'CORPORATE COLLABORATION • 2026', title: 'Urban Reforestation with Tech Monitoring', desc: 'Students used IoT sensors to monitor soil and moisture during a large-scale tree plantation drive.', outcome: 'Outcome Secured: 3,000 saplings planted with 91% survival rate tracked over 6 months.', img: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&q=80' },
     ],
-    activities: [],
   }
 }
 
@@ -41,7 +40,6 @@ export default function SDGManagementPage() {
   const [activeTab, setActiveTab] = useState('info')
   const [selectedSDG] = useState(4)
   const sdgColor = sdgs.find(s => s.num === selectedSDG)?.color ?? '#333'
-  void sdgColor // used in modal buttons
 
   // Modal state
   const [modal, setModal] = useState<null | { type: string, data?: any }>(null)

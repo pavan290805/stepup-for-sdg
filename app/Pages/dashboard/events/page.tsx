@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -40,6 +40,13 @@ interface SDGEvent {
   ticket: TicketTier;
   coordinator: Coordinator;
   participants: Participant[];
+}
+
+export interface PendingEventRequest {
+  id: string;
+  submittedAt: string;
+  status: 'pending' | 'approved' | 'rejected';
+  form: typeof EMPTY_FORM;
 }
 
 // ── Mock Data ──────────────────────────────────────────────────────────────────
@@ -617,6 +624,14 @@ function EventModal({
   );
 }
 
+// ── Mock Pending Requests ─────────────────────────────────────────────────────
+
+const MOCK_PENDING = [
+  { id: 'PR001', submittedAt: '2025-07-10T08:30:00Z', form: { title: 'SDG Youth Summit 2025', sdgTag: 'SDG 4 – Quality Education', type: 'offline' as const, date: '2025-09-20', time: '10:00', venue: 'Jawaharlal Nehru Stadium, Delhi', description: 'Annual youth summit focused on quality education reforms.', ticketName: 'Student Pass', ticketPrice: '250', coordinatorName: 'Neha Verma', coordinatorEmail: 'neha@sdgyouth.org', coordinatorPhone: '+91 98001 11111' } },
+  { id: 'PR002', submittedAt: '2025-07-12T11:15:00Z', form: { title: 'Green Energy Expo', sdgTag: 'SDG 7 – Affordable Energy', type: 'offline' as const, date: '2025-10-05', time: '09:00', venue: 'Pragati Maidan, New Delhi', description: 'Showcasing renewable energy innovations by student teams.', ticketName: 'General', ticketPrice: '0', coordinatorName: 'Amit Sinha', coordinatorEmail: 'amit@greenexpo.in', coordinatorPhone: '+91 98002 22222' } },
+  { id: 'PR003', submittedAt: '2025-07-15T14:00:00Z', form: { title: 'No Poverty Awareness Walk', sdgTag: 'SDG 1 – No Poverty', type: 'offline' as const, date: '2025-08-30', time: '07:00', venue: 'Hussain Sagar Lake, Hyderabad', description: 'Community walk raising awareness about poverty eradication.', ticketName: 'Free', ticketPrice: '0', coordinatorName: 'Sunita Rao', coordinatorEmail: 'sunita@sdghyd.org', coordinatorPhone: '+91 98003 33333' } },
+];
+
 // ── Main Page ──────────────────────────────────────────────────────────────────
 
 export default function EventsPage() {
@@ -628,6 +643,18 @@ export default function EventsPage() {
   const [editEvent, setEditEvent] = useState<SDGEvent | null>(null);
   const [showCreate, setShowCreate] = useState(false);
   const [viewMode, setViewMode] = useState<"card" | "table">("card");
+  const [activeTab, setActiveTab] = useState<'events'|'pending'>('events');
+
+  const [pendingRequests, setPendingRequests] = useState<any[]>(() => {
+    if (typeof window === 'undefined') return MOCK_PENDING;
+    const stored = localStorage.getItem('sdg_pending_events');
+    if (stored === null) {
+      localStorage.setItem('sdg_pending_events', JSON.stringify(MOCK_PENDING));
+      return MOCK_PENDING;
+    }
+    const parsed = JSON.parse(stored);
+    return parsed.length > 0 ? parsed : MOCK_PENDING;
+  });
 
   const filtered = useMemo(
     () =>
@@ -641,25 +668,12 @@ export default function EventsPage() {
   );
 
   function handleCreate(form: typeof EMPTY_FORM) {
-    const sdgOption = SDG_OPTIONS.find((s) => s.label === form.sdgTag) ?? SDG_OPTIONS[0];
-    const newEvent: SDGEvent = {
-      id: String(Date.now()),
-      title: form.title,
-      sdgTag: form.sdgTag,
-      sdgColor: sdgOption.color,
-      bannerColor: sdgOption.color,
-      description: form.description,
-      date: form.date,
-      time: form.time,
-      venue: form.venue,
-      type: form.type,
-      participantCount: 0,
-      ticket: { name: form.ticketName || "General", price: Number(form.ticketPrice) || 0 },
-      coordinator: { name: form.coordinatorName, email: form.coordinatorEmail, phone: form.coordinatorPhone },
-      participants: [],
-    };
-    setEvents((prev) => [newEvent, ...prev]);
+    const pending = JSON.parse(localStorage.getItem('sdg_pending_events') || '[]');
+    pending.unshift({ id: String(Date.now()), submittedAt: new Date().toISOString(), form });
+    localStorage.setItem('sdg_pending_events', JSON.stringify(pending));
+    setPendingRequests(pending);
     setShowCreate(false);
+    setActiveTab('pending');
   }
 
   function handleEdit(form: typeof EMPTY_FORM) {
@@ -971,7 +985,16 @@ export default function EventsPage() {
       <div className="sdg-page">
         {/* ── Header ── */}
         <div className="sdg-header">
-          <h1>SDG Events Management</h1>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+            <h1>SDG Events Management</h1>
+            <div style={{ display: 'flex', background: 'var(--sdg-table-head)', border: '1px solid var(--sdg-card-border)', borderRadius: 8, padding: 3, gap: 2 }}>
+              <button onClick={() => setActiveTab('events')} style={{ padding: '6px 14px', borderRadius: 6, border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: 600, background: activeTab === 'events' ? 'var(--sdg-card-bg)' : 'transparent', color: activeTab === 'events' ? 'var(--sdg-text)' : 'var(--sdg-text-muted)' }}>Events</button>
+              <button onClick={() => setActiveTab('pending')} style={{ padding: '6px 14px', borderRadius: 6, border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: 600, background: activeTab === 'pending' ? 'var(--sdg-card-bg)' : 'transparent', color: activeTab === 'pending' ? 'var(--sdg-text)' : 'var(--sdg-text-muted)', display: 'flex', alignItems: 'center', gap: 6 }}>
+                Pending Requests
+                {pendingRequests.length > 0 && <span style={{ background: '#ef4444', color: '#fff', borderRadius: 20, fontSize: 10, fontWeight: 700, padding: '1px 7px' }}>{pendingRequests.length}</span>}
+              </button>
+            </div>
+          </div>
           <div className="sdg-header-right">
             <button className="sdg-btn-primary" onClick={() => setShowCreate(true)}>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -982,8 +1005,61 @@ export default function EventsPage() {
           </div>
         </div>
 
+        {/* ── Pending Tab ── */}
+        {activeTab === 'pending' && (
+          <div style={{ background: 'var(--sdg-card-bg)', border: '1px solid var(--sdg-card-border)', borderRadius: 12, overflow: 'hidden', marginBottom: 24 }}>
+            <div style={{ padding: '14px 20px', borderBottom: '1px solid var(--sdg-card-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--sdg-text)' }}>Pending Event Requests</div>
+              <span style={{ fontSize: 11, color: 'var(--sdg-text-muted)' }}>{pendingRequests.length} awaiting review</span>
+            </div>
+            {pendingRequests.length === 0 ? (
+              <div className="sdg-empty"><h3>No pending requests</h3><p>All submissions have been reviewed.</p></div>
+            ) : (
+              <div className="sdg-events-table-wrap" style={{ border: 'none', borderRadius: 0 }}>
+                <table className="sdg-events-table">
+                  <thead><tr>{['Event Title','SDG','Type','Date','Venue','Coordinator','Submitted','Actions'].map(h => <th key={h}>{h}</th>)}</tr></thead>
+                  <tbody>
+                    {pendingRequests.map((req) => {
+                      const col = SDG_OPTIONS.find(s => s.label === req.form.sdgTag)?.color ?? '#6366f1';
+                      return (
+                        <tr key={req.id}>
+                          <td style={{ fontWeight: 600 }}>{req.form.title}</td>
+                          <td><span style={{ background: hexToRgba(col, 0.15), color: col, border: `1px solid ${hexToRgba(col, 0.4)}`, borderRadius: 6, padding: '2px 8px', fontSize: 11, fontWeight: 700 }}>{req.form.sdgTag.split('–')[0].trim()}</span></td>
+                          <td><span className="sdg-type-pill" style={{ background: req.form.type === 'online' ? 'rgba(99,102,241,0.12)' : 'rgba(16,185,129,0.12)', color: req.form.type === 'online' ? '#6366f1' : '#10b981' }}>{req.form.type}</span></td>
+                          <td style={{ whiteSpace: 'nowrap' }}>{req.form.date}</td>
+                          <td style={{ fontSize: 12 }}>{req.form.venue}</td>
+                          <td style={{ fontSize: 12 }}>{req.form.coordinatorName}</td>
+                          <td style={{ fontSize: 12, whiteSpace: 'nowrap' }}>{new Date(req.submittedAt).toLocaleDateString('en-IN')}</td>
+                          <td>
+                            <div style={{ display: 'flex', gap: 8 }}>
+                              <button onClick={() => {
+                                const opt = SDG_OPTIONS.find(s => s.label === req.form.sdgTag) ?? SDG_OPTIONS[0];
+                                const ev: SDGEvent = { id: req.id, title: req.form.title, sdgTag: req.form.sdgTag, sdgColor: opt.color, bannerColor: opt.color, description: req.form.description, date: req.form.date, time: req.form.time, venue: req.form.venue, type: req.form.type, participantCount: 0, ticket: { name: req.form.ticketName || 'General', price: Number(req.form.ticketPrice) || 0 }, coordinator: { name: req.form.coordinatorName, email: req.form.coordinatorEmail, phone: req.form.coordinatorPhone }, participants: [] };
+                                setEvents(p => [ev, ...p]);
+                                const u = pendingRequests.filter(r => r.id !== req.id);
+                                setPendingRequests(u);
+                                localStorage.setItem('sdg_pending_events', JSON.stringify(u));
+                                setActiveTab('events');
+                              }} style={{ fontSize: 11, fontWeight: 700, color: '#fff', background: '#10b981', border: 'none', borderRadius: 7, padding: '6px 14px', cursor: 'pointer' }}>Approve</button>
+                              <button onClick={() => {
+                                const u = pendingRequests.filter(r => r.id !== req.id);
+                                setPendingRequests(u);
+                                localStorage.setItem('sdg_pending_events', JSON.stringify(u));
+                              }} style={{ fontSize: 11, fontWeight: 700, color: '#ef4444', background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)', borderRadius: 7, padding: '6px 14px', cursor: 'pointer' }}>Reject</button>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* ── Toolbar ── */}
-        <div className="sdg-toolbar">
+        {activeTab === 'events' && <div className="sdg-toolbar">
           <div className="sdg-view-toggle">
             <button className={viewMode === "card" ? "active" : ""} onClick={() => setViewMode("card")} title="Card view">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -1019,10 +1095,10 @@ export default function EventsPage() {
           <span className="sdg-result-count">
             {filtered.length} event{filtered.length !== 1 ? "s" : ""}
           </span>
-        </div>
+        </div>}
 
         {/* ── Card / Table Grid ── */}
-        {filtered.length === 0 ? (
+        {activeTab === 'events' && (filtered.length === 0 ? (
           <div className="sdg-empty">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ margin: "0 auto", display: "block", opacity: 0.3 }}>
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
@@ -1091,7 +1167,7 @@ export default function EventsPage() {
               </tbody>
             </table>
           </div>
-        )}
+        ))}
       </div>
 
       {/* ── Detail Panel ── */}

@@ -320,7 +320,7 @@ export default function DashboardPage() {
         <div style={{ fontSize: 12.5, color: 'rgba(255,255,255,.6)', marginBottom: 18 }}>Jump to the most common workflows.</div>
         <div style={{ display: 'flex', gap: 12 }}>
           {[
-            { icon: '👤+', label: 'Add Partner',     href: '/Pages/dashboard/partners' },
+            { icon: '👤+', label: 'Add Partner',     href: '/Pages/dashboard/partnership-review' },
             { icon: '+',   label: 'New SDG Entry',   href: '/Pages/dashboard/sdg-management' },
             { icon: '↗',   label: 'Review Requests', href: '/Pages/dashboard/partnership-review' },
           ].map((a, i) => (
