@@ -513,12 +513,9 @@ html:not(.dark) .streak {
 
 html:not(.dark) body {
   background-color: #F5F7FF;
-<<<<<<< HEAD
   background-image:
     radial-gradient(circle, rgba(21,93,252,0.08) 1px, transparent 1px);
   background-size: 28px 28px;
-=======
->>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
 }
 
 /* Vision & Mission heading — readable in light mode, white in dark mode */

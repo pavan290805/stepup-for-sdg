@@ -10,11 +10,7 @@ const metrics = [
 
 export function ImpactMetrics() {
   return (
-<<<<<<< HEAD
     <section className="relative pb-6 pt-20 px-6">
-=======
-    <section className="relative py-20 px-6">
->>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
       <div className="mx-auto max-w-7xl grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {metrics.map((m, i) => (
           <FadeUp key={m.label} delay={i * 100}>

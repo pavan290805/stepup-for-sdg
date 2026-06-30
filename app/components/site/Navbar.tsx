@@ -14,10 +14,6 @@ const navLinks = [
   { to: "/sdg", label: "SDG", disabled: true },
   { to: "/partners", label: "Partners", disabled: false },
   { to: "/contact", label: "Contact", disabled: true },
-<<<<<<< HEAD
-=======
-  { to: "/funds", label: "Funds", disabled: false },
->>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
 ] as const;
 
 function LanguageToggle() {
@@ -71,7 +67,6 @@ export function Navbar() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/assets/SDG_LOGO-removebg-preview.png" alt="SDG Logo" className="h-full w-full object-contain [filter:none] opacity-100 [mix-blend-mode:normal]" />
           </span>
-
         </Link>
 
         <nav className="hidden md:flex items-center gap-10">
@@ -97,15 +92,11 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-4">
           <LanguageToggle />
           <ThemeToggle />
-<<<<<<< HEAD
           <Link href="/funds"
             className="inline-flex items-center gap-2 rounded-full bg-electric px-5 py-2.5 text-base font-semibold text-white shadow-[0_0_20px_rgba(21,93,252,0.45)] hover:brightness-110 transition">
             Funds
           </Link>
           <Link href="/work-with-us"
-=======
-          <Link href="/partners"
->>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
             className="inline-flex items-center gap-2 rounded-full bg-cta px-5 py-2.5 text-base font-semibold text-white shadow-[0_0_20px_rgba(255,122,0,0.45)] hover:brightness-110 transition">
             Work With Us
           </Link>

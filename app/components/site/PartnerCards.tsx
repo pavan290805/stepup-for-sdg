@@ -17,7 +17,7 @@ const cards = [
     title: "Schools / Universities / Colleges",
     body: "Join our network to access resources, infrastructure support and quality learning programs.",
     cta: "Join as School",
-    href: "/get-involved/host-event",
+    href: "/get-involved/school",
     gradient: "linear-gradient(135deg,#00A8A8,#00B050)",
     glow: "rgba(0,168,168,0.25)",
   },
@@ -34,11 +34,7 @@ const cards = [
 
 export function PartnerCards() {
   return (
-<<<<<<< HEAD
     <section className="relative pb-24 pt-6 px-6">
-=======
-    <section className="relative py-24 px-6">
->>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
       <div className="mx-auto max-w-7xl">
         <FadeUp>
           <div className="text-center max-w-2xl mx-auto mb-12">

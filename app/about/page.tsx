@@ -85,13 +85,8 @@ export default function AboutPage() {
             <div className="overflow-hidden rounded-3xl glass p-[1.5px]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-<<<<<<< HEAD
                 src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80"
                 alt="Children learning together"
-=======
-                src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=80"
-                alt="Students collaborating in a classroom"
->>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
                 className="aspect-[4/3] w-full rounded-3xl object-cover"
               />
             </div>
