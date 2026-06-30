@@ -22,8 +22,13 @@ export default function NgoPartnerPage() {
       </div>
       <div className="absolute inset-0 -z-10 bg-[#050B18]/80" />
       <div className="mx-auto max-w-2xl">
+<<<<<<< HEAD
         <Link href="/work-with-us" className="inline-flex items-center gap-2 text-sm text-muted-text hover:text-cyan-glow transition mb-8">
           <ArrowLeft className="h-4 w-4" /> Back
+=======
+        <Link href="/partners" className="inline-flex items-center gap-2 text-sm text-muted-text hover:text-cyan-glow transition mb-8">
+          <ArrowLeft className="h-4 w-4" /> Back to Partners
+>>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
         </Link>
         <div className="glass rounded-3xl p-8 border border-border">
           {submitted ? (
@@ -31,7 +36,11 @@ export default function NgoPartnerPage() {
               <CheckCircle className="h-16 w-16" style={{ color: accent }} />
               <h2 className="text-2xl font-bold" style={{ color: "var(--foreground)" }}>Partnership Request Sent!</h2>
               <p className="text-sm" style={{ color: "var(--muted-text)" }}>Thank you! Our partnerships team will review your submission and contact you within 3–5 business days.</p>
+<<<<<<< HEAD
               <Link href="/work-with-us" className="mt-4 inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white" style={{ backgroundColor: accent }}>Back</Link>
+=======
+              <Link href="/partners" className="mt-4 inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white" style={{ backgroundColor: accent }}>Back to Partners</Link>
+>>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
             </div>
           ) : (
             <>

@@ -11,6 +11,14 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
+<<<<<<< HEAD
+=======
+    "/partners/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/partners/page.js"
+    ],
+>>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
     "/about/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",

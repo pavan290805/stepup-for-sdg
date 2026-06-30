@@ -71,7 +71,11 @@ export function EventCard({ event }: { event: SdgEvent }) {
         <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
           <div className="flex items-center gap-3 text-muted-text">
             <a
+<<<<<<< HEAD
               href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://stepupforsdg.org/events/${event.id}`)}`}
+=======
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : 'https://stepupforsdg.org')}`}
+>>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
               target="_blank" rel="noopener noreferrer"
               aria-label="Share on LinkedIn" className="transition hover:text-cyan-glow">
               <Linkedin className="h-4 w-4" />

@@ -735,12 +735,21 @@
   .h-\[140\%\] {
     height: 140%;
   }
+<<<<<<< HEAD
   .h-\[300px\] {
     height: 300px;
   }
   .h-\[360px\] {
     height: 360px;
   }
+=======
+  .h-\[260px\] {
+    height: 260px;
+  }
+  .h-\[300px\] {
+    height: 300px;
+  }
+>>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
   .h-\[420px\] {
     height: 420px;
   }
@@ -990,9 +999,12 @@
   .max-w-md {
     max-width: var(--container-md);
   }
+<<<<<<< HEAD
   .max-w-sm {
     max-width: var(--container-sm);
   }
+=======
+>>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
   .max-w-xl {
     max-width: var(--container-xl);
   }
@@ -1208,9 +1220,12 @@
   .justify-center {
     justify-content: center;
   }
+<<<<<<< HEAD
   .justify-end {
     justify-content: flex-end;
   }
+=======
+>>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
   .gap-1 {
     gap: var(--spacing);
   }
@@ -1593,9 +1608,12 @@
   .bg-\[\#050B18\]\/80 {
     background-color: color-mix(in oklab, #050B18 80%, transparent);
   }
+<<<<<<< HEAD
   .bg-\[\#050B18\]\/85 {
     background-color: color-mix(in oklab, #050B18 85%, transparent);
   }
+=======
+>>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
   .bg-\[\#C5192D\] {
     background-color: #C5192D;
   }
@@ -2110,9 +2128,12 @@
   .py-8 {
     padding-block: calc(var(--spacing) * 8);
   }
+<<<<<<< HEAD
   .py-10 {
     padding-block: calc(var(--spacing) * 10);
   }
+=======
+>>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
   .py-14 {
     padding-block: calc(var(--spacing) * 14);
   }
@@ -2143,6 +2164,7 @@
   .pt-5 {
     padding-top: calc(var(--spacing) * 5);
   }
+<<<<<<< HEAD
   .pt-6 {
     padding-top: calc(var(--spacing) * 6);
   }
@@ -2152,6 +2174,11 @@
   .pt-20 {
     padding-top: calc(var(--spacing) * 20);
   }
+=======
+  .pt-12 {
+    padding-top: calc(var(--spacing) * 12);
+  }
+>>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
   .pt-28 {
     padding-top: calc(var(--spacing) * 28);
   }
@@ -2182,9 +2209,12 @@
   .pb-4 {
     padding-bottom: calc(var(--spacing) * 4);
   }
+<<<<<<< HEAD
   .pb-6 {
     padding-bottom: calc(var(--spacing) * 6);
   }
+=======
+>>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
   .pb-20 {
     padding-bottom: calc(var(--spacing) * 20);
   }
@@ -2597,10 +2627,13 @@
     --tw-shadow: 0 0 20px var(--tw-shadow-color, rgba(0,194,255,0.4));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
+<<<<<<< HEAD
   .shadow-\[0_0_20px_rgba\(21\,93\,252\,0\.45\)\] {
     --tw-shadow: 0 0 20px var(--tw-shadow-color, rgba(21,93,252,0.45));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
+=======
+>>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
   .shadow-\[0_0_20px_rgba\(255\,122\,0\,0\.45\)\] {
     --tw-shadow: 0 0 20px var(--tw-shadow-color, rgba(255,122,0,0.45));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -4328,11 +4361,14 @@
       --tw-enter-opacity: 0;
     }
   }
+<<<<<<< HEAD
   .sm\:col-span-2 {
     @media (width >= 40rem) {
       grid-column: span 2 / span 2;
     }
   }
+=======
+>>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
   .sm\:mt-0 {
     @media (width >= 40rem) {
       margin-top: 0;
@@ -4530,9 +4566,15 @@
       height: calc(var(--spacing) * 11);
     }
   }
+<<<<<<< HEAD
   .md\:h-\[480px\] {
     @media (width >= 48rem) {
       height: 480px;
+=======
+  .md\:h-\[340px\] {
+    @media (width >= 48rem) {
+      height: 340px;
+>>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
     }
   }
   .md\:w-1\/2 {
@@ -4773,9 +4815,15 @@
       display: none;
     }
   }
+<<<<<<< HEAD
   .lg\:h-\[560px\] {
     @media (width >= 64rem) {
       height: 560px;
+=======
+  .lg\:h-\[400px\] {
+    @media (width >= 64rem) {
+      height: 400px;
+>>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
     }
   }
   .lg\:min-h-full {
@@ -5779,8 +5827,11 @@ html:not(.dark) .streak {
 }
 html:not(.dark) body {
   background-color: #F5F7FF;
+<<<<<<< HEAD
   background-image: radial-gradient(circle, rgba(21,93,252,0.08) 1px, transparent 1px);
   background-size: 28px 28px;
+=======
+>>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
 }
 .vision-title {
   color: #0B1F3A;

@@ -41,9 +41,15 @@ const actions: Action[] = [
   },
   {
     Icon: BadgeDollarSign,
+<<<<<<< HEAD
     title: "Corporate CSR Funds",
     text: "Fund transparent, measurable CSR education programs.",
     link: "Apply for CSR Funds",
+=======
+    title: "Sponsor Education Impact",
+    text: "Fund transparent, measurable CSR education programs.",
+    link: "Sponsor a program",
+>>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
     href: "/get-involved/sponsor",
     gradient: "linear-gradient(135deg,#7b61ff,#0066cc,#f4b400)",
   },

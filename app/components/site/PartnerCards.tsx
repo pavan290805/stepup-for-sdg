@@ -34,7 +34,11 @@ const cards = [
 
 export function PartnerCards() {
   return (
+<<<<<<< HEAD
     <section className="relative pb-24 pt-6 px-6">
+=======
+    <section className="relative py-24 px-6">
+>>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
       <div className="mx-auto max-w-7xl">
         <FadeUp>
           <div className="text-center max-w-2xl mx-auto mb-12">

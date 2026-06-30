@@ -10,8 +10,13 @@ export function VisionBanner() {
           <div
             className="relative rounded-3xl overflow-hidden p-10 md:p-16 text-center"
             style={{
+<<<<<<< HEAD
               background: "linear-gradient(135deg, #060d2e 0%, #0a2a7a 50%, #004466 100%)",
               boxShadow: "0 20px 60px rgba(6,13,46,0.45)",
+=======
+              background: "linear-gradient(135deg, #0D1B6E 0%, #155DFC 50%, #0099CC 100%)",
+              boxShadow: "0 20px 60px rgba(21,93,252,0.35)",
+>>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
             }}
           >
             <span className="text-xs uppercase tracking-[0.3em] font-semibold text-white/70">

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // File: D:\certificates\stepup-for-sdg-rahini-new\stepup-for-sdg-rahini-new\app\page.tsx
+=======
+// File: C:\Users\Rahini sai\Downloads\stepup-for-sdg-rahini-new (2)\stepup-for-sdg-rahini-new\stepup-for-sdg-rahini-new\app\page.tsx
+>>>>>>> 209ba8992e49e77b121623b98a6243fe1d57f13a
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
