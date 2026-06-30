@@ -112,7 +112,7 @@ interface VolRole {
   id: string; title: string; tagline: string; description: string;
   commitment: string; skills: string[];
   color: string; bg: string; border: string; gradient: string;
-  IconEl: (p:{className?:string;style?:React.CSSProperties})=>JSX.Element;
+  IconEl: (p:{className?:string;style?:React.CSSProperties})=>React.JSX.Element;
 }
 
 const ROLES: VolRole[] = [
@@ -438,7 +438,7 @@ export default function VolunteerPage() {
       style={{background:theme.pageBg, color:theme.text, fontFamily:"'Inter',system-ui,sans-serif"}}>
       <style>{GLOBAL_STYLES}</style>
 
-      {/* ── HERO ── */
+      {/* ── HERO ── */}
       <section
         ref={heroRef}
         onMouseMove={handleHeroMouseMove}
@@ -514,9 +514,10 @@ export default function VolunteerPage() {
             </div>
           </Reveal>
         </div>
-      </section>{/* ── END HERO ── */}
+      </section>
+      {/** END HERO */}
 
-      {/* ── HOW IT WORKS ── */}
+      {/** HOW IT WORKS */}
       <section className="px-6 md:px-10 py-16" style={{borderBottom:`1px solid ${theme.border}`,background:theme.sectionAlt}}>
         <Reveal>
           <div className="text-center mb-12">

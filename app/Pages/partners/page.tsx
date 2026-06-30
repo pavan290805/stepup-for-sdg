@@ -162,7 +162,7 @@ interface Partner {
 /* ─── TYPE CONFIGS ────────────────────────────────────────────────────────── */
 const typeConfig: Record<PartnerType, {
   color: string; bg: string; border: string; badgeBg: string; badgeText: string; gradient: string;
-  IconEl: (p: { className?: string; style?: React.CSSProperties }) => JSX.Element;
+  IconEl: (p: { className?: string; style?: React.CSSProperties }) => React.JSX.Element;
 }> = {
   School: {
     color:"#34d399", bg:"rgba(16,185,129,0.08)", border:"rgba(52,211,153,0.25)",
@@ -437,8 +437,11 @@ function PartnerCard({partner,onSelect,theme,isDark}:{partner:Partner;onSelect:(
   const [hovered,setHovered]=useState(false);
   return (
     <TiltCard onClick={onSelect} className="group relative cursor-pointer shine-sweep"
-      style={{background:theme.card,border:`1px solid ${hovered?cfg.border:theme.border}`,borderRadius:20,overflow:"hidden",
-        boxShadow:hovered?`0 20px 60px -10px ${cfg.color}20,0 0 0 1px ${cfg.border}`:`0 1px 3px rgba(0,0,0,0.1)`}}>
+      style={{background:theme.card,border:`1px solid ${hovered?cfg.color:theme.border}`,borderRadius:20,overflow:"hidden",
+        boxShadow:hovered?`0 24px 80px -24px ${cfg.color}40,0 0 0 1px ${cfg.color}40`:`0 1px 3px rgba(0,0,0,0.12)`,
+        transition:"transform 0.25s ease, box-shadow 0.25s ease", backgroundImage:`radial-gradient(circle at top left, ${cfg.color}12, transparent 35%), radial-gradient(circle at bottom right, ${cfg.color}08, transparent 30%)`}}>
+      <div className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition duration-300 group-hover:opacity-100"
+        style={{background:`radial-gradient(circle at 20% 20%, ${cfg.color}18 0%, transparent 24%), radial-gradient(circle at 80% 80%, ${cfg.color}08 0%, transparent 18%)`}}/>
       <motion.div onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>setHovered(false)}
         animate={{y:hovered?-2:0}} transition={{type:"spring",stiffness:400,damping:25}}>
         <PartnerLogoMark partner={partner} theme={theme} isDark={isDark}/>
@@ -457,7 +460,7 @@ function PartnerCard({partner,onSelect,theme,isDark}:{partner:Partner;onSelect:(
           </div>
           <div className="flex items-center gap-2">
             <span className="flex items-center gap-1 rounded-full px-2.5 py-[3px] text-[9px] font-semibold"
-              style={{background:"rgba(34,197,94,0.1)",color:"#22c55e",border:"1px solid rgba(34,197,94,0.2)"}}>
+              style={{background:`rgba(34,197,94,0.12)`,color:"#22c55e",border:`1px solid rgba(34,197,94,0.25)`}}>
               <Icon.Shield className="w-2.5 h-2.5"/>Verified
             </span>
             <span className="text-[10px]" style={{color:theme.dim}}>Since {partner.since}</span>
@@ -827,7 +830,7 @@ function HeroCard({children,mounted,mouseX,mouseY,heroRef}:{
       onMouseEnter={()=>setHovered(true)}
       onMouseLeave={()=>setHovered(false)}
       onMouseMove={handleMouseMove}
-      className="mx-auto max-w-6xl rounded-[32px] relative"
+      className="mx-auto max-w-4xl rounded-[32px] relative"
       style={{
         background:"rgba(6,10,18,0.75)",
         backdropFilter:"blur(32px)", WebkitBackdropFilter:"blur(32px)",
@@ -835,7 +838,7 @@ function HeroCard({children,mounted,mouseX,mouseY,heroRef}:{
         boxShadow:hovered
           ?"0 40px 100px rgba(0,0,0,0.65),inset 0 1px 0 rgba(255,255,255,0.08),0 0 0 1px rgba(14,165,201,0.1),0 0 80px rgba(14,165,201,0.08)"
           :"0 32px 80px rgba(0,0,0,0.55),inset 0 1px 0 rgba(255,255,255,0.06),0 0 0 1px rgba(14,165,201,0.05)",
-        overflow:"visible", minHeight:480,
+        overflow:"visible", minHeight:460,
         transition:"border-color 0.4s ease, box-shadow 0.4s ease",
       }}>
 

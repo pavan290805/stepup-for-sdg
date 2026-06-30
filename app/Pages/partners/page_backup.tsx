@@ -162,7 +162,7 @@ interface Partner {
 /* â”€â”€â”€ TYPE CONFIGS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 const typeConfig: Record<PartnerType, {
   color: string; bg: string; border: string; badgeBg: string; badgeText: string; gradient: string;
-  IconEl: (p: { className?: string; style?: React.CSSProperties }) => JSX.Element;
+  IconEl: (p: { className?: string; style?: React.CSSProperties }) => React.JSX.Element;
 }> = {
   School: {
     color:"#34d399", bg:"rgba(16,185,129,0.08)", border:"rgba(52,211,153,0.25)",
@@ -900,11 +900,11 @@ export default function PartnersPage() {
     <div className="min-h-screen theme-transition" style={{background:theme.pageBg,color:theme.text,fontFamily:"'Inter',system-ui,sans-serif"}}>
       <style>{GLOBAL_STYLES}</style>
 
-      {/* â”€â”€ NAVBAR â”€â”€ */}
-      <motion.nav initial={{opacity:0,y:-16}} animate={{opacity:1,y:0}} transition={{duration:0.5}}
+      {/* ─── NAVBAR ─── */}
+      <motion.nav initial={{opacity:0,y:-16}} animate={{opacity:1,y:0}} transition={{duration:0.5}}>
+      </motion.nav>
 
-
-      {/* â”€â”€ HERO â”€â”€ */}
+      {/* ─── HERO ─── */}
       <section ref={heroRef} onMouseMove={handleHeroMouseMove} className="relative overflow-hidden"
         style={{minHeight:"calc(100vh - 80px)",display:"flex",alignItems:"center"}}>
 
