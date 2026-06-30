@@ -398,10 +398,6 @@ export default function VolunteerPage() {
     return ()=>document.removeEventListener("mousedown",handler);
   },[]);
 
-  function toggleTheme() {
-    setIsDark(prev=>{ localStorage.setItem("stepup-theme",!prev?"dark":"light"); return !prev; });
-  }
-
   const handleHeroMouseMove = useCallback((e:React.MouseEvent)=>{
     if(!heroRef.current) return;
     const rect = heroRef.current.getBoundingClientRect();
@@ -442,46 +438,7 @@ export default function VolunteerPage() {
       style={{background:theme.pageBg, color:theme.text, fontFamily:"'Inter',system-ui,sans-serif"}}>
       <style>{GLOBAL_STYLES}</style>
 
-      {/* ── NAVBAR ── */}
-      <motion.nav initial={{opacity:0,y:-16}} animate={{opacity:1,y:0}} transition={{duration:0.5}}
-        className="sticky top-0 z-50 flex items-center justify-between"
-        style={{
-          background: isDark?"rgba(6,10,16,0.92)":"rgba(250,251,253,0.95)",
-          borderBottom:`1px solid ${theme.border}`,
-          backdropFilter:"blur(24px)", WebkitBackdropFilter:"blur(24px)",
-          height:80, padding:"0 40px",
-        }}>
-        <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-full overflow-hidden"
-            style={{border:`2px solid ${theme.accent}40`}}>
-            <img src="/logo.png" alt="StepUp SDG" style={{width:"100%",height:"100%",objectFit:"cover",borderRadius:"50%"}}/>
-          </div>
-          <div className="font-black text-[19px] tracking-tight">
-            <span style={{color:theme.accent}}>STEPUP</span>
-            <span style={{color:theme.accentRed}}> FOR SDG</span>
-          </div>
-        </div>
-        <div className="hidden gap-8 md:flex">
-          {["Home","About Us","SDG Goals","Partners","Volunteer","Contact"].map(link=>(
-            <a key={link} href="#" className="text-[14px] font-semibold transition-colors hover:opacity-100"
-              style={{color:link==="Volunteer"?theme.accent:theme.muted, opacity:link==="Volunteer"?1:0.7}}>{link}</a>
-          ))}
-        </div>
-        <div className="flex items-center gap-2.5">
-          <motion.button onClick={toggleTheme} whileHover={{scale:1.05}} whileTap={{scale:0.95}}
-            aria-label="Toggle theme" className="flex h-8 w-8 items-center justify-center rounded-lg"
-            style={{border:`1px solid ${theme.border}`,color:theme.muted,background:"transparent"}}>
-            {isDark?<Icon.Sun/>:<Icon.Moon/>}
-          </motion.button>
-          <select className="rounded-lg px-2.5 py-1.5 text-[11px] font-medium focus:outline-none"
-            style={{border:`1px solid ${theme.border}`,background:theme.pageBg,color:theme.muted}}
-            defaultValue="EN">
-            {["EN","Te","Hi"].map(l=><option key={l} value={l} style={{background:theme.card}}>{l}</option>)}
-          </select>
-        </div>
-      </motion.nav>
-
-      {/* ── HERO ── */}
+      {/* ── HERO ── */
       <section
         ref={heroRef}
         onMouseMove={handleHeroMouseMove}
@@ -846,51 +803,7 @@ export default function VolunteerPage() {
         </Reveal>
       </section>
 
-      {/* ── FOOTER ── */}
-      <footer className="px-6 md:px-10 pb-10 pt-14" style={{background:theme.footer,borderTop:`1px solid ${theme.border}`}}>
-        <div className="mb-10 grid gap-10 md:grid-cols-4">
-          <div>
-            <div className="mb-4 flex items-center gap-2.5">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg"
-                style={{background:`${theme.accent}15`,border:`1px solid ${theme.accent}30`}}>
-                <img src="/logo.png" alt="StepUp SDG" className="h-5 w-5 object-contain"/>
-              </div>
-              <div className="font-black text-[14px] tracking-tight">
-                <span style={{color:theme.accent}}>STEPUP</span>
-                <span style={{color:theme.accentRed}}> FOR SDG</span>
-              </div>
-            </div>
-            <p className="mb-5 text-[12px] leading-relaxed" style={{color:theme.muted}}>
-              India&apos;s growing SDG partnership ecosystem connecting schools, NGOs, universities, and companies for real, measurable impact.
-            </p>
-          </div>
-          {[
-            {title:"Pages",     links:["Home","About Us","SDG Goals","Partners","Volunteer","Contact"]},
-            {title:"Volunteer", links:["SDG Workshop Facilitator","Content Creator","Tech & Web","Event Coordinator","Research & Data","Community Outreach"]},
-            {title:"Contact",   links:["hello@stepupsdg.in","+91 98765 43210","Hyderabad, Telangana"]},
-          ].map(col=>(
-            <div key={col.title}>
-              <div className="mb-4 text-[10px] font-semibold uppercase tracking-widest" style={{color:theme.dim}}>{col.title}</div>
-              {col.links.map(l=>(
-                <div key={l} className="mb-2.5">
-                  <a href="#" className="text-[12px] transition-opacity hover:opacity-100" style={{color:theme.muted,opacity:0.7}}>{l}</a>
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-        <div className="flex flex-col items-center justify-between gap-4 pt-6 md:flex-row"
-          style={{borderTop:`1px solid ${theme.border}`}}>
-          <span className="text-[11px]" style={{color:theme.dim}}>© 2026 StepUp for SDG. All rights reserved.</span>
-          <div className="flex gap-2">
-            {["English","Telugu","Hindi"].map(lang=>(
-              <motion.button key={lang} whileHover={{scale:1.03}}
-                className="rounded-lg border px-3 py-1 text-[11px] transition-opacity hover:opacity-100"
-                style={{borderColor:theme.border,color:theme.dim,opacity:0.6}}>{lang}</motion.button>
-            ))}
-          </div>
-        </div>
-      </footer>
+
     </div>
   );
 }

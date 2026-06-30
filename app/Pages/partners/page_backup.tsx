@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, useRef, useCallback } from "react";
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence, useInView } from "framer-motion";
 
-/* ─── GLOBAL STYLES ───────────────────────────────────────────────────────── */
+/* â”€â”€â”€ GLOBAL STYLES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 const GLOBAL_STYLES = `
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
   *, *::before, *::after { box-sizing: border-box; }
@@ -126,7 +126,7 @@ const GLOBAL_STYLES = `
   }
 `;
 
-/* ─── THEMES ──────────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ THEMES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 const DARK = {
   pageBg:"#060a10", sectionAlt:"#070c14", card:"#0d1625", cardHover:"#101c2e", footer:"#040810",
   border:"#1a2537", borderSubtle:"#111b28", text:"#f0f4f8", textSub:"#c8d4e0",
@@ -149,7 +149,7 @@ const LIGHT = {
 };
 type T = typeof DARK;
 
-/* ─── TYPES ───────────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ TYPES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 type PartnerType = "School" | "NGO" | "Company" | "University";
 type Tier = "Gold" | "Silver";
 interface Partner {
@@ -159,7 +159,7 @@ interface Partner {
   logoSources: string[]; domain?: string;
 }
 
-/* ─── TYPE CONFIGS ────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ TYPE CONFIGS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 const typeConfig: Record<PartnerType, {
   color: string; bg: string; border: string; badgeBg: string; badgeText: string; gradient: string;
   IconEl: (p: { className?: string; style?: React.CSSProperties }) => JSX.Element;
@@ -213,43 +213,43 @@ const TAB_TO_TYPE: Record<Tab, PartnerType | null> = {
   All:null, Schools:"School", NGOs:"NGO", Companies:"Company", Universities:"University",
 };
 
-/* ─── DATA ────────────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ DATA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 const partners: Partner[] = [
   { id:1, name:"Delhi Public School", type:"School", city:"New Delhi", initials:"DPS", sdgs:[4,13], since:"2023",
     story:"Students launched their own sustainability council after their first SDG workshop.",
-    lastActivity:"Hosted an SDG workshop · 2 weeks ago", domain:"dpsrkp.net",
+    lastActivity:"Hosted an SDG workshop Â· 2 weeks ago", domain:"dpsrkp.net",
     logoSources:["https://dpsrkp.net/wp-content/uploads/2019/06/logo-png-152x195.png","https://upload.wikimedia.org/wikipedia/en/3/3c/Delhi_Public_School_logo.png",`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://dpsrkp.net&size=128`]},
   { id:2, name:"GreenEarth Initiative", type:"NGO", city:"Hyderabad", initials:"GE", sdgs:[13,15], since:"2024",
     story:"Co-designed a tree-cover restoration curriculum now used across 6 partner schools.",
-    lastActivity:"Published impact report · 5 days ago", domain:"greenearth.org",
+    lastActivity:"Published impact report Â· 5 days ago", domain:"greenearth.org",
     logoSources:["https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Green_Earth_logo.svg/240px-Green_Earth_logo.svg.png",`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://greenearth.org&size=128`]},
   { id:3, name:"TechCorp India", type:"Company", city:"Bangalore", initials:"TC", sdgs:[4,9], since:"2023",
     story:"A Rs50L CSR commitment turned into 3 audited programs reaching 620 students.",
-    lastActivity:"Funded the AI Bootcamp cohort · 3 days ago", funds:"Rs50L", fundsLakh:50, tier:"Gold", domain:"techcorp.in",
+    lastActivity:"Funded the AI Bootcamp cohort Â· 3 days ago", funds:"Rs50L", fundsLakh:50, tier:"Gold", domain:"techcorp.in",
     logoSources:["https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Tata_Consultancy_Services_Logo.svg/240px-Tata_Consultancy_Services_Logo.svg.png",`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://tcs.com&size=128`]},
   { id:4, name:"IIT Hyderabad", type:"University", city:"Hyderabad", initials:"IIT", sdgs:[4,9,17], since:"2023",
     story:"420 student volunteers now run peer-led SDG workshops in government schools.",
-    lastActivity:"Volunteer cohort onboarded · 1 week ago", domain:"iith.ac.in",
+    lastActivity:"Volunteer cohort onboarded Â· 1 week ago", domain:"iith.ac.in",
     logoSources:["https://upload.wikimedia.org/wikipedia/en/thumb/1/10/Indian_Institute_of_Technology_Hyderabad_Logo.svg/240px-Indian_Institute_of_Technology_Hyderabad_Logo.svg.png",`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://iith.ac.in&size=128`]},
   { id:5, name:"Bright Futures Academy", type:"School", city:"Mumbai", initials:"BF", sdgs:[4,10], since:"2024",
-    story:"First cohort of 95% satisfaction-rated SDG electives — expanding to more grade levels.",
-    lastActivity:"Completed term-1 workshops · 4 days ago", domain:"brightfuturesacademy.in",
+    story:"First cohort of 95% satisfaction-rated SDG electives â€” expanding to more grade levels.",
+    lastActivity:"Completed term-1 workshops Â· 4 days ago", domain:"brightfuturesacademy.in",
     logoSources:["https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Kendriya_Vidyalaya_logo.svg/240px-Kendriya_Vidyalaya_logo.svg.png",`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://brightfuturesacademy.in&size=128`]},
   { id:6, name:"EcoVolt Energy", type:"Company", city:"Chennai", initials:"EV", sdgs:[7,13], since:"2024",
     story:"Brought hands-on renewable-energy labs to schools.",
-    lastActivity:"New funding round confirmed · 6 days ago", funds:"Rs20L", fundsLakh:20, tier:"Silver", domain:"ecovolt.in",
+    lastActivity:"New funding round confirmed Â· 6 days ago", funds:"Rs20L", fundsLakh:20, tier:"Silver", domain:"ecovolt.in",
     logoSources:["https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Tata_Power_Logo.svg/240px-Tata_Power_Logo.svg.png",`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ecovolt.in&size=128`]},
   { id:7, name:"Hope NGO", type:"NGO", city:"Delhi", initials:"HN", sdgs:[1,10], since:"2024",
     story:"Connected 840 beneficiaries across 4 cities with partner companies.",
-    lastActivity:"Beneficiary survey completed · 2 weeks ago", domain:"hopengo.org",
+    lastActivity:"Beneficiary survey completed Â· 2 weeks ago", domain:"hopengo.org",
     logoSources:["https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CRY_logo.svg/240px-CRY_logo.svg.png",`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://hopengo.org&size=128`]},
   { id:8, name:"Woxsen University", type:"University", city:"Hyderabad", initials:"WU", sdgs:[4,17], since:"2025",
-    story:"Newest university partner — piloting a joint research project with GreenEarth.",
-    lastActivity:"Joined the ecosystem · 3 weeks ago", domain:"woxsen.edu.in",
+    story:"Newest university partner â€” piloting a joint research project with GreenEarth.",
+    lastActivity:"Joined the ecosystem Â· 3 weeks ago", domain:"woxsen.edu.in",
     logoSources:["https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Woxsen.png/240px-Woxsen.png",`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://woxsen.edu.in&size=128`]},
   { id:9, name:"InfraBuild Corp", type:"Company", city:"Mumbai", initials:"IB", sdgs:[9,11], since:"2024",
     story:"Funding urban-planning workshops letting students redesign real city blocks.",
-    lastActivity:"Workshop showcase held · 1 week ago", funds:"Rs30L", fundsLakh:30, tier:"Silver", domain:"l-and-t.com",
+    lastActivity:"Workshop showcase held Â· 1 week ago", funds:"Rs30L", fundsLakh:30, tier:"Silver", domain:"l-and-t.com",
     logoSources:["https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Larsen_%26_Toubro_logo.svg/240px-Larsen_%26_Toubro_logo.svg.png",`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://larsentoubro.com&size=128`]},
 ];
 
@@ -299,7 +299,7 @@ const audienceCards: { title: string; type: PartnerType; benefits: string[]; hre
 ];
 
 const COMPANY_PROJECTS = [
-  { name:"SDG Workshop — Hyderabad", amount:"Rs15L", status:"Completed" as const, verified:true  },
+  { name:"SDG Workshop â€” Hyderabad", amount:"Rs15L", status:"Completed" as const, verified:true  },
   { name:"AI Bootcamp for Schools",  amount:"Rs12L", status:"Ongoing"   as const, verified:false },
   { name:"Climate Action Camp",      amount:"Rs11L", status:"Completed" as const, verified:true  },
 ];
@@ -311,7 +311,7 @@ const METRICS_BY_TYPE: Record<PartnerType, [string,string][]> = {
   University: [["420","Volunteers"],["6","Events"],["5","SDG Goals"],["200","Students active"],["4","Departments"],["2","Years active"]],
 };
 
-/* ─── ICONS ───────────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ ICONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 const Icon = {
   Search:({className="w-4 h-4"}:{className?:string})=>(<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>),
   X:({className="w-4 h-4"}:{className?:string})=>(<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>),
@@ -330,7 +330,7 @@ const Icon = {
   Megaphone:({className="w-4 h-4"}:{className?:string})=>(<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>),
 };
 
-/* ─── MULTI-SOURCE LOGO ───────────────────────────────────────────────────── */
+/* â”€â”€â”€ MULTI-SOURCE LOGO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function MultiSourceImg({ sources,alt,initials,color,gradient,border,className,style,isDark }:{
   sources:string[]; alt:string; initials:string; color:string; gradient:string; border:string;
   className?:string; style?:React.CSSProperties; isDark:boolean;
@@ -353,7 +353,7 @@ function MultiSourceImg({ sources,alt,initials,color,gradient,border,className,s
   );
 }
 
-/* ─── ANIMATED COUNTER ────────────────────────────────────────────────────── */
+/* â”€â”€â”€ ANIMATED COUNTER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function AnimatedCounter({value,theme}:{value:string;theme:T}) {
   const ref=useRef<HTMLDivElement>(null);
   const isInView=useInView(ref,{once:true,margin:"-50px"});
@@ -376,7 +376,7 @@ function AnimatedCounter({value,theme}:{value:string;theme:T}) {
   return <div ref={ref} style={{color:theme.text}}>{display}</div>;
 }
 
-/* ─── TILT CARD ───────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ TILT CARD â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function TiltCard({children,className,style,onClick}:{children:React.ReactNode;className?:string;style?:React.CSSProperties;onClick?:()=>void}) {
   const ref=useRef<HTMLDivElement>(null);
   const x=useMotionValue(0); const y=useMotionValue(0);
@@ -401,7 +401,7 @@ function TiltCard({children,className,style,onClick}:{children:React.ReactNode;c
   );
 }
 
-/* ─── PARTNER LOGO MARK ───────────────────────────────────────────────────── */
+/* â”€â”€â”€ PARTNER LOGO MARK â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function PartnerLogoMark({partner,theme,isDark}:{partner:Partner;theme:T;isDark:boolean}) {
   const cfg=typeConfig[partner.type];
   return (
@@ -421,7 +421,7 @@ function PartnerLogoMark({partner,theme,isDark}:{partner:Partner;theme:T;isDark:
   );
 }
 
-/* ─── SDG CHIP ────────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ SDG CHIP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function SDGChip({num,theme}:{num:number;theme:T}) {
   return (
     <span className="inline-flex items-center rounded-md px-2 py-0.5 text-[10px] font-semibold"
@@ -431,7 +431,7 @@ function SDGChip({num,theme}:{num:number;theme:T}) {
   );
 }
 
-/* ─── PARTNER CARD ────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ PARTNER CARD â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function PartnerCard({partner,onSelect,theme,isDark}:{partner:Partner;onSelect:()=>void;theme:T;isDark:boolean}) {
   const cfg=typeConfig[partner.type];
   const [hovered,setHovered]=useState(false);
@@ -474,7 +474,7 @@ function PartnerCard({partner,onSelect,theme,isDark}:{partner:Partner;onSelect:(
   );
 }
 
-/* ─── PARTNER MODAL ───────────────────────────────────────────────────────── */
+/* â”€â”€â”€ PARTNER MODAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function PartnerModal({partner,onClose,theme,isDark}:{partner:Partner;onClose:()=>void;theme:T;isDark:boolean}) {
   const cfg=typeConfig[partner.type];
   const metrics=METRICS_BY_TYPE[partner.type];
@@ -496,7 +496,7 @@ function PartnerModal({partner,onClose,theme,isDark}:{partner:Partner;onClose:()
             <div>
               <div className="text-[17px] font-bold tracking-tight" style={{color:theme.text}}>{partner.name}</div>
               <div className="flex items-center gap-1.5 mt-1 text-xs" style={{color:theme.muted}}>
-                <Icon.MapPin className="w-3 h-3"/>{partner.city} · Since {partner.since}
+                <Icon.MapPin className="w-3 h-3"/>{partner.city} Â· Since {partner.since}
               </div>
               <div className="flex items-center gap-2 mt-2">
                 <span className="rounded-full px-2.5 py-[3px] text-[11px] font-semibold"
@@ -525,7 +525,7 @@ function PartnerModal({partner,onClose,theme,isDark}:{partner:Partner;onClose:()
             style={{border:"1px solid rgba(34,197,94,0.2)",background:"rgba(34,197,94,0.06)"}}>
             <Icon.Shield className="w-4 h-4" style={{color:"#22c55e"}}/>
             <span className="text-[13px] font-semibold" style={{color:"#22c55e"}}>Verified Partner</span>
-            <span className="ml-auto text-[11px]" style={{color:"#4ade80"}}>Audited · Impact verified</span>
+            <span className="ml-auto text-[11px]" style={{color:"#4ade80"}}>Audited Â· Impact verified</span>
           </div>
           <div className="grid grid-cols-3 gap-2.5">
             {metrics.map(([val,label])=>(
@@ -564,7 +564,7 @@ function PartnerModal({partner,onClose,theme,isDark}:{partner:Partner;onClose:()
   );
 }
 
-/* ─── MARQUEE LOGO CARD ───────────────────────────────────────────────────── */
+/* â”€â”€â”€ MARQUEE LOGO CARD â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function MarqueeLogoCard({logo,theme,isDark}:{logo:{name:string;domain:string;wiki:string};theme:T;isDark:boolean}) {
   const sources=[logo.wiki,`https://cdn.brandfetch.io/${logo.domain}/w/180/h/60/logo`,`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${logo.domain}&size=128`];
   const [idx,setIdx]=useState(0);
@@ -601,7 +601,7 @@ function EcosystemLogoMarquee({theme,isDark}:{theme:T;isDark:boolean}) {
   );
 }
 
-/* ─── SCROLL REVEAL ───────────────────────────────────────────────────────── */
+/* â”€â”€â”€ SCROLL REVEAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function Reveal({children,delay=0}:{children:React.ReactNode;delay?:number}) {
   const ref=useRef(null);
   const isInView=useInView(ref,{once:true,margin:"-60px"});
@@ -613,7 +613,7 @@ function Reveal({children,delay=0}:{children:React.ReactNode;delay?:number}) {
   );
 }
 
-/* ─── HERO BACKGROUND SLIDESHOW ─────────────────────────────────────────── */
+/* â”€â”€â”€ HERO BACKGROUND SLIDESHOW â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 const BG_IMAGES = [
   "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=1800&q=85",
   "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1800&q=85",
@@ -659,7 +659,7 @@ function HeroBgSlideshow() {
   );
 }
 
-/* ─── EXPANDABLE STAT CARD ───────────────────────────────────────────────── */
+/* â”€â”€â”€ EXPANDABLE STAT CARD â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function ExpandableStatCard({card,index,mounted}:{
   card:{label:string;value:string;sub:string;delay:number;floatDur:number};
   index:number;
@@ -695,7 +695,7 @@ function ExpandableStatCard({card,index,mounted}:{
           transformOrigin:"center center",
         }}
       >
-        {/* Glow blob — grows on expand */}
+        {/* Glow blob â€” grows on expand */}
         <motion.div
           className="pointer-events-none absolute -top-6 -right-6 rounded-full blur-2xl"
           animate={{opacity:expanded?0.6:0.28,width:expanded?120:96,height:expanded?120:96}}
@@ -718,7 +718,7 @@ function ExpandableStatCard({card,index,mounted}:{
           )}
         </AnimatePresence>
 
-        {/* Float bob — stops when expanded */}
+        {/* Float bob â€” stops when expanded */}
         <motion.div
           animate={expanded?{y:0}:{y:[0,-5,0]}}
           transition={expanded
@@ -773,7 +773,7 @@ function ExpandableStatCard({card,index,mounted}:{
   );
 }
 
-/* ─── HERO STAT COUNTER ──────────────────────────────────────────────────── */
+/* â”€â”€â”€ HERO STAT COUNTER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function HeroStatCounter({value,color}:{value:string;color:string}) {
   const ref=useRef<HTMLDivElement>(null);
   const isInView=useInView(ref,{once:true,margin:"-40px"});
@@ -797,7 +797,7 @@ function HeroStatCounter({value,color}:{value:string;color:string}) {
   return <div ref={ref} style={{color}}>{display}</div>;
 }
 
-/* ─── HERO CARD WRAPPER ───────────────────────────────────────────────────── */
+/* â”€â”€â”€ HERO CARD WRAPPER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function HeroCard({children,mounted,mouseX,mouseY,heroRef}:{
   children:React.ReactNode;
   mounted:boolean;
@@ -861,7 +861,7 @@ function HeroCard({children,mounted,mouseX,mouseY,heroRef}:{
   );
 }
 
-/* ─── MAIN PAGE ───────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ MAIN PAGE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 export default function PartnersPage() {
   const [isDark,setIsDark]=useState(true);
   const [activeTab,setActiveTab]=useState<Tab>("All");
@@ -881,6 +881,8 @@ export default function PartnersPage() {
     setMounted(true);
   },[]);
 
+  function toggleTheme() { setIsDark(prev=>{localStorage.setItem("stepup-theme",!prev?"dark":"light");return !prev;}); }
+
   const handleHeroMouseMove=useCallback((e:React.MouseEvent)=>{
     if(!heroRef.current) return;
     const rect=heroRef.current.getBoundingClientRect();
@@ -898,11 +900,15 @@ export default function PartnersPage() {
     <div className="min-h-screen theme-transition" style={{background:theme.pageBg,color:theme.text,fontFamily:"'Inter',system-ui,sans-serif"}}>
       <style>{GLOBAL_STYLES}</style>
 
-      {/* ── HERO ── */}
+      {/* â”€â”€ NAVBAR â”€â”€ */}
+      <motion.nav initial={{opacity:0,y:-16}} animate={{opacity:1,y:0}} transition={{duration:0.5}}
+
+
+      {/* â”€â”€ HERO â”€â”€ */}
       <section ref={heroRef} onMouseMove={handleHeroMouseMove} className="relative overflow-hidden"
         style={{minHeight:"calc(100vh - 80px)",display:"flex",alignItems:"center"}}>
 
-        {/* ── BACKGROUND ── */}
+        {/* â”€â”€ BACKGROUND â”€â”€ */}
 
         {/* Crossfading photo slideshow */}
         <HeroBgSlideshow />
@@ -1005,7 +1011,7 @@ export default function PartnersPage() {
                 </motion.div>
               </div>
 
-              {/* Right: Stat cards grid — 2×2 */}
+              {/* Right: Stat cards grid â€” 2Ã—2 */}
               <div className="hidden md:grid grid-cols-2 gap-4 shrink-0" style={{width:380,position:"relative"}}>
                 {heroFloatingCards.map((card,i)=>(
                   <ExpandableStatCard key={card.label} card={card} index={i} mounted={mounted}/>
@@ -1029,7 +1035,7 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* ── ECOSYSTEM FLOW ── */}
+      {/* â”€â”€ ECOSYSTEM FLOW â”€â”€ */}
       <section className="px-6 md:px-10 py-16" style={{borderBottom:`1px solid ${theme.border}`,background:theme.sectionAlt}}>
         <Reveal>
           <div className="text-center mb-12">
@@ -1072,7 +1078,7 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* ── PARTNER DIRECTORY ── */}
+      {/* â”€â”€ PARTNER DIRECTORY â”€â”€ */}
       <section id="directory" className="px-6 md:px-10 py-16" style={{borderBottom:`1px solid ${theme.border}`}}>
         <Reveal>
           <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
@@ -1123,7 +1129,7 @@ export default function PartnersPage() {
         )}
       </section>
 
-      {/* ── LOGO MARQUEE ── */}
+      {/* â”€â”€ LOGO MARQUEE â”€â”€ */}
       <section className="py-12" style={{borderBottom:`1px solid ${theme.border}`,background:theme.sectionAlt}}>
         <Reveal>
           <p className="text-center text-[10px] font-semibold uppercase tracking-widest mb-8 px-6" style={{color:theme.dim}}>
@@ -1133,7 +1139,7 @@ export default function PartnersPage() {
         <EcosystemLogoMarquee theme={theme} isDark={isDark}/>
       </section>
 
-      {/* ── PARTNER WITH US ── */}
+      {/* â”€â”€ PARTNER WITH US â”€â”€ */}
       <section id="partner-form" className="relative overflow-hidden px-6 md:px-10 py-20"
         style={{borderTop:`1px solid ${theme.border}`,background:theme.sectionAlt}}>
         <div aria-hidden className="pointer-events-none absolute -bottom-48 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full blur-[140px]"
@@ -1141,9 +1147,9 @@ export default function PartnersPage() {
         <Reveal>
           <div className="text-center mb-14">
             <p className="text-[10px] font-semibold uppercase tracking-widest mb-3" style={{color:theme.muted}}>Join the ecosystem</p>
-            <h2 className="text-[34px] md:text-[44px] font-black tracking-[-0.03em] mb-4" style={{color:theme.text}}>Partner with StepUp For SDG</h2>
+            <h2 className="text-[34px] md:text-[44px] font-black tracking-[-0.03em] mb-4" style={{color:theme.text}}>Partner with StepUp SDG</h2>
             <p className="mx-auto max-w-[480px] text-[15px] leading-relaxed" style={{color:theme.muted}}>
-              Whether you&apos;re a company with a CSR mandate, a school with motivated students, or an NGO with a program to scale — there&apos;s a place for you here.
+              Whether you&apos;re a company with a CSR mandate, a school with motivated students, or an NGO with a program to scale â€” there&apos;s a place for you here.
             </p>
           </div>
         </Reveal>
@@ -1207,10 +1213,12 @@ export default function PartnersPage() {
         </Reveal>
       </section>
 
-      {/* ── MODAL ── */}
+      {/* â”€â”€ MODAL â”€â”€ */}
       <AnimatePresence>
         {selectedPartner&&<PartnerModal partner={selectedPartner} onClose={()=>setSelected(null)} theme={theme} isDark={isDark}/>}
       </AnimatePresence>
+
+      {/* â”€â”€ FOOTER â”€â”€ */}
 
     </div>
   );
