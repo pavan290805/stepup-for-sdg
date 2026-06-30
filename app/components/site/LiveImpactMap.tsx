@@ -149,9 +149,9 @@ export function LiveImpactMap() {
           style={{ background: "var(--card)", border: "1px solid var(--border)" }}>
 
           {/* Map */}
-          <div className="relative w-full h-[360px] md:h-[480px] lg:h-[560px]" style={{ background: mapBg }}>
-            <ComposableMap projectionConfig={{ scale: 170 }} width={1000} height={500}
-              className="w-full h-full" preserveAspectRatio="xMidYMid slice">
+          <div className="relative w-full h-[420px] md:h-[580px] lg:h-[680px]" style={{ background: mapBg }}>
+            <ComposableMap projectionConfig={{ scale: 155, center: [10, 5] }} width={800} height={500}
+              className="w-full h-full" preserveAspectRatio="xMidYMid meet">
               <Geographies geography={GEO_URL}>
                 {({ geographies }) => (
                   <>
@@ -205,18 +205,7 @@ export function LiveImpactMap() {
             </ComposableMap>
           </div>
 
-          {/* Selected country pill */}
-          {selectedCountry && (
-            <div className="px-5 py-3 flex flex-wrap items-center justify-end gap-3"
-              style={{ borderTop: "1px solid var(--border)" }}>
-              <div className="flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium"
-                style={{ background: "rgba(6,182,212,0.1)", border: "1px solid rgba(6,182,212,0.3)", color: "#06B6D4" }}>
-                {selectedCountry}
-                {selectedData && <span className="opacity-60">· {selectedData.level} impact</span>}
-                <button onClick={clearAll} className="ml-1 opacity-60 hover:opacity-100"><X className="w-3 h-3" /></button>
-              </div>
-            </div>
-          )}
+
         </div>
 
         {/* Selected country detail */}

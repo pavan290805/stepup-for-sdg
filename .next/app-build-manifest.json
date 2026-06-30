@@ -11,15 +11,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
+    "/work-with-us/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/work-with-us/page.js"
+    ],
+    "/about/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/about/page.js"
+    ],
     "/events/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/events/page.js"
-    ],
-    "/get-involved/host-event/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/get-involved/host-event/page.js"
     ]
   }
 }
