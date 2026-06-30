@@ -88,6 +88,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.6);} }
         @keyframes fadeUp { from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);} }
         @keyframes spin-slow { to{ transform:rotate(360deg); } }
+        @keyframes floatUp { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-12px);} }
+        @keyframes rotate-earth { from{ background-position: 0% 50%; } to{ background-position: 100% 50%; } }
+        @keyframes glow-pulse { 0%,100%{box-shadow:0 0 18px rgba(56,189,248,0.45),0 0 40px rgba(56,189,248,0.18);} 50%{box-shadow:0 0 32px rgba(56,189,248,0.7),0 0 60px rgba(56,189,248,0.3);} }
         .fade-up { animation: fadeUp .35s ease forwards; }
         .nav-item:hover { background: rgba(255,255,255,.08) !important; color: rgba(255,255,255,.9) !important; }
         .card-hover:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(17,24,39,.12) !important; }
@@ -142,10 +145,46 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           })}
         </div>
 
-        {/* Spinning SDG image */}
+        {/* Earth Globe */}
         <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px' }}>
-          <div style={{ width: '100%', overflow: 'hidden', borderRadius: 12 }}>
-            <img src="/PPP SDG.png" alt="SDG" style={{ width: '100%', display: 'block', animation: 'spin-slow 12s linear infinite', transformOrigin: 'center center' }} />
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, width: '100%' }}>
+            {/* Earth container */}
+            <div style={{ position: 'relative', width: 148, height: 148 }}>
+              {/* Outer glow ring */}
+              <div style={{
+                position: 'absolute', inset: -6, borderRadius: '50%',
+                background: 'transparent',
+                animation: 'glow-pulse 3s ease-in-out infinite',
+                zIndex: 0,
+              }} />
+              {/* SDG ring */}
+              <div style={{
+                position: 'absolute', inset: 0, borderRadius: '50%', zIndex: 2,
+                animation: 'spin-slow 14s linear infinite',
+              }}>
+                <img src="/PPP SDG.png" alt="SDG Ring" style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} />
+              </div>
+              {/* Earth */}
+              <div style={{
+                position: 'absolute', inset: '16%', borderRadius: '50%', overflow: 'hidden',
+                boxShadow: '0 0 28px rgba(56,189,248,0.5), inset 0 0 20px rgba(0,30,80,0.4)',
+                zIndex: 1,
+              }}>
+                <img
+                  src="/earth.png"
+                  alt="Earth"
+                  style={{
+                    width: '200%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block',
+                    animation: 'rotate-earth 12s linear infinite',
+                    transform: 'translateX(0)',
+                  }}
+                />
+              </div>
+            </div>
+            <div style={{ fontSize: 10, fontWeight: 600, color: 'rgba(255,255,255,.3)', letterSpacing: '1.4px', textTransform: 'uppercase', textAlign: 'center' }}>17 Goals · One Future</div>
           </div>
         </div>
 
@@ -293,15 +332,42 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         {/* ── PAGE CONTENT ── */}
         <main style={{ flex: 1, padding: '18px 24px', display: 'flex', flexDirection: 'column', gap: 14, overflowY: 'auto' }}>
 
-          {/* Banner */}
-          <div style={{ background: 'linear-gradient(120deg,#1e3a8a 0%,#2563eb 55%,#0ea5e9 100%)', borderRadius: 14, padding: '18px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxShadow: '0 4px 20px rgba(37,99,235,.3)' }}>
-            <div>
-              <div style={{ fontSize: 14.5, fontWeight: 700, color: '#fff', marginBottom: 4 }}>12 applications &amp; 4 reviews pending your approval</div>
-              <div style={{ fontSize: 12, color: 'rgba(255,255,255,.6)' }}>Review partner requests and project submissions before the deadline.</div>
+          {/* Earth Hero Banner */}
+          <div style={{ background: 'linear-gradient(120deg,#01040b 0%,#071b31 50%,#020712 100%)', borderRadius: 14, overflow: 'hidden', position: 'relative', minHeight: 240, display: 'flex', alignItems: 'center', boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}>
+            {/* Stars */}
+            {Array.from({ length: 80 }, (_, i) => {
+              const s = (n: number, salt: number) => { const v = Math.sin(n * 93.9898 + salt * 47.233) * 43758.5453; return v - Math.floor(v) }
+              return <span key={i} style={{ position: 'absolute', width: i % 7 === 0 ? 2 : 1, height: i % 7 === 0 ? 2 : 1, left: `${(s(i,1)*100).toFixed(1)}%`, top: `${(s(i,2)*100).toFixed(1)}%`, borderRadius: '50%', background: '#fff', opacity: 0.3 + s(i,3) * 0.6 }} />
+            })}
+            {/* Glow behind earth */}
+            <div style={{ position: 'absolute', right: 60, top: '50%', transform: 'translateY(-50%)', width: 300, height: 300, borderRadius: '50%', background: 'radial-gradient(circle, rgba(56,189,248,0.15) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 1 }} />
+            {/* Text */}
+            <div style={{ position: 'relative', zIndex: 10, padding: '28px 32px', flex: 1 }}>
+              <div style={{ fontSize: 22, fontWeight: 800, color: '#fff', letterSpacing: '0.12em', textTransform: 'uppercase', textShadow: '0 2px 20px rgba(0,0,0,0.8)', marginBottom: 8 }}>StepUp for SDG</div>
+              <div style={{ fontSize: 13, color: '#67e8f9', fontWeight: 500, marginBottom: 6 }}>Educating Students on UN Sustainable Development Goals</div>
+              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.16em', textTransform: 'uppercase' }}>17 Goals · One Shared Future</div>
+              <div style={{ marginTop: 18, fontSize: 12, color: 'rgba(255,255,255,0.55)' }}>12 applications &amp; 4 reviews pending your approval</div>
+              <button style={{ marginTop: 12, background: 'rgba(255,255,255,.12)', color: '#fff', border: '1px solid rgba(255,255,255,.22)', borderRadius: 9, padding: '8px 20px', fontSize: 12.5, fontWeight: 600, cursor: 'pointer' }}>Review Now →</button>
             </div>
-            <button style={{ background: 'rgba(255,255,255,.15)', color: '#fff', border: '1px solid rgba(255,255,255,.25)', borderRadius: 9, padding: '9px 20px', fontSize: 12.5, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap', transition: 'background .15s' }}>
-              Review Now →
-            </button>
+            {/* Full Complete Earth Globe */}
+            <div style={{ position: 'relative', zIndex: 10, padding: '20px 36px 20px 0', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ position: 'relative', width: 200, height: 200, animation: 'floatUp 6s ease-in-out infinite' }}>
+                {/* Outer atmospheric glow */}
+                <div style={{ position: 'absolute', inset: -12, borderRadius: '50%', background: 'radial-gradient(circle, rgba(56,189,248,0.22) 0%, transparent 65%)', animation: 'glow-pulse 4s ease-in-out infinite', zIndex: 1 }} />
+                {/* Dark halo ring */}
+                <div style={{ position: 'absolute', inset: -4, borderRadius: '50%', border: '10px solid rgba(0,0,0,0.75)', boxShadow: '0 0 0 10px rgba(0,0,0,0.3)', zIndex: 2, pointerEvents: 'none' }} />
+                {/* SDG ring spinning */}
+                <div style={{ position: 'absolute', inset: 0, animation: 'spin-slow 18s linear infinite', zIndex: 3 }}>
+                  <img src="/PPP SDG.png" alt="SDG Ring" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                </div>
+                {/* Full Earth — complete sphere, no scale, no clip overflow from outside */}
+                <div style={{ position: 'absolute', inset: '12%', borderRadius: '50%', overflow: 'hidden', zIndex: 2, boxShadow: '0 0 50px rgba(56,189,248,0.4), inset -10px 0 30px rgba(0,0,20,0.5)' }}>
+                  <img src="/earth.png" alt="Earth" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
+                </div>
+                {/* Night shadow crescent */}
+                <div style={{ position: 'absolute', inset: '12%', borderRadius: '50%', background: 'linear-gradient(105deg, transparent 55%, rgba(0,5,20,0.4) 100%)', zIndex: 4, pointerEvents: 'none' }} />
+              </div>
+            </div>
           </div>
 
           {/* Stat Cards */}

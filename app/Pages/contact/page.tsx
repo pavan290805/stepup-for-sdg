@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, Phone, Send, User, MessageCircle } from "lucide-react";
+import { Mail, Phone, Send, User, MessageCircle, ChevronDown } from "lucide-react";
 
 export default function ContactPage() {
   return (
@@ -26,6 +26,37 @@ export default function ContactPage() {
             We&apos;d love to hear from you. Reach out to us for collaborations, questions, or just to say hello!
           </p>
           <div className="mt-6 text-4xl">🌿</div>
+
+          {/* Email contacts */}
+          <div className="mt-8 flex flex-col gap-3">
+            <a href="mailto:contact@stepupforsdg.org" className="flex items-center gap-3 group">
+              <span className="flex items-center justify-center w-9 h-9 rounded-full bg-blue-100 group-hover:bg-blue-600 transition">
+                <Mail size={16} className="text-blue-600 group-hover:text-white transition" />
+              </span>
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">General Enquiry</p>
+                <p className="text-sm font-medium text-slate-800 group-hover:text-blue-600 transition">contact@stepupforsdg.org</p>
+              </div>
+            </a>
+            <a href="mailto:info@stepupforsdg.org" className="flex items-center gap-3 group">
+              <span className="flex items-center justify-center w-9 h-9 rounded-full bg-blue-100 group-hover:bg-blue-600 transition">
+                <Mail size={16} className="text-blue-600 group-hover:text-white transition" />
+              </span>
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">Information</p>
+                <p className="text-sm font-medium text-slate-800 group-hover:text-blue-600 transition">info@stepupforsdg.org</p>
+              </div>
+            </a>
+            <a href="mailto:partner@stepupforsdg.org" className="flex items-center gap-3 group">
+              <span className="flex items-center justify-center w-9 h-9 rounded-full bg-blue-100 group-hover:bg-blue-600 transition">
+                <Mail size={16} className="text-blue-600 group-hover:text-white transition" />
+              </span>
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">Partnerships</p>
+                <p className="text-sm font-medium text-slate-800 group-hover:text-blue-600 transition">partner@stepupforsdg.org</p>
+              </div>
+            </a>
+          </div>
         </div>
 
         {/* RIGHT — form */}
@@ -55,6 +86,21 @@ export default function ContactPage() {
                 <input type="email" placeholder="Your Email" className="w-full bg-transparent outline-none text-sm" required />
               </div>
 
+              <div className="mb-4 flex items-center gap-4 rounded-xl border p-4">
+                <ChevronDown className="text-blue-600 shrink-0" size={20} />
+                <select
+                  className="w-full bg-transparent outline-none text-sm text-slate-700"
+                  required
+                  defaultValue=""
+                >
+                  <option value="" disabled>Contacting us regarding</option>
+                  <option value="ngo">NGO</option>
+                  <option value="volunteer">Volunteer</option>
+                  <option value="school">School/University/College</option>
+                  <option value="csr">CSR Funds</option>
+                </select>
+              </div>
+
               <div className="mb-5 flex items-start gap-4 rounded-xl border p-4">
                 <MessageCircle className="mt-1 text-blue-600 shrink-0" size={20} />
                 <textarea
@@ -75,7 +121,7 @@ export default function ContactPage() {
             </form>
           </div>
 
-          <p className="text-center text-xs text-slate-500 mt-3">© 2026 STEPUP FOR SDG • Together for a Sustainable Future</p>
+          <p className="text-center text-xs text-slate-500 mt-3">© 2026 Pavdhan Organization • Together for a Sustainable Future</p>
         </div>
 
       </div>

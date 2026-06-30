@@ -5,16 +5,17 @@ import { useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import SDGGrid from "./SDGGrid";
 import Stars from "./Stars";
+import { sdgs } from "../data/sdgs";
 
 export default function Hero() {
   const reduceMotion = useReducedMotion() ?? false;
   const goalsRef = useRef<HTMLElement | null>(null);
 
   const handleExplore = () => {
-      goalsRef.current?.scrollIntoView({
-        behavior: reduceMotion ? "auto" : "smooth",
-        block: "start",
-      });
+    goalsRef.current?.scrollIntoView({
+      behavior: reduceMotion ? "auto" : "smooth",
+      block: "start",
+    });
   };
 
   return (
@@ -33,18 +34,18 @@ export default function Hero() {
 
           <motion.div
             aria-hidden="true"
-            className="absolute right-[-55vw] top-1/2 h-[58vh] w-[58vh] -translate-y-1/2 sm:right-[-28vw] sm:h-[64vh] sm:w-[64vh] lg:right-[-18vh] lg:h-[72vh] lg:w-[72vh]"
+            className="absolute right-[2vw] top-1/2 h-[55vh] w-[55vh] -translate-y-1/2 sm:right-[4vw] sm:h-[60vh] sm:w-[60vh] lg:right-[5vw] lg:h-[68vh] lg:w-[68vh]"
             initial={{ opacity: 0, x: reduceMotion ? 0 : 60, scale: reduceMotion ? 1 : 1.08 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ duration: reduceMotion ? 0.15 : 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="relative h-full w-full overflow-hidden rounded-full shadow-[0_0_70px_rgba(56,189,248,0.28)] transform-gpu animate-rotate-earth will-change-transform">
+            <div className="relative h-full w-full rounded-full overflow-hidden" style={{ animation: 'rotate-earth 30s linear infinite' }}>
               <Image
-                alt=""
-                className="object-cover object-center scale-[1.22]"
+                alt="Earth"
+                className="object-cover object-center"
                 fill
                 priority
-                sizes="(max-width: 768px) 58vh, 72vh"
+                sizes="(max-width: 768px) 55vh, 68vh"
                 src="/earth.png"
               />
             </div>
@@ -79,6 +80,6 @@ export default function Hero() {
 
         <SDGGrid isVisible reduceMotion={reduceMotion} sectionRef={goalsRef} />
       </motion.div>
-</main>
-);
+    </main>
+  );
 }
