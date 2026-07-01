@@ -11,9 +11,9 @@ const navLinks = [
   { to: "/", label: "Home", disabled: false },
   { to: "/about", label: "About Us", disabled: false },
   { to: "/events", label: "Events", disabled: false },
-  { to: "/sdg", label: "SDG", disabled: true },
+  { to: "/sdg", label: "SDG", disabled: false },
   { to: "/partners", label: "Partners", disabled: false },
-  { to: "/contact", label: "Contact", disabled: true },
+  { to: "/contact", label: "Contact", disabled: false },
 ] as const;
 
 function LanguageToggle() {
