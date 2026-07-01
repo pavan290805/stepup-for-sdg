@@ -39,7 +39,7 @@ function RahiniHome() {
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
-                  href="/partners"
+                  href="/work-with-us"
                   className="btn-arrow inline-flex items-center gap-2 bg-cta text-white font-semibold rounded-full px-6 py-3 shadow-[0_0_24px_rgba(255,122,0,0.5)] hover:brightness-110 transition"
                 >
                   Work With Us <ArrowRight className="arr h-4 w-4" />

@@ -8,7 +8,7 @@ const cards = [
     title: "Companies",
     body: "Channel CSR funding into transparent, measurable education programs and track impact in real time.",
     cta: "Explore Partnership",
-    href: "/get-involved/sponsor",
+    href: "/partners",
     gradient: "linear-gradient(135deg,#155DFC,#00C2FF)",
     glow: "rgba(21,93,252,0.25)",
   },

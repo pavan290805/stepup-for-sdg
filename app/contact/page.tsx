@@ -5,7 +5,7 @@ import { Mail, Phone, Send, User, MessageCircle } from "lucide-react";
 export default function ContactPage() {
   return (
     <main
-      className="relative h-screen overflow-hidden bg-cover bg-center flex flex-col"
+      className="relative min-h-screen bg-cover bg-center flex flex-col"
       style={{
         backgroundImage:
           "url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=80')",
@@ -13,7 +13,7 @@ export default function ContactPage() {
     >
       <div className="absolute inset-0 bg-white/70 dark:bg-[#050B18]/80" />
 
-      <div className="relative z-10 flex h-full items-center justify-center px-8 gap-16 max-w-7xl mx-auto w-full">
+      <div className="relative z-10 flex flex-1 min-h-[calc(100vh-80px)] items-center justify-center px-8 gap-16 max-w-7xl mx-auto w-full">
 
         {/* LEFT — branding */}
         <div className="hidden lg:flex flex-col max-w-sm shrink-0">
