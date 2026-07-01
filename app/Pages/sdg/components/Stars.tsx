@@ -52,7 +52,7 @@ const particles = Array.from({ length: PARTICLE_COUNT }, (_, index) => {
 export default function Stars() {
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,rgba(18,98,164,0.38),transparent_30%),radial-gradient(circle_at_20%_0%,rgba(8,47,73,0.54),transparent_35%),linear-gradient(180deg,#01040b_0%,#071b31_52%,#020712_100%)]" />
+      <div className="absolute inset-0" style={{ background: "linear-gradient(180deg,#010d1f 0%,#020c18 35%,#010810 65%,#000508 100%)" }} />
       <div className="absolute inset-0 opacity-80">
         {stars.map((star) => (
           <span
