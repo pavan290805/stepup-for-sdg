@@ -11,7 +11,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative mt-24" style={{ background: "linear-gradient(180deg, #0a0f1e 0%, #020814 100%)", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+    <footer className="relative mt-0" style={{ background: "linear-gradient(180deg, #0a0f1e 0%, #020814 100%)", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
 
       {/* Main footer grid */}
       <div className="mx-auto max-w-7xl px-6 py-16 grid gap-12 md:grid-cols-12">

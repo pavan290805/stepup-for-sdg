@@ -136,10 +136,6 @@ export default function FundsPage() {
         </div>
       </div>
 
-      {/* Footer */}
-      <div style={{ borderTop: '1px solid rgba(0,194,255,0.1)', padding: '14px 28px', textAlign: 'center', position: 'relative', zIndex: 1 }}>
-        <p style={{ margin: 0, fontSize: 11, color: 'rgba(255,255,255,0.35)' }}>© 2026 Pavdhan Foundations · All rights reserved · 🔒 Payments secured by Razorpay</p>
-      </div>
 
       {/* Payment Modal */}
       {showPayModal && (
