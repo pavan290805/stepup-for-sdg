@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Linkedin, ArrowRight } from "lucide-react";
+import { Linkedin } from "lucide-react";
 
 const team = [
   {
@@ -107,12 +107,7 @@ function FlipCard({ member }: { member: (typeof team)[0] }) {
                 <p key={t}>{t}</p>
               ))}
             </div>
-            {/* LinkedIn indicator — clicking anywhere on the back triggers navigation */}
-            <span className="mt-2 inline-flex items-center gap-1.5 text-[11px] font-semibold text-white/80 group-hover:text-white transition select-none">
-              <Linkedin className="h-3.5 w-3.5 flex-shrink-0" />
-              View LinkedIn
-              <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-            </span>
+
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef, useCallback } from "react";
+import { useTheme } from "@/app/components/ThemeProvider";
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence, useInView } from "framer-motion";
 
 /* ─── GLOBAL STYLES ───────────────────────────────────────────────────────── */
@@ -866,7 +867,8 @@ function HeroCard({children,mounted,mouseX,mouseY,heroRef}:{
 
 /* ─── MAIN PAGE ───────────────────────────────────────────────────────────── */
 export default function PartnersPage() {
-  const [isDark,setIsDark]=useState(true);
+  const { theme: siteTheme } = useTheme();
+  const isDark = siteTheme === "dark";
   const [activeTab,setActiveTab]=useState<Tab>("All");
   const [selectedPartner,setSelected]=useState<Partner|null>(null);
   const [searchQuery,setSearchQuery]=useState("");
@@ -879,8 +881,6 @@ export default function PartnersPage() {
   const heroRef=useRef<HTMLDivElement>(null);
 
   useEffect(()=>{
-    const saved=localStorage.getItem("stepup-theme");
-    if(saved) setIsDark(saved==="dark");
     setMounted(true);
   },[]);
 

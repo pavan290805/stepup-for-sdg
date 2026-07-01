@@ -1,5 +1,10 @@
 {
-  "/admin/dashboard/page": "app/admin/dashboard/page.js",
-  "/admin/dashboard/events/page": "app/admin/dashboard/events/page.js",
-  "/admin/dashboard/partnership-review/page": "app/admin/dashboard/partnership-review/page.js"
+  "/sdg/page": "app/sdg/page.js",
+  "/page": "app/page.js",
+  "/partners/page": "app/partners/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/about/page": "app/about/page.js",
+  "/events/page": "app/events/page.js",
+  "/funds/page": "app/funds/page.js",
+  "/work-with-us/page": "app/work-with-us/page.js"
 }

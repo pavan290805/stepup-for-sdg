@@ -19,7 +19,7 @@ export default function Hero() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden text-white" style={{ background: "#050d1a" }}>
+    <main className="relative min-h-screen overflow-x-hidden" style={{ background: "var(--background)", color: "var(--foreground)" }}>
       <Stars />
       <div className="pointer-events-none absolute inset-0 z-[1]" />
 
@@ -72,7 +72,7 @@ export default function Hero() {
                 fill
                 priority
                 sizes="(max-width: 768px) 55vh, 68vh"
-                src="/assets/earth.png"
+                src="/earth.png"
               />
             </div>
           </motion.div>
@@ -84,16 +84,16 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: reduceMotion ? 0.15 : 0.6, delay: reduceMotion ? 0 : 0.1, ease: [0.22, 1, 0.36, 1] }}
             >
-              <h2 className="text-balance text-[clamp(2.5rem,5.8vw,5.2rem)] font-extrabold leading-[0.92] text-white mb-4">
+              <h2 className="text-balance text-[clamp(2.5rem,5.8vw,5.2rem)] font-extrabold leading-[0.92] mb-4" style={{ color: "var(--foreground)" }}>
                 Sustainable Development Goals
               </h2>
-              <p className="text-[clamp(1rem,1.8vw,1.5rem)] font-medium text-slate-100/88 mb-8">
+              <p className="text-[clamp(1rem,1.8vw,1.5rem)] font-medium mb-8" style={{ color: "var(--muted-text)" }}>
                 17 Goals to Transform Our World
               </p>
 
               <div className="flex flex-wrap gap-4">
                 <button
-                  className="rounded-full border border-cyan-200/55 bg-white/10 px-6 py-2.5 text-sm font-semibold text-white shadow-[0_0_28px_rgba(34,211,238,0.28)] backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:border-cyan-100 hover:bg-cyan-300/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/80"
+                  className="rounded-full border px-6 py-2.5 text-sm font-semibold backdrop-blur-md transition duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/80 dark:border-cyan-200/55 dark:bg-white/10 dark:text-white dark:shadow-[0_0_28px_rgba(34,211,238,0.28)] dark:hover:border-cyan-100 dark:hover:bg-cyan-300/15 border-[var(--electric)] bg-[var(--electric)]/10 text-[var(--electric)] hover:bg-[var(--electric)]/20"
                   onClick={handleExplore}
                   type="button"
                 >

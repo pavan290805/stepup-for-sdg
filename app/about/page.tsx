@@ -85,8 +85,8 @@ export default function AboutPage() {
             <div className="overflow-hidden rounded-3xl glass p-[1.5px]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80"
-                alt="Children learning together"
+                src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&q=80"
+                alt="Students learning in classroom"
                 className="aspect-[4/3] w-full rounded-3xl object-cover"
               />
             </div>
@@ -135,7 +135,7 @@ export default function AboutPage() {
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Link
-                href="/partners"
+                href="/work-with-us"
                 className="inline-flex items-center gap-2 rounded-full bg-cta px-6 py-3 text-sm font-semibold text-white shadow-[0_0_24px_rgba(255,122,0,0.45)] transition hover:brightness-110"
               >
                 Work With Us

@@ -64,14 +64,13 @@ export function Navbar() {
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border">
       <div className="mx-auto max-w-7xl px-8 h-20 flex items-center justify-between w-full">
         <Link href="/" className="flex items-center gap-3 group">
-          <Image
-            src="/PPP SDG.png"
-            alt="PPP SDG"
-            width={72}
-            height={72}
-            className="object-contain animate-spin"
-            style={{ animationDuration: "8s" }}
-          />
+          <span className="inline-flex h-14 w-14 items-center justify-center rounded-full overflow-hidden bg-white">
+            <img
+              src="/assets/SDG_LOGO-removebg-preview.png"
+              alt="StepUp for SDG"
+              className="h-full w-full object-contain"
+            />
+          </span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-10">

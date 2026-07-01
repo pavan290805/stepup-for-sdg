@@ -52,8 +52,11 @@ const particles = Array.from({ length: PARTICLE_COUNT }, (_, index) => {
 export default function Stars() {
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-      <div className="absolute inset-0" style={{ background: "linear-gradient(180deg,#010d1f 0%,#020c18 35%,#010810 65%,#000508 100%)" }} />
-      <div className="absolute inset-0 opacity-80">
+      {/* dark mode only background */}
+      <div className="absolute inset-0 dark:block hidden" style={{ background: "linear-gradient(180deg,#010d1f 0%,#020c18 35%,#010810 65%,#000508 100%)" }} />
+      {/* light mode background */}
+      <div className="absolute inset-0 dark:hidden block" style={{ background: "linear-gradient(180deg,#EEF2FF 0%,#F5F7FF 50%,#EEF2FF 100%)" }} />
+      <div className="absolute inset-0 opacity-80 dark:block hidden">
         {stars.map((star) => (
           <span
             key={star.id}
@@ -67,7 +70,7 @@ export default function Stars() {
           />
         ))}
       </div>
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 dark:block hidden">
         {particles.map((particle) => (
           <span
             key={particle.id}
