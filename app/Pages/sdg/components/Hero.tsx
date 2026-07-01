@@ -72,7 +72,7 @@ export default function Hero() {
                 fill
                 priority
                 sizes="(max-width: 768px) 55vh, 68vh"
-                src="/earth.png"
+                src="/assets/earth.png"
               />
             </div>
           </motion.div>

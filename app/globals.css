@@ -303,6 +303,11 @@ html:not(.dark) {
   to { background-position: -200% 50%; }
 }
 
+@keyframes rotate-earth {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 .earth-atmos {
   position: absolute;
   inset: 8%;
