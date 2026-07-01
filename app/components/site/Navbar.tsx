@@ -81,7 +81,7 @@ export function Navbar() {
                 className={`text-lg font-semibold transition-colors ${
                   (l.to === "/" ? pathname === "/" : pathname.startsWith(l.to))
                     ? "text-cyan-glow"
-                    : "text-muted-text hover:text-foreground"
+                    : "text-foreground/80 hover:text-foreground"
                 }`}>
                 {l.label}
               </Link>
