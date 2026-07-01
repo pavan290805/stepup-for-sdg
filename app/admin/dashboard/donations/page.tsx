@@ -10,6 +10,8 @@ export default function DonationsPage() {
 
   useEffect(() => {
     setDonations(getDonations())
+    const interval = setInterval(() => setDonations(getDonations()), 2000)
+    return () => clearInterval(interval)
   }, [])
 
   const c = {

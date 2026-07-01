@@ -123,7 +123,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px' }}>
             <div style={{ width: '100%', overflow: 'hidden', borderRadius: 12 }}>
-              <img src="/assets/SDG_LOGO-removebg-preview.png" alt="SDG" style={{ width: '100%', display: 'block', animation: 'spin-slow 12s linear infinite', transformOrigin: 'center center' }} />
+              <img src="/PPP SDG.png" alt="PPP SDG" style={{ width: '100%', display: 'block', animation: 'spin-slow 12s linear infinite', transformOrigin: 'center center' }} />
             </div>
           </div>
 

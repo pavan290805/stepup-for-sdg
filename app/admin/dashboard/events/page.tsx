@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { EVENTS } from "@/app/components/events/eventsData";
+import { useDashboardTheme } from "../ThemeContext";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -179,18 +180,6 @@ const MOCK_EVENTS: SDGEvent[] = [
     participants: [],
   },
 ];
-
-// ── Hook (stub matching useDashboardTheme API) ─────────────────────────────────
-
-function useDashboardTheme() {
-  // In your actual project, import and use your real useDashboardTheme hook.
-  // This stub provides the same shape so you can drop-in replace it.
-  if (typeof window !== "undefined") {
-    const isDark = document.documentElement.classList.contains("dark");
-    return { isDark };
-  }
-  return { isDark: false };
-}
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
@@ -636,7 +625,7 @@ const MOCK_PENDING = [
 // ── Main Page ──────────────────────────────────────────────────────────────────
 
 export default function EventsPage() {
-  useDashboardTheme(); // keeps theme subscription alive
+  const { dark } = useDashboardTheme();
 
   const [events, setEvents] = useState<SDGEvent[]>(MOCK_EVENTS);
   const [search, setSearch] = useState("");
@@ -752,7 +741,7 @@ export default function EventsPage() {
     <>
       {/* ── Scoped styles ── */}
       <style>{`
-        :root {
+        .sdg-root {
           --sdg-bg: #f7f8fa;
           --sdg-card-bg: #ffffff;
           --sdg-card-border: #e5e7eb;
@@ -771,24 +760,24 @@ export default function EventsPage() {
           --icon-btn-hover: rgba(0,0,0,0.06);
           --sdg-search-bg: #ffffff;
         }
-        .dark {
+        .sdg-root.sdg-dark {
           --sdg-bg: transparent;
-          --sdg-card-bg: #1f2937;
-          --sdg-card-border: #374151;
-          --sdg-text: #f9fafb;
-          --sdg-text-muted: #9ca3af;
-          --sdg-input-bg: #1f2937;
-          --sdg-input-border: #374151;
+          --sdg-card-bg: #1a1d27;
+          --sdg-card-border: rgba(255,255,255,0.07);
+          --sdg-text: #f0f2f8;
+          --sdg-text-muted: #8891aa;
+          --sdg-input-bg: #1f2335;
+          --sdg-input-border: rgba(255,255,255,0.1);
           --sdg-overlay: rgba(0,0,0,0.65);
-          --sdg-panel-bg: #1f2937;
-          --sdg-table-head: #111827;
-          --sdg-table-row-alt: #111827;
-          --sdg-table-border: #374151;
-          --sdg-section-divider: #374151;
-          --sdg-footer-bg: #111827;
-          --icon-btn-color: #d1d5db;
+          --sdg-panel-bg: #1a1d27;
+          --sdg-table-head: #1f2335;
+          --sdg-table-row-alt: #1f2335;
+          --sdg-table-border: rgba(255,255,255,0.07);
+          --sdg-section-divider: rgba(255,255,255,0.07);
+          --sdg-footer-bg: #1f2335;
+          --icon-btn-color: #8891aa;
           --icon-btn-hover: rgba(255,255,255,0.08);
-          --sdg-search-bg: #111827;
+          --sdg-search-bg: #1f2335;
         }
 
         .sdg-page { padding: 24px 28px; color: var(--sdg-text); min-height: 100vh; }
@@ -1008,6 +997,7 @@ export default function EventsPage() {
         .sdg-type-pill { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; }
       `}</style>
 
+      <div className={`sdg-root${dark ? ' sdg-dark' : ''}`}>
       <div className="sdg-page">
 
         {/* ── Live Site Events Overview ── */}
@@ -1247,6 +1237,7 @@ export default function EventsPage() {
         ))}
       </div>
 
+      </div>
       {/* ── Detail Panel ── */}
       {viewEvent && (
         <DetailPanel event={viewEvent} onClose={() => setViewEvent(null)} />

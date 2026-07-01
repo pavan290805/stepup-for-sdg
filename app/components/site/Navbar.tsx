@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
@@ -63,10 +64,14 @@ export function Navbar() {
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border">
       <div className="mx-auto max-w-7xl px-8 h-20 flex items-center justify-between w-full">
         <Link href="/" className="flex items-center gap-3 group">
-          <span className="relative inline-flex h-20 w-20 items-center justify-center rounded-full overflow-hidden bg-white">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/SDG_LOGO-removebg-preview.png" alt="SDG Logo" className="h-full w-full object-contain [filter:none] opacity-100 [mix-blend-mode:normal]" />
-          </span>
+          <Image
+            src="/PPP SDG.png"
+            alt="PPP SDG"
+            width={72}
+            height={72}
+            className="object-contain animate-spin"
+            style={{ animationDuration: "8s" }}
+          />
         </Link>
 
         <nav className="hidden md:flex items-center gap-10">

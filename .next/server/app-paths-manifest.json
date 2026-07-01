@@ -1,7 +1,5 @@
 {
-  "/admin/dashboard/events/page": "app/admin/dashboard/events/page.js",
-  "/admin/dashboard/sdg-management/page": "app/admin/dashboard/sdg-management/page.js",
-  "/admin/dashboard/partnership-review/page": "app/admin/dashboard/partnership-review/page.js",
   "/admin/dashboard/page": "app/admin/dashboard/page.js",
-  "/admin/dashboard/donations/page": "app/admin/dashboard/donations/page.js"
+  "/admin/dashboard/events/page": "app/admin/dashboard/events/page.js",
+  "/admin/dashboard/partnership-review/page": "app/admin/dashboard/partnership-review/page.js"
 }
