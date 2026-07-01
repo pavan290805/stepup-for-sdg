@@ -2,13 +2,26 @@
 import { useState } from "react";
 import { HandHeart, ArrowLeft, CheckCircle } from "lucide-react";
 import Link from "next/link";
+import { addVolunteerSubmission } from "@/app/lib/adminStore";
 
 export default function VolunteerPage() {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", city: "", age: "", availability: "", skills: "", motivation: "" });
   const accent = "#22c55e";
 
-  function handleSubmit(e: React.FormEvent) { e.preventDefault(); setSubmitted(true); }
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    addVolunteerSubmission({
+      fullName: form.name,
+      email: form.email,
+      phone: form.phone,
+      city: form.city,
+      skills: form.skills,
+      availability: form.availability,
+      motivation: form.motivation,
+    });
+    setSubmitted(true);
+  }
   function update(key: string, val: string) { setForm((f) => ({ ...f, [key]: val })); }
 
   return (

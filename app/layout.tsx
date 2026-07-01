@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Navbar } from "@/app/components/site/Navbar";
-import { Footer } from "@/app/components/site/Footer";
 import { ThemeProvider } from "@/app/components/ThemeProvider";
 import { LanguageProvider } from "@/app/components/LanguageProvider";
+import SiteShell from "@/app/components/SiteShell";
 
 export const metadata: Metadata = {
   title: "StepUp for SDG — Global Education Impact Platform",
@@ -33,9 +32,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider>
           <LanguageProvider>
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
+            <SiteShell>{children}</SiteShell>
           </LanguageProvider>
         </ThemeProvider>
       </body>

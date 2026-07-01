@@ -2,13 +2,24 @@
 import { useState } from "react";
 import { Building2, ArrowLeft, CheckCircle } from "lucide-react";
 import Link from "next/link";
+import { addPartnershipSubmission } from "@/app/lib/adminStore";
 
 export default function NgoPartnerPage() {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ org: "", contact: "", email: "", phone: "", website: "", state: "", focus: "", size: "", proposal: "" });
   const accent = "#3b82f6";
 
-  function handleSubmit(e: React.FormEvent) { e.preventDefault(); setSubmitted(true); }
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    addPartnershipSubmission({
+      fullName: form.contact,
+      organization: form.org,
+      email: form.email,
+      type: "NGO",
+      message: form.proposal,
+    });
+    setSubmitted(true);
+  }
   function update(key: string, val: string) { setForm((f) => ({ ...f, [key]: val })); }
 
   return (

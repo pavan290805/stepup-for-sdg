@@ -2,13 +2,27 @@
 import { useState } from "react";
 import { CalendarPlus, ArrowLeft, CheckCircle } from "lucide-react";
 import Link from "next/link";
+import { addEventRequest } from "@/app/lib/adminStore";
 
 export default function HostEventPage() {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", org: "", eventType: "", location: "", date: "", audience: "", details: "" });
   const accent = "#0066cc";
 
-  function handleSubmit(e: React.FormEvent) { e.preventDefault(); setSubmitted(true); }
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    addEventRequest({
+      fullName: form.name,
+      email: form.email,
+      phone: form.phone,
+      organization: form.org,
+      eventType: form.eventType,
+      location: form.location,
+      audience: form.audience,
+      details: form.details,
+    });
+    setSubmitted(true);
+  }
   function update(key: string, val: string) { setForm((f) => ({ ...f, [key]: val })); }
 
   return (

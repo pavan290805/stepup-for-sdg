@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Building2, ArrowLeft, CheckCircle } from "lucide-react";
 import Link from "next/link";
+import { addPartnershipSubmission } from "@/app/lib/adminStore";
 
 export default function CorporateCSRFundsPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -25,6 +26,13 @@ export default function CorporateCSRFundsPage() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    addPartnershipSubmission({
+      fullName: form.contact,
+      organization: form.company,
+      email: form.email,
+      type: 'COMPANY',
+      message: `CSR Budget: ${form.csrBudget} | SDG: ${form.sdg} | Area: ${form.fundingArea} | ${form.message}`,
+    });
     setSubmitted(true);
   }
   function update(key: string, val: string) {

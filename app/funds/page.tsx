@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { addDonation } from '@/app/lib/adminStore'
 
 export default function FundsPage() {
   const [name, setName] = useState('')
@@ -24,7 +25,20 @@ export default function FundsPage() {
   const finalAmount = customAmount || amount
 
   const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); if (!finalAmount) return; setShowPayModal(true) }
-  const handlePay = () => { setPaying(true); setTimeout(() => { setPaying(false); setShowPayModal(false); setSubmitted(true) }, 2000) }
+  const handlePay = () => {
+    setPaying(true)
+    setTimeout(() => {
+      addDonation({
+        name,
+        email,
+        phone,
+        amount: Number(finalAmount),
+        message,
+        method: payTab,
+      })
+      setPaying(false); setShowPayModal(false); setSubmitted(true)
+    }, 2000)
+  }
 
   const inp: React.CSSProperties = {
     width: '100%', border: '1.5px solid var(--border)', borderRadius: 8,

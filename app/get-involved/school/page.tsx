@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { GraduationCap, ArrowLeft, CheckCircle } from "lucide-react";
 import Link from "next/link";
+import { addPartnershipSubmission } from "@/app/lib/adminStore";
 
 export default function SchoolPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -23,7 +24,17 @@ export default function SchoolPage() {
 
   const accent = "#00A8A8";
 
-  function handleSubmit(e: React.FormEvent) { e.preventDefault(); setSubmitted(true); }
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    addPartnershipSubmission({
+      fullName: form.contact,
+      organization: form.schoolName,
+      email: form.email,
+      type: 'SCHOOL',
+      message: `Type: ${form.type} | Board: ${form.board} | Students: ${form.students} | Support: ${form.support} | ${form.message}`,
+    });
+    setSubmitted(true);
+  }
   function update(key: string, val: string) { setForm((f) => ({ ...f, [key]: val })); }
 
   const inputStyle = {
