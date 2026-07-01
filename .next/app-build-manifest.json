@@ -16,35 +16,45 @@
       "static/chunks/main-app.js",
       "static/chunks/app/sdg/page.js"
     ],
-    "/partners/page": [
+    "/admin/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/partners/page.js"
+      "static/chunks/app/admin/layout.js"
     ],
-    "/contact/page": [
+    "/admin/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/contact/page.js"
+      "static/chunks/app/admin/login/page.js"
     ],
-    "/about/page": [
+    "/admin/dashboard/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/about/page.js"
+      "static/chunks/app/admin/dashboard/layout.js"
     ],
-    "/events/page": [
+    "/admin/dashboard/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/events/page.js"
+      "static/chunks/app/admin/dashboard/page.js"
     ],
-    "/funds/page": [
+    "/admin/dashboard/partnership-review/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/funds/page.js"
+      "static/chunks/app/admin/dashboard/partnership-review/page.js"
     ],
-    "/work-with-us/page": [
+    "/admin/dashboard/events/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/work-with-us/page.js"
+      "static/chunks/app/admin/dashboard/events/page.js"
+    ],
+    "/admin/dashboard/donations/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/admin/dashboard/donations/page.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/_not-found/page.js"
     ]
   }
 }
