@@ -127,7 +127,7 @@ export function Footer() {
         style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
       >
         <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-2 text-xs" style={{ color: "#94a3b8" }}>
-          <span>© {new Date().getFullYear()} StepUp for SDG. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Pavdhan Organization. All rights reserved.</span>
         </div>
       </div>
     </footer>

@@ -27,12 +27,12 @@ export default function FundsPage() {
   const handlePay = () => { setPaying(true); setTimeout(() => { setPaying(false); setShowPayModal(false); setSubmitted(true) }, 2000) }
 
   const inp: React.CSSProperties = {
-    width: '100%', border: '1.5px solid rgba(170,182,200,0.2)', borderRadius: 8,
+    width: '100%', border: '1.5px solid var(--border)', borderRadius: 8,
     padding: '7px 10px', fontSize: 12, outline: 'none',
-    color: '#fff', background: 'rgba(255,255,255,0.06)', boxSizing: 'border-box',
+    color: 'var(--foreground)', background: 'var(--card)', boxSizing: 'border-box',
   }
   const lbl: React.CSSProperties = {
-    display: 'block', fontSize: 10, fontWeight: 700, color: '#AAB6C8',
+    display: 'block', fontSize: 10, fontWeight: 700, color: 'var(--muted-text)',
     letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 5,
   }
 
@@ -53,12 +53,12 @@ export default function FundsPage() {
   )
 
   return (
-    <div style={{ minHeight: '100vh', fontFamily: 'Inter, sans-serif', background: '#050B18', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ minHeight: '100vh', fontFamily: 'Inter, sans-serif', background: 'var(--background)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
       <div style={{ position: 'absolute', top: '5%', right: '-5%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(21,93,252,0.18) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
       <div style={{ position: 'absolute', bottom: '5%', left: '-5%', width: 300, height: 300, borderRadius: '50%', background: 'radial-gradient(circle, rgba(0,194,255,0.10) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
 
       {/* Hero */}
-      <div style={{ background: 'linear-gradient(135deg, rgba(21,93,252,0.35) 0%, rgba(0,194,255,0.18) 60%, rgba(0,168,168,0.15) 100%)', borderBottom: '1px solid rgba(0,194,255,0.15)', padding: '40px 28px 14px', textAlign: 'center', position: 'relative', zIndex: 1 }}>
+      <div style={{ background: 'linear-gradient(135deg, #0f3460 0%, #0e6fa3 60%, #00b8d4 100%)', borderBottom: '1px solid rgba(0,194,255,0.15)', padding: '40px 28px 54px', textAlign: 'center', position: 'relative', zIndex: 1 }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(255,255,255,0.15)', borderRadius: 20, padding: '4px 14px', fontSize: 11, color: 'white', fontWeight: 700, marginBottom: 8, border: '1px solid rgba(255,255,255,0.25)', backdropFilter: 'blur(8px)' }}>
           🌍 Support the Unite 2030 Mission
         </div>
@@ -68,7 +68,7 @@ export default function FundsPage() {
 
       {/* Form */}
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', marginTop: '-40px', position: 'relative', zIndex: 1 }}>
-        <div style={{ background: 'linear-gradient(180deg, rgba(16,29,51,0.85), rgba(11,20,38,0.9))', backdropFilter: 'blur(16px)', borderRadius: 18, boxShadow: '0 8px 40px rgba(0,0,0,0.4)', overflow: 'hidden', border: '1px solid rgba(0,194,255,0.18)', width: '100%', maxWidth: 660 }}>
+        <div style={{ background: 'var(--card)', backdropFilter: 'blur(16px)', borderRadius: 18, boxShadow: '0 8px 40px rgba(0,0,0,0.15)', overflow: 'hidden', border: '1px solid var(--border)', width: '100%', maxWidth: 660 }}>
 
           {/* Form Header */}
           <div style={{ background: 'linear-gradient(135deg, #0f3460 0%, #0e6fa3 60%, #00b8d4 100%)', padding: '14px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -101,14 +101,14 @@ export default function FundsPage() {
                 {presetAmounts.map(a => (
                   <div key={a} style={{ position: 'relative' }}>
                     {a === 1000 && <div style={{ position: 'absolute', top: -8, left: '50%', transform: 'translateX(-50%)', background: '#0f3460', color: 'white', fontSize: 8, fontWeight: 700, borderRadius: 5, padding: '2px 6px', whiteSpace: 'nowrap', zIndex: 1 }}>POPULAR</div>}
-                    <button type="button" onClick={() => { setAmount(String(a)); setCustomAmount('') }} style={{ width: '100%', padding: '8px 0', borderRadius: 8, border: amount === String(a) && !customAmount ? '2px solid #00C2FF' : '1.5px solid rgba(170,182,200,0.2)', background: amount === String(a) && !customAmount ? 'linear-gradient(135deg, #155DFC, #00C2FF)' : 'rgba(255,255,255,0.05)', color: amount === String(a) && !customAmount ? 'white' : '#AAB6C8', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
+                    <button type="button" onClick={() => { setAmount(String(a)); setCustomAmount('') }} style={{ width: '100%', padding: '8px 0', borderRadius: 8, border: amount === String(a) && !customAmount ? '2px solid #00C2FF' : '1.5px solid var(--border)', background: amount === String(a) && !customAmount ? 'linear-gradient(135deg, #155DFC, #00C2FF)' : 'var(--background)', color: amount === String(a) && !customAmount ? 'white' : 'var(--muted-text)', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
                       ₹{a.toLocaleString()}
                     </button>
                   </div>
                 ))}
               </div>
               <div style={{ position: 'relative' }}>
-                <span style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', fontSize: 12, fontWeight: 700, color: '#94a3b8', pointerEvents: 'none' }}>₹</span>
+                <span style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', fontSize: 12, fontWeight: 700, color: 'var(--muted-text)', pointerEvents: 'none' }}>₹</span>
                 <input value={customAmount} onChange={e => { setCustomAmount(e.target.value); setAmount('') }} placeholder="Enter custom amount" type="number" min="1" style={{ ...inp, paddingLeft: 22 }} onFocus={e => e.target.style.borderColor='#00C2FF'} onBlur={e => e.target.style.borderColor='rgba(170,182,200,0.2)'} />
               </div>
             </div>

@@ -33,19 +33,10 @@ function initials(name: string) {
 
 function FlipCard({ member }: { member: (typeof team)[0] }) {
   const [flipped, setFlipped] = useState(false);
-
   const hasLinkedIn = member.linkedin !== "#";
 
-  /** First click flips the card; second click (when back is visible) opens LinkedIn. */
   function handleCardClick() {
-    if (!flipped) {
-      setFlipped(true);
-    } else if (hasLinkedIn) {
-      window.open(member.linkedin, "_blank", "noopener,noreferrer");
-    } else {
-      // If no LinkedIn URL yet, just flip back
-      setFlipped(false);
-    }
+    setFlipped(f => !f);
   }
 
   return (
@@ -61,8 +52,7 @@ function FlipCard({ member }: { member: (typeof team)[0] }) {
           width: "100%",
           height: "100%",
           transformStyle: "preserve-3d",
-          transition:
-            "transform 0.6s cubic-bezier(0.4,0.2,0.2,1), box-shadow 0.3s ease, scale 0.3s ease",
+          transition: "transform 0.6s cubic-bezier(0.4,0.2,0.2,1), box-shadow 0.3s ease, scale 0.3s ease",
           transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
           scale: "1",
         }}
@@ -81,7 +71,10 @@ function FlipCard({ member }: { member: (typeof team)[0] }) {
             WebkitBackfaceVisibility: "hidden",
           }}
         >
-          <div className="h-20 w-20 rounded-full bg-gradient-to-br from-electric to-cyan-glow grid place-items-center text-white text-2xl font-bold select-none">
+          <div
+            className="h-20 w-20 rounded-full bg-gradient-to-br from-electric to-cyan-glow grid place-items-center text-white text-2xl font-bold select-none cursor-pointer"
+            onClick={(e) => { if (hasLinkedIn) { e.stopPropagation(); window.open(member.linkedin, "_blank", "noopener,noreferrer"); } }}
+          >
             {initials(member.name)}
           </div>
           <h4 className="mt-4 font-semibold">{member.name}</h4>
