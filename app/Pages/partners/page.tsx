@@ -830,7 +830,7 @@ function HeroCard({children,mounted,mouseX,mouseY,heroRef}:{
       onMouseEnter={()=>setHovered(true)}
       onMouseLeave={()=>setHovered(false)}
       onMouseMove={handleMouseMove}
-      className="mx-auto max-w-4xl rounded-[32px] relative"
+      className="mx-auto max-w-3xl rounded-[32px] relative"
       style={{
         background:"rgba(6,10,18,0.75)",
         backdropFilter:"blur(32px)", WebkitBackdropFilter:"blur(32px)",
@@ -911,7 +911,7 @@ export default function PartnersPage() {
         <HeroBgSlideshow />
 
         {/* Strong dark overlay so text is always readable */}
-        <div className="pointer-events-none absolute inset-0" style={{background:"linear-gradient(120deg,rgba(2,6,18,0.88) 0%,rgba(4,10,24,0.72) 55%,rgba(2,6,16,0.82) 100%)"}}/>
+        <div className="pointer-events-none absolute inset-0" style={{background:"linear-gradient(120deg,rgba(2,6,18,0.94) 0%,rgba(4,10,24,0.85) 55%,rgba(2,6,16,0.92) 100%)"}}/>
 
         {/* Aurora blobs */}
         <div className="aurora-1 pointer-events-none absolute rounded-full blur-[140px]"
@@ -955,23 +955,19 @@ export default function PartnersPage() {
           <HeroCard mounted={mounted} mouseX={mouseX} mouseY={mouseY} heroRef={heroRef as React.RefObject<HTMLDivElement>}>
 
             {/* Card inner layout: left text + right stats side by side */}
-            <div className="flex flex-col md:flex-row md:items-center gap-10 p-10 md:p-16">
+            <div className="flex flex-col md:flex-row md:items-center gap-10 p-8 md:p-12">
 
               {/* Left: Text content */}
-              <div className="flex flex-col gap-7 flex-1 min-w-0">
-                <motion.div initial={{opacity:0,y:10}} animate={mounted?{opacity:1,y:0}:{}} transition={{delay:0.15}}
-                  className="inline-flex w-fit items-center gap-2 rounded-full px-4 py-2 text-[12px] font-semibold tracking-wide"
-                  style={{border:"1px solid rgba(14,165,201,0.4)",background:"rgba(14,165,201,0.12)",color:"#38bdf8",boxShadow:"0 0 20px rgba(14,165,201,0.1)"}}>
-                  <Icon.Globe className="w-3.5 h-3.5" style={{color:"#38bdf8"}}/>
-                  India&apos;s SDG Partnership Network
-                </motion.div>
-
+              <div className="flex flex-col gap-3 flex-1 min-w-0">
                 <motion.h1 initial={{opacity:0,y:20}} animate={mounted?{opacity:1,y:0}:{}} transition={{delay:0.22}}
                   className="font-black leading-[1.05] tracking-[-0.035em]"
-                  style={{color:"#ffffff",fontSize:"clamp(34px,4.2vw,56px)"}}>
-                  Building impact<br/>
-                  <span style={{backgroundImage:"linear-gradient(135deg,#0ea5c9 0%,#818cf8 60%,#c084fc 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"}}>
-                    through collaboration.
+                  style={{color:"#ffffff",fontSize:"clamp(28px,3.2vw,42px)"}}>
+                  <span style={{display:"block",whiteSpace:"nowrap"}}>Building impact</span>
+                  <span style={{backgroundImage:"linear-gradient(135deg,#0ea5c9 0%,#818cf8 60%,#c084fc 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text",display:"block"}}>
+                    through
+                  </span>
+                  <span style={{backgroundImage:"linear-gradient(135deg,#0ea5c9 0%,#818cf8 60%,#c084fc 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text",display:"block"}}>
+                    collaboration.
                   </span>
                 </motion.h1>
 
@@ -1000,16 +996,12 @@ export default function PartnersPage() {
                     style={{background:"linear-gradient(135deg,#0ea5c9,#0369a1)",color:"#fff",boxShadow:"0 4px 24px rgba(14,165,201,0.45)",transition:"box-shadow 0.2s"}}>
                     Partner With Us <Icon.Arrow className="w-4 h-4"/>
                   </motion.a>
-                  <motion.a href="#directory" whileHover={{scale:1.04,y:-2}} whileTap={{scale:0.97}}
-                    className="inline-flex items-center gap-2 rounded-2xl px-8 py-3.5 text-[14px] font-semibold"
-                    style={{border:"1.5px solid rgba(255,255,255,0.20)",color:"rgba(255,255,255,0.85)",background:"rgba(255,255,255,0.06)",backdropFilter:"blur(8px)"}}>
-                    View Partners
-                  </motion.a>
+
                 </motion.div>
               </div>
 
               {/* Right: Stat cards grid — 2×2 */}
-              <div className="hidden md:grid grid-cols-2 gap-4 shrink-0" style={{width:380,position:"relative"}}>
+              <div className="hidden md:grid grid-cols-2 gap-4 shrink-0" style={{width:320,position:"relative"}}>
                 {heroFloatingCards.map((card,i)=>(
                   <ExpandableStatCard key={card.label} card={card} index={i} mounted={mounted}/>
                 ))}
@@ -1041,35 +1033,85 @@ export default function PartnersPage() {
             <p className="mt-2 text-sm max-w-md mx-auto" style={{color:theme.muted}}>Each partner plays a distinct role, working toward the same goals.</p>
           </div>
         </Reveal>
-        <div className="flex flex-wrap items-start justify-center gap-y-6">
+        <div className="flex flex-wrap items-center justify-center gap-y-6">
           {ecosystemRoles.map((node,i)=>{
             const isHub=node.type==="Hub";
             const cfg=!isHub?typeConfig[node.type as PartnerType]:null;
+            const color=isHub?theme.accent:cfg!.color;
+            const nodeDelay=i*0.85;
+            const ringDelay=i===0?0.3:nodeDelay+0.6;
             return (
-              <Reveal key={node.title} delay={i*0.07}>
-                <div className="flex items-center">
-                  {i!==0&&<div className="hidden md:block h-px w-8 lg:w-12 shrink-0"
-                    style={{background:`linear-gradient(90deg,${theme.border},${theme.dim},${theme.border})`}}/>}
-                  <div className={`flex flex-col items-center gap-3 text-center ${isHub?"w-[150px]":"w-[120px]"}`}>
-                    <motion.div whileHover={{scale:1.08,y:-2}}
-                      className={`flex items-center justify-center rounded-full border-2 ${isHub?"h-24 w-24":"h-16 w-16"}`}
-                      style={{background:isHub?"transparent":cfg?.gradient,borderColor:isHub?theme.accent:cfg?.border,
-                        boxShadow:isHub?`0 0 32px ${theme.accent}30,0 0 0 4px ${theme.accent}10`:`0 4px 16px ${cfg?.color}18`,
-                        position:"relative",overflow:"hidden",padding:0}}>
+              <div key={node.title} className="flex items-center">
+                {i!==0&&(
+                  <div className="hidden md:block relative h-px w-12 lg:w-20 shrink-0" style={{background:theme.border}}>
+                    <motion.div className="absolute inset-0"
+                      initial={{scaleX:0}} whileInView={{scaleX:1}} viewport={{once:true}}
+                      transition={{duration:0.55,delay:nodeDelay,ease:"easeInOut"}}
+                      style={{background:`linear-gradient(90deg,${color}80,${color})`,transformOrigin:"left",height:"100%"}}
+                    />
+                    <motion.div className="absolute top-1/2 -translate-y-1/2 rounded-full pointer-events-none"
+                      initial={{left:"0%",opacity:0,scale:0}}
+                      whileInView={{left:["0%","110%"],opacity:[0,1,1,0],scale:[0,1.6,1.6,0]}}
+                      viewport={{once:true}}
+                      transition={{duration:0.55,delay:nodeDelay,ease:"easeInOut",times:[0,0.1,0.85,1]}}
+                      style={{width:10,height:10,background:color,boxShadow:`0 0 12px ${color},0 0 24px ${color}`,position:"absolute"}}
+                    />
+                  </div>
+                )}
+                <div className={`flex flex-col items-center gap-3 text-center ${isHub?"w-[150px]":"w-[120px]"}`}>
+                  <div className="relative flex items-center justify-center">
+                    {/* one-time burst on arrival */}
+                    <motion.div className="absolute rounded-full pointer-events-none"
+                      initial={{scale:0.8,opacity:0}} whileInView={{scale:[0.8,1.8],opacity:[0.8,0]}}
+                      viewport={{once:true}}
+                      transition={{duration:0.65,delay:ringDelay,ease:"easeOut"}}
+                      style={{width:isHub?96:64,height:isHub?96:64,border:`2px solid ${color}`,borderRadius:"50%"}}
+                    />
+                    {/* continuous pulse ring 1 */}
+                    <motion.div className="absolute rounded-full pointer-events-none"
+                      animate={{scale:[1,1.5,1],opacity:[0.55,0,0.55]}}
+                      transition={{duration:2.6,repeat:Infinity,ease:"easeInOut",delay:ringDelay+0.8}}
+                      style={{width:isHub?96:64,height:isHub?96:64,border:`1.5px solid ${color}`,borderRadius:"50%"}}
+                    />
+                    {/* continuous pulse ring 2 */}
+                    <motion.div className="absolute rounded-full pointer-events-none"
+                      animate={{scale:[1,1.85,1],opacity:[0.3,0,0.3]}}
+                      transition={{duration:3.4,repeat:Infinity,ease:"easeInOut",delay:ringDelay+1.2}}
+                      style={{width:isHub?96:64,height:isHub?96:64,border:`1px solid ${color}`,borderRadius:"50%"}}
+                    />
+                    {/* node circle */}
+                    <motion.div
+                      whileHover={{scale:1.12,y:-4,boxShadow:`0 0 36px ${color}90`}}
+                      initial={{opacity:0,scale:0.4,y:16}}
+                      whileInView={{opacity:1,scale:1,y:0}}
+                      viewport={{once:true}}
+                      transition={{duration:0.55,delay:ringDelay,type:"spring",stiffness:240,damping:18}}
+                      className={`relative flex items-center justify-center rounded-full border-2 ${isHub?"h-24 w-24":"h-16 w-16"}`}
+                      style={{
+                        background:isHub?"rgba(255,255,255,0.95)":cfg?.gradient,
+                        borderColor:color,
+                        boxShadow:`0 0 22px ${color}55,0 0 0 3px ${color}20`,
+                        overflow:"hidden",padding:0,
+                      }}>
                       {isHub
                         ?<img src="/logo.png" alt="StepUp SDG" style={{width:"100%",height:"100%",objectFit:"cover",borderRadius:"50%",position:"absolute",inset:0}}/>
-                        :cfg&&<span style={{color:cfg.color}}><cfg.IconEl className="w-6 h-6"/></span>
+                        :cfg&&<motion.span
+                          animate={{rotate:[0,10,-10,0],scale:[1,1.18,1]}}
+                          transition={{duration:3.5,repeat:Infinity,ease:"easeInOut",delay:i*0.5}}
+                          style={{color:cfg.color}}><cfg.IconEl className="w-6 h-6"/></motion.span>
                       }
                     </motion.div>
-                    <div>
-                      <div className="text-[13px] font-bold" style={{color:isHub?theme.accent:theme.text}}>
-                        {isHub ? <><span style={{color:theme.accent}}>StepUp</span>{" "}<span style={{color:"#ef4444"}}>For SDG</span></> : node.title}
-                      </div>
-                      <div className="mt-0.5 text-[11px] leading-snug" style={{color:theme.muted}}>{node.role}</div>
-                    </div>
                   </div>
+                  <motion.div
+                    initial={{opacity:0,y:12}} whileInView={{opacity:1,y:0}} viewport={{once:true}}
+                    transition={{duration:0.4,delay:ringDelay+0.15}}>
+                    <div className="text-[13px] font-bold" style={{color:isHub?theme.accent:theme.text}}>
+                      {isHub?<><span style={{color:theme.accent}}>StepUp</span>{" "}<span style={{color:"#ef4444"}}>For SDG</span></>:node.title}
+                    </div>
+                    <div className="mt-0.5 text-[11px] leading-snug" style={{color:theme.muted}}>{node.role}</div>
+                  </motion.div>
                 </div>
-              </Reveal>
+              </div>
             );
           })}
         </div>
