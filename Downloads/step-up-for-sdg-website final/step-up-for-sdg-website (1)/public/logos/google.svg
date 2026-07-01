@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 80">
-  <circle cx="24" cy="40" r="12" fill="#4285F4" opacity="0.8"/>
-  <circle cx="40" cy="28" r="12" fill="#EA4335" opacity="0.8"/>
-  <circle cx="40" cy="52" r="12" fill="#FBBC04" opacity="0.8"/>
-  <circle cx="56" cy="40" r="12" fill="#34A853" opacity="0.8"/>
-  <text x="72" y="45" font-size="14" font-weight="bold" fill="#666">Google</text>
-</svg>

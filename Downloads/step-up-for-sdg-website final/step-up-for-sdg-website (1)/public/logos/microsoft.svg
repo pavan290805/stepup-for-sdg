@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 80">
-  <rect x="8" y="8" width="20" height="20" fill="#00A4EF" opacity="0.8"/>
-  <rect x="32" y="8" width="20" height="20" fill="#7FBA00" opacity="0.8"/>
-  <rect x="8" y="32" width="20" height="20" fill="#F25022" opacity="0.8"/>
-  <rect x="32" y="32" width="20" height="20" fill="#FFB900" opacity="0.8"/>
-  <text x="64" y="45" font-size="14" font-weight="bold" fill="#666">Microsoft</text>
-</svg>

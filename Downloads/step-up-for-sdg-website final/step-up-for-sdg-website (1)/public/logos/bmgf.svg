@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 80">
-  <circle cx="15" cy="30" r="8" fill="#CF202E" opacity="0.8"/>
-  <circle cx="28" cy="30" r="8" fill="#CF202E" opacity="0.8"/>
-  <circle cx="15" cy="50" r="8" fill="#CF202E" opacity="0.8"/>
-  <circle cx="28" cy="50" r="8" fill="#CF202E" opacity="0.8"/>
-  <text x="45" y="40" font-size="9" font-weight="bold" fill="#666">Bill & Melinda</text>
-  <text x="45" y="55" font-size="9" font-weight="bold" fill="#666">Gates Foundation</text>
-</svg>
