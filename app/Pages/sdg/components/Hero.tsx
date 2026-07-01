@@ -19,9 +19,9 @@ export default function Hero() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden text-white" style={{ background: "#050d1a" }}>
+    <main className="relative min-h-screen overflow-x-hidden bg-black text-white">
       <Stars />
-      <div className="pointer-events-none absolute inset-0 z-[1]" />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(circle_at_80%_0%,rgba(56,189,248,0.18),transparent_28%),radial-gradient(circle_at_40%_100%,rgba(45,212,191,0.18),transparent_34%),linear-gradient(180deg,rgba(3,7,18,0.15),rgba(3,18,31,0.62))]" />
 
       <motion.div
         className="relative z-10"
@@ -30,6 +30,8 @@ export default function Hero() {
         transition={{ duration: reduceMotion ? 0.15 : 0.65, ease: [0.22, 1, 0.36, 1] }}
       >
         <section className="relative flex min-h-[80vh] items-center overflow-hidden px-5 py-8 sm:px-8 lg:px-12">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_0%,rgba(56,189,248,0.18),transparent_28%),radial-gradient(circle_at_40%_100%,rgba(45,212,191,0.18),transparent_34%)]" />
+
           {/* Animated background particles */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             {Array.from({ length: 12 }, (_, i) => (
