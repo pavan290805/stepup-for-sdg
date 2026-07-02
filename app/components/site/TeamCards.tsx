@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Linkedin } from "lucide-react";
-
 const team = [
   {
     name: "Eswar Vardhan",

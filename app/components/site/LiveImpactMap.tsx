@@ -153,7 +153,7 @@ export function LiveImpactMap() {
             <ComposableMap projectionConfig={{ scale: 155, center: [10, 5] }} width={800} height={500}
               className="w-full h-full" preserveAspectRatio="xMidYMid meet">
               <Geographies geography={GEO_URL}>
-                {({ geographies }) => (
+                {({ geographies }: { geographies: any[] }) => (
                   <>
                     {geographies.map((geo) => {
                       const id   = String(geo.id)
