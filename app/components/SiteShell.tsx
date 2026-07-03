@@ -11,7 +11,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
   return (
     <>
       {!isAdmin && <Navbar />}
-      <main className="flex-1">{children}</main>
+      {isAdmin ? children : <main className="flex-1">{children}</main>}
       {!isAdmin && <Footer />}
     </>
   )

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useRouter } from "next/navigation";
 import { EVENTS } from "@/app/components/events/eventsData";
 import { useDashboardTheme } from "../ThemeContext";
 
@@ -626,12 +627,12 @@ const MOCK_PENDING = [
 
 export default function EventsPage() {
   const { dark } = useDashboardTheme();
+  const router = useRouter();
 
   const [events, setEvents] = useState<SDGEvent[]>(MOCK_EVENTS);
   const [search, setSearch] = useState("");
   const [viewEvent, setViewEvent] = useState<SDGEvent | null>(null);
   const [editEvent, setEditEvent] = useState<SDGEvent | null>(null);
-  const [showCreate, setShowCreate] = useState(false);
   const [viewMode, setViewMode] = useState<"card" | "table">("card");
   const [activeTab, setActiveTab] = useState<'events'|'pending'>('events');
 
@@ -681,15 +682,6 @@ export default function EventsPage() {
       ),
     [events, search]
   );
-
-  function handleCreate(form: typeof EMPTY_FORM) {
-    const pending = JSON.parse(localStorage.getItem('sdg_pending_events') || '[]');
-    pending.unshift({ id: String(Date.now()), submittedAt: new Date().toISOString(), form });
-    localStorage.setItem('sdg_pending_events', JSON.stringify(pending));
-    setPendingRequests(pending);
-    setShowCreate(false);
-    setActiveTab('pending');
-  }
 
   function handleEdit(form: typeof EMPTY_FORM) {
     if (!editEvent) return;
@@ -1063,7 +1055,7 @@ export default function EventsPage() {
             </div>
           </div>
           <div className="sdg-header-right">
-            <button className="sdg-btn-primary" onClick={() => setShowCreate(true)}>
+            <button className="sdg-btn-primary" onClick={() => router.push('/admin/dashboard/events/create')}>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
               </svg>
@@ -1252,10 +1244,6 @@ export default function EventsPage() {
         />
       )}
 
-      {/* ── Create Modal ── */}
-      {showCreate && (
-        <EventModal onSave={handleCreate} onClose={() => setShowCreate(false)} />
-      )}
     </>
   );
 }

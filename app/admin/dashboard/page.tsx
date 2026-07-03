@@ -11,11 +11,30 @@ import { useEffect, useState } from 'react'
 import { getAdminStats, getContactMessages, getPartnershipSubmissions, type AdminStats } from '@/app/lib/adminStore'
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, Filler)
 
+const SDG_OPTIONS = [
+  { label: 'SDG 1 – No Poverty', color: '#E5243B' },
+  { label: 'SDG 2 – Zero Hunger', color: '#DDA63A' },
+  { label: 'SDG 3 – Good Health', color: '#4C9F38' },
+  { label: 'SDG 4 – Quality Education', color: '#C5192D' },
+  { label: 'SDG 5 – Gender Equality', color: '#FF3A21' },
+  { label: 'SDG 6 – Clean Water', color: '#26BDE2' },
+  { label: 'SDG 7 – Affordable Energy', color: '#FCC30B' },
+  { label: 'SDG 8 – Decent Work', color: '#A21942' },
+  { label: 'SDG 9 – Industry & Innovation', color: '#FD6925' },
+  { label: 'SDG 10 – Reduced Inequalities', color: '#DD1367' },
+  { label: 'SDG 11 – Sustainable Cities', color: '#FD9D24' },
+  { label: 'SDG 12 – Responsible Consumption', color: '#BF8B2E' },
+  { label: 'SDG 13 – Climate Action', color: '#3F7E44' },
+  { label: 'SDG 14 – Life Below Water', color: '#0A97D9' },
+  { label: 'SDG 15 – Life on Land', color: '#56C02B' },
+  { label: 'SDG 16 – Peace & Justice', color: '#00689D' },
+  { label: 'SDG 17 – Partnerships', color: '#19486A' },
+]
+
 export default function DashboardPage() {
   const { dark } = useDashboardTheme()
   const router = useRouter()
   const [stats, setStats] = useState<AdminStats | null>(null)
-
   useEffect(() => {
     const load = () => {
       const s = getAdminStats()
@@ -52,7 +71,8 @@ export default function DashboardPage() {
   }
 
   return (
-    <main style={{ flex: 1, padding: '24px 28px 40px', display: 'flex', flexDirection: 'column', gap: 18 }}>
+    <>
+    <main style={{ flex: 1, padding: '24px 28px 40px', display: 'flex', flexDirection: 'column', gap: 18, overflowX: 'hidden' }}>
 
       {/* Banner */}
       <div style={{ background: 'linear-gradient(120deg,#1e3a8a 0%,#2563eb 55%,#0ea5e9 100%)', borderRadius: 14, padding: '18px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxShadow: '0 4px 20px rgba(37,99,235,.3)' }}>
@@ -60,9 +80,15 @@ export default function DashboardPage() {
           <div style={{ fontSize: 14.5, fontWeight: 700, color: '#fff', marginBottom: 4 }}>12 applications &amp; 4 reviews pending your approval</div>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,.6)' }}>Review partner requests and project submissions before the deadline.</div>
         </div>
-        <button onClick={() => router.push('/admin/dashboard/partnership-review')} style={{ background: 'rgba(255,255,255,.15)', color: '#fff', border: '1px solid rgba(255,255,255,.25)', borderRadius: 9, padding: '9px 20px', fontSize: 12.5, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}>
-          Review Now →
-        </button>
+        <div style={{ display: 'flex', gap: 10 }}>
+          <button onClick={() => router.push('/admin/dashboard/events/create')} style={{ background: 'rgba(255,255,255,.95)', color: '#1e3a8a', border: 'none', borderRadius: 9, padding: '9px 20px', fontSize: 12.5, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: 6 }}>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Create Event
+          </button>
+          <button onClick={() => router.push('/admin/dashboard/partnership-review')} style={{ background: 'rgba(255,255,255,.15)', color: '#fff', border: '1px solid rgba(255,255,255,.25)', borderRadius: 9, padding: '9px 20px', fontSize: 12.5, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+            Review Now →
+          </button>
+        </div>
       </div>
 
       {/* SDG Overview Cards */}
@@ -380,6 +406,9 @@ export default function DashboardPage() {
 
 
 
-    </main>
+      </main>
+
+
+    </>
   )
 }
