@@ -87,9 +87,12 @@ export default function SubmissionsPage() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 14, marginBottom: 24 }}>
         {TABS.map(t => (
           <div key={t.key} onClick={() => setTab(t.key)} style={{
-            background: c.surface, border: `1px solid ${tab === t.key ? t.color : c.border}`,
+            background: c.surface,
+            borderLeft: `1px solid ${tab === t.key ? t.color : c.border}`,
+            borderRight: `1px solid ${tab === t.key ? t.color : c.border}`,
+            borderBottom: `1px solid ${tab === t.key ? t.color : c.border}`,
+            borderTop: `3px solid ${t.color}`,
             borderRadius: 12, padding: '16px 20px', cursor: 'pointer',
-            borderTop: `3px solid ${t.color}`, transition: 'border .15s',
           }}>
             <div style={{ fontSize: 26, fontWeight: 800, color: t.color, lineHeight: 1 }}>{counts[t.key]}</div>
             <div style={{ fontSize: 12, color: c.textMuted, marginTop: 4, fontWeight: 500 }}>{t.label}</div>
