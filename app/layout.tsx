@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Script from "next/script";
 import { ThemeProvider } from "@/app/components/ThemeProvider";
-import { LanguageProvider } from "@/app/components/LanguageProvider";
 import SiteShell from "@/app/components/SiteShell";
 
 export const metadata: Metadata = {
@@ -19,22 +19,37 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
+        <style>{`
+          .goog-te-banner-frame { display: none !important; }
+          .skiptranslate { display: none !important; }
+          body { top: 0 !important; position: static !important; }
+          #google_translate_element { position: absolute; left: -9999px; top: -9999px; }
+        `}</style>
       </head>
       <body>
         <ThemeProvider>
-          <LanguageProvider>
             <SiteShell>{children}</SiteShell>
-          </LanguageProvider>
         </ThemeProvider>
+
+        <div id="google_translate_element" />
+
+        <Script
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+          strategy="afterInteractive"
+        />
+        <Script id="gt-init" strategy="afterInteractive">{`
+          function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+              { pageLanguage: 'en', autoDisplay: false },
+              'google_translate_element'
+            );
+          }
+        `}</Script>
       </body>
     </html>
   );

@@ -1,12 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Menu, X, Sun, Moon, Globe, ChevronDown } from "lucide-react";
 import { useTheme } from "@/app/components/ThemeProvider";
-import { useLanguage } from "@/app/components/LanguageProvider";
 
 const navLinks = [
   { to: "/", label: "Home", disabled: false },
@@ -17,19 +15,89 @@ const navLinks = [
   { to: "/contact", label: "Contact", disabled: false },
 ] as const;
 
-function LanguageToggle() {
-  const { language, setLanguage } = useLanguage();
+const LANGUAGES = [
+  { code: "en",       label: "English" },
+  { code: "as",       label: "Assamese (অসমীয়া)" },
+  { code: "bn",       label: "Bengali (বাংলা)" },
+  { code: "gu",       label: "Gujarati (ગુજરાતી)" },
+  { code: "hi",       label: "Hindi (हिन्दी)" },
+  { code: "kn",       label: "Kannada (ಕನ್ನಡ)" },
+  { code: "mai",      label: "Maithili (मैथिली)" },
+  { code: "ml",       label: "Malayalam (മലയാളം)" },
+  { code: "mni-Mtei", label: "Manipuri (মণিপুরী)" },
+  { code: "mr",       label: "Marathi (मराठी)" },
+  { code: "ne",       label: "Nepali (नेपाली)" },
+  { code: "or",       label: "Odia (ଓଡ଼ିଆ)" },
+  { code: "pa",       label: "Punjabi (ਪੰਜਾਬੀ)" },
+  { code: "sa",       label: "Sanskrit (संस्कृत)" },
+  { code: "sd",       label: "Sindhi (سنڌي)" },
+  { code: "si",       label: "Sinhala (සිංහල)" },
+  { code: "ta",       label: "Tamil (தமிழ்)" },
+  { code: "te",       label: "Telugu (తెలుగు)" },
+  { code: "ur",       label: "Urdu (اردو)" },
+];
+
+function LanguageSelect() {
+  const [selected, setSelected] = useState(LANGUAGES[0]);
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  // Read active language from cookie on mount
+  useEffect(() => {
+    const match = document.cookie.match(/googtrans=\/en\/([a-zA-Z-]+)/);
+    const code = match ? match[1] : "en";
+    const found = LANGUAGES.find((l) => l.code === code);
+    if (found) setSelected(found);
+  }, []);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  function handleSelect(lang: typeof LANGUAGES[0]) {
+    setSelected(lang);
+    setOpen(false);
+    if (lang.code === "en") {
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=." + location.hostname + "; path=/;";
+    } else {
+      document.cookie = "googtrans=/en/" + lang.code + "; path=/;";
+      document.cookie = "googtrans=/en/" + lang.code + "; domain=." + location.hostname + "; path=/;";
+    }
+    location.reload();
+  }
+
   return (
-    <select
-      data-no-translate
-      value={language}
-      onChange={(e) => setLanguage(e.target.value as "en" | "hi")}
-      aria-label="Select language"
-      className="rounded-full border border-border bg-background/60 px-2.5 py-1 text-xs font-semibold text-foreground cursor-pointer outline-none hover:border-cyan-glow transition"
-    >
-      <option value="en">English</option>
-      <option value="hi">हिंदी</option>
-    </select>
+    <div ref={ref} className="relative notranslate" data-no-translate translate="no">
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 px-3 py-1.5 text-xs font-semibold text-foreground hover:border-cyan-glow transition"
+      >
+        <Globe className="h-3.5 w-3.5" />
+        {selected.label}
+        <ChevronDown className={`h-3 w-3 transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+
+      {open && (
+        <div className="absolute right-0 top-full mt-2 w-52 rounded-xl border border-border bg-background shadow-lg z-50 overflow-y-auto max-h-80">
+          {LANGUAGES.map((l) => (
+            <button
+              key={l.code}
+              onClick={() => handleSelect(l)}
+              className={`w-full px-4 py-2 text-left text-xs font-medium hover:bg-muted transition ${
+                selected.code === l.code ? "text-cyan-glow" : "text-foreground"
+              }`}
+            >
+              {l.label}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -63,8 +131,7 @@ export function Navbar() {
         <nav className="hidden md:flex items-center gap-10">
           {navLinks.map((l) =>
             l.disabled ? (
-              <span key={l.to}
-                className="text-lg font-semibold text-muted-text cursor-default select-none">
+              <span key={l.to} className="text-lg font-semibold text-muted-text cursor-default select-none">
                 {l.label}
               </span>
             ) : (
@@ -81,7 +148,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
-          <LanguageToggle />
+          <LanguageSelect />
           <ThemeToggle />
           <Link href="/funds"
             className="inline-flex items-center gap-2 rounded-full bg-electric px-5 py-2.5 text-base font-semibold text-white shadow-[0_0_20px_rgba(21,93,252,0.45)] hover:brightness-110 transition">
@@ -94,7 +161,7 @@ export function Navbar() {
         </div>
 
         <div className="md:hidden flex items-center gap-2">
-          <LanguageToggle />
+          <LanguageSelect />
           <ThemeToggle />
           <button onClick={() => setMobileOpen((v) => !v)} aria-label="Toggle menu">
             {mobileOpen ? <X /> : <Menu />}

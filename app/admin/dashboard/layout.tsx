@@ -63,7 +63,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     <ThemeContext.Provider value={{ dark }}>
       <PartnershipFormProvider>
       <PartnersProvider>
-      <div style={{ display: 'flex', minHeight: '100vh', background: c.bg, fontFamily: "'Inter','Segoe UI',system-ui,sans-serif", transition: 'background .3s' }}>
+      <div style={{ display: 'flex', minHeight: '100vh', background: c.bg, fontFamily: "'Inter','Segoe UI',system-ui,sans-serif", transition: 'background .3s', overflow: 'hidden' }}>
         <style>{`
           @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
           *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -144,7 +144,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </aside>
 
         {/* MAIN */}
-        <div style={{ flex: 1, marginLeft: 248, minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <div style={{ flex: 1, marginLeft: 248, minHeight: '100vh', display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
 
           {/* Topbar */}
           <header style={{
@@ -256,7 +256,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <div style={{ flex: 1 }}>{children}</div>
 
           {/* Footer */}
-          <footer style={{ borderTop: `1px solid ${c.border}`, background: c.surface, padding: '14px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <footer style={{ borderTop: `1px solid ${c.border}`, background: c.surface, padding: '14px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>
             <div style={{ fontSize: 12.5, fontWeight: 700, color: c.textPrimary }}>Pavdhan Organizations <span style={{ fontWeight: 400, color: c.textMuted }}>© 2026</span></div>
             <div style={{ fontSize: 11.5, fontWeight: 600, color: c.red }}>Restricted — Authorized Admins Only</div>
           </footer>

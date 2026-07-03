@@ -1,14 +1,7 @@
 "use client";
 import Link from "next/link";
 
-import { useLanguage } from "@/app/components/LanguageProvider";
-
 export function Footer() {
-  const { language, setLanguage } = useLanguage();
-  const languages: { code: "en" | "hi"; label: string }[] = [
-    { code: "en", label: "English" },
-    { code: "hi", label: "Hindi" },
-  ];
 
   return (
     <footer className="relative mt-0" style={{ background: "linear-gradient(180deg, #0a0f1e 0%, #020814 100%)", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
@@ -97,22 +90,8 @@ export function Footer() {
           </ul>
         </div>
 
-        {/* Languages + Contact */}
+        {/* Contact */}
         <div>
-          <h4 className="text-sm font-bold uppercase tracking-[0.15em] mb-5" style={{ color: "#f1f5f9" }}>Languages</h4>
-          <ul className="space-y-3 text-sm mb-5">
-            {languages.map((l) => (
-              <li key={l.code}>
-                <button
-                  onClick={() => setLanguage(l.code)}
-                  className="transition-colors duration-200"
-                  style={{ color: language === l.code ? "var(--cyan-glow)" : "#94a3b8" }}
-                >
-                  {l.label}
-                </button>
-              </li>
-            ))}
-          </ul>
           <h4 className="text-sm font-bold uppercase tracking-[0.15em] mb-5" style={{ color: "#f1f5f9" }}>Contact</h4>
           <div className="flex flex-col gap-1.5 text-sm" style={{ color: "#94a3b8" }}>
             <p>contact@stepupforsdg.org</p>
