@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import SDGGrid from "./SDGGrid";
-import Stars from "./Stars";
+import { SpaceBackdrop } from "@/app/components/site/SpaceBackdrop";
 import { sdgs } from "../data/sdgs";
 
 export default function Hero() {
@@ -19,9 +19,8 @@ export default function Hero() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden" style={{ background: "var(--background)", color: "var(--foreground)" }}>
-      <Stars />
-      <div className="pointer-events-none absolute inset-0 z-[1]" />
+    <main className="relative min-h-screen overflow-x-hidden" style={{ color: "var(--foreground)" }}>
+      <SpaceBackdrop />
 
       <motion.div
         className="relative z-10"
@@ -30,34 +29,6 @@ export default function Hero() {
         transition={{ duration: reduceMotion ? 0.15 : 0.65, ease: [0.22, 1, 0.36, 1] }}
       >
         <section className="relative flex min-h-[80vh] items-center overflow-hidden px-5 py-8 sm:px-8 lg:px-12">
-          {/* Animated background particles */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {Array.from({ length: 12 }, (_, i) => (
-              <div
-                key={i}
-                className="absolute w-2 h-2 bg-cyan-400/20 rounded-full animate-pulse"
-                style={{
-                  left: `${10 + (i * 8)}%`,
-                  top: `${20 + ((i * 7) % 60)}%`,
-                  animationDelay: `${i * 0.5}s`,
-                  animationDuration: `${3 + (i % 3)}s`
-                }}
-              />
-            ))}
-            {Array.from({ length: 8 }, (_, i) => (
-              <div
-                key={`float-${i}`}
-                className="absolute w-1 h-1 bg-blue-300/30 rounded-full"
-                style={{
-                  left: `${15 + (i * 12)}%`,
-                  top: `${30 + ((i * 9) % 50)}%`,
-                  animation: `floatUp ${4 + (i % 2)}s ease-in-out infinite`,
-                  animationDelay: `${i * 0.8}s`
-                }}
-              />
-            ))}
-          </div>
-
           <motion.div
             aria-hidden="true"
             className="absolute right-[2vw] top-1/2 h-[55vh] w-[55vh] -translate-y-1/2 sm:right-[4vw] sm:h-[60vh] sm:w-[60vh] lg:right-[5vw] lg:h-[68vh] lg:w-[68vh]"

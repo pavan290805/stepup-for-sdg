@@ -25,11 +25,7 @@ function RahiniHome() {
         <div className="relative mx-auto max-w-7xl grid gap-12 lg:grid-cols-2 items-center">
           <FadeUp>
             <div>
-              <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-cyan-glow border border-cyan-glow/30 rounded-full px-3 py-1">
-                <span className="h-1.5 w-1.5 rounded-full bg-cyan-glow shadow-[0_0_8px_#00C2FF]" />
-                Global Education Impact Platform
-              </span>
-              <h1 className="mt-6 font-display text-4xl md:text-6xl font-bold leading-[1.05]" style={{ color: "var(--foreground)" }}>
+<h1 className="mt-6 font-display text-4xl md:text-6xl font-bold leading-[1.05]" style={{ color: "var(--foreground)" }}>
                 Students, Companies and NGOs for{" "}
                 <span className="grad-text">SDG Impact</span>
               </h1>

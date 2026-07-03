@@ -42,6 +42,7 @@ function FlipCard({ member }: { member: (typeof team)[0] }) {
       className="cursor-pointer group"
       style={{ perspective: "1000px", height: 280 }}
       onClick={handleCardClick}
+      onMouseLeave={() => setFlipped(false)}
     >
       <div
         className="group-hover:shadow-[0_0_24px_rgba(0,194,255,0.25)] transition-all duration-300"
@@ -77,9 +78,7 @@ function FlipCard({ member }: { member: (typeof team)[0] }) {
           </div>
           <h4 className="mt-4 font-semibold">{member.name}</h4>
           <p className="text-sm text-muted-text">{member.role}</p>
-          <p className="mt-3 text-[11px] text-muted-text opacity-60">
-            Click to learn more
-          </p>
+
         </div>
 
         {/* Back */}

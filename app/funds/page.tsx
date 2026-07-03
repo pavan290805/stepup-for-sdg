@@ -42,12 +42,12 @@ export default function FundsPage() {
 
   const inp: React.CSSProperties = {
     width: '100%', border: '1.5px solid var(--border)', borderRadius: 8,
-    padding: '7px 10px', fontSize: 12, outline: 'none',
+    padding: '11px 14px', fontSize: 13, outline: 'none',
     color: 'var(--foreground)', background: 'var(--card)', boxSizing: 'border-box',
   }
   const lbl: React.CSSProperties = {
-    display: 'block', fontSize: 10, fontWeight: 700, color: 'var(--muted-text)',
-    letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 5,
+    display: 'block', fontSize: 11, fontWeight: 700, color: 'var(--muted-text)',
+    letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 8,
   }
 
   if (submitted) return (
@@ -81,7 +81,60 @@ export default function FundsPage() {
       </div>
 
       {/* Form */}
-      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', marginTop: '-40px', position: 'relative', zIndex: 1 }}>
+      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px 60px', marginTop: '-40px', position: 'relative', zIndex: 1, gap: 32 }}>
+
+        {/* LEFT - small graphs */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: 340, flexShrink: 0 }}>
+
+          {/* Stat pills */}
+          {[
+            { label: 'Total Raised',    value: '\u20b912.4L', color: '#00C2FF' },
+            { label: 'Projects Funded', value: '186',         color: '#00B050' },
+            { label: 'Students',        value: '12,400',      color: '#7B61FF' },
+            { label: 'NGOs',            value: '34',          color: '#FF7A00' },
+          ].map(s => (
+            <div key={s.label} style={{ background: 'var(--card)', border: `1px solid ${s.color}30`, borderRadius: 10, padding: '14px 18px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span style={{ fontSize: 13, color: 'var(--muted-text)', fontWeight: 500 }}>{s.label}</span>
+              <span style={{ fontSize: 18, fontWeight: 800, color: s.color }}>{s.value}</span>
+            </div>
+          ))}
+
+          {/* SDG allocation bars */}
+          <div style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 10, padding: '12px 14px' }}>
+            <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--muted-text)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10 }}>Fund Allocation</div>
+            {[
+              { label: 'SDG 4',  pct: 42, color: '#E5243B' },
+              { label: 'SDG 13', pct: 22, color: '#3F7E44' },
+              { label: 'SDG 10', pct: 16, color: '#DD1367' },
+              { label: 'SDG 17', pct: 12, color: '#19486A' },
+              { label: 'SDG 9',  pct: 8,  color: '#FD6925' },
+            ].map(b => (
+              <div key={b.label} style={{ marginBottom: 7 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
+                  <span style={{ fontSize: 10, color: 'var(--foreground)' }}>{b.label}</span>
+                  <span style={{ fontSize: 10, fontWeight: 700, color: b.color }}>{b.pct}%</span>
+                </div>
+                <div style={{ height: 5, borderRadius: 99, background: 'rgba(255,255,255,0.07)' }}>
+                  <div style={{ height: '100%', borderRadius: 99, width: `${b.pct}%`, background: b.color }} />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Mini bar chart */}
+          <div style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 10, padding: '12px 14px' }}>
+            <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--muted-text)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10 }}>Monthly Trend</div>
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 3, height: 44 }}>
+              {[18,32,24,45,38,55,42,68,52,74,61,88].map((h, i) => (
+                <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
+                  <div style={{ width: '100%', borderRadius: '3px 3px 0 0', height: `${(h/88)*36}px`, background: i === 11 ? '#00C2FF' : `rgba(0,194,255,${0.2+(h/88)*0.55})` }} />
+                  <span style={{ fontSize: 7, color: 'var(--muted-text)' }}>{['J','F','M','A','M','J','J','A','S','O','N','D'][i]}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
         <div style={{ background: 'var(--card)', backdropFilter: 'blur(16px)', borderRadius: 18, boxShadow: '0 8px 40px rgba(0,0,0,0.15)', overflow: 'hidden', border: '1px solid var(--border)', width: '100%', maxWidth: 660 }}>
 
           {/* Form Header */}
@@ -96,12 +149,12 @@ export default function FundsPage() {
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} style={{ padding: '16px 20px 14px' }}>
+          <form onSubmit={handleSubmit} style={{ padding: '36px 32px 32px' }}>
 
             {/* Personal Info */}
-            <div style={{ marginBottom: 10 }}>
+            <div style={{ marginBottom: 28 }}>
               <label style={lbl}>Your Details</label>
-              <div style={{ display: 'flex', gap: 10, marginBottom: 8 }}>
+              <div style={{ display: 'flex', gap: 12, marginBottom: 14 }}>
                 <input required value={name} onChange={e => setName(e.target.value)} placeholder="Full Name" style={{ ...inp, flex: 1 }} onFocus={e => e.target.style.borderColor='#00C2FF'} onBlur={e => e.target.style.borderColor='rgba(170,182,200,0.2)'} />
                 <input required value={phone} onChange={e => setPhone(e.target.value)} placeholder="Phone Number" type="tel" style={{ ...inp, flex: 1 }} onFocus={e => e.target.style.borderColor='#00C2FF'} onBlur={e => e.target.style.borderColor='rgba(170,182,200,0.2)'} />
               </div>
@@ -109,13 +162,13 @@ export default function FundsPage() {
             </div>
 
             {/* Amount */}
-            <div style={{ marginBottom: 10 }}>
+            <div style={{ marginBottom: 28 }}>
               <label style={lbl}>Donation Amount (₹)</label>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8, marginBottom: 8 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10, marginBottom: 14 }}>
                 {presetAmounts.map(a => (
                   <div key={a} style={{ position: 'relative' }}>
                     {a === 1000 && <div style={{ position: 'absolute', top: -8, left: '50%', transform: 'translateX(-50%)', background: '#0f3460', color: 'white', fontSize: 8, fontWeight: 700, borderRadius: 5, padding: '2px 6px', whiteSpace: 'nowrap', zIndex: 1 }}>POPULAR</div>}
-                    <button type="button" onClick={() => { setAmount(String(a)); setCustomAmount('') }} style={{ width: '100%', padding: '8px 0', borderRadius: 8, border: amount === String(a) && !customAmount ? '2px solid #00C2FF' : '1.5px solid var(--border)', background: amount === String(a) && !customAmount ? 'linear-gradient(135deg, #155DFC, #00C2FF)' : 'var(--background)', color: amount === String(a) && !customAmount ? 'white' : 'var(--muted-text)', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
+                    <button type="button" onClick={() => { setAmount(String(a)); setCustomAmount('') }} style={{ width: '100%', padding: '14px 0', borderRadius: 8, border: amount === String(a) && !customAmount ? '2px solid #00C2FF' : '1.5px solid var(--border)', background: amount === String(a) && !customAmount ? 'linear-gradient(135deg, #155DFC, #00C2FF)' : 'var(--background)', color: amount === String(a) && !customAmount ? 'white' : 'var(--muted-text)', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
                       ₹{a.toLocaleString()}
                     </button>
                   </div>
@@ -128,9 +181,9 @@ export default function FundsPage() {
             </div>
 
             {/* Message */}
-            <div style={{ marginBottom: 10 }}>
+            <div style={{ marginBottom: 28 }}>
               <label style={lbl}>Message <span style={{ color: '#cbd5e1', fontWeight: 500, textTransform: 'none', letterSpacing: 0 }}>(Optional)</span></label>
-              <textarea value={message} onChange={e => setMessage(e.target.value)} placeholder="Why are you donating? Leave a message..." rows={2} style={{ ...inp, resize: 'none', fontFamily: 'Inter, sans-serif', lineHeight: 1.5 }} onFocus={e => e.target.style.borderColor='#00C2FF'} onBlur={e => e.target.style.borderColor='rgba(170,182,200,0.2)'} />
+              <textarea value={message} onChange={e => setMessage(e.target.value)} placeholder="Why are you donating? Leave a message..." rows={5} style={{ ...inp, resize: 'none', fontFamily: 'Inter, sans-serif', lineHeight: 1.6 }} onFocus={e => e.target.style.borderColor='#00C2FF'} onBlur={e => e.target.style.borderColor='rgba(170,182,200,0.2)'} />
             </div>
 
             {/* Summary */}

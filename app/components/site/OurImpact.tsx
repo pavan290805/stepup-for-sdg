@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BookOpen, Handshake, Globe, type LucideIcon } from "lucide-react";
+import { Handshake, Globe, type LucideIcon } from "lucide-react";
 import { Counter } from "@/app/components/site/Counter";
 
 type ImpactCard = {
@@ -11,11 +11,6 @@ type ImpactCard = {
 };
 
 const impactCards: ImpactCard[] = [
-  {
-    icon: BookOpen,
-    title: "Education Access",
-    desc: "Supporting quality education for underserved communities.",
-  },
   {
     icon: Handshake,
     title: "Partnerships",
@@ -35,6 +30,47 @@ const stats = [
   { to: 100, suffix: "+", label: "Projects Completed" },
 ];
 
+function StatBox({ s, delay }: { s: typeof stats[0]; delay: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.4 }}
+      transition={{ duration: 0.5, delay }}
+      className="glass rounded-2xl p-6 text-center lift"
+    >
+      <div className="font-display text-3xl font-bold grad-text">
+        <Counter to={s.to} suffix={s.suffix} />
+      </div>
+      <div className="mt-2 text-sm text-muted-text">{s.label}</div>
+    </motion.div>
+  );
+}
+
+function ImpactCardBox({ card, delay }: { card: ImpactCard; delay: number }) {
+  const Icon = card.icon;
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.5, ease: "easeOut", delay }}
+      whileHover={{ y: -10 }}
+      className="impact-card group relative flex h-full flex-col rounded-[24px] p-[1.5px]"
+    >
+      <div className="impact-surface relative flex h-full flex-col gap-4 rounded-[23px] p-6">
+        <span className="impact-icon grid h-14 w-14 place-items-center rounded-2xl transition-transform duration-500 group-hover:scale-110">
+          <Icon className="h-6 w-6 text-white" />
+        </span>
+        <h3 className="font-display text-lg font-semibold text-white">
+          {card.title}
+        </h3>
+        <p className="text-sm leading-relaxed text-[#CBD5E1]">{card.desc}</p>
+      </div>
+    </motion.div>
+  );
+}
+
 export function OurImpact() {
   return (
     <div className="mx-auto max-w-6xl">
@@ -53,53 +89,18 @@ export function OurImpact() {
         </p>
       </motion.div>
 
-      {/* Impact cards */}
-      <div className="mt-12 grid gap-6 grid-cols-1 sm:grid-cols-3">
-        {impactCards.map((card, i) => {
-          const Icon = card.icon;
-          return (
-            <motion.div
-              key={card.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, ease: "easeOut", delay: i * 0.12 }}
-              whileHover={{ y: -10 }}
-              className="impact-card group relative flex h-full flex-col rounded-[24px] p-[1.5px]"
-            >
-              <div className="impact-surface relative flex h-full flex-col gap-4 rounded-[23px] p-6">
-                <span className="impact-icon grid h-14 w-14 place-items-center rounded-2xl transition-transform duration-500 group-hover:scale-110">
-                  <Icon className="h-6 w-6 text-white" />
-                </span>
-                <h3 className="font-display text-lg font-semibold text-white">
-                  {card.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-[#CBD5E1]">
-                  {card.desc}
-                </p>
-              </div>
-            </motion.div>
-          );
-        })}
+      {/* Row 1: Partnerships left, Sustainable right */}
+      <div className="mt-12 grid grid-cols-2 gap-6">
+        <ImpactCardBox card={impactCards[0]} delay={0} />
+        <ImpactCardBox card={impactCards[1]} delay={0.1} />
       </div>
 
-      {/* Animated statistics */}
-      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {stats.map((s, i) => (
-          <motion.div
-            key={s.label}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="glass rounded-2xl p-6 text-center lift"
-          >
-            <div className="font-display text-3xl font-bold grad-text">
-              <Counter to={s.to} suffix={s.suffix} />
-            </div>
-            <div className="mt-2 text-sm text-muted-text">{s.label}</div>
-          </motion.div>
-        ))}
+      {/* Row 2: all 4 stats */}
+      <div className="mt-6 grid grid-cols-4 gap-6">
+        <StatBox s={stats[0]} delay={0} />
+        <StatBox s={stats[1]} delay={0.1} />
+        <StatBox s={stats[2]} delay={0.2} />
+        <StatBox s={stats[3]} delay={0.3} />
       </div>
     </div>
   );

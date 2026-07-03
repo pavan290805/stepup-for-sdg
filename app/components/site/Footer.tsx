@@ -14,10 +14,10 @@ export function Footer() {
     <footer className="relative mt-0" style={{ background: "linear-gradient(180deg, #0a0f1e 0%, #020814 100%)", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
 
       {/* Main footer grid */}
-      <div className="mx-auto max-w-7xl px-6 py-16 grid gap-12 md:grid-cols-12">
+      <div className="mx-auto max-w-7xl px-6 py-16 grid gap-12 md:grid-cols-4">
 
         {/* Brand col */}
-        <div className="md:col-span-4 flex flex-col items-start gap-6">
+        <div className="flex flex-col items-start gap-6">
           <Link href="/" className="inline-block -ml-1">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <span className="inline-flex h-20 w-20 items-center justify-center rounded-full overflow-hidden bg-white">
@@ -29,7 +29,7 @@ export function Footer() {
             </span>
           </Link>
           <p className="text-sm leading-relaxed max-w-xs" style={{ color: "#94a3b8" }}>
-            Uniting students, schools, NGOs and companies to build a better, sustainable and inclusive world.
+            Educating students on the UN Sustainable Development Goals, empowering them to adopt sustainable lifestyles, make informed choices, explore meaningful careers, and drive positive change in their families and communities.
           </p>
           <div className="flex gap-3">
             {[
@@ -60,7 +60,7 @@ export function Footer() {
         </div>
 
         {/* Quick Links */}
-        <div className="md:col-span-2">
+        <div>
           <h4 className="text-sm font-bold uppercase tracking-[0.15em] mb-5" style={{ color: "#f1f5f9" }}>Quick Links</h4>
           <ul className="space-y-3 text-sm">
             {([
@@ -88,22 +88,19 @@ export function Footer() {
         </div>
 
         {/* Who We Serve */}
-        <div className="md:col-span-3">
+        <div>
           <h4 className="text-sm font-bold uppercase tracking-[0.15em] mb-5" style={{ color: "#f1f5f9" }}>Who We Serve</h4>
           <ul className="space-y-3 text-sm">
-            {["Companies", "NGOs", "Volunteers"].map((item) => (
+            {["Companies", "Schools", "NGOs", "Volunteers", "Universities", "Colleges"].map((item) => (
               <li key={item} style={{ color: "#94a3b8" }}>{item}</li>
             ))}
-            <li style={{ color: "#94a3b8" }}>
-              Schools<br /><span className="mt-3 block">Universities / Colleges</span>
-            </li>
           </ul>
         </div>
 
         {/* Languages + Contact */}
-        <div className="md:col-span-3">
+        <div>
           <h4 className="text-sm font-bold uppercase tracking-[0.15em] mb-5" style={{ color: "#f1f5f9" }}>Languages</h4>
-          <ul className="space-y-3 text-sm mb-8">
+          <ul className="space-y-3 text-sm mb-5">
             {languages.map((l) => (
               <li key={l.code}>
                 <button
@@ -116,7 +113,7 @@ export function Footer() {
               </li>
             ))}
           </ul>
-          <h4 className="text-sm font-bold uppercase tracking-[0.15em] mb-3" style={{ color: "#f1f5f9" }}>Contact</h4>
+          <h4 className="text-sm font-bold uppercase tracking-[0.15em] mb-5" style={{ color: "#f1f5f9" }}>Contact</h4>
           <div className="flex flex-col gap-1.5 text-sm" style={{ color: "#94a3b8" }}>
             <p>contact@stepupforsdg.org</p>
             <p>info@stepupforsdg.org</p>
@@ -131,7 +128,7 @@ export function Footer() {
         style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
       >
         <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-2 text-xs" style={{ color: "#94a3b8" }}>
-          <span>© {new Date().getFullYear()} Pavdhan Organization. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Pavdhan foundation. All rights reserved.</span>
         </div>
       </div>
     </footer>

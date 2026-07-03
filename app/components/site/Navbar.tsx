@@ -19,30 +19,17 @@ const navLinks = [
 
 function LanguageToggle() {
   const { language, setLanguage } = useLanguage();
-  const langs: { code: "en" | "hi"; label: string }[] = [
-    { code: "en", label: "EN" },
-    { code: "hi", label: "हिं" },
-  ];
   return (
-    <div
+    <select
       data-no-translate
-      className="inline-flex items-center rounded-full border border-border bg-background/60 p-0.5 text-xs font-semibold"
+      value={language}
+      onChange={(e) => setLanguage(e.target.value as "en" | "hi")}
+      aria-label="Select language"
+      className="rounded-full border border-border bg-background/60 px-2.5 py-1 text-xs font-semibold text-foreground cursor-pointer outline-none hover:border-cyan-glow transition"
     >
-      {langs.map((l) => (
-        <button
-          key={l.code}
-          onClick={() => setLanguage(l.code)}
-          aria-label={`Switch to ${l.code === "en" ? "English" : "Hindi"}`}
-          className={`rounded-full px-2.5 py-1 transition ${
-            language === l.code
-              ? "bg-cyan-glow text-background"
-              : "text-muted-text hover:text-foreground"
-          }`}
-        >
-          {l.label}
-        </button>
-      ))}
-    </div>
+      <option value="en">English</option>
+      <option value="hi">हिंदी</option>
+    </select>
   );
 }
 

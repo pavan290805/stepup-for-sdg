@@ -205,7 +205,10 @@ html:not(.dark) {
   }
 }
 
-/* ============ Premium space backdrop ============ */
+/* Hide scrollbar utility */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
 .space-bg {
   background:
     /* centered soft blue glow */

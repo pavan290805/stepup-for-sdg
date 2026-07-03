@@ -39,11 +39,7 @@ const cards: CardData[] = [
     image:
       "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&q=80",
     imageAlt: "Children learning inside a modern classroom",
-    stats: [
-      { icon: "👨‍🎓", to: 1, suffix: "M+", label: "Future Learners" },
-      { icon: "🏫", to: 500, suffix: "+", label: "Schools" },
-      { icon: "🌍", to: 25, suffix: "+", label: "Regions" },
-    ],
+    stats: [],
     from: "left",
     delay: 0,
   },
@@ -60,11 +56,7 @@ const cards: CardData[] = [
     image:
       "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80",
     imageAlt: "Volunteers helping students in a rural school",
-    stats: [
-      { icon: "🤝", to: 200, suffix: "+", label: "Partners" },
-      { icon: "📚", to: 1000, suffix: "+", label: "Projects" },
-      { icon: "❤️", to: 50, suffix: "K+", label: "Lives Impacted" },
-    ],
+    stats: [],
     from: "right",
     delay: 0.2,
   },
@@ -73,10 +65,8 @@ const cards: CardData[] = [
 function PremiumCard({ data }: { data: CardData }) {
   const Icon = data.icon;
 
-  // Normalised pointer position (-0.5 .. 0.5) for tilt + magnetic pull.
   const nx = useMotionValue(0);
   const ny = useMotionValue(0);
-  // Raw pixel position for the mouse-following border glow.
   const gx = useMotionValue(50);
   const gy = useMotionValue(50);
 
@@ -105,7 +95,6 @@ function PremiumCard({ data }: { data: CardData }) {
   }
 
   return (
-    // Outer wrapper: 3D rotate-in + blur-to-clear scroll reveal.
     <motion.div
       initial={{
         opacity: 0,
@@ -124,7 +113,6 @@ function PremiumCard({ data }: { data: CardData }) {
       style={{ perspective: 1200 }}
       className="[transform-style:preserve-3d]"
     >
-      {/* Interactive layer: magnetic pull + 3D tilt + hover lift. */}
       <motion.div
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -138,16 +126,13 @@ function PremiumCard({ data }: { data: CardData }) {
         whileHover={{ scale: 1.02 }}
         className="vm-card group relative rounded-[32px] p-[1.5px] [transform-style:preserve-3d]"
       >
-        {/* Mouse-following border glow */}
         <motion.span
           aria-hidden
           style={{ background: glow }}
           className="vm-glow pointer-events-none absolute inset-0 rounded-[32px] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         />
 
-        {/* Inner frosted glass surface */}
         <div className="vm-surface relative flex h-full min-h-[480px] flex-col gap-5 rounded-[31px] p-6 md:p-7">
-          {/* Icon + eyebrow */}
           <div className="flex items-center gap-3">
             <motion.span
               animate={{ y: [0, -8, 0] }}
@@ -161,7 +146,6 @@ function PremiumCard({ data }: { data: CardData }) {
             </h3>
           </div>
 
-          {/* Image */}
           <div className="overflow-hidden rounded-3xl">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -171,7 +155,6 @@ function PremiumCard({ data }: { data: CardData }) {
             />
           </div>
 
-          {/* Headline + body */}
           <div className="flex flex-1 flex-col gap-3">
             <h4 className="font-display text-lg font-semibold leading-snug text-white">
               {data.headline}
@@ -182,41 +165,37 @@ function PremiumCard({ data }: { data: CardData }) {
               </p>
             ))}
             <p className="vm-highlight mt-0.5 border-l-2 pl-3 text-[13px] font-medium italic">
-              “{data.highlight}”
+              "{data.highlight}"
             </p>
           </div>
 
-          {/* Statistics */}
-          <div className="grid grid-cols-3 gap-3 border-t border-white/10 pt-5">
-            {data.stats.map((s) => (
-              <div key={s.label} className="text-center">
-                <div className="text-[11px] leading-tight text-[#CBD5E1]">
-                  {s.label}
+          {data.stats.length > 0 && (
+            <div className="grid grid-cols-3 gap-3 border-t border-white/10 pt-5">
+              {data.stats.map((s) => (
+                <div key={s.label} className="text-center">
+                  <div className="text-[11px] leading-tight text-[#CBD5E1]">
+                    {s.label}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </motion.div>
     </motion.div>
   );
 }
 
-
-
 export function VisionMission() {
   return (
     <section className="vm-section relative overflow-hidden">
-      {/* Ambient background */}
       <div className="vm-bg pointer-events-none absolute inset-0 -z-10">
         <span className="vm-blob vm-blob-blue" />
         <span className="vm-blob vm-blob-green" />
         <span className="vm-rays" />
         <span className="vm-particles" />
-
       </div>
 
-      {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -233,7 +212,6 @@ export function VisionMission() {
         </p>
       </motion.div>
 
-      {/* Cards */}
       <div className="mx-auto mt-12 grid w-full max-w-[1120px] grid-cols-1 gap-8 md:grid-cols-2">
         {cards.map((c) => (
           <PremiumCard key={c.id} data={c} />

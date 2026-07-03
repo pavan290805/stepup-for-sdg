@@ -1,0 +1,88 @@
+﻿      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 40px 20px 40px', marginTop: '-40px', position: 'relative', zIndex: 1, gap: 32 }}>
+
+        {/* LEFT â€” SDG Funds Dashboard */}
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16, minWidth: 0 }}>
+
+          {/* Title */}
+          <div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: '#00C2FF', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 6 }}>SDG Fund Impact</div>
+            <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--foreground)', lineHeight: 1.2 }}>Where Your<br/>Donation Goes</div>
+          </div>
+
+          {/* Stat cards */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+            {[
+              { label: 'Total Raised', value: 'â‚¹12.4L', change: '+18%', color: '#00C2FF' },
+              { label: 'Projects Funded', value: '186', change: '+12', color: '#00B050' },
+              { label: 'Students Reached', value: '12,400', change: '+2.1K', color: '#7B61FF' },
+              { label: 'NGOs Supported', value: '34', change: '+5', color: '#FF7A00' },
+            ].map(s => (
+              <div key={s.label} style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 12, padding: '12px 14px' }}>
+                <div style={{ fontSize: 10, color: 'var(--muted-text)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>{s.label}</div>
+                <div style={{ fontSize: 20, fontWeight: 800, color: s.color }}>{s.value}</div>
+                <div style={{ fontSize: 10, color: '#4ade80', fontWeight: 600, marginTop: 2 }}>â†‘ {s.change} this year</div>
+              </div>
+            ))}
+          </div>
+
+          {/* SDG Allocation Bar Chart */}
+          <div style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 12, padding: '14px 16px' }}>
+            <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--muted-text)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 12 }}>Fund Allocation by SDG Goal</div>
+            {[
+              { label: 'SDG 4 â€” Quality Education', pct: 42, color: '#C5192D' },
+              { label: 'SDG 13 â€” Climate Action',   pct: 22, color: '#3F7E44' },
+              { label: 'SDG 10 â€” Reduced Inequalities', pct: 16, color: '#DD1367' },
+              { label: 'SDG 17 â€” Partnerships',     pct: 12, color: '#19486A' },
+              { label: 'SDG 9 â€” Innovation',        pct: 8,  color: '#FD6925' },
+            ].map(b => (
+              <div key={b.label} style={{ marginBottom: 9 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
+                  <span style={{ fontSize: 11, color: 'var(--foreground)', fontWeight: 500 }}>{b.label}</span>
+                  <span style={{ fontSize: 11, fontWeight: 700, color: b.color }}>{b.pct}%</span>
+                </div>
+                <div style={{ height: 6, borderRadius: 99, background: 'var(--border)' }}>
+                  <div style={{ height: '100%', borderRadius: 99, width: `${b.pct}%`, background: b.color, transition: 'width 1s ease' }} />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Monthly trend mini chart */}
+          <div style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 12, padding: '14px 16px' }}>
+            <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--muted-text)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 12 }}>Monthly Donations (â‚¹ in thousands)</div>
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 6, height: 60 }}>
+              {[18, 32, 24, 45, 38, 55, 42, 68, 52, 74, 61, 88].map((h, i) => (
+                <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+                  <div style={{ width: '100%', borderRadius: '4px 4px 0 0', height: `${(h / 88) * 52}px`, background: i === 11 ? '#00C2FF' : `rgba(0,194,255,${0.25 + (h/88)*0.5})` }} />
+                  <span style={{ fontSize: 8, color: 'var(--muted-text)' }}>{['J','F','M','A','M','J','J','A','S','O','N','D'][i]}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+        <div style={{ background: 'var(--card)', backdropFilter: 'blur(16px)', borderRadius: 18, boxShadow: '0 8px 40px rgba(0,0,0,0.15)', overflow: 'hidden', border: '1px solid var(--border)', width: '100%', maxWidth: 660 }}>
+
+          {/* Form Header */}
+          <div style={{ background: 'linear-gradient(135deg, #0f3460 0%, #0e6fa3 60%, #00b8d4 100%)', padding: '14px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div>
+              <div style={{ color: 'white', fontSize: 16, fontWeight: 800 }}>Make a Donation</div>
+              <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: 11, marginTop: 2 }}>100% goes directly to SDG projects</div>
+            </div>
+            <div style={{ textAlign: 'right' }}>
+              <div style={{ fontSize: 9, fontWeight: 700, color: 'rgba(255,255,255,0.5)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Secured by</div>
+              <div style={{ fontSize: 12, fontWeight: 800, color: 'white' }}>Razorpay</div>
+            </div>
+          </div>
+
+          <form onSubmit={handleSubmit} style={{ padding: '36px 32px 32px' }}>
+
+            {/* Personal Info */}
+            <div style={{ marginBottom: 28 }}>
+              <label style={lbl}>Your Details</label>
+              <div style={{ display: 'flex', gap: 12, marginBottom: 14 }}>
+                <input required value={name} onChange={e => setName(e.target.value)} placeholder="Full Name" style={{ ...inp, flex: 1 }} onFocus={e => e.target.style.borderColor='#00C2FF'} onBlur={e => e.target.style.borderColor='rgba(170,182,200,0.2)'} />
+                <input required value={phone} onChange={e => setPhone(e.target.value)} placeholder="Phone Number" type="tel" style={{ ...inp, flex: 1 }} onFocus={e => e.target.style.borderColor='#00C2FF'} onBlur={e => e.target.style.borderColor='rgba(170,182,200,0.2)'} />
+              </div>
+              <input required value={email} onChange={e => setEmail(e.target.value)} placeholder="Email Address" type="email" style={inp} onFocus={e => e.target.style.borderColor='#00C2FF'} onBlur={e => e.target.style.borderColor='rgba(170,182,200,0.2)'} />
+            </div>

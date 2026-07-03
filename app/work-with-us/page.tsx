@@ -18,7 +18,7 @@ const sections = [
   },
   {
     icon: GraduationCap,
-    title: "Schools",
+    title: "Schools / Universities / Colleges",
     body: "Get access to digital tools, infrastructure support and quality learning programs.",
     href: "/get-involved/school",
   },

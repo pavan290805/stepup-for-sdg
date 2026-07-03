@@ -188,40 +188,6 @@ export default function CorporateCSRFundsPage() {
                     </select>
                   </div>
 
-                  <div>
-                    <label className="block text-xs font-semibold mb-1.5 uppercase tracking-wide" style={{ color: "var(--foreground)" }}>Primary Funding Area</label>
-                    <select required value={form.fundingArea} onChange={(e) => update("fundingArea", e.target.value)}
-                      className="w-full rounded-xl px-4 py-2.5 text-sm outline-none"
-                      style={inputStyle}>
-                      <option value="">Select area</option>
-                      <option>Digital Infrastructure</option>
-                      <option>Teacher Training</option>
-                      <option>Scholarships</option>
-                      <option>School Construction</option>
-                      <option>Learning Materials</option>
-                      <option>STEM Programs</option>
-                      <option>Girl Child Education</option>
-                      <option>Rural Outreach</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold mb-1.5 uppercase tracking-wide" style={{ color: "var(--foreground)" }}>Target Region</label>
-                    <select required value={form.region} onChange={(e) => update("region", e.target.value)}
-                      className="w-full rounded-xl px-4 py-2.5 text-sm outline-none"
-                      style={inputStyle}>
-                      <option value="">Select region</option>
-                      <option>Pan India</option>
-                      <option>North India</option>
-                      <option>South India</option>
-                      <option>East India</option>
-                      <option>West India</option>
-                      <option>Northeast India</option>
-                      <option>South Asia</option>
-                      <option>Africa</option>
-                      <option>Global</option>
-                    </select>
-                  </div>
                 </div>
 
                 <div>

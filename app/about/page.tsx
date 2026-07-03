@@ -19,17 +19,12 @@ export default function AboutPage() {
         <SpaceBackdrop />
         <div className="relative mx-auto max-w-4xl text-center">
           <FadeUp>
-            <span className="text-xs uppercase tracking-[0.25em] text-cyan-glow">
-              About Us
-            </span>
             <h1 className="mt-4 font-display text-4xl md:text-6xl font-bold leading-tight">
               Purpose-driven partnerships for a{" "}
               <span className="grad-text">better tomorrow</span>
             </h1>
             <p className="mt-6 text-muted-text max-w-2xl mx-auto">
-              We bring together schools, NGOs, companies and communities to
-              deliver transparent, measurable impact aligned with the UN
-              Sustainable Development Goals.
+              Educating students on the UN Sustainable Development Goals, empowering them to adopt sustainable lifestyles, make informed choices, explore meaningful careers, and drive positive change in their families and communities.
             </p>
           </FadeUp>
         </div>

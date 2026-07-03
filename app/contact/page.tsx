@@ -5,7 +5,7 @@ import { Mail, Phone, Send, User, MessageCircle, CheckCircle } from "lucide-reac
 import { addContactMessage } from "@/app/lib/adminStore";
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", phone: "", email: "", regarding: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(e: React.FormEvent) {
@@ -14,7 +14,7 @@ export default function ContactPage() {
       from: form.name,
       email: form.email,
       phone: form.phone,
-      subject: "General Enquiry",
+      subject: form.regarding ? `Regarding: ${form.regarding}` : "General Enquiry",
       body: form.message,
       time: new Date().toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" }),
       date: "Today",
@@ -83,7 +83,7 @@ export default function ContactPage() {
                 <h2 className="text-xl font-bold text-slate-900 dark:text-white">Message Sent!</h2>
                 <p className="text-sm text-slate-600 dark:text-slate-300">Thank you! We&apos;ll get back to you within 3–5 business days.</p>
                 <button
-                  onClick={() => { setSubmitted(false); setForm({ name: "", phone: "", email: "", message: "" }); }}
+                  onClick={() => { setSubmitted(false); setForm({ name: "", phone: "", email: "", regarding: "", message: "" }); }}
                   className="mt-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white bg-blue-600"
                 >
                   Send Another
@@ -104,6 +104,17 @@ export default function ContactPage() {
                 <div className="mb-4 flex items-center gap-4 rounded-xl border border-slate-200 dark:border-white/10 p-4">
                   <Mail className="text-blue-600 dark:text-cyan-400 shrink-0" size={20} />
                   <input type="email" placeholder="Your Email" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} className="w-full bg-transparent outline-none text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500" required />
+                </div>
+
+                <div className="mb-4 flex items-center gap-4 rounded-xl border border-slate-200 dark:border-white/10 p-4" style={{ background: "transparent" }}>
+                  <MessageCircle className="text-blue-600 dark:text-cyan-400 shrink-0" size={20} />
+                  <select required value={form.regarding} onChange={e => setForm(f => ({ ...f, regarding: e.target.value }))} className="w-full outline-none text-sm bg-transparent" style={{ color: form.regarding ? "inherit" : "#94a3b8", colorScheme: "light dark" }}>
+                    <option value="" disabled style={{ background: "#0B1426", color: "#94a3b8" }}>Contacting us regarding...</option>
+                    <option style={{ background: "#0B1426", color: "#fff" }}>NGO</option>
+                    <option style={{ background: "#0B1426", color: "#fff" }}>Volunteer</option>
+                    <option style={{ background: "#0B1426", color: "#fff" }}>School/University/College</option>
+                    <option style={{ background: "#0B1426", color: "#fff" }}>CSR Funds</option>
+                  </select>
                 </div>
 
                 <div className="mb-5 flex items-start gap-4 rounded-xl border border-slate-200 dark:border-white/10 p-4">

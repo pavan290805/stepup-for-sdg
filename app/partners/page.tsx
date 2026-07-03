@@ -273,7 +273,7 @@ const ECOSYSTEM_LOGOS = [
 ];
 
 const heroFloatingCards = [
-  { label:"CSR Funding",       value:"Rs1Cr+", sub:"Enabled this year",  delay:0,    floatDur:3.2 },
+  { label:"CSR Funding",       value:"Rs1.0Cr+", sub:"Enabled this year",  delay:0,    floatDur:3.2 },
   { label:"SDG Projects",      value:"186+",   sub:"Currently active",   delay:0.15, floatDur:4.0 },
   { label:"Schools Connected", value:"142+",   sub:"Across India",       delay:0.3,  floatDur:3.6 },
   { label:"Verified Partners", value:"260+",   sub:"Organizations",      delay:0.45, floatDur:3.8 },
@@ -686,7 +686,7 @@ function ExpandableStatCard({card,index,mounted}:{
         whileHover={!expanded?{scale:1.05,y:-4}:{}}
         whileTap={{scale:expanded?1.14:1.02}}
         transition={{type:"spring",stiffness:260,damping:20}}
-        className="rounded-[20px] p-6 relative"
+        className="rounded-[20px] p-4 relative"
         style={{
           background:expanded
             ?`linear-gradient(135deg,rgba(6,16,36,0.99) 0%,rgba(12,20,44,0.99) 100%)`
@@ -742,7 +742,7 @@ function ExpandableStatCard({card,index,mounted}:{
             animate={{scale:expanded?1.15:1}}
             transition={{type:"spring",stiffness:280,damping:22}}
             className="font-black tracking-tight leading-none mb-2"
-            style={{fontSize:30,transformOrigin:"left center"}}
+            style={{fontSize:22,transformOrigin:"left center",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}
           >
             <HeroStatCounter value={card.value} color={color}/>
           </motion.div>
@@ -1188,7 +1188,7 @@ export default function PartnersPage() {
             <p className="text-[10px] font-semibold uppercase tracking-widest mb-3" style={{color:theme.muted}}>Join the ecosystem</p>
             <h2 className="text-[34px] md:text-[44px] font-black tracking-[-0.03em] mb-4" style={{color:theme.text}}>Partner with StepUp For SDG</h2>
             <p className="mx-auto max-w-[480px] text-[15px] leading-relaxed" style={{color:theme.muted}}>
-              Whether you&apos;re a company with a CSR mandate, a school with motivated students, or an NGO with a program to scale — there&apos;s a place for you here.
+              Whether you&apos;re a school, NGO, company or volunteer, there&apos;s a place for you in building a future where every child has learned about the UN SDG Goals and creates an impact on the world.
             </p>
           </div>
         </Reveal>
@@ -1240,7 +1240,7 @@ export default function PartnersPage() {
         </Reveal>
 
         <Reveal delay={0.15}>
-          <div className="flex justify-center">
+          <div className="flex justify-center w-full">
             <motion.a
               href="/work-with-us"
               whileHover={{scale:1.05,y:-2}} whileTap={{scale:0.97}}
