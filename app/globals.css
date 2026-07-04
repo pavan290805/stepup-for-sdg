@@ -763,9 +763,32 @@ html:not(.dark) body {
   box-shadow: 0 0 38px rgba(0, 208, 132, 0.65);
 }
 
+/* Text color transitions for hover state */
+.vm-card .vm-surface h3,
+.vm-card .vm-surface h4,
+.vm-card .vm-surface p,
+.vm-card .vm-icon {
+  transition: color 0.3s ease;
+}
+
+.vm-card:hover .vm-surface h3,
+.vm-card:hover .vm-surface h4,
+.vm-card:hover .vm-surface p {
+  color: #FFFFFF !important;
+}
+
+.vm-card:hover .vm-icon {
+  color: #FFFFFF;
+}
+
 .vm-highlight {
   border-color: #00C2FF;
   color: #00D084;
+  transition: color 0.3s ease;
+}
+
+.vm-card:hover .vm-highlight {
+  color: #FFFFFF;
 }
 
 .vm-stat {
