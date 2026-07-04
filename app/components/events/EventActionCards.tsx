@@ -12,7 +12,7 @@ type Action = {
   title: string;
   text: string;
   link: string;
-  href: string;
+  href: string | null;
   gradient: string;
 };
 
