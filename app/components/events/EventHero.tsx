@@ -39,7 +39,7 @@ export function EventHero() {
         ))}
       </div>
 
-      <div className="mx-auto flex max-w-5xl flex-col items-center px-6 py-24 text-center sm:py-28 lg:py-36">
+      <div className="mx-auto flex max-w-5xl flex-col items-center px-6 py-14 text-center sm:py-16 lg:py-20">
         {/* Overlapping gradient glass card */}
         <div
           className="evt-card-rise relative w-full overflow-hidden rounded-[2rem] border border-white/15 p-8 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)] sm:p-12 lg:p-16"

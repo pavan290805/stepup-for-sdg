@@ -30,7 +30,7 @@ export function EventsExplorer() {
   }
 
   return (
-    <section id="events" className="scroll-mt-20 px-6 py-20">
+    <section id="events" className="scroll-mt-20 px-6 py-12">
       <div className="mx-auto max-w-6xl">
         <FadeUp>
           <div className="text-center">

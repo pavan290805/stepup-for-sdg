@@ -19,7 +19,7 @@ export function PartnersHero() {
   const radius = 190;
 
   return (
-    <section className="relative isolate overflow-hidden px-6 pt-28 pb-24 md:pt-32 md:pb-32">
+    <section className="relative isolate overflow-hidden px-6 pt-16 pb-14 md:pt-20 md:pb-16">
       <AmbientBackdrop dense />
       <Particles count={30} />
       <MouseGlow size={640} />

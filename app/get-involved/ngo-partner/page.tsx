@@ -23,7 +23,7 @@ export default function NgoPartnerPage() {
   function update(key: string, val: string) { setForm((f) => ({ ...f, [key]: val })); }
 
   return (
-    <main className="relative min-h-screen px-6 py-16">
+    <main className="relative min-h-fit px-6 py-10">
       <div className="absolute inset-0 -z-20">
         <img
           src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=2000&q=80"

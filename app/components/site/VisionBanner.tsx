@@ -4,7 +4,7 @@ import { FadeUp } from "./FadeUp";
 
 export function VisionBanner() {
   return (
-    <section className="relative py-24 px-6">
+    <section className="relative py-14 px-6">
       <div className="mx-auto max-w-6xl">
         <FadeUp>
           <div

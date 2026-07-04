@@ -7,7 +7,7 @@ export function TrustedMarquee() {
   const row = [...LOGOS, ...LOGOS]; // duplicate for seamless -50% loop
 
   return (
-    <section className="relative overflow-hidden px-6 py-20">
+    <section className="relative overflow-hidden px-6 py-12">
       <Reveal className="text-center">
         <span className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-text">
           Trusted by Leading Organizations

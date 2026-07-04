@@ -5,7 +5,7 @@ import { LIVE_STATS } from "./partnersData";
 
 export function LiveImpact() {
   return (
-    <section className="relative overflow-hidden px-6 py-24">
+    <section className="relative overflow-hidden px-6 py-14">
       <AmbientBackdrop />
       <Reveal className="relative mx-auto max-w-3xl text-center">
         <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-cyan-glow">

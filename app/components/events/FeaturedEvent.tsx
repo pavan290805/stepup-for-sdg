@@ -18,7 +18,7 @@ export function FeaturedEvent() {
   const event = EVENTS.find((e) => e.id === FEATURED_ID)!;
 
   return (
-    <section className="px-6 py-16">
+    <section className="px-6 py-10">
       <div className="mx-auto max-w-6xl">
         <FadeUp>
           <div className="evt-tilt glass relative grid overflow-hidden rounded-[2rem] border border-border lg:grid-cols-2">

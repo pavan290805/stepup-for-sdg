@@ -34,7 +34,7 @@ export default async function SDGDetailPage({ params }: PageProps) {
   const officialUnUrl = `https://sdgs.un.org/goals/goal${sdg.id}`;
 
   return (
-    <main className="relative min-h-screen overflow-hidden px-5 py-8 text-white sm:px-8 lg:px-12" style={{ background: "var(--background)", color: "var(--foreground)" }}>
+    <main className="relative min-h-fit overflow-hidden px-5 py-6 text-white sm:px-8 lg:px-12" style={{ background: "var(--background)", color: "var(--foreground)" }}>
       <style>
         {`
           @keyframes sdgInfoFadeInUp {
@@ -49,8 +49,8 @@ export default async function SDGDetailPage({ params }: PageProps) {
           }
         `}
       </style>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(56,189,248,0.22),transparent_28%),radial-gradient(circle_at_18%_88%,rgba(45,212,191,0.16),transparent_32%)] dark:opacity-100 opacity-40" />
-      <div className="absolute inset-0 opacity-30 dark:opacity-50 [background-image:radial-gradient(circle,rgba(255,255,255,0.72)_1px,transparent_1px)] [background-size:34px_34px]" />
+      <div className="absolute inset-0 hidden bg-[radial-gradient(circle_at_50%_18%,rgba(56,189,248,0.22),transparent_28%),radial-gradient(circle_at_18%_88%,rgba(45,212,191,0.16),transparent_32%)] dark:block dark:opacity-100" />
+      <div className="absolute inset-0 hidden [background-image:radial-gradient(circle,rgba(255,255,255,0.72)_1px,transparent_1px)] [background-size:34px_34px] dark:block dark:opacity-50" />
 
       <div className="relative z-10 mx-auto flex min-h-[calc(100vh-4rem)] w-full max-w-6xl flex-col justify-center">
         <Link

@@ -75,7 +75,7 @@ function LanguageSelect() {
     <div ref={ref} className="relative notranslate" data-no-translate translate="no">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 px-3 py-1.5 text-xs font-semibold text-foreground hover:border-cyan-glow transition"
+        className="inline-flex max-w-[180px] items-center gap-1.5 whitespace-nowrap rounded-full border border-border bg-background/60 px-3 py-1.5 text-xs font-semibold text-foreground transition hover:border-cyan-glow"
       >
         <Globe className="h-3.5 w-3.5" />
         {selected.label}
@@ -116,10 +116,10 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border">
-      <div className="mx-auto max-w-7xl px-8 h-20 flex items-center justify-between w-full">
+    <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border" data-no-translate translate="no">
+      <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-3 group">
-          <span className="inline-flex h-14 w-14 items-center justify-center rounded-full overflow-hidden bg-white">
+          <span className="inline-flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-white shadow-sm sm:h-22 sm:w-22 md:h-24 md:w-24">
             <img
               src="/assets/SDG_LOGO-removebg-preview.png"
               alt="StepUp for SDG"
@@ -128,7 +128,7 @@ export function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-10">
+        <nav className="hidden md:flex items-center gap-8 lg:gap-10 notranslate" data-no-translate translate="no">
           {navLinks.map((l) =>
             l.disabled ? (
               <span key={l.to} className="text-lg font-semibold text-muted-text cursor-default select-none">
@@ -147,7 +147,7 @@ export function Navbar() {
           )}
         </nav>
 
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-3 notranslate" data-no-translate translate="no">
           <LanguageSelect />
           <ThemeToggle />
           <Link href="/funds"
@@ -160,7 +160,7 @@ export function Navbar() {
           </Link>
         </div>
 
-        <div className="md:hidden flex items-center gap-2">
+        <div className="md:hidden flex items-center gap-2 notranslate" data-no-translate translate="no">
           <LanguageSelect />
           <ThemeToggle />
           <button onClick={() => setMobileOpen((v) => !v)} aria-label="Toggle menu">
@@ -170,7 +170,7 @@ export function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden border-t border-border bg-background/95 px-6 py-4 space-y-3">
+        <div className="md:hidden border-t border-border bg-background/95 px-6 py-4 space-y-3 notranslate" data-no-translate translate="no">
           {navLinks.map((l) =>
             l.disabled ? (
               <span key={l.to} className="block text-muted-text cursor-default select-none">

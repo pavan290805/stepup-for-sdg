@@ -25,7 +25,7 @@ function EventDetail({ event }: { event: (typeof EVENTS)[0] }) {
   }
 
   return (
-    <main className="min-h-screen px-6 py-16">
+    <main className="min-h-fit px-6 py-10">
       <div className="mx-auto max-w-5xl">
 
         {/* Back */}

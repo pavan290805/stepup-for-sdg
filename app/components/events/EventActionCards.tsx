@@ -186,7 +186,7 @@ export function EventActionCards() {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <section id="host" className="scroll-mt-20 px-6 py-20 bg-deep-blue/40">
+    <section id="host" className="scroll-mt-20 px-6 py-12 bg-deep-blue/40">
       <div className="mx-auto max-w-[1400px]">
         <FadeUp>
           <div className="text-center">

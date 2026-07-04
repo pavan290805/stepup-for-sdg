@@ -898,7 +898,7 @@ export default function PartnersPage() {
   });
 
   return (
-    <div className="min-h-screen theme-transition" style={{background:theme.pageBg,color:theme.text,fontFamily:"'Inter',system-ui,sans-serif"}}>
+    <div className="min-h-fit theme-transition" style={{background:theme.pageBg,color:theme.text,fontFamily:"'Inter',system-ui,sans-serif"}}>
       <style>{GLOBAL_STYLES}</style>
 
       {/* ── HERO ── */}
@@ -951,7 +951,7 @@ export default function PartnersPage() {
             }}/>
         ))}
 
-        <div className="relative z-10 w-full px-4 md:px-14 py-16">
+        <div className="relative z-10 w-full px-4 md:px-14 py-10">
           <HeroCard mounted={mounted} mouseX={mouseX} mouseY={mouseY} heroRef={heroRef as React.RefObject<HTMLDivElement>}>
 
             {/* Card inner layout: left text + right stats side by side */}
@@ -1025,9 +1025,9 @@ export default function PartnersPage() {
       </section>
 
       {/* ── ECOSYSTEM FLOW ── */}
-      <section className="px-6 md:px-10 py-16" style={{borderBottom:`1px solid ${theme.border}`,background:theme.sectionAlt}}>
+      <section className="px-6 md:px-10 py-10" style={{borderBottom:`1px solid ${theme.border}`,background:theme.sectionAlt}}>
         <Reveal>
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <p className="text-[10px] font-semibold uppercase tracking-widest mb-3" style={{color:theme.muted}}>Our partnership ecosystem</p>
             <h2 className="text-[28px] md:text-[36px] font-black tracking-tight" style={{color:theme.text}}>Together, we create lasting change</h2>
             <p className="mt-2 text-sm max-w-md mx-auto" style={{color:theme.muted}}>Each partner plays a distinct role, working toward the same goals.</p>
@@ -1118,7 +1118,7 @@ export default function PartnersPage() {
       </section>
 
       {/* ── PARTNER DIRECTORY ── */}
-      <section id="directory" className="px-6 md:px-10 py-16" style={{borderBottom:`1px solid ${theme.border}`}}>
+      <section id="directory" className="px-6 md:px-10 py-10" style={{borderBottom:`1px solid ${theme.border}`}}>
         <Reveal>
           <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
             <div className="relative">
@@ -1150,7 +1150,7 @@ export default function PartnersPage() {
           </div>
         </Reveal>
         {filtered.length===0?(
-          <div className="rounded-2xl py-24 text-center text-sm" style={{border:`1px dashed ${theme.border}`,color:theme.muted}}>
+          <div className="rounded-2xl py-12 text-center text-sm" style={{border:`1px dashed ${theme.border}`,color:theme.muted}}>
             No partners found for &ldquo;{searchQuery}&rdquo;
           </div>
         ):(
@@ -1179,12 +1179,12 @@ export default function PartnersPage() {
       </section>
 
       {/* ── PARTNER WITH US ── */}
-      <section id="partner-form" className="relative overflow-hidden px-6 md:px-10 py-20"
+      <section id="partner-form" className="relative overflow-hidden px-6 md:px-10 py-12"
         style={{borderTop:`1px solid ${theme.border}`,background:theme.sectionAlt}}>
         <div aria-hidden className="pointer-events-none absolute -bottom-48 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full blur-[140px]"
           style={{background:`${theme.accent}08`}}/>
         <Reveal>
-          <div className="text-center mb-14">
+          <div className="text-center mb-8">
             <p className="text-[10px] font-semibold uppercase tracking-widest mb-3" style={{color:theme.muted}}>Join the ecosystem</p>
             <h2 className="text-[34px] md:text-[44px] font-black tracking-[-0.03em] mb-4" style={{color:theme.text}}>Partner with StepUp For SDG</h2>
             <p className="mx-auto max-w-[480px] text-[15px] leading-relaxed" style={{color:theme.muted}}>

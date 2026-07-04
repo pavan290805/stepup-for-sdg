@@ -7,7 +7,7 @@ export function EventTimeline() {
   const sorted = [...EVENTS];
 
   return (
-    <section className="px-6 py-20 bg-deep-blue/40">
+    <section className="px-6 py-12 bg-deep-blue/40">
       <div className="mx-auto max-w-5xl">
         <FadeUp>
           <div className="text-center">

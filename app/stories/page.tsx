@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function StoriesPage() {
   return (
-    <main className="min-h-screen py-20 px-6" style={{ background: "var(--background)" }}>
+    <main className="min-h-fit py-10 px-6" style={{ background: "var(--background)" }}>
       <div className="mx-auto max-w-7xl">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <span className="text-xs uppercase tracking-[0.2em] font-semibold" style={{ color: "var(--cyan-glow)" }}>

@@ -5,7 +5,7 @@ import { GALLERY } from "./eventsData";
 
 export function EventGallery() {
   return (
-    <section className="px-6 py-20">
+    <section className="px-6 py-12">
       <div className="mx-auto max-w-6xl">
         <FadeUp>
           <div className="text-center">

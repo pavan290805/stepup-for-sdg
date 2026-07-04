@@ -9,7 +9,7 @@ import { VisionBanner } from "@/app/components/site/VisionBanner";
 import { FadeUp } from "@/app/components/site/FadeUp";
 export const metadata = {
   title: "StepUp for SDG — Global Education Impact Platform",
-  description: "Connecting schools, NGOs, companies and communities to improve education through SDG 4.",
+  description: "Empowering Students through the Sustainable Development Goals",
 };
 
 export default function Home() {
@@ -20,7 +20,7 @@ function RahiniHome() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden pt-12 md:pt-20 pb-20 px-6">
+      <section className="relative overflow-hidden pt-8 md:pt-10 pb-6 px-6">
         <SpaceBackdrop />
         <div className="relative mx-auto max-w-7xl grid gap-12 lg:grid-cols-2 items-center">
           <FadeUp>
@@ -30,8 +30,7 @@ function RahiniHome() {
                 <span className="grad-text">SDG Impact</span>
               </h1>
               <p className="mt-6 max-w-xl text-base md:text-lg leading-relaxed" style={{ color: "var(--muted-text)" }}>
-                Connecting schools, NGOs, companies and communities to improve
-                education through SDG .
+                Empowering Students through the Sustainable Development Goals
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const team = [
   {
     name: "Eswar Vardhan",
@@ -31,18 +31,29 @@ function initials(name: string) {
 
 function FlipCard({ member }: { member: (typeof team)[0] }) {
   const [flipped, setFlipped] = useState(false);
+  const [supportsHover, setSupportsHover] = useState(true);
   const hasLinkedIn = member.linkedin !== "#";
 
-  function handleCardClick() {
-    setFlipped(f => !f);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    setSupportsHover(window.matchMedia("(hover: hover) and (pointer: fine)").matches);
+  }, []);
+
+  function handleToggle() {
+    if (!supportsHover) {
+      setFlipped((value) => !value);
+    }
   }
 
   return (
     <div
       className="cursor-pointer group"
       style={{ perspective: "1000px", height: 280 }}
-      onClick={handleCardClick}
-      onMouseLeave={() => setFlipped(false)}
+      onClick={handleToggle}
+      onMouseEnter={() => supportsHover && setFlipped(true)}
+      onMouseLeave={() => supportsHover && setFlipped(false)}
+      onFocus={() => setFlipped(true)}
+      onBlur={() => setFlipped(false)}
     >
       <div
         className="group-hover:shadow-[0_0_24px_rgba(0,194,255,0.25)] transition-all duration-300"

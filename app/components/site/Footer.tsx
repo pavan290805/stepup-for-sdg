@@ -7,13 +7,13 @@ export function Footer() {
     <footer className="relative mt-0" style={{ background: "linear-gradient(180deg, #0a0f1e 0%, #020814 100%)", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
 
       {/* Main footer grid */}
-      <div className="mx-auto max-w-7xl px-6 py-16 grid gap-12 md:grid-cols-4">
+      <div className="mx-auto max-w-7xl px-6 py-10 grid gap-8 md:grid-cols-4">
 
         {/* Brand col */}
         <div className="flex flex-col items-start gap-6">
           <Link href="/" className="inline-block -ml-1">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <span className="inline-flex h-20 w-20 items-center justify-center rounded-full overflow-hidden bg-white">
+            <span className="inline-flex h-24 w-24 items-center justify-center rounded-full overflow-hidden bg-white">
               <img
                 src="/assets/SDG_LOGO-removebg-preview.png"
                 alt="StepUp for SDG"

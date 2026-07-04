@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Users, Leaf, TrendingUp, Shield, Handshake } from "lucide-react";
 
 const pillars = [
@@ -48,13 +48,29 @@ const pillars = [
 
 function PillarCard({ p }: { p: typeof pillars[0] }) {
   const [flipped, setFlipped] = useState(false);
+  const [supportsHover, setSupportsHover] = useState(true);
   const Icon = p.icon;
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    setSupportsHover(window.matchMedia("(hover: hover) and (pointer: fine)").matches);
+  }, []);
+
+  function handleToggle() {
+    if (!supportsHover) {
+      setFlipped((value) => !value);
+    }
+  }
 
   return (
     <div
       className="cursor-pointer"
       style={{ perspective: "900px", height: 200 }}
-      onClick={() => setFlipped((v) => !v)}
+      onClick={handleToggle}
+      onMouseEnter={() => supportsHover && setFlipped(true)}
+      onMouseLeave={() => supportsHover && setFlipped(false)}
+      onFocus={() => setFlipped(true)}
+      onBlur={() => setFlipped(false)}
     >
       <div style={{
         position: "relative", width: "100%", height: "100%",
@@ -70,7 +86,6 @@ function PillarCard({ p }: { p: typeof pillars[0] }) {
             <Icon className="h-6 w-6 text-white" />
           </div>
           <div className="font-semibold text-sm">{p.title}</div>
-          <div className="text-[10px] opacity-40" style={{ color: "var(--muted-text)" }}>click to explore</div>
         </div>
 
         {/* Back */}

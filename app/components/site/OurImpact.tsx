@@ -60,12 +60,14 @@ function ImpactCardBox({ card, delay }: { card: ImpactCard; delay: number }) {
     >
       <div className="impact-surface relative flex h-full flex-col gap-4 rounded-[23px] p-6">
         <span className="impact-icon grid h-14 w-14 place-items-center rounded-2xl transition-transform duration-500 group-hover:scale-110">
-          <Icon className="h-6 w-6 text-white" />
+          <Icon className="h-6 w-6 text-white transition-colors duration-300 group-hover:text-white" />
         </span>
-        <h3 className="font-display text-lg font-semibold text-white">
+        <h3 className="font-display text-lg font-semibold text-white transition-colors duration-300 group-hover:text-white">
           {card.title}
         </h3>
-        <p className="text-sm leading-relaxed text-[#CBD5E1]">{card.desc}</p>
+        <p className="text-sm leading-relaxed text-[#CBD5E1] transition-colors duration-300 group-hover:text-white/90">
+          {card.desc}
+        </p>
       </div>
     </motion.div>
   );

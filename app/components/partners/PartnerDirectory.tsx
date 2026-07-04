@@ -143,7 +143,7 @@ export function PartnerDirectory() {
   }, [query, filter]);
 
   return (
-    <section id="partner-directory" className="relative scroll-mt-24 px-6 py-24">
+    <section id="partner-directory" className="relative scroll-mt-24 px-6 py-10">
       <Reveal className="mx-auto max-w-3xl text-center">
         <span className="text-xs font-semibold uppercase tracking-[0.25em] text-cyan-glow">
           Partner Directory
@@ -214,7 +214,7 @@ export function PartnerDirectory() {
         </AnimatePresence>
 
         {results.length === 0 && (
-          <p className="mt-16 text-center text-muted-text">
+          <p className="mt-8 text-center text-muted-text">
             No partners match your search yet. Try a different name or filter.
           </p>
         )}

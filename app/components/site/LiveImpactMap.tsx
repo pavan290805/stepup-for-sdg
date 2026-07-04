@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps"
 import { School, ClipboardList, Users, MapPin } from "lucide-react"
 import { Reveal } from "@/app/components/reveal"
@@ -59,10 +59,9 @@ export function LiveImpactMap() {
   const { theme } = useTheme()
   const isDark = theme === "dark"
 
-  const [hoveredDot, setHoveredDot] = useState<ProjectDot | null>(null)
-  const [selected, setSelected]     = useState<string | null>(null)
-
-  const selectedData = selected ? stateData[selected] : null
+  const [hoveredState, setHoveredState] = useState<string | null>(null)
+  const [tooltipPosition, setTooltipPosition] = useState<{ x: number; y: number } | null>(null)
+  const mapContainerRef = useRef<HTMLDivElement | null>(null)
 
   const mapBg       = isDark ? "#0B1120" : "#EEF2FF"
   const defaultFill = isDark ? "#1E2A45" : "#C7D2F0"
@@ -73,12 +72,50 @@ export function LiveImpactMap() {
   const getStateName = (geo: any): string =>
     geo.properties?.NAME_1 || geo.properties?.name || geo.properties?.ST_NM || geo.properties?.state || ""
 
+  const getCentroid = (coordinates: any): [number, number] | null => {
+    const points: Array<[number, number]> = []
+
+    const collect = (value: any) => {
+      if (Array.isArray(value)) {
+        if (value.length >= 2 && typeof value[0] === "number" && typeof value[1] === "number") {
+          points.push([value[0], value[1]])
+        } else {
+          value.forEach(collect)
+        }
+      }
+    }
+
+    collect(coordinates)
+
+    if (!points.length) return null
+
+    const total = points.reduce(
+      (acc, [lng, lat]) => {
+        acc[0] += lng
+        acc[1] += lat
+        return acc
+      },
+      [0, 0] as [number, number],
+    )
+
+    return [total[0] / points.length, total[1] / points.length]
+  }
+
+  const updateTooltipPosition = (event: React.MouseEvent<SVGGElement>) => {
+    const rect = mapContainerRef.current?.getBoundingClientRect()
+    if (!rect) return
+
+    const x = Math.min(Math.max(event.clientX - rect.left + 12, 12), rect.width - 176)
+    const y = Math.min(Math.max(event.clientY - rect.top - 56, 12), rect.height - 70)
+    setTooltipPosition({ x, y })
+  }
+
   return (
     <Reveal>
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
         {/* Header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-6">
           <h2 className="text-3xl sm:text-4xl font-bold" style={{ color: "var(--foreground)" }}>
             Impact across country
           </h2>
@@ -92,7 +129,7 @@ export function LiveImpactMap() {
           style={{ background: "var(--card)", border: "1px solid var(--border)" }}>
 
           {/* Map */}
-          <div className="relative w-full h-[420px] md:h-[580px] lg:h-[680px]" style={{ background: mapBg }}>
+          <div ref={mapContainerRef} className="relative w-full h-[420px] md:h-[580px] lg:h-[680px]" style={{ background: mapBg }}>
             <ComposableMap
               projection="geoMercator"
               projectionConfig={{ scale: 1000, center: [82.5, 22.5] }}
@@ -105,97 +142,69 @@ export function LiveImpactMap() {
                   <>
                     {geographies.map((geo) => {
                       const stateName = getStateName(geo)
-                      const data      = stateData[stateName]
-                      const isSel     = selected === stateName
-                      const fill = isSel
-                        ? "#06B6D4"
-                        : selected
-                          ? dimFill
-                          : data
-                            ? levelMeta[data.level].color
-                            : defaultFill
+                      const data = stateData[stateName]
+                      const fill = data ? levelMeta[data.level].color : defaultFill
+                      const centroid = getCentroid(geo.geometry?.coordinates)
+
                       return (
-                        <Geography key={geo.rsmKey} geography={geo}
-                          onClick={() => setSelected(isSel ? null : stateName)}
-                          style={{
-                            default: {
-                              fill, stroke: strokeColor, strokeWidth: isSel ? 1.0 : 0.4,
-                              outline: "none", transition: "fill 0.15s ease",
-                              opacity: selected && !isSel ? 0.4 : 1,
-                            },
-                            hover:   { fill: "#0EA5E9", outline: "none", cursor: "pointer" },
-                            pressed: { outline: "none" },
-                          }}
-                        />
+                        <React.Fragment key={geo.rsmKey}>
+                          <Geography
+                            geography={geo}
+                            onMouseEnter={(event: React.MouseEvent<SVGGElement>) => {
+                              if (!data) return
+                              setHoveredState(stateName)
+                              updateTooltipPosition(event)
+                            }}
+                            onMouseMove={(event: React.MouseEvent<SVGGElement>) => {
+                              if (!data) return
+                              setHoveredState(stateName)
+                              updateTooltipPosition(event)
+                            }}
+                            onMouseLeave={() => {
+                              setHoveredState(null)
+                              setTooltipPosition(null)
+                            }}
+                            style={{
+                              default: {
+                                fill, stroke: strokeColor, strokeWidth: 0.4,
+                                outline: "none", transition: "fill 0.15s ease",
+                                opacity: 1,
+                              },
+                              hover: { fill, outline: "none", cursor: "pointer" },
+                              pressed: { outline: "none" },
+                            }}
+                          />
+                          {data && centroid && (
+                            <Marker coordinates={[centroid[0], centroid[1]]}>
+                              <circle r={4.2} fill="#F59E0B" stroke="#fff" strokeWidth={1.1} />
+                            </Marker>
+                          )}
+                        </React.Fragment>
                       )
                     })}
-                    {projectDots.map((dot) => (
-                      <Marker key={dot.name} coordinates={[dot.lng, dot.lat]}
-                        onMouseEnter={() => setHoveredDot(dot)}
-                        onMouseLeave={() => setHoveredDot(null)}>
-                        <circle r={9} fill="#F59E0B" opacity={0.15}>
-                          <animate attributeName="r" values="5;13" dur="1.8s" repeatCount="indefinite" />
-                          <animate attributeName="opacity" values="0.4;0" dur="1.8s" repeatCount="indefinite" />
-                        </circle>
-                        <circle r={4} fill="#F59E0B" stroke="#fff" strokeWidth={1.5} style={{ cursor: "pointer" }} />
-                        {hoveredDot?.name === dot.name && (
-                          <g transform="translate(7, -44)">
-                            <rect rx={6} ry={6} width={162} height={38} fill={tooltipBg} opacity={0.96} />
-                            <text x={9} y={15} fill="#fbbf24" fontSize={9} fontWeight={700}>{dot.name}</text>
-                            <text x={9} y={28} fill="#94a3b8" fontSize={7.5}>{dot.schools} schools · {dot.students} students</text>
-                          </g>
-                        )}
-                      </Marker>
-                    ))}
                   </>
                 )}
               </Geographies>
             </ComposableMap>
 
-            {/* Click hint */}
-            {!selected && (
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-1 text-[11px] pointer-events-none"
-                style={{ background: isDark ? "rgba(15,23,42,0.8)" : "rgba(30,41,59,0.75)", color: "#94a3b8" }}>
-                Click a state to see details
+            {hoveredState && tooltipPosition && stateData[hoveredState] && (
+              <div
+                className="pointer-events-none absolute z-20 rounded-xl px-3 py-2 shadow-lg"
+                style={{
+                  left: tooltipPosition.x,
+                  top: tooltipPosition.y,
+                  width: 168,
+                  background: tooltipBg,
+                  border: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(15,23,42,0.08)"}`,
+                }}
+              >
+                <div className="text-[11px] font-semibold" style={{ color: "#fbbf24" }}>{stateData[hoveredState].display}</div>
+                <div className="mt-1 text-[11px]" style={{ color: "#e2e8f0" }}>{stateData[hoveredState].schools} Schools</div>
+                <div className="text-[11px]" style={{ color: "#cbd5e1" }}>{stateData[hoveredState].students} Students</div>
               </div>
             )}
           </div>
         </div>
-
-        {/* Selected state detail */}
-        {selected && selectedData && (
-          <div className="mt-4 rounded-xl p-4"
-            style={{ background: "var(--card)", border: "1px solid var(--border)" }}>
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm font-bold" style={{ color: "var(--foreground)" }}>{selectedData.display}</span>
-              <button onClick={() => setSelected(null)}
-                className="text-xs px-2 py-0.5 rounded-full"
-                style={{ background: "var(--border)", color: "var(--muted-text)" }}>
-                Clear
-              </button>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {[
-                { label: "Schools",  value: String(selectedData.schools)  },
-                { label: "Projects", value: String(selectedData.projects) },
-                { label: "Students", value: selectedData.students         },
-                { label: "NGOs",     value: String(selectedData.ngos ?? "—") },
-              ].map(({ label, value }) => (
-                <div key={label} className="text-center">
-                  <div className="text-lg font-bold" style={{ color: "#06B6D4" }}>{value}</div>
-                  <div className="text-xs mt-0.5" style={{ color: "var(--muted-text)" }}>{label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-        {selected && !selectedData && (
-          <div className="mt-4 rounded-xl p-3 text-sm text-center"
-            style={{ background: "var(--card)", border: "1px solid var(--border)", color: "var(--muted-text)" }}>
-            No impact data available yet for {selected}.
-            <button onClick={() => setSelected(null)} className="ml-2 underline text-xs">Clear</button>
-          </div>
-        )}
 
         {/* Stats grid */}
         <div className="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-4">

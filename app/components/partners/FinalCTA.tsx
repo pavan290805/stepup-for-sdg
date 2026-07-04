@@ -6,8 +6,8 @@ import { AmbientBackdrop, Particles, MouseGlow, MagneticButton, Reveal } from ".
 
 export function FinalCTA() {
   return (
-    <section className="relative overflow-hidden px-6 py-28">
-      <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] border border-cyan-glow/20 bg-deep-blue/40 px-6 py-20 text-center backdrop-blur-xl">
+    <section className="relative overflow-hidden px-6 py-16">
+      <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] border border-cyan-glow/20 bg-deep-blue/40 px-6 py-12 text-center backdrop-blur-xl">
         <AmbientBackdrop dense />
         <Particles count={24} />
         <MouseGlow size={500} color="rgba(21,93,252,0.18)" />

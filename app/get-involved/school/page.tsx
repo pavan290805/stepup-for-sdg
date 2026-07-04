@@ -44,7 +44,7 @@ export default function SchoolPage() {
   };
 
   return (
-    <main className="relative min-h-screen px-6 py-16">
+    <main className="relative min-h-fit px-6 py-10">
       <div className="absolute inset-0 -z-20">
         <img
           src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=2000&q=80"

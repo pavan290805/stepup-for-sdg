@@ -15,7 +15,7 @@ export default function AboutPage() {
   return (
     <>
       {/* 1. Hero */}
-      <section className="relative overflow-hidden py-24 px-6">
+      <section className="relative overflow-hidden py-14 px-6">
         <SpaceBackdrop />
         <div className="relative mx-auto max-w-4xl text-center">
           <FadeUp>
@@ -31,19 +31,19 @@ export default function AboutPage() {
       </section>
 
       {/* 2. Vision & Mission */}
-      <section className="px-6 pb-20 scroll-mt-20">
+      <section className="px-6 pb-12 scroll-mt-20">
         <div className="mx-auto max-w-[1400px]">
           <VisionMission />
         </div>
       </section>
 
       {/* 3. Our Impact */}
-      <section id="impact" className="px-6 py-20 bg-deep-blue/40 scroll-mt-20">
+      <section id="impact" className="px-6 py-12 bg-deep-blue/40 scroll-mt-20">
         <OurImpact />
       </section>
 
       {/* 4. Our Story / Who We Are */}
-      <section id="story" className="px-6 py-20 scroll-mt-20">
+      <section id="story" className="px-6 py-12 scroll-mt-20">
         <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
           <FadeUp>
             <div>
@@ -90,7 +90,7 @@ export default function AboutPage() {
       </section>
 
       {/* 5. Our Team */}
-      <section id="team" className="px-6 py-20 bg-deep-blue/40 scroll-mt-20">
+      <section id="team" className="px-6 py-12 bg-deep-blue/40 scroll-mt-20">
         <div className="mx-auto max-w-6xl">
           <FadeUp>
             <h2 className="text-3xl md:text-4xl font-bold text-center">
@@ -102,7 +102,7 @@ export default function AboutPage() {
       </section>
 
       {/* 6. Five Pillars (5P Model) */}
-      <section id="5p" className="px-6 py-20 scroll-mt-20">
+      <section id="5p" className="px-6 pt-8 pb-6 scroll-mt-20">
         <div className="mx-auto max-w-6xl text-center">
           <FadeUp>
             <span className="text-xs uppercase tracking-[0.25em] text-cyan-glow">
@@ -117,7 +117,7 @@ export default function AboutPage() {
       </section>
 
       {/* 7. Join Our Mission CTA */}
-      <section id="join" className="px-6 py-24 scroll-mt-20">
+      <section id="join" className="px-6 pt-6 pb-10 scroll-mt-20">
         <FadeUp>
           <div className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl glass p-10 text-center md:p-14">
             <h2 className="font-display text-3xl md:text-4xl font-bold">

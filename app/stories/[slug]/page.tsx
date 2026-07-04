@@ -39,7 +39,7 @@ export default function StoryPage({ params }: { params: Promise<{ slug: string }
   const related = stories.filter((s) => s.slug !== story.slug).slice(0, 3);
 
   return (
-    <main className="min-h-screen py-20 px-6" style={{ background: "var(--background)" }}>
+    <main className="min-h-fit py-10 px-6" style={{ background: "var(--background)" }}>
       <div className="mx-auto max-w-4xl">
         <Link href="/stories" className="inline-flex items-center gap-2 text-sm mb-8 hover:opacity-80 transition" style={{ color: "var(--muted-text)" }}>
           <ArrowLeft className="h-4 w-4" /> Back to all stories

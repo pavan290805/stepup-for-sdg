@@ -39,7 +39,7 @@ const sections = [
 export default function WorkWithUsPage() {
   return (
     <>
-      <section className="relative overflow-hidden py-24 px-6">
+      <section className="relative overflow-hidden py-14 px-6">
         <SpaceBackdrop />
         <div className="relative mx-auto max-w-4xl text-center">
           <FadeUp>
@@ -54,7 +54,7 @@ export default function WorkWithUsPage() {
         </div>
       </section>
 
-      <section className="px-6 pb-20">
+      <section className="px-6 pb-12">
         <div className="mx-auto max-w-6xl grid gap-6 md:grid-cols-2">
           {sections.map((section, index) => (
             <FadeUp key={section.title} delay={index * 100}>
