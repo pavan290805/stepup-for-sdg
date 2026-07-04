@@ -85,9 +85,7 @@ export default function DashboardPage() {
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             Create Event
           </button>
-          <button onClick={() => router.push('/admin/dashboard/partnership-review')} style={{ background: 'rgba(255,255,255,.15)', color: '#fff', border: '1px solid rgba(255,255,255,.25)', borderRadius: 9, padding: '9px 20px', fontSize: 12.5, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}>
-            Review Now →
-          </button>
+
         </div>
       </div>
 
@@ -187,9 +185,7 @@ export default function DashboardPage() {
                 <div style={{ fontSize: 10, color: c.textMuted, marginTop: 2 }}>Pending</div>
               </div>
             </div>
-            <button onClick={() => router.push('/admin/dashboard/partnership-review')} style={{ width: '100%', background: p.glow, border: `1px solid ${p.color}40`, borderRadius: 9, padding: '9px', fontSize: 12, fontWeight: 600, color: p.color, cursor: 'pointer' }}>
-              Manage {p.title.split(' ')[0]}s →
-            </button>
+
           </div>
         ))}
       </div>
@@ -368,41 +364,7 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Partnership Request */}
-      <div className="card-hover" style={card}>
-        <div style={{ padding: '20px 22px', borderBottom: `1px solid ${c.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div>
-            <div style={{ fontSize: 14, fontWeight: 700, color: c.textPrimary, marginBottom: 4 }}>Partnership Request</div>
-            <div style={{ fontSize: 11.5, color: c.textMuted, marginTop: 3 }}>Approval of entities</div>
-          </div>
-          <span onClick={() => router.push('/admin/dashboard/partnership-review')} style={{ fontSize: 12, fontWeight: 600, color: c.accentText, cursor: 'pointer', whiteSpace: 'nowrap' }}>Open Review Center ›</span>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1.4fr 2fr 1.5fr', gap: 8, padding: '10px 22px', borderBottom: `1px solid ${c.border}`, background: c.surfaceAlt }}>
-          {['Organization','Category','Registry Inquiry Date','Target SDGs','Actions'].map((h, i) => (
-            <div key={i} style={{ fontSize: 10.5, fontWeight: 700, color: c.textMuted, textTransform: 'uppercase', letterSpacing: '0.6px', textAlign: i === 4 ? 'right' : 'left' }}>{h}</div>
-          ))}
-        </div>
-        {[
-          { org: 'Apex Eco-Logistics Corp',       date: '2026-06-08', category: 'COMPANY', sdgs: [{n:7,c:'#fcc30b'},{n:13,c:'#3f7e44'}] },
-          { org: 'Riverdale Eco-Secondary School', date: '2026-06-10', category: 'SCHOOL',  sdgs: [{n:4,c:'#c5192d'},{n:6,c:'#26bde2'},{n:13,c:'#3f7e44'},{n:15,c:'#56c02b'}] },
-        ].map((row, i, arr) => (
-          <div key={i} style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1.4fr 2fr 1.5fr', gap: 8, padding: '15px 22px', borderBottom: i < arr.length - 1 ? `1px solid ${c.border}` : 'none', alignItems: 'center' }}>
-            <span style={{ fontSize: 13, fontWeight: 600, color: c.textPrimary }}>{row.org}</span>
-            <span style={{ fontSize: 10.5, fontWeight: 700, color: c.textPrimary, background: c.surfaceAlt, border: `1px solid ${c.border}`, borderRadius: 6, padding: '4px 10px', letterSpacing: '.4px', width: 'fit-content' }}>{row.category}</span>
-            <span style={{ fontSize: 12.5, color: c.textSecond, fontWeight: 500 }}>{row.date}</span>
-            <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
-              {row.sdgs.map((s, j) => (
-                <span key={j} style={{ fontSize: 10, fontWeight: 700, color: '#fff', background: s.c, borderRadius: 5, padding: '3px 8px' }}>SDG {s.n}</span>
-              ))}
-            </div>
-            <div style={{ textAlign: 'right' }}>
-              <button onClick={() => router.push('/admin/dashboard/partnership-review')} style={{ fontSize: 11.5, fontWeight: 600, color: c.accentText, background: c.accentLight, border: `1px solid ${c.accent}30`, borderRadius: 8, padding: '7px 16px', cursor: 'pointer' }}>
-                Inspect Application
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+
 
 
 
