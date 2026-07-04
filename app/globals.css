@@ -767,18 +767,21 @@ html:not(.dark) body {
 .vm-card .vm-surface h3,
 .vm-card .vm-surface h4,
 .vm-card .vm-surface p,
+.vm-card .vm-surface span,
 .vm-card .vm-icon {
   transition: color 0.3s ease;
 }
 
+/* All text white on hover - dark mode */
 .vm-card:hover .vm-surface h3,
 .vm-card:hover .vm-surface h4,
-.vm-card:hover .vm-surface p {
+.vm-card:hover .vm-surface p,
+.vm-card:hover .vm-surface span {
   color: #FFFFFF !important;
 }
 
 .vm-card:hover .vm-icon {
-  color: #FFFFFF;
+  color: #FFFFFF !important;
 }
 
 .vm-highlight {
@@ -788,7 +791,19 @@ html:not(.dark) body {
 }
 
 .vm-card:hover .vm-highlight {
-  color: #FFFFFF;
+  color: #FFFFFF !important;
+}
+
+/* Light mode hover text override */
+html:not(.dark) .vm-card:hover .vm-surface h3,
+html:not(.dark) .vm-card:hover .vm-surface h4,
+html:not(.dark) .vm-card:hover .vm-surface p:not(.vm-highlight),
+html:not(.dark) .vm-card:hover .vm-surface span {
+  color: #FFFFFF !important;
+}
+
+html:not(.dark) .vm-card:hover .vm-highlight {
+  color: #FFFFFF !important;
 }
 
 .vm-stat {
