@@ -7,6 +7,7 @@ import { useDashboardTheme } from '../ThemeContext'
 export default function DonationsPage() {
   const { dark } = useDashboardTheme()
   const [donations, setDonations] = useState<DonationRecord[]>([])
+  const [showExportMenu, setShowExportMenu] = useState(false)
 
   useEffect(() => {
     setDonations(getDonations())
@@ -30,17 +31,36 @@ export default function DonationsPage() {
   const totalAmount = donations.reduce((sum, d) => sum + d.amount, 0)
   const methodLabel: Record<string, string> = { upi: 'UPI', card: 'Card', netbanking: 'Net Banking' }
 
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+  const monthlyTotals = MONTHS.map((_, mi) =>
+    donations.filter(d => new Date(d.donatedAt).getMonth() === mi).reduce((s, d) => s + d.amount, 0)
+  )
+  const maxMonthly = Math.max(...monthlyTotals, 1)
+
+  const downloadCSV = (rows: string[][], filename: string) => {
+    const csv = rows.map(r => r.map(v => `"${v}"`).join(',')).join('\n')
+    const blob = new Blob([csv], { type: 'text/csv' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a'); a.href = url; a.download = filename; a.click()
+    URL.revokeObjectURL(url)
+  }
+
   const handleExport = () => {
     const rows = [
       ['Name', 'Email', 'Phone', 'Amount (₹)', 'Method', 'Message', 'Date'],
       ...donations.map(d => [d.name, d.email, d.phone, String(d.amount), d.method, d.message, new Date(d.donatedAt).toLocaleString('en-IN')]),
     ]
-    const csv = rows.map(r => r.map(c => `"${c}"`).join(',')).join('\n')
-    const blob = new Blob([csv], { type: 'text/csv' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url; a.download = 'donations.csv'; a.click()
-    URL.revokeObjectURL(url)
+    downloadCSV(rows, 'donations_all.csv')
+  }
+
+  const handleExportMonthly = (monthIndex: number) => {
+    const filtered = donations.filter(d => new Date(d.donatedAt).getMonth() === monthIndex)
+    const rows = [
+      ['Name', 'Email', 'Phone', 'Amount (₹)', 'Method', 'Message', 'Date'],
+      ...filtered.map(d => [d.name, d.email, d.phone, String(d.amount), d.method, d.message, new Date(d.donatedAt).toLocaleString('en-IN')]),
+    ]
+    downloadCSV(rows, `donations_${MONTHS[monthIndex]}.csv`)
+    setShowExportMenu(false)
   }
 
   return (
@@ -52,9 +72,27 @@ export default function DonationsPage() {
           <div style={{ fontSize: 18, fontWeight: 700, color: c.textPrimary }}>Funds Tracker</div>
           <div style={{ fontSize: 12, color: c.textMuted, marginTop: 3 }}>All funds submitted via the Funds page</div>
         </div>
-        <button onClick={handleExport} style={{ fontSize: 12.5, fontWeight: 600, color: c.green, background: 'rgba(16,185,129,.1)', border: '1px solid rgba(16,185,129,.25)', borderRadius: 9, padding: '8px 18px', cursor: 'pointer' }}>
-          ↓ Export CSV
-        </button>
+        <div style={{ display: 'flex', gap: 8, position: 'relative' }}>
+          <button onClick={handleExport} style={{ fontSize: 12.5, fontWeight: 600, color: c.green, background: 'rgba(16,185,129,.1)', border: '1px solid rgba(16,185,129,.25)', borderRadius: 9, padding: '8px 18px', cursor: 'pointer' }}>
+            ↓ Export All
+          </button>
+          <button onClick={() => setShowExportMenu(v => !v)} style={{ fontSize: 12.5, fontWeight: 600, color: '#3b6ef6', background: 'rgba(59,110,246,.1)', border: '1px solid rgba(59,110,246,.25)', borderRadius: 9, padding: '8px 18px', cursor: 'pointer' }}>
+            ↓ Export Monthly ▾
+          </button>
+          {showExportMenu && (
+            <div style={{ position: 'absolute', top: '110%', right: 0, zIndex: 100, background: c.surface, border: `1px solid ${c.border}`, borderRadius: 10, boxShadow: c.shadow, minWidth: 160, overflow: 'hidden' }}>
+              {MONTHS.map((m, i) => (
+                <button key={m} onClick={() => handleExportMonthly(i)}
+                  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', padding: '9px 16px', background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: c.textPrimary, borderBottom: i < 11 ? `1px solid ${c.border}` : 'none' }}
+                  onMouseEnter={e => (e.currentTarget.style.background = dark ? 'rgba(255,255,255,.05)' : '#f1f5f9')}
+                  onMouseLeave={e => (e.currentTarget.style.background = 'none')}>
+                  <span>{m}</span>
+                  <span style={{ fontSize: 11, color: c.textMuted }}>₹{monthlyTotals[i].toLocaleString('en-IN')}</span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Summary cards */}
@@ -70,6 +108,34 @@ export default function DonationsPage() {
             <div style={{ fontSize: 28, fontWeight: 800, color: s.color, lineHeight: 1 }}>{s.value}</div>
           </div>
         ))}
+      </div>
+
+      {/* Monthly Chart */}
+      <div style={card}>
+        <div style={{ padding: '16px 22px', borderBottom: `1px solid ${c.border}` }}>
+          <div style={{ fontSize: 14, fontWeight: 700, color: c.textPrimary }}>Monthly Donations</div>
+          <div style={{ fontSize: 12, color: c.textMuted, marginTop: 2 }}>Total funds received per month</div>
+        </div>
+        <div style={{ padding: '20px 22px' }}>
+          <div style={{ display: 'flex', alignItems: 'flex-end', gap: 6, height: 120 }}>
+            {MONTHS.map((m, i) => {
+              const h = monthlyTotals[i]
+              const barH = Math.max((h / maxMonthly) * 96, h > 0 ? 6 : 2)
+              const isCurrentMonth = i === new Date().getMonth()
+              return (
+                <div key={m} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+                  {h > 0 && (
+                    <span style={{ fontSize: 8, fontWeight: 700, color: c.textMuted, whiteSpace: 'nowrap' }}>
+                      ₹{h >= 1000 ? `${(h/1000).toFixed(1)}k` : h}
+                    </span>
+                  )}
+                  <div style={{ width: '100%', borderRadius: '3px 3px 0 0', height: barH, background: isCurrentMonth ? '#10b981' : h > 0 ? '#3b6ef6' : c.border, transition: 'height 0.3s' }} />
+                  <span style={{ fontSize: 9, color: isCurrentMonth ? '#10b981' : c.textMuted, fontWeight: isCurrentMonth ? 700 : 400 }}>{m}</span>
+                </div>
+              )
+            })}
+          </div>
+        </div>
       </div>
 
       {/* Table */}

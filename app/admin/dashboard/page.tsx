@@ -8,6 +8,7 @@ import {
 import { useDashboardTheme } from './ThemeContext'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { DIRECTORY } from '@/app/components/partners/partnersData'
 import { getAdminStats, getContactMessages, getPartnershipSubmissions, type AdminStats } from '@/app/lib/adminStore'
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, Filler)
 
@@ -85,9 +86,7 @@ export default function DashboardPage() {
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             Create Event
           </button>
-          <button onClick={() => router.push('/admin/dashboard/partnership-review')} style={{ background: 'rgba(255,255,255,.15)', color: '#fff', border: '1px solid rgba(255,255,255,.25)', borderRadius: 9, padding: '9px 20px', fontSize: 12.5, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}>
-            Review Now →
-          </button>
+
         </div>
       </div>
 
@@ -187,9 +186,7 @@ export default function DashboardPage() {
                 <div style={{ fontSize: 10, color: c.textMuted, marginTop: 2 }}>Pending</div>
               </div>
             </div>
-            <button onClick={() => router.push('/admin/dashboard/partnership-review')} style={{ width: '100%', background: p.glow, border: `1px solid ${p.color}40`, borderRadius: 9, padding: '9px', fontSize: 12, fontWeight: 600, color: p.color, cursor: 'pointer' }}>
-              Manage {p.title.split(' ')[0]}s →
-            </button>
+
           </div>
         ))}
       </div>
@@ -368,40 +365,84 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Partnership Request */}
+      {/* Partners Overview */}
       <div className="card-hover" style={card}>
         <div style={{ padding: '20px 22px', borderBottom: `1px solid ${c.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
-            <div style={{ fontSize: 14, fontWeight: 700, color: c.textPrimary, marginBottom: 4 }}>Partnership Request</div>
-            <div style={{ fontSize: 11.5, color: c.textMuted, marginTop: 3 }}>Approval of entities</div>
+            <div style={{ fontSize: 14, fontWeight: 700, color: c.textPrimary }}>Partners Overview</div>
+            <div style={{ fontSize: 11.5, color: c.textMuted, marginTop: 3 }}>All verified partner organisations and their impact data</div>
           </div>
-          <span onClick={() => router.push('/admin/dashboard/partnership-review')} style={{ fontSize: 12, fontWeight: 600, color: c.accentText, cursor: 'pointer', whiteSpace: 'nowrap' }}>Open Review Center ›</span>
+          <span onClick={() => router.push('/admin/dashboard/partners')} style={{ fontSize: 12, fontWeight: 600, color: c.accentText, cursor: 'pointer', whiteSpace: 'nowrap' }}>Manage Partners ›</span>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1.4fr 2fr 1.5fr', gap: 8, padding: '10px 22px', borderBottom: `1px solid ${c.border}`, background: c.surfaceAlt }}>
-          {['Organization','Category','Registry Inquiry Date','Target SDGs','Actions'].map((h, i) => (
-            <div key={i} style={{ fontSize: 10.5, fontWeight: 700, color: c.textMuted, textTransform: 'uppercase', letterSpacing: '0.6px', textAlign: i === 4 ? 'right' : 'left' }}>{h}</div>
+
+        {/* Table header */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1.8fr 0.8fr 0.8fr 1fr 2.2fr 1.4fr', gap: 8, padding: '10px 22px', borderBottom: `1px solid ${c.border}`, background: c.surfaceAlt }}>
+          {['Organisation', 'Type', 'Location', 'Since', 'Key Stats', 'SDGs'].map((h, i) => (
+            <div key={i} style={{ fontSize: 10.5, fontWeight: 700, color: c.textMuted, textTransform: 'uppercase', letterSpacing: '0.6px' }}>{h}</div>
           ))}
         </div>
-        {[
-          { org: 'Apex Eco-Logistics Corp',       date: '2026-06-08', category: 'COMPANY', sdgs: [{n:7,c:'#fcc30b'},{n:13,c:'#3f7e44'}] },
-          { org: 'Riverdale Eco-Secondary School', date: '2026-06-10', category: 'SCHOOL',  sdgs: [{n:4,c:'#c5192d'},{n:6,c:'#26bde2'},{n:13,c:'#3f7e44'},{n:15,c:'#56c02b'}] },
-        ].map((row, i, arr) => (
-          <div key={i} style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1.4fr 2fr 1.5fr', gap: 8, padding: '15px 22px', borderBottom: i < arr.length - 1 ? `1px solid ${c.border}` : 'none', alignItems: 'center' }}>
-            <span style={{ fontSize: 13, fontWeight: 600, color: c.textPrimary }}>{row.org}</span>
-            <span style={{ fontSize: 10.5, fontWeight: 700, color: c.textPrimary, background: c.surfaceAlt, border: `1px solid ${c.border}`, borderRadius: 6, padding: '4px 10px', letterSpacing: '.4px', width: 'fit-content' }}>{row.category}</span>
-            <span style={{ fontSize: 12.5, color: c.textSecond, fontWeight: 500 }}>{row.date}</span>
-            <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
-              {row.sdgs.map((s, j) => (
-                <span key={j} style={{ fontSize: 10, fontWeight: 700, color: '#fff', background: s.c, borderRadius: 5, padding: '3px 8px' }}>SDG {s.n}</span>
-              ))}
+
+        {DIRECTORY.map((org, i) => {
+          const typeColors: Record<string, { text: string; bg: string }> = {
+            Company:    { text: '#ef4444', bg: 'rgba(239,68,68,.1)'  },
+            NGO:        { text: '#06b6d4', bg: 'rgba(6,182,212,.1)'  },
+            School:     { text: '#10b981', bg: 'rgba(16,185,129,.1)' },
+            University: { text: '#8b5cf6', bg: 'rgba(139,92,246,.1)' },
+          }
+          const tc = typeColors[org.type] ?? { text: c.textSecond, bg: c.surfaceAlt }
+          const tierColor: Record<string, string> = { Gold: '#f59e0b', Silver: '#94a3b8' }
+
+          const DETAIL_STATS: Record<string, { label: string; value: string }[]> = {
+            'greenearth-initiative': [{ label: 'Projects', value: '12' }, { label: 'Beneficiaries', value: '840' }, { label: 'Partners', value: '6' }],
+            'hope-ngo':              [{ label: 'Projects', value: '8'  }, { label: 'Beneficiaries', value: '1200' }, { label: 'Cities', value: '3' }],
+            'techcorp-india':        [{ label: 'Contributed', value: 'Rs50L' }, { label: 'Students', value: '620' }, { label: 'Workshops', value: '8' }],
+            'ecovolt-energy':        [{ label: 'Contributed', value: 'Rs20L' }, { label: 'Students', value: '310' }, { label: 'Schools', value: '6' }],
+            'infrabuild-corp':       [{ label: 'Contributed', value: 'Rs30L' }, { label: 'Students', value: '900' }, { label: 'Schools', value: '4' }],
+            'delhi-public-school':   [{ label: 'SDGs', value: '2' }, { label: 'Since', value: '2023' }, { label: 'Status', value: 'Active' }],
+            'iit-hyderabad':         [{ label: 'SDGs', value: '3' }, { label: 'Since', value: '2023' }, { label: 'Status', value: 'Active' }],
+            'bright-futures-academy':[{ label: 'SDGs', value: '2' }, { label: 'Since', value: '2024' }, { label: 'Status', value: 'Active' }],
+            'woxsen-university':     [{ label: 'SDGs', value: '2' }, { label: 'Since', value: '2025' }, { label: 'Status', value: 'Active' }],
+          }
+          const stats = DETAIL_STATS[org.id] ?? []
+
+          return (
+            <div key={org.id} style={{ display: 'grid', gridTemplateColumns: '1.8fr 0.8fr 0.8fr 1fr 2.2fr 1.4fr', gap: 8, padding: '14px 22px', borderBottom: i < DIRECTORY.length - 1 ? `1px solid ${c.border}` : 'none', alignItems: 'center' }}>
+              {/* Name + tier + verified */}
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <span style={{ fontSize: 13, fontWeight: 700, color: c.textPrimary }}>{org.name}</span>
+                  {org.tier && <span style={{ fontSize: 9.5, fontWeight: 700, color: tierColor[org.tier], background: `${tierColor[org.tier]}20`, border: `1px solid ${tierColor[org.tier]}50`, borderRadius: 5, padding: '2px 7px' }}>★ {org.tier}</span>}
+                </div>
+                {org.verified && <span style={{ fontSize: 10.5, color: '#10b981', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 3, marginTop: 3 }}>
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  Verified
+                </span>}
+                <div style={{ fontSize: 10.5, color: c.textMuted, marginTop: 2 }}>{org.activity}</div>
+              </div>
+              {/* Type */}
+              <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.4px', color: tc.text, background: tc.bg, borderRadius: 6, padding: '3px 8px', width: 'fit-content' }}>{org.type}</span>
+              {/* Location */}
+              <span style={{ fontSize: 12, color: c.textSecond }}>{org.location}</span>
+              {/* Since */}
+              <span style={{ fontSize: 12, color: c.textSecond }}>{org.since}</span>
+              {/* Key Stats */}
+              <div style={{ display: 'flex', gap: 6 }}>
+                {stats.map((s, j) => (
+                  <div key={j} style={{ background: c.surfaceAlt, border: `1px solid ${c.border}`, borderRadius: 8, padding: '5px 10px', textAlign: 'center', minWidth: 56 }}>
+                    <div style={{ fontSize: 12.5, fontWeight: 800, color: tc.text, lineHeight: 1 }}>{s.value}</div>
+                    <div style={{ fontSize: 9.5, color: c.textMuted, marginTop: 2 }}>{s.label}</div>
+                  </div>
+                ))}
+              </div>
+              {/* SDGs */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+                {org.sdgs.map(s => (
+                  <span key={s} style={{ fontSize: 9.5, fontWeight: 600, color: c.textSecond, background: c.surfaceAlt, border: `1px solid ${c.border}`, borderRadius: 4, padding: '2px 7px' }}>SDG {s}</span>
+                ))}
+              </div>
             </div>
-            <div style={{ textAlign: 'right' }}>
-              <button onClick={() => router.push('/admin/dashboard/partnership-review')} style={{ fontSize: 11.5, fontWeight: 600, color: c.accentText, background: c.accentLight, border: `1px solid ${c.accent}30`, borderRadius: 8, padding: '7px 16px', cursor: 'pointer' }}>
-                Inspect Application
-              </button>
-            </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
 
 
