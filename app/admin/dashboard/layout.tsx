@@ -258,7 +258,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
           {/* Footer */}
           <footer style={{ borderTop: `1px solid ${c.border}`, background: c.surface, padding: '14px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>
-            <div style={{ fontSize: 12.5, fontWeight: 700, color: c.textPrimary }}>Pavdhan Organizations <span style={{ fontWeight: 400, color: c.textMuted }}>© 2026</span></div>
+            <div style={{ fontSize: 12.5, fontWeight: 700, color: c.textPrimary }}>Pavdhan Foundation <span style={{ fontWeight: 400, color: c.textMuted }}>© {new Date().getFullYear()}</span></div>
             <div style={{ fontSize: 11.5, fontWeight: 600, color: c.red }}>Restricted — Authorized Admins Only</div>
           </footer>
         </div>

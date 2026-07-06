@@ -96,11 +96,12 @@ export default function DonationsPage() {
       </div>
 
       {/* Summary cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 14 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 14 }}>
         {[
           { label: 'Total Donations',   value: donations.length,                                color: '#3b6ef6' },
           { label: 'Total Amount',      value: `₹${totalAmount.toLocaleString('en-IN')}`,       color: '#10b981' },
           { label: 'Avg. Donation',     value: donations.length ? `₹${Math.round(totalAmount / donations.length).toLocaleString('en-IN')}` : '₹0', color: '#f59e0b' },
+          { label: `This Month (${MONTHS[new Date().getMonth()]})`, value: `₹${monthlyTotals[new Date().getMonth()].toLocaleString('en-IN')}`, color: '#e879f9' },
         ].map((s, i) => (
           <div key={i} style={{ ...card, padding: '20px', overflow: 'hidden', position: 'relative' }}>
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: s.color, borderRadius: '14px 14px 0 0' }} />
