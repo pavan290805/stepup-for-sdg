@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ExternalLink } from "lucide-react";
 import { getSdgById, sdgs, withAlpha } from "../data/sdgs";
+import SdgGoalNavigator from "./SdgGoalNavigator";
 
 type PageProps = {
   params: Promise<{
@@ -59,6 +60,8 @@ export default async function SDGDetailPage({ params }: PageProps) {
         >
           Back to Goals
         </Link>
+
+        <SdgGoalNavigator currentGoalId={sdg.id} key={sdg.id} />
 
         <section
           className="grid items-center gap-10 rounded-lg border border-white/12 bg-white/8 p-5 shadow-[0_28px_80px_-44px_rgba(0,0,0,0.95)] backdrop-blur-md sm:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:p-10"
