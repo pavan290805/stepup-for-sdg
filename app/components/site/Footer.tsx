@@ -62,10 +62,19 @@ const socialLinks: SocialLinkItem[] = [
   },
 ];
 
-const contactEmails = [
-  { address: "contact@stepupforsdg.org", ariaLabel: "Send an email to contact" },
-  { address: "info@stepupforsdg.org", ariaLabel: "Send an email to info" },
-  { address: "partner@stepupforsdg.org", ariaLabel: "Send an email to partner" },
+const contactDetails = [
+  {
+    type: "Email",
+    label: "info@stepupforsdg.org",
+    href: "mailto:info@stepupforsdg.org",
+    ariaLabel: "Send an email to info",
+  },
+  {
+    type: "Phone",
+    label: "+91 83410 11206",
+    href: "tel:+918341011206",
+    ariaLabel: "Call the StepUp for SDG team",
+  },
 ];
 
 export function Footer() {
@@ -89,9 +98,9 @@ export function Footer() {
             Educating students on the UN Sustainable Development Goals, empowering them to adopt sustainable lifestyles, make informed choices, explore meaningful careers, and drive positive change in their families and communities.
           </p>
           <div className="flex gap-3">
-            {socialLinks.map(({ href, ariaLabel, icon }) => (
+            {socialLinks.map(({ href, ariaLabel, icon, label }, index) => (
               <a
-                key={ariaLabel}
+                key={`${label}-${index}`}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -153,17 +162,21 @@ export function Footer() {
 
         <div>
           <h4 className="text-sm font-bold uppercase tracking-[0.15em] mb-5" style={{ color: "#f1f5f9" }}>Contact</h4>
-          <div className="flex flex-col gap-1.5 text-sm" style={{ color: "#94a3b8" }}>
-            {contactEmails.map(({ address, ariaLabel }) => (
-              <a
-                key={address}
-                href={`mailto:${address}`}
-                aria-label={ariaLabel}
-                className="cursor-pointer hover:text-[#00D4FF] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D4FF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#020814]"
-                style={{ color: "#94a3b8" }}
-              >
-                {address}
-              </a>
+          <div className="flex flex-col gap-3 text-sm" style={{ color: "#94a3b8" }}>
+            {contactDetails.map((item, index) => (
+              <div key={`${item.type}-${index}`} className="flex flex-col gap-1">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.2em]" style={{ color: "#f1f5f9" }}>
+                  {item.type}:
+                </span>
+                <a
+                  href={item.href}
+                  aria-label={item.ariaLabel}
+                  className="cursor-pointer hover:text-[#00D4FF] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D4FF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#020814]"
+                  style={{ color: "#94a3b8" }}
+                >
+                  {item.label}
+                </a>
+              </div>
             ))}
           </div>
         </div>
