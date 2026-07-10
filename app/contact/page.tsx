@@ -125,7 +125,6 @@ export default function ContactPage() {
                     value={form.message}
                     onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
                     className="w-full resize-none bg-transparent outline-none text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500"
-                    required
                   />
                 </div>
 
@@ -140,7 +139,7 @@ export default function ContactPage() {
             )}
           </div>
 
-          <p className="text-center text-xs text-slate-500 dark:text-slate-400 mt-3">© 2026 Pavdhan Organization • Together for a Sustainable Future</p>
+          <p className="text-center text-xs text-slate-500 dark:text-slate-400 mt-3">© 2026 Pavdhan Foundation • Empowering Students through the Sustainable Development Goals</p>
         </div>
 
       </div>

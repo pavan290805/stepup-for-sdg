@@ -157,14 +157,12 @@ export const DIRECTORY: PartnerOrg[] = [
   },
 ];
 
-export const FILTERS = ["All", "Schools", "NGOs", "Companies", "Universities"] as const;
+export const FILTERS = ["All", "NGOs", "Companies"] as const;
 export type FilterKey = (typeof FILTERS)[number];
 
 export const FILTER_TO_TYPE: Record<Exclude<FilterKey, "All">, PartnerType> = {
-  Schools: "School",
   NGOs: "NGO",
   Companies: "Company",
-  Universities: "University",
 };
 
 // Hero metric cards that orbit the logo

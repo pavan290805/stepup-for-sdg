@@ -133,7 +133,8 @@ export function PartnerDirectory() {
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
     return DIRECTORY.filter((o) => {
-      const typeOk = filter === "All" || o.type === FILTER_TO_TYPE[filter];
+      if (o.type === "School" || o.type === "University") return false;
+      const typeOk = filter === "All" || o.type === FILTER_TO_TYPE[filter as Exclude<FilterKey, "All">];
       const textOk =
         !q ||
         o.name.toLowerCase().includes(q) ||

@@ -208,10 +208,10 @@ const tierConfig: Record<Tier, { label: string; color: string; bg: string }> = {
   Silver: { label:"Silver", color:"#94a3b8", bg:"rgba(148,163,184,0.1)" },
 };
 
-const tabs = ["All","Schools","NGOs","Companies","Universities"] as const;
+const tabs = ["All","NGOs","Companies"] as const;
 type Tab = (typeof tabs)[number];
 const TAB_TO_TYPE: Record<Tab, PartnerType | null> = {
-  All:null, Schools:"School", NGOs:"NGO", Companies:"Company", Universities:"University",
+  All:null, NGOs:"NGO", Companies:"Company",
 };
 
 /* ─── DATA ────────────────────────────────────────────────────────────────── */
@@ -396,7 +396,7 @@ function TiltCard({children,className,style,onClick}:{children:React.ReactNode;c
     <motion.div ref={ref} onClick={onClick} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}
       style={{rotateX,rotateY,transformStyle:"preserve-3d",perspective:1000,...style}} className={className}>
       <motion.div className="absolute inset-0 rounded-[inherit] pointer-events-none opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        style={{background:useTransform([glowX,glowY],([gx,gy])=>`radial-gradient(circle at ${gx}% ${gy}%, rgba(14,165,201,0.08) 0%, transparent 60%)`)}}/>
+        style={{backgroundImage:useTransform([glowX,glowY],([gx,gy])=>`radial-gradient(circle at ${gx}% ${gy}%, rgba(14,165,201,0.08) 0%, transparent 60%)`)}}/>
       {children}
     </motion.div>
   );
@@ -438,9 +438,10 @@ function PartnerCard({partner,onSelect,theme,isDark}:{partner:Partner;onSelect:(
   const [hovered,setHovered]=useState(false);
   return (
     <TiltCard onClick={onSelect} className="group relative cursor-pointer shine-sweep"
-      style={{background:theme.card,border:`1px solid ${hovered?cfg.color:theme.border}`,borderRadius:20,overflow:"hidden",
+      style={{backgroundColor:theme.card,border:`1px solid ${hovered?cfg.color:theme.border}`,borderRadius:20,overflow:"hidden",
         boxShadow:hovered?`0 24px 80px -24px ${cfg.color}40,0 0 0 1px ${cfg.color}40`:`0 1px 3px rgba(0,0,0,0.12)`,
-        transition:"transform 0.25s ease, box-shadow 0.25s ease", backgroundImage:`radial-gradient(circle at top left, ${cfg.color}12, transparent 35%), radial-gradient(circle at bottom right, ${cfg.color}08, transparent 30%)`}}>
+        transition:"transform 0.25s ease, box-shadow 0.25s ease",
+        backgroundImage:`radial-gradient(circle at top left, ${cfg.color}12, transparent 35%), radial-gradient(circle at bottom right, ${cfg.color}08, transparent 30%)`}}>
       <div className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition duration-300 group-hover:opacity-100"
         style={{background:`radial-gradient(circle at 20% 20%, ${cfg.color}18 0%, transparent 24%), radial-gradient(circle at 80% 80%, ${cfg.color}08 0%, transparent 18%)`}}/>
       <motion.div onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>setHovered(false)}
@@ -891,6 +892,7 @@ export default function PartnersPage() {
   },[mouseX,mouseY]);
 
   const filtered=partners.filter(p=>{
+    if(p.type==="School"||p.type==="University") return false;
     const targetType=TAB_TO_TYPE[activeTab];
     const matchesTab=targetType===null||p.type===targetType;
     const q=searchQuery.trim().toLowerCase();

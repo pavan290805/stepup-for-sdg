@@ -49,7 +49,7 @@ export function EcosystemFlow() {
                     "linear-gradient(90deg, transparent, #00C2FF, #155DFC, transparent)",
                 }}
                 animate={{ x: ["-120%", "420%"] }}
-                transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
+                transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
               />
             )}
           </div>
@@ -81,7 +81,7 @@ export function EcosystemFlow() {
                       className="absolute inset-0 rounded-full"
                       style={{ border: `1px solid ${node.color}` }}
                       animate={{ scale: [1, 1.35, 1], opacity: [0.5, 0, 0.5] }}
-                      transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }}
+                      transition={{ duration: 0.7, repeat: Infinity, ease: "easeInOut", delay: i * 0.05 }}
                     />
                   )}
                   <span
