@@ -117,8 +117,8 @@ export function LiveImpactMap() {
                     style={{ width: "100%", height: "auto", display: "block" }}
                   >
                     <Geographies geography={geoData}>
-                      {(({ geographies }: { geographies: any[] }) =>
-                        geographies.map((geo: any) => (
+                      {({ geographies }: { geographies: any[] }) =>
+                        geographies.map((geo) => (
                           <Geography
                             key={geo.rsmKey}
                             geography={geo}
@@ -129,7 +129,7 @@ export function LiveImpactMap() {
                             }}
                           />
                         ))
-                      ) as unknown as () => React.ReactNode}
+                      }
                     </Geographies>
 
                     {markers.map((marker) => (
