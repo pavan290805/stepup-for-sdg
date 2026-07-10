@@ -117,7 +117,7 @@ export function LiveImpactMap() {
                     style={{ width: "100%", height: "auto", display: "block" }}
                   >
                     <Geographies geography={geoData}>
-                      {({ geographies }) =>
+                      {({ geographies }: { geographies: any[] }) =>
                         geographies.map((geo) => (
                           <Geography
                             key={geo.rsmKey}
