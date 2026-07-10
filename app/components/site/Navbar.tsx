@@ -71,15 +71,17 @@ function LanguageSelect() {
     location.reload();
   }
 
+  const shortLabel = selected.code === "en" ? "English" : selected.label.split(" ")[0];
+
   return (
     <div ref={ref} className="relative notranslate" data-no-translate translate="no">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex max-w-[180px] items-center gap-1.5 whitespace-nowrap rounded-full border border-border bg-background/60 px-3 py-1.5 text-xs font-semibold text-foreground transition hover:border-cyan-glow"
+        className="inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-border bg-background/60 px-2.5 py-1.5 text-xs font-semibold text-foreground transition hover:border-cyan-glow"
       >
-        <Globe className="h-3.5 w-3.5" />
-        {selected.label}
-        <ChevronDown className={`h-3 w-3 transition-transform ${open ? "rotate-180" : ""}`} />
+        <Globe className="h-3.5 w-3.5 shrink-0" />
+        <span className="max-w-[80px] truncate">{shortLabel}</span>
+        <ChevronDown className={`h-3 w-3 shrink-0 transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
 
       {open && (
@@ -116,10 +118,10 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border" data-no-translate translate="no">
-      <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-3 group">
-          <span className="inline-flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-white shadow-sm sm:h-22 sm:w-22 md:h-24 md:w-24">
+    <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border">
+      <div className="flex h-24 w-full items-center justify-between px-4 lg:px-10">
+        <Link href="/" className="shrink-0 flex items-center group">
+          <span className="inline-flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-white shadow-sm border border-border">
             <img
               src="/assets/SDG_LOGO-removebg-preview.png"
               alt="StepUp for SDG"
@@ -128,15 +130,15 @@ export function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 lg:gap-10 notranslate" data-no-translate translate="no">
+        <nav className="hidden md:flex items-center gap-6 xl:gap-8">
           {navLinks.map((l) =>
             l.disabled ? (
-              <span key={l.to} className="text-lg font-semibold text-muted-text cursor-default select-none">
+              <span key={l.to} className="text-base font-semibold text-muted-text cursor-default select-none whitespace-nowrap">
                 {l.label}
               </span>
             ) : (
               <Link key={l.to} href={l.to}
-                className={`text-lg font-semibold transition-colors ${
+                className={`text-base font-semibold whitespace-nowrap transition-colors ${
                   (l.to === "/" ? pathname === "/" : pathname.startsWith(l.to))
                     ? "text-cyan-glow"
                     : "text-foreground/80 hover:text-foreground"
@@ -147,20 +149,20 @@ export function Navbar() {
           )}
         </nav>
 
-        <div className="hidden md:flex items-center gap-3 notranslate" data-no-translate translate="no">
+        <div className="hidden md:flex items-center gap-3 shrink-0">
           <LanguageSelect />
           <ThemeToggle />
           <Link href="/funds"
-            className="inline-flex items-center gap-2 rounded-full bg-electric px-5 py-2.5 text-base font-semibold text-white shadow-[0_0_20px_rgba(21,93,252,0.45)] hover:brightness-110 transition">
+            className="inline-flex items-center whitespace-nowrap rounded-full bg-electric px-5 py-2.5 text-base font-semibold text-white shadow-[0_0_20px_rgba(21,93,252,0.45)] hover:brightness-110 transition">
             Funds
           </Link>
           <Link href="/work-with-us"
-            className="inline-flex items-center gap-2 rounded-full bg-cta px-5 py-2.5 text-base font-semibold text-white shadow-[0_0_20px_rgba(255,122,0,0.45)] hover:brightness-110 transition">
+            className="inline-flex items-center whitespace-nowrap rounded-full bg-cta px-5 py-2.5 text-base font-semibold text-white shadow-[0_0_20px_rgba(255,122,0,0.45)] hover:brightness-110 transition">
             Work With Us
           </Link>
         </div>
 
-        <div className="md:hidden flex items-center gap-2 notranslate" data-no-translate translate="no">
+        <div className="md:hidden flex items-center gap-2">
           <LanguageSelect />
           <ThemeToggle />
           <button onClick={() => setMobileOpen((v) => !v)} aria-label="Toggle menu">
@@ -170,7 +172,7 @@ export function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden border-t border-border bg-background/95 px-6 py-4 space-y-3 notranslate" data-no-translate translate="no">
+        <div className="md:hidden border-t border-border bg-background/95 px-6 py-4 space-y-3">
           {navLinks.map((l) =>
             l.disabled ? (
               <span key={l.to} className="block text-muted-text cursor-default select-none">

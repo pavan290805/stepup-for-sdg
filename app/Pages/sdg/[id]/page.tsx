@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ExternalLink } from "lucide-react";
 import { getSdgById, sdgs, withAlpha } from "../data/sdgs";
-import SdgGoalNavigator from "./SdgGoalNavigator";
+import SdgGoalNavigator from "../components/SdgGoalNavigator";
 
 type PageProps = {
   params: Promise<{
@@ -56,10 +56,12 @@ export default async function SDGDetailPage({ params }: PageProps) {
       <div className="relative z-10 mx-auto flex min-h-[calc(100vh-4rem)] w-full max-w-6xl flex-col justify-center">
         <Link
           className="mb-8 inline-flex w-fit rounded-full border border-white/14 bg-white/8 px-5 py-3 text-sm font-semibold backdrop-blur-md transition hover:border-cyan-200/60 hover:bg-white/12" style={{ color: "var(--foreground)" }}
-          href="/Pages/sdg"
+          href="/sdg"
         >
           Back to Goals
         </Link>
+
+        <div className="mt-6" />
 
         <SdgGoalNavigator currentGoalId={sdg.id} key={sdg.id} />
 
