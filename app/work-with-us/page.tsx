@@ -62,11 +62,11 @@ export default function WorkWithUsPage() {
                 <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-electric to-cyan-glow grid place-items-center shadow-[0_0_20px_rgba(0,194,255,0.4)]">
                   <section.icon className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="mt-5 text-xl font-semibold">{section.title}</h3>
+                <h3 className="mt-5 text-xl font-semibold text-foreground">{section.title}</h3>
                 <p className="mt-2 text-muted-text">{section.body}</p>
                 <Link
                   href={section.href}
-                  className="btn-arrow mt-6 inline-flex items-center gap-2 text-sm font-medium text-cyan-glow hover:text-white transition"
+                  className="btn-arrow mt-6 inline-flex items-center gap-2 text-sm font-medium text-electric hover:text-cyan-glow transition"
                 >
                   Get Started <ArrowRight className="arr h-4 w-4" />
                 </Link>

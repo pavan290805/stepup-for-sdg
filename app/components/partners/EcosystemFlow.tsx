@@ -10,7 +10,7 @@ function NodeIcon({ icon, color }: { icon: EcoNode["icon"]; color: string }) {
   const cls = "h-6 w-6";
   if (icon === "school") return <Home className={cls} style={{ color }} />;
   if (icon === "ngo") return <Heart className={cls} style={{ color }} />;
-  if (icon === "company") return <Building2 className={cls} style={{ color }} />;
+  if (icon === "company") return <Briefcase className={cls} style={{ color }} />;
   if (icon === "university") return <GraduationCap className={cls} style={{ color }} />;
   // hub = the StepUp logo
   return (
@@ -49,7 +49,7 @@ export function EcosystemFlow() {
                     "linear-gradient(90deg, transparent, #00C2FF, #155DFC, transparent)",
                 }}
                 animate={{ x: ["-120%", "420%"] }}
-                transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
+                transition={{ duration: 0.1, repeat: Infinity, ease: "linear" }}
               />
             )}
           </div>
@@ -81,7 +81,7 @@ export function EcosystemFlow() {
                       className="absolute inset-0 rounded-full"
                       style={{ border: `1px solid ${node.color}` }}
                       animate={{ scale: [1, 1.35, 1], opacity: [0.5, 0, 0.5] }}
-                      transition={{ duration: 0.7, repeat: Infinity, ease: "easeInOut", delay: i * 0.05 }}
+                      transition={{ duration: 0.1, repeat: Infinity, ease: "linear", delay: i * 0.02 }}
                     />
                   )}
                   <span

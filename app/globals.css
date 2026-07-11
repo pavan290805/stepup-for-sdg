@@ -567,6 +567,9 @@ html:not(.dark) .glass {
   box-shadow: 0 2px 16px rgba(13,27,62,0.06);
 }
 
+html:not(.dark) .glass h3 { color: #0D1B3E; }
+html:not(.dark) .glass p { color: #4A5980; }
+
 html:not(.dark) .grad-text {
   background: linear-gradient(90deg, #0D1B3E 0%, #155DFC 50%, #0099CC 100%);
   -webkit-background-clip: text;
