@@ -276,9 +276,11 @@ html:not(.dark) {
   position: absolute;
   inset: -10%;
   border-radius: 9999px;
-  background: radial-gradient(circle, rgba(0, 194, 255, 0.34) 0%, rgba(21, 93, 252, 0.16) 38%, transparent 72%);
-  filter: blur(22px);
+  background: 
+    radial-gradient(circle, rgba(21, 93, 252, 0.24) 0%, rgba(0, 194, 255, 0.12) 38%, transparent 72%);
+  filter: blur(28px);
   animation: pulseGlow 6s ease-in-out infinite;
+  mix-blend-mode: screen;
 }
 
 @keyframes pulseGlow {

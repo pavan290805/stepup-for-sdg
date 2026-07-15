@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import SDGGrid from "./SDGGrid";
 import { SpaceBackdrop } from "@/app/components/site/SpaceBackdrop";
+import { RotatingEarth } from "@/app/components/site/RotatingEarth";
 import { sdgs } from "../data/sdgs";
 
 export default function Hero() {
@@ -31,21 +31,32 @@ export default function Hero() {
         <section className="relative flex min-h-[80vh] items-center overflow-hidden px-5 py-8 sm:px-8 lg:px-12">
           <motion.div
             aria-hidden="true"
-            className="absolute right-[2vw] top-1/2 h-[55vh] w-[55vh] -translate-y-1/2 sm:right-[4vw] sm:h-[60vh] sm:w-[60vh] lg:right-[5vw] lg:h-[68vh] lg:w-[68vh]"
-            initial={{ opacity: 0, x: reduceMotion ? 0 : 60, scale: reduceMotion ? 1 : 1.08 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
+            className="absolute right-0 top-1/2 -translate-y-1/2 w-[70vw] max-w-[900px]"
+            initial={{ opacity: 0, x: reduceMotion ? 0 : 60 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: reduceMotion ? 0.15 : 0.8, ease: [0.22, 1, 0.36, 1] }}
+            style={{ isolation: "isolate", background: "transparent" }}
           >
-            <div className="relative h-full w-full rounded-full overflow-hidden" style={{ animation: 'rotate-earth 30s linear infinite' }}>
-              <Image
-                alt="Earth"
-                className="object-cover object-center"
-                fill
-                priority
-                sizes="(max-width: 768px) 55vh, 68vh"
-                src="/assets/earth.png"
-              />
-            </div>
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="hidden dark:block"
+              style={{ width: "100%", background: "transparent" }}
+            >
+              <source src="/B__change_the_background.mp4" type="video/mp4" />
+            </video>
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="block dark:hidden"
+              style={{ width: "100%", background: "transparent" }}
+            >
+              <source src="/chnage_the_background_to_this.mp4" type="video/mp4" />
+            </video>
           </motion.div>
 
           <div className="relative z-20 mx-auto w-full max-w-7xl">
