@@ -257,6 +257,58 @@ html:not(.dark) {
   pointer-events: none;
 }
 
+:where(main section div[aria-hidden="true"]:has(> video > source[src="/B__change_the_background.mp4"])) {
+  --sdg-video-haze: rgba(21, 93, 252, 0.34);
+  --sdg-video-rim: rgba(0, 194, 255, 0.18);
+  --sdg-video-depth: rgba(4, 9, 18, 0.62);
+  --sdg-video-edge: rgba(4, 9, 18, 0.84);
+  --sdg-video-edge-soft: rgba(7, 16, 31, 0.46);
+  mix-blend-mode: normal;
+}
+
+:where(main section div[aria-hidden="true"]:has(> video > source[src="/B__change_the_background.mp4"]))::before {
+  content: "";
+  position: absolute;
+  top: -18%;
+  right: -18%;
+  bottom: -18%;
+  left: -45%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 72% 58% at 58% 50%, var(--sdg-video-haze), transparent 70%),
+    radial-gradient(ellipse 52% 42% at 72% 46%, var(--sdg-video-rim), transparent 74%),
+    radial-gradient(ellipse 108% 82% at 100% 50%, var(--sdg-video-depth), transparent 72%);
+  filter: blur(28px);
+}
+
+:where(main section div[aria-hidden="true"]:has(> video > source[src="/B__change_the_background.mp4"]))::after {
+  content: "";
+  position: absolute;
+  top: -18%;
+  right: -18%;
+  bottom: -18%;
+  left: -45%;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0%, var(--sdg-video-edge) 13%, var(--sdg-video-edge-soft) 25%, transparent 42%),
+    linear-gradient(180deg, transparent 0%, var(--sdg-video-edge-soft) 12%, transparent 28%, transparent 70%, var(--sdg-video-edge-soft) 86%, transparent 100%),
+    radial-gradient(ellipse 88% 74% at 58% 50%, transparent 46%, var(--sdg-video-edge-soft) 72%, transparent 100%);
+}
+
+:where(main section div[aria-hidden="true"]:has(> video > source[src="/B__change_the_background.mp4"])) > video:has(> source[src="/B__change_the_background.mp4"]),
+:where(main section div[aria-hidden="true"]:has(> video > source[src="/B__change_the_background.mp4"])) > video:has(> source[src="/chnage_the_background_to_this.mp4"]) {
+  position: relative;
+  z-index: 1;
+  -webkit-mask-image: radial-gradient(ellipse 82% 66% at 60% 50%, #000 34%, rgba(0, 0, 0, 0.86) 46%, rgba(0, 0, 0, 0.42) 60%, transparent 82%);
+  mask-image: radial-gradient(ellipse 82% 66% at 60% 50%, #000 34%, rgba(0, 0, 0, 0.86) 46%, rgba(0, 0, 0, 0.42) 60%, transparent 82%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
 @keyframes streak {
   0% { transform: translate(-200px, 0) rotate(20deg); opacity: 0; }
   10% { opacity: 0.9; }
@@ -588,6 +640,14 @@ html:not(.dark) .space-bg {
     radial-gradient(ellipse 120% 105% at 50% 50%, transparent 50%, rgba(205,216,242,0.55) 100%),
     /* base linear */
     linear-gradient(180deg, #EEF2FF 0%, #F5F7FF 50%, #EEF2FF 100%);
+}
+
+html:not(.dark) :where(main section div[aria-hidden="true"]:has(> video > source[src="/B__change_the_background.mp4"])) {
+  --sdg-video-haze: rgba(21, 93, 252, 0.14);
+  --sdg-video-rim: rgba(0, 153, 204, 0.10);
+  --sdg-video-depth: rgba(238, 242, 255, 0.58);
+  --sdg-video-edge: rgba(238, 242, 255, 0.86);
+  --sdg-video-edge-soft: rgba(245, 247, 255, 0.46);
 }
 
 html:not(.dark) .stars-layer {
