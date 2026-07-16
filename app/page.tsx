@@ -20,6 +20,28 @@ function RahiniHome() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden flex items-center py-12 px-6 space-bg" style={{ minHeight: "70vh" }}>
+          <div
+            aria-hidden="true"
+            className="absolute right-0 top-1/2 -translate-y-1/2 w-[70vw] max-w-[900px] overflow-hidden"
+            style={{
+              aspectRatio: "16/9",
+              WebkitMaskImage: "radial-gradient(ellipse 75% 80% at 65% 50%, black 30%, transparent 75%)",
+              maskImage: "radial-gradient(ellipse 75% 80% at 65% 50%, black 30%, transparent 75%)",
+            }}
+          >
+            <video
+              key={theme}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+              src={isDark
+                ? "/home/WhatsApp Video 2026-07-16 at 3.34.33 PM.mp4"
+                : "/home/WhatsApp Video 2026-07-16 at 3.34.25 PM.mp4"
+              }
+            />
+          </div>
 
         <div className="relative mx-auto max-w-7xl w-full" style={{ zIndex: 2 }}>
           <FadeUp>
