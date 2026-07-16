@@ -330,7 +330,7 @@ export default function PartnersPage() {
         </div>
       )}
 
-      <main style={{ flex: 1, padding: '24px 28px 40px', display: 'flex', flexDirection: 'column', gap: 20 }}>
+      <main style={{ flex: 1, padding: '24px 28px 40px', display: 'flex', flexDirection: 'column', gap: 20, background: dark ? '#0f1117' : '#f5f6fa', minHeight: '100vh' }}>
 
         {/* Header */}
         <div>

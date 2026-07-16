@@ -64,7 +64,7 @@ export default function DonationsPage() {
   }
 
   return (
-    <main style={{ padding: '24px 28px 40px', display: 'flex', flexDirection: 'column', gap: 18 }}>
+    <main style={{ padding: '24px 28px 40px', display: 'flex', flexDirection: 'column', gap: 18, background: dark ? '#0f1117' : '#f5f6fa', minHeight: '100vh' }}>
 
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

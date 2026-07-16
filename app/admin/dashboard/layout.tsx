@@ -146,7 +146,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
           {/* Topbar */}
           <header style={{
-            height: 62, background: dark ? 'rgba(26,29,39,0.75)' : 'rgba(255,255,255,0.75)', backdropFilter: 'blur(12px)', borderBottom: `1px solid ${c.border}`,
+            height: 62, background: dark ? 'rgba(26,29,39,0.95)' : 'rgba(255,255,255,0.98)', backdropFilter: 'blur(12px)', borderBottom: `1px solid ${c.border}`,
             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
             padding: '0 28px', position: 'sticky', top: 0, zIndex: 90,
             boxShadow: c.shadow, transition: 'background .3s',
@@ -251,7 +251,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </header>
 
           {/* PAGE CONTENT */}
-          <div style={{ flex: 1 }}>{children}</div>
+          <div style={{ flex: 1, background: dark ? '#0f1117' : '#f5f6fa', transition: 'background .3s' }}>{children}</div>
 
           {/* Footer */}
           <footer style={{ borderTop: `1px solid ${c.border}`, background: dark ? 'rgba(26,29,39,0.75)' : 'rgba(255,255,255,0.75)', backdropFilter: 'blur(12px)', padding: '14px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>

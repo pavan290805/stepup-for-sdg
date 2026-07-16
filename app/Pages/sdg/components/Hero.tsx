@@ -70,8 +70,8 @@ export default function Hero() {
               playsInline
               className="absolute inset-0 w-full h-full object-cover"
               src={theme === "dark"
-                ? "/WhatsApp Video 2026-07-16 at 3.23.52 PM.mp4"
-                : "/WhatsApp Video 2026-07-16 at 3.23.53 PM.mp4"
+                ? "/WhatsApp%20Video%202026-07-16%20at%203.23.52%20PM.mp4"
+                : "/WhatsApp%20Video%202026-07-16%20at%203.23.53%20PM.mp4"
               }
             />
           </div>
