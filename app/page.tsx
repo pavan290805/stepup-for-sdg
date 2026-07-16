@@ -1,34 +1,34 @@
+"use client";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { SpaceBackdrop } from "@/app/components/site/SpaceBackdrop";
 import { ImpactMetrics } from "@/app/components/site/ImpactMetrics";
 import { PartnerCards } from "@/app/components/site/PartnerCards";
 import { LiveImpactMap } from "@/app/components/site/LiveImpactMap";
 import { VisionBanner } from "@/app/components/site/VisionBanner";
 import { FadeUp } from "@/app/components/site/FadeUp";
-export const metadata = {
-  title: "StepUp for SDG — Global Education Impact Platform",
-  description: "Empowering Students through the Sustainable Development Goals",
-};
+import { useTheme } from "@/app/components/ThemeProvider";
 
 export default function Home() {
   return <RahiniHome />;
 }
 
 function RahiniHome() {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden pt-8 md:pt-10 pb-6 px-6">
-        <SpaceBackdrop />
-        <div className="relative mx-auto max-w-7xl grid gap-12 lg:grid-cols-2 items-center">
+      <section className="relative overflow-hidden flex items-center py-12 px-6 space-bg" style={{ minHeight: "70vh" }}>
+
+        <div className="relative mx-auto max-w-7xl w-full" style={{ zIndex: 2 }}>
           <FadeUp>
-            <div>
-<h1 className="mt-6 font-display text-4xl md:text-6xl font-bold leading-[1.05]" style={{ color: "var(--foreground)" }}>
+            <div className="max-w-2xl">
+              <h1 className="font-display text-4xl md:text-6xl font-bold leading-[1.05]" style={{ color: "var(--foreground)" }}>
                 Students, Companies and NGOs for{" "}
                 <span className="grad-text">SDG Impact</span>
               </h1>
-              <p className="mt-6 max-w-xl text-base md:text-lg leading-relaxed" style={{ color: "var(--muted-text)" }}>
+              <p className="mt-4 max-w-xl text-base md:text-lg leading-relaxed" style={{ color: "var(--muted-text)" }}>
                 Empowering Students through the Sustainable Development Goals
               </p>
               <div className="mt-8 flex flex-wrap gap-3">

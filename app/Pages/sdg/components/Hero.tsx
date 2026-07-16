@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useState, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import SDGGrid from "./SDGGrid";
 import { useTheme } from "@/app/components/ThemeProvider";
@@ -9,45 +9,7 @@ export default function Hero() {
   const reduceMotion = useReducedMotion() ?? false;
   const goalsRef = useRef<HTMLElement | null>(null);
   const { theme } = useTheme();
-  const videoSrc = theme === "dark" ? "/B__change_the_background.mp4" : "/chnage_the_background_to_this.mp4";
-
-  const v1 = useRef<HTMLVideoElement>(null);
-  const v2 = useRef<HTMLVideoElement>(null);
-  const [topVideo, setTopVideo] = useState<1 | 2>(1);
-
-  useEffect(() => {
-    const vid1 = v1.current;
-    const vid2 = v2.current;
-    if (!vid1 || !vid2) return;
-
-    vid1.currentTime = 0;
-    vid2.currentTime = 0;
-    vid1.play();
-
-    const onUpdate1 = () => {
-      if (!vid1.duration) return;
-      if (vid1.currentTime >= vid1.duration - 0.8) {
-        vid2.currentTime = 0;
-        vid2.play();
-        setTopVideo(2);
-      }
-    };
-    const onUpdate2 = () => {
-      if (!vid2.duration) return;
-      if (vid2.currentTime >= vid2.duration - 0.8) {
-        vid1.currentTime = 0;
-        vid1.play();
-        setTopVideo(1);
-      }
-    };
-
-    vid1.addEventListener("timeupdate", onUpdate1);
-    vid2.addEventListener("timeupdate", onUpdate2);
-    return () => {
-      vid1.removeEventListener("timeupdate", onUpdate1);
-      vid2.removeEventListener("timeupdate", onUpdate2);
-    };
-  }, [videoSrc]);
+  const [, setDummy] = useState(0);
 
   const handleExplore = () => {
     goalsRef.current?.scrollIntoView({
@@ -68,7 +30,7 @@ export default function Hero() {
 
   return (
     <main
-      className="relative min-h-screen overflow-x-hidden dark:[background:radial-gradient(ellipse_at_50%_60%,#0d2a4a_0%,#061020_50%,#000810_100%)] [background:radial-gradient(ellipse_at_50%_40%,#b8d4ee_0%,#cfe0f0_40%,#e2eef7_100%)]"
+      className="relative min-h-screen overflow-x-hidden dark:bg-[#000810] bg-[#e2eef7]"
       style={{ color: "var(--foreground)" }}
     >
       <div className="absolute inset-0 overflow-hidden pointer-events-none hidden dark:block">
@@ -86,9 +48,14 @@ export default function Hero() {
         transition={{ duration: reduceMotion ? 0.15 : 0.65, ease: [0.22, 1, 0.36, 1] }}
       >
         <section className="relative flex min-h-[80vh] items-center overflow-hidden px-5 py-8 sm:px-8 lg:px-12">
+          <div aria-hidden="true" className="absolute inset-0 pointer-events-none hidden dark:block">
+            <div className="stars-layer" />
+            <div className="stars-layer" style={{ animationDelay: "-2s", opacity: 0.6, transform: "rotate(15deg) scale(1.1)" }} />
+            <div className="stars-layer" style={{ animationDelay: "-4s", opacity: 0.5, transform: "rotate(-10deg) scale(0.95)" }} />
+          </div>
           <div
             aria-hidden="true"
-            className="absolute right-0 top-1/2 -translate-y-1/2 w-[70vw] max-w-[900px]"
+            className="absolute right-0 top-1/2 -translate-y-1/2 w-[70vw] max-w-[900px] overflow-hidden"
             style={{
               aspectRatio: "16/9",
               WebkitMaskImage: "radial-gradient(ellipse 75% 80% at 65% 50%, black 30%, transparent 75%)",
@@ -96,18 +63,16 @@ export default function Hero() {
             }}
           >
             <video
-              ref={v1}
+              key={theme}
+              autoPlay
               muted
+              loop
               playsInline
-              src={videoSrc}
-              style={{ ...videoStyle, opacity: topVideo === 1 ? 1 : 0 }}
-            />
-            <video
-              ref={v2}
-              muted
-              playsInline
-              src={videoSrc}
-              style={{ ...videoStyle, opacity: topVideo === 2 ? 1 : 0 }}
+              className="absolute inset-0 w-full h-full object-cover"
+              src={theme === "dark"
+                ? "/WhatsApp Video 2026-07-16 at 3.23.52 PM.mp4"
+                : "/WhatsApp Video 2026-07-16 at 3.23.53 PM.mp4"
+              }
             />
           </div>
 

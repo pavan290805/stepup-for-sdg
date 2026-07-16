@@ -65,7 +65,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <PartnershipFormProvider>
       <PartnersProvider>
       <div style={{ display: 'flex', minHeight: '100vh', fontFamily: "'Inter','Segoe UI',system-ui,sans-serif", transition: 'background .3s', overflow: 'hidden', position: 'relative' }}>
-        <video autoPlay muted loop playsInline style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', objectFit: 'cover', zIndex: 0, pointerEvents: 'none' }} src="/chnage_the_background_to_this.mp4" />
+        <div aria-hidden style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, pointerEvents: 'none' }} className="space-bg" />
         <style>{`
           @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
           *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
