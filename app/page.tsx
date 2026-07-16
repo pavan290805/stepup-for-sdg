@@ -46,8 +46,8 @@ function RahiniHome() {
               playsInline
               className="absolute inset-0 w-full h-full object-cover"
               src={isDark
-                ? "/home/WhatsApp%20Video%202026-07-16%20at%203.34.33%20PM.mp4"
-                : "/home/WhatsApp%20Video%202026-07-16%20at%203.34.25%20PM.mp4"
+                ? "home/home-dark.mp4"
+                : "home/home-light.mp4"
               }
             />
           </div>
