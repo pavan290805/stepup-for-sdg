@@ -65,7 +65,8 @@ export default function DashboardPage() {
   }
 
   const card = {
-    background: c.surface,
+    background: dark ? 'rgba(26,29,39,0.72)' : 'rgba(255,255,255,0.72)',
+    backdropFilter: 'blur(12px)',
     border: `1px solid ${c.border}`,
     borderRadius: 14,
     boxShadow: c.shadow,
@@ -73,7 +74,7 @@ export default function DashboardPage() {
 
   return (
     <>
-    <main style={{ flex: 1, padding: '24px 28px 40px', display: 'flex', flexDirection: 'column', gap: 18, overflowX: 'hidden' }}>
+    <main style={{ flex: 1, padding: '24px 28px 40px', display: 'flex', flexDirection: 'column', gap: 18, overflowX: 'hidden', background: 'transparent' }}>
 
       {/* Banner */}
       <div style={{ background: 'linear-gradient(120deg,#1e3a8a 0%,#2563eb 55%,#0ea5e9 100%)', borderRadius: 14, padding: '18px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxShadow: '0 4px 20px rgba(37,99,235,.3)' }}>

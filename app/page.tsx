@@ -1,7 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { SpaceBackdrop } from "@/app/components/site/SpaceBackdrop";
-import { RotatingEarth } from "@/app/components/site/RotatingEarth";
 import { ImpactMetrics } from "@/app/components/site/ImpactMetrics";
 import { PartnerCards } from "@/app/components/site/PartnerCards";
 import { LiveImpactMap } from "@/app/components/site/LiveImpactMap";
@@ -42,9 +41,6 @@ function RahiniHome() {
               </div>
             </div>
           </FadeUp>
-          <div className="relative">
-            <RotatingEarth />
-          </div>
         </div>
       </section>
 

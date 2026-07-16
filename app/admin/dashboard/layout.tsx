@@ -64,7 +64,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     <ThemeContext.Provider value={{ dark }}>
       <PartnershipFormProvider>
       <PartnersProvider>
-      <div style={{ display: 'flex', minHeight: '100vh', background: c.bg, fontFamily: "'Inter','Segoe UI',system-ui,sans-serif", transition: 'background .3s', overflow: 'hidden' }}>
+      <div style={{ display: 'flex', minHeight: '100vh', fontFamily: "'Inter','Segoe UI',system-ui,sans-serif", transition: 'background .3s', overflow: 'hidden', position: 'relative' }}>
+        <video autoPlay muted loop playsInline style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', objectFit: 'cover', zIndex: 0, pointerEvents: 'none' }} src="/chnage_the_background_to_this.mp4" />
         <style>{`
           @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
           *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -86,7 +87,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           display: 'flex', flexDirection: 'column',
           background: dark ? 'linear-gradient(175deg,#0d1117 0%,#1a2035 50%,#0f1729 100%)' : 'linear-gradient(175deg,#1e3a8a 0%,#1d4ed8 50%,#0ea5e9 100%)',
           borderRight: '1px solid rgba(255,255,255,.05)',
-          boxShadow: '2px 0 20px rgba(0,0,0,.2)', zIndex: 100,
+          boxShadow: '2px 0 20px rgba(0,0,0,.2)', zIndex: 101,
         }}>
           <div style={{ padding: '24px 20px 20px', borderBottom: '1px solid rgba(255,255,255,.06)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -141,11 +142,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </aside>
 
         {/* MAIN */}
-        <div style={{ flex: 1, marginLeft: 248, minHeight: '100vh', display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
+        <div style={{ flex: 1, marginLeft: 248, minHeight: '100vh', display: 'flex', flexDirection: 'column', overflowY: 'auto', position: 'relative', zIndex: 1 }}>
 
           {/* Topbar */}
           <header style={{
-            height: 62, background: c.surface, borderBottom: `1px solid ${c.border}`,
+            height: 62, background: dark ? 'rgba(26,29,39,0.75)' : 'rgba(255,255,255,0.75)', backdropFilter: 'blur(12px)', borderBottom: `1px solid ${c.border}`,
             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
             padding: '0 28px', position: 'sticky', top: 0, zIndex: 90,
             boxShadow: c.shadow, transition: 'background .3s',
@@ -253,7 +254,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <div style={{ flex: 1 }}>{children}</div>
 
           {/* Footer */}
-          <footer style={{ borderTop: `1px solid ${c.border}`, background: c.surface, padding: '14px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>
+          <footer style={{ borderTop: `1px solid ${c.border}`, background: dark ? 'rgba(26,29,39,0.75)' : 'rgba(255,255,255,0.75)', backdropFilter: 'blur(12px)', padding: '14px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>
             <div style={{ fontSize: 12.5, fontWeight: 700, color: c.textPrimary }}>Pavdhan Foundation <span style={{ fontWeight: 400, color: c.textMuted }}>© {new Date().getFullYear()}</span></div>
             <div style={{ fontSize: 11.5, fontWeight: 600, color: c.red }}>Restricted — Authorized Admins Only</div>
           </footer>

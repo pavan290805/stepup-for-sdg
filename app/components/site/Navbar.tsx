@@ -118,7 +118,7 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border">
+    <header className="sticky top-0 z-50 backdrop-blur-xl bg-white dark:bg-background border-b border-border">
       <div className="flex h-24 w-full items-center justify-between px-32 lg:px-44">
         <Link href="/" className="shrink-0 flex items-center group">
           <span className="inline-flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-white shadow-sm border border-border">
