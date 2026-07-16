@@ -20,6 +20,15 @@ function RahiniHome() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden flex items-center py-12 px-6 space-bg" style={{ minHeight: "70vh" }}>
+        <div className="absolute inset-0 overflow-hidden pointer-events-none hidden dark:block">
+          <div className="stars-layer" />
+          <div className="stars-layer" style={{ animationDelay: "-2s", opacity: 0.6, transform: "rotate(15deg) scale(1.1)" }} />
+          <div className="stars-layer" style={{ animationDelay: "-4s", opacity: 0.5, transform: "rotate(-10deg) scale(0.95)" }} />
+          <span className="streak" style={{ top: "20%", animationDelay: "0s" }} />
+          <span className="streak" style={{ top: "45%", animationDelay: "2s" }} />
+          <span className="streak" style={{ top: "70%", animationDelay: "4s" }} />
+          <span className="streak" style={{ top: "10%", animationDelay: "1s" }} />
+        </div>
           <div
             aria-hidden="true"
             className="absolute right-0 top-1/2 -translate-y-1/2 w-[70vw] max-w-[900px] overflow-hidden"
