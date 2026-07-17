@@ -104,10 +104,6 @@ export default function DashboardPage() {
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: s.color, borderRadius: '14px 14px 0 0' }} />
             <div style={{ fontSize: 11, fontWeight: 600, color: c.textMuted, textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 6 }}>{s.label}</div>
             <div style={{ fontSize: 30, fontWeight: 800, color: c.textPrimary, lineHeight: 1, marginBottom: 8 }}>{s.value}</div>
-                        <div style={{ fontSize: 30, fontWeight: 800, color: c.textPrimary, lineHeight: 1, marginBottom: 8 }}>{hideDefaultNumbers ? '—' : s.value}</div>
-                        <div style={{ fontSize: 30, fontWeight: 800, color: c.textPrimary, lineHeight: 1, marginBottom: 8 }}>{hideDefaultNumbers ? '—' : s.value}</div>
-                        <div style={{ fontSize: 30, fontWeight: 800, color: c.textPrimary, lineHeight: 1, marginBottom: 8 }}>{hideDefaultNumbers ? '—' : s.value}</div>
-                        <div style={{ fontSize: 30, fontWeight: 800, color: c.textPrimary, lineHeight: 1, marginBottom: 8 }}>{hideDefaultNumbers ? '—' : s.value}</div>
             <div style={{ fontSize: 11.5, fontWeight: 500, color: s.up === true ? c.green : s.up === false ? c.red : c.textMuted }}>
               {s.up === true ? '↑ ' : ''}{s.change}
             </div>
@@ -224,7 +220,6 @@ export default function DashboardPage() {
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 5 }}>
                       <span style={{ fontSize: 12, fontWeight: 600, color: c.textPrimary }}>SDG {s.num}: {s.label}</span>
                       <span style={{ fontSize: 11.5, fontWeight: 700, color: c.textSecond, whiteSpace: 'nowrap', marginLeft: 12 }}>{s.pts.toLocaleString()} pts</span>
-                                          <span style={{ fontSize: 11.5, fontWeight: 700, color: c.textSecond, whiteSpace: 'nowrap', marginLeft: 12 }}>{hideDefaultNumbers ? '—' : `${s.pts.toLocaleString()} pts`}</span>
                     </div>
                     <div style={{ height: 5, borderRadius: 4, background: c.surfaceAlt, border: `1px solid ${c.border}`, overflow: 'hidden' }}>
                       <div style={{ height: '100%', width: `${s.pct}%`, background: s.color, borderRadius: 4 }} />

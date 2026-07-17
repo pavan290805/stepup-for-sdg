@@ -58,8 +58,13 @@ export default function Hero() {
             className="absolute right-0 top-1/2 -translate-y-1/2 w-[70vw] max-w-[900px] overflow-hidden"
             style={{
               aspectRatio: "16/9",
-              WebkitMaskImage: "radial-gradient(ellipse 75% 80% at 65% 50%, black 30%, transparent 75%)",
-              maskImage: "radial-gradient(ellipse 75% 80% at 65% 50%, black 30%, transparent 75%)",
+              background: theme === "dark" ? "#000810" : "#e2eef7",
+              WebkitMaskImage: theme === "dark"
+                ? "radial-gradient(ellipse 85% 85% at 65% 55%, black 25%, transparent 70%)"
+                : "radial-gradient(ellipse 85% 85% at 60% 55%, black 15%, transparent 65%)",
+              maskImage: theme === "dark"
+                ? "radial-gradient(ellipse 85% 85% at 65% 55%, black 25%, transparent 70%)"
+                : "radial-gradient(ellipse 85% 85% at 60% 55%, black 15%, transparent 65%)",
             }}
           >
             <video
