@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 import { Menu, X, Sun, Moon, Globe, ChevronDown } from "lucide-react";
 import { useTheme } from "@/app/components/ThemeProvider";
+import { hideFundsAndContact } from "@/app/lib/siteFlags";
 
 const navLinks = [
   { to: "/", label: "Home", disabled: false },
@@ -131,7 +132,9 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-6 xl:gap-8">
-          {navLinks.map((l) =>
+          {navLinks
+            .filter((l) => !(hideFundsAndContact && (l.to === "/contact" || l.to === "/funds")))
+            .map((l) =>
             l.disabled ? (
               <span key={l.to} className="text-base font-semibold text-muted-text cursor-default select-none whitespace-nowrap">
                 {l.label}
@@ -152,10 +155,12 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-3 shrink-0">
           <LanguageSelect />
           <ThemeToggle />
-          <Link href="/funds"
-            className="inline-flex items-center whitespace-nowrap rounded-full bg-electric px-5 py-2.5 text-base font-semibold text-white shadow-[0_0_20px_rgba(21,93,252,0.45)] hover:brightness-110 transition">
-            Funds
-          </Link>
+          {!hideFundsAndContact && (
+            <Link href="/funds"
+              className="inline-flex items-center whitespace-nowrap rounded-full bg-electric px-5 py-2.5 text-base font-semibold text-white shadow-[0_0_20px_rgba(21,93,252,0.45)] hover:brightness-110 transition">
+              Funds
+            </Link>
+          )}
           <Link href="/work-with-us"
             className="inline-flex items-center whitespace-nowrap rounded-full bg-cta px-5 py-2.5 text-base font-semibold text-white shadow-[0_0_20px_rgba(255,122,0,0.45)] hover:brightness-110 transition">
             Work With Us
@@ -173,7 +178,9 @@ export function Navbar() {
 
       {mobileOpen && (
         <div className="md:hidden border-t border-border bg-background/95 px-6 py-4 space-y-3">
-          {navLinks.map((l) =>
+          {navLinks
+            .filter((l) => !(hideFundsAndContact && (l.to === "/contact" || l.to === "/funds")))
+            .map((l) =>
             l.disabled ? (
               <span key={l.to} className="block text-muted-text cursor-default select-none">
                 {l.label}

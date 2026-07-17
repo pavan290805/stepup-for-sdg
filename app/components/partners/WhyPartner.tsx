@@ -12,6 +12,7 @@ import {
   Megaphone,
 } from "lucide-react";
 import { Reveal, TiltCard } from "./primitives";
+import { hideFundsAndContact } from "@/app/lib/siteFlags";
 import { WHY_PARTNER, PARTNERSHIP_MODELS, type BenefitCard, type PartnershipModel } from "./partnersData";
 
 function BenefitIcon({ icon }: { icon: BenefitCard["icon"] }) {
@@ -78,13 +79,15 @@ export function WhyPartner() {
                     ))}
                   </ul>
 
-                  <Link
-                    href="/contact"
-                    className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-cyan-glow transition hover:text-foreground"
-                  >
-                    Get Started
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1.5" />
-                  </Link>
+                  {!hideFundsAndContact && (
+                    <Link
+                      href="/contact"
+                      className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-cyan-glow transition hover:text-foreground"
+                    >
+                      Get Started
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1.5" />
+                    </Link>
+                  )}
                 </div>
               </div>
             </TiltCard>

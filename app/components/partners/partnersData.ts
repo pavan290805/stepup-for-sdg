@@ -174,22 +174,10 @@ export interface Metric {
   sub: string;
 }
 
-export const HERO_METRICS: Metric[] = [
-  { label: "Schools Connected", value: 142, suffix: "+", sub: "Across India" },
-  { label: "CSR Funding", value: 1, suffix: "Cr+", prefix: "Rs", sub: "Enabled this year" },
-  { label: "NGOs", value: 90, suffix: "+", sub: "On the ground" },
-  { label: "SDG Projects", value: 186, suffix: "+", sub: "Currently active" },
-  { label: "Universities", value: 28, suffix: "+", sub: "Research partners" },
-];
+export const HERO_METRICS: Metric[] = [];
 
 // Live impact counters
-export const LIVE_STATS: Metric[] = [
-  { label: "Projects", value: 186, suffix: "+", sub: "Currently active" },
-  { label: "Schools", value: 142, suffix: "+", sub: "Across India" },
-  { label: "NGOs", value: 90, suffix: "+", sub: "Partnered" },
-  { label: "Students", value: 12000, suffix: "+", sub: "Reached" },
-  { label: "CSR Funds", value: 1, suffix: "Cr+", prefix: "Rs", sub: "Mobilised" },
-];
+export const LIVE_STATS: Metric[] = [];
 
 // Ecosystem nodes
 export interface EcoNode {

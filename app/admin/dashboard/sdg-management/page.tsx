@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useDashboardTheme } from '../ThemeContext'
+import { hideDefaultNumbers } from '@/app/lib/siteFlags'
 
 // Add new project-related SDGs here — they auto-appear everywhere
 const sdgs = [
@@ -368,7 +369,7 @@ export default function SDGManagementPage() {
             ].map((s, i) => (
               <div key={i} style={{ background: 'white', borderRadius: 12, padding: '18px 20px', border: '1px solid #eef0f2', boxShadow: '0 1px 4px rgba(0,0,0,.05)', borderTop: `3px solid ${s.color}` }}>
                 <div style={{ fontSize: 11, fontWeight: 600, color: '#9aa3ad', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 6 }}>{s.label}</div>
-                <div style={{ fontSize: 26, fontWeight: 800, color: '#111827', lineHeight: 1, marginBottom: 4 }}>{s.value}</div>
+                <div style={{ fontSize: 26, fontWeight: 800, color: '#111827', lineHeight: 1, marginBottom: 4 }}>{hideDefaultNumbers ? '—' : s.value}</div>
                 <div style={{ fontSize: 11, color: '#10b981', fontWeight: 500 }}>↑ {s.sub}</div>
               </div>
             ))}
@@ -397,14 +398,14 @@ export default function SDGManagementPage() {
               <div key={i} style={{ display: 'grid', gridTemplateColumns: '0.5fr 2fr 1fr 1fr 1fr 1.5fr', gap: 8, padding: '14px 22px', borderBottom: '1px solid #f5f5f5', alignItems: 'center' }}>
                 <div style={{ width: 26, height: 26, borderRadius: 7, background: row.color, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: 11, fontWeight: 700 }}>{row.num}</div>
                 <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{row.name}</span>
-                <span style={{ fontSize: 13, fontWeight: 700, color: '#111827' }}>{row.pts.toLocaleString()}</span>
-                <span style={{ fontSize: 13, color: '#6b7888' }}>{row.volunteers}</span>
-                <span style={{ fontSize: 13, color: '#6b7888' }}>{row.projects}</span>
+                <span style={{ fontSize: 13, fontWeight: 700, color: '#111827' }}>{hideDefaultNumbers ? '—' : row.pts.toLocaleString()}</span>
+                <span style={{ fontSize: 13, color: '#6b7888' }}>{hideDefaultNumbers ? '—' : row.volunteers}</span>
+                <span style={{ fontSize: 13, color: '#6b7888' }}>{hideDefaultNumbers ? '—' : row.projects}</span>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <div style={{ flex: 1, height: 6, borderRadius: 4, background: '#f0f0f0', overflow: 'hidden' }}>
                     <div style={{ height: '100%', width: `${row.pct}%`, background: row.color, borderRadius: 4 }} />
                   </div>
-                  <span style={{ fontSize: 11, fontWeight: 700, color: '#111827', minWidth: 32 }}>{row.pct}%</span>
+                  <span style={{ fontSize: 11, fontWeight: 700, color: '#111827', minWidth: 32 }}>{hideDefaultNumbers ? '—' : `${row.pct}%`}</span>
                 </div>
               </div>
             ))}

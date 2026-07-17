@@ -11,7 +11,7 @@ import { PartnerDirectory } from "./PartnerDirectory";
 import { TrustedMarquee } from "./TrustedMarquee";
 import { WhyPartner } from "./WhyPartner";
 import { PartnershipJourney } from "./PartnershipJourney";
-import { LiveImpact } from "./LiveImpact";
+// LiveImpact removed per request
 import { FinalCTA } from "./FinalCTA";
 
 export function PartnersExperience() {
@@ -60,7 +60,7 @@ export function PartnersExperience() {
       <TrustedMarquee />
       <WhyPartner />
       <PartnershipJourney />
-      <LiveImpact />
+      {/* LiveImpact section removed */}
       <FinalCTA />
     </div>
   );

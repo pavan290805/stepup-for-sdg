@@ -272,12 +272,7 @@ const ECOSYSTEM_LOGOS = [
   { name:"Capgemini",     domain:"capgemini.com",    wiki:"https://upload.wikimedia.org/wikipedia/commons/f/f9/Capgemini_201x_logo.svg" },
 ];
 
-const heroFloatingCards = [
-  { label:"CSR Funding",       value:"Rs1.0Cr+", sub:"Enabled this year",  delay:0,    floatDur:3.2 },
-  { label:"SDG Projects",      value:"186+",   sub:"Currently active",   delay:0.15, floatDur:4.0 },
-  { label:"Schools Connected", value:"142+",   sub:"Across India",       delay:0.3,  floatDur:3.6 },
-  { label:"Verified Partners", value:"260+",   sub:"Organizations",      delay:0.45, floatDur:3.8 },
-];
+// heroFloatingCards removed — metrics cleared per request
 
 const ecosystemRoles: { type: PartnerType | "Hub"; title: string; role: string }[] = [
   { type:"School",     title:"Schools",      role:"SDG education & awareness"           },
@@ -305,12 +300,7 @@ const COMPANY_PROJECTS = [
   { name:"Climate Action Camp",      amount:"Rs11L", status:"Completed" as const, verified:true  },
 ];
 
-const METRICS_BY_TYPE: Record<PartnerType, [string,string][]> = {
-  Company:    [["Rs50L","Total contributed"],["Rs38L","Funds utilized"],["Rs12L","Remaining"],["620","Students reached"],["12","Schools helped"],["8","Workshops done"]],
-  School:     [["320","Students"],["8","Workshops"],["3","SDG Goals"],["2","Years active"],["4","Events held"],["95%","Satisfaction"]],
-  NGO:        [["12","Projects"],["4","Cities"],["5","SDG Goals"],["840","Beneficiaries"],["3","Years active"],["6","Partners"]],
-  University: [["420","Volunteers"],["6","Events"],["5","SDG Goals"],["200","Students active"],["4","Departments"],["2","Years active"]],
-};
+// METRICS_BY_TYPE removed — metrics cleared per request
 
 /* ─── ICONS ───────────────────────────────────────────────────────────────── */
 const Icon = {
@@ -355,27 +345,7 @@ function MultiSourceImg({ sources,alt,initials,color,gradient,border,className,s
 }
 
 /* ─── ANIMATED COUNTER ────────────────────────────────────────────────────── */
-function AnimatedCounter({value,theme}:{value:string;theme:T}) {
-  const ref=useRef<HTMLDivElement>(null);
-  const isInView=useInView(ref,{once:true,margin:"-50px"});
-  const [display,setDisplay]=useState("0");
-  useEffect(()=>{
-    if(!isInView) return;
-    const num=parseFloat(value.replace(/[^0-9.]/g,""));
-    if(isNaN(num)){setDisplay(value);return;}
-    const suffix=value.replace(/[0-9.]/g,"");
-    const dur=1400; const start=performance.now();
-    const update=(now:number)=>{
-      const t=Math.min((now-start)/dur,1);
-      const eased=1-Math.pow(1-t,3);
-      const cur=eased*num;
-      setDisplay(`${num<100?cur.toFixed(num%1!==0?1:0):Math.round(cur)}${suffix}`);
-      if(t<1) requestAnimationFrame(update);
-    };
-    requestAnimationFrame(update);
-  },[isInView,value]);
-  return <div ref={ref} style={{color:theme.text}}>{display}</div>;
-}
+// AnimatedCounter removed — metrics cleared per request
 
 /* ─── TILT CARD ───────────────────────────────────────────────────────────── */
 function TiltCard({children,className,style,onClick}:{children:React.ReactNode;className?:string;style?:React.CSSProperties;onClick?:()=>void}) {
@@ -979,9 +949,9 @@ export default function PartnersPage() {
                   Every partnership creates a ripple of lasting change.
                 </motion.p>
 
-                {/* Trust badges */}
+                {/* Trust badges hidden on About page UI only; markup left in place for later restoration */}
                 <motion.div initial={{opacity:0,y:8}} animate={mounted?{opacity:1,y:0}:{}} transition={{delay:0.36}}
-                  className="flex flex-wrap gap-2">
+                  className="hidden flex-wrap gap-2">
                   {["260+ Partners","17 UN SDGs","6 States"].map((badge,i)=>(
                     <span key={badge} className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[11px] font-semibold"
                       style={{background:"rgba(255,255,255,0.06)",border:"1px solid rgba(255,255,255,0.12)",color:"rgba(200,220,240,0.75)"}}>
@@ -1002,25 +972,6 @@ export default function PartnersPage() {
                 </motion.div>
               </div>
 
-              {/* Right: Stat cards grid — 2×2 */}
-              <div className="hidden md:grid grid-cols-2 gap-4 shrink-0" style={{width:320,position:"relative"}}>
-                {heroFloatingCards.map((card,i)=>(
-                  <ExpandableStatCard key={card.label} card={card} index={i} mounted={mounted}/>
-                ))}
-              </div>
-
-            </div>
-
-            {/* Mobile stat grid */}
-            <div className="md:hidden grid grid-cols-2 gap-3 px-8 pb-10">
-              {heroFloatingCards.map(card=>(
-                <div key={card.label} className="rounded-[16px] px-4 py-5"
-                  style={{background:"rgba(8,14,26,0.85)",border:"1px solid rgba(14,165,201,0.18)"}}>
-                  <div className="text-[9px] font-bold uppercase tracking-widest mb-1.5" style={{color:"rgba(14,165,201,0.7)"}}>{card.label}</div>
-                  <div className="text-[24px] font-black tracking-tight" style={{color:"#0ea5c9"}}>{card.value}</div>
-                  <div className="text-[11px] mt-1" style={{color:"rgba(200,212,224,0.55)"}}>{card.sub}</div>
-                </div>
-              ))}
             </div>
           </HeroCard>
         </div>

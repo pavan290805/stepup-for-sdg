@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { FadeUp } from "./FadeUp";
+import { hideFundsAndContact } from "@/app/lib/siteFlags";
 
 export function VisionBanner() {
   return (
@@ -30,12 +31,14 @@ export function VisionBanner() {
               >
                 Become a Partner <ArrowRight className="arr h-4 w-4" />
               </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 border border-white/40 text-white rounded-full px-6 py-3 hover:bg-white/10 transition"
-              >
-                Contact Us
-              </Link>
+              {!hideFundsAndContact && (
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 border border-white/40 text-white rounded-full px-6 py-3 hover:bg-white/10 transition"
+                >
+                  Contact Us
+                </Link>
+              )}
             </div>
           </div>
         </FadeUp>

@@ -1,9 +1,8 @@
 "use client";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { ImpactMetrics } from "@/app/components/site/ImpactMetrics";
 import { PartnerCards } from "@/app/components/site/PartnerCards";
-import { LiveImpactMap } from "@/app/components/site/LiveImpactMap";
+import LiveImpactMap from "@/app/components/site/LiveImpactMap";
 import { VisionBanner } from "@/app/components/site/VisionBanner";
 import { FadeUp } from "@/app/components/site/FadeUp";
 import { useTheme } from "@/app/components/ThemeProvider";
@@ -75,7 +74,6 @@ function RahiniHome() {
         </div>
       </section>
 
-      <ImpactMetrics />
       <PartnerCards />
       <LiveImpactMap />
       <VisionBanner />
