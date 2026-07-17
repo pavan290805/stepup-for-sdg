@@ -91,7 +91,7 @@ export function LiveImpactMap() {
                 }}>
                   <ComposableMap projection="geoMercator" projectionConfig={{ scale: 1200, center: [83, 23] }} width={1000} height={900} style={{ width: "100%", height: "auto", display: "block" }}>
                     <Geographies geography={geoData}>
-                      {({ geographies }) =>
+                      {({ geographies }: { geographies: any[] }) =>
                         geographies.map(geo => (
                           <Geography key={geo.rsmKey} geography={geo} fill={isDark ? "transparent" : "transparent"} stroke={isDark ? "#f8fafc" : "#0f172a"} />
                         ))
@@ -122,7 +122,27 @@ export function LiveImpactMap() {
           </div>
         </div>
 
-        {/* NOTE: statistics/cards below the map intentionally removed per request. */}
+        {/* Stats grid */}
+        <div className="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            { icon: School, value: "1,240+", label: "Schools Supported", accent: "#06B6D4" },
+            { icon: ClipboardList, value: "560+", label: "Projects Completed", accent: "#22C55E" },
+            { icon: Users, value: "380K+", label: "Students Enrolled", accent: "#F97316" },
+            { icon: MapPin, value: "320+", label: "NGO Partners", accent: "#A78BFA" },
+          ].map(({ icon: Icon, value, label, accent }) => (
+            <div key={label} className="rounded-xl p-4 flex items-center gap-3 transition-transform hover:-translate-y-0.5"
+              style={{ background: "var(--card)", border: "1px solid var(--border)", boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+              <div className="h-10 w-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                style={{ background: `${accent}18`, border: `1px solid ${accent}30` }}>
+                <Icon className="w-5 h-5" style={{ color: accent }} />
+              </div>
+              <div>
+                <div className="text-xl font-bold leading-tight" style={{ color: "var(--foreground)" }}>{value}</div>
+                <div className="text-xs mt-0.5" style={{ color: "var(--muted-text)" }}>{label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
     </Reveal>
   );

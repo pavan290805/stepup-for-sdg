@@ -452,7 +452,7 @@ function PartnerCard({partner,onSelect,theme,isDark}:{partner:Partner;onSelect:(
 /* ─── PARTNER MODAL ───────────────────────────────────────────────────────── */
 function PartnerModal({partner,onClose,theme,isDark}:{partner:Partner;onClose:()=>void;theme:T;isDark:boolean}) {
   const cfg=typeConfig[partner.type];
-  const metrics=METRICS_BY_TYPE[partner.type];
+  const metrics:any[]=[];
   return (
     <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}
       className="fixed inset-0 z-50 flex items-center justify-center p-4"

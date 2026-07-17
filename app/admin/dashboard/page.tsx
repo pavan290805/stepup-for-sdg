@@ -10,7 +10,6 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { DIRECTORY } from '@/app/components/partners/partnersData'
 import { getAdminStats, getContactMessages, getPartnershipSubmissions, type AdminStats } from '@/app/lib/adminStore'
-import { hideDefaultNumbers } from '@/app/lib/siteFlags'
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, Filler)
 
 const SDG_OPTIONS = [
@@ -98,16 +97,12 @@ export default function DashboardPage() {
           { label: 'Total Partners',       value: stats ? stats.totalPartners.toLocaleString() : '…', change: '+12% this month', up: true,  color: '#3b6ef6' },
           { label: 'Total Projects',        value: stats ? stats.totalProjects.toLocaleString() : '…', change: '+6% this month',  up: true,  color: '#8b5cf6' },
           { label: 'Total SDGs',            value: '17/17', change: 'All active',      up: null,  color: '#10b981' },
-           { label: 'Total Events',          value: stats ? (hideDefaultNumbers ? '—' : stats.totalEvents.toLocaleString()) : '…', change: '+18% this month', up: true,  color: '#f59e0b' },
+           { label: 'Total Events',          value: stats ? stats.totalEvents.toLocaleString() : '…', change: '+18% this month', up: true,  color: '#f59e0b' },
         ].map((s, i) => (
           <div key={i} className="card-hover fade-up" style={{ ...card, padding: '20px', animationDelay: `${i * .06}s`, overflow: 'hidden', position: 'relative' }}>
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: s.color, borderRadius: '14px 14px 0 0' }} />
             <div style={{ fontSize: 11, fontWeight: 600, color: c.textMuted, textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 6 }}>{s.label}</div>
             <div style={{ fontSize: 30, fontWeight: 800, color: c.textPrimary, lineHeight: 1, marginBottom: 8 }}>{s.value}</div>
-                        <div style={{ fontSize: 30, fontWeight: 800, color: c.textPrimary, lineHeight: 1, marginBottom: 8 }}>{hideDefaultNumbers ? '—' : s.value}</div>
-                        <div style={{ fontSize: 30, fontWeight: 800, color: c.textPrimary, lineHeight: 1, marginBottom: 8 }}>{hideDefaultNumbers ? '—' : s.value}</div>
-                        <div style={{ fontSize: 30, fontWeight: 800, color: c.textPrimary, lineHeight: 1, marginBottom: 8 }}>{hideDefaultNumbers ? '—' : s.value}</div>
-                        <div style={{ fontSize: 30, fontWeight: 800, color: c.textPrimary, lineHeight: 1, marginBottom: 8 }}>{hideDefaultNumbers ? '—' : s.value}</div>
             <div style={{ fontSize: 11.5, fontWeight: 500, color: s.up === true ? c.green : s.up === false ? c.red : c.textMuted }}>
               {s.up === true ? '↑ ' : ''}{s.change}
             </div>
@@ -224,7 +219,6 @@ export default function DashboardPage() {
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 5 }}>
                       <span style={{ fontSize: 12, fontWeight: 600, color: c.textPrimary }}>SDG {s.num}: {s.label}</span>
                       <span style={{ fontSize: 11.5, fontWeight: 700, color: c.textSecond, whiteSpace: 'nowrap', marginLeft: 12 }}>{s.pts.toLocaleString()} pts</span>
-                                          <span style={{ fontSize: 11.5, fontWeight: 700, color: c.textSecond, whiteSpace: 'nowrap', marginLeft: 12 }}>{hideDefaultNumbers ? '—' : `${s.pts.toLocaleString()} pts`}</span>
                     </div>
                     <div style={{ height: 5, borderRadius: 4, background: c.surfaceAlt, border: `1px solid ${c.border}`, overflow: 'hidden' }}>
                       <div style={{ height: '100%', width: `${s.pct}%`, background: s.color, borderRadius: 4 }} />

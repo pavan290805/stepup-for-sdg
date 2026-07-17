@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FadeUp } from "@/app/components/site/FadeUp";
 import { SpaceBackdrop } from "@/app/components/site/SpaceBackdrop";
 import { VisionMission } from "@/app/components/site/VisionMission";
+import { OurImpact } from "@/app/components/site/OurImpact";
 import { TeamCards } from "@/app/components/site/TeamCards";
 import { FivePCards } from "@/app/components/site/FivePCards";
 import { hideFundsAndContact } from "@/app/lib/siteFlags";
@@ -37,7 +38,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 3. Our Impact (removed) */}
+      {/* 3. Our Impact */}
+      <section id="impact" className="px-6 py-20 scroll-mt-20">
+        <div className="mx-auto max-w-6xl">
+          <OurImpact />
+        </div>
+      </section>
 
       {/* 4. Our Story / Who We Are */}
       <section id="story" className="px-6 py-12 scroll-mt-20">
@@ -132,14 +138,12 @@ export default function AboutPage() {
               >
                 Work With Us
               </Link>
-                {!hideFundsAndContact && (
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold text-foreground transition hover:border-cyan-glow hover:text-cyan-glow"
-                  >
-                    Get in Touch
-                  </Link>
-                )}
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold text-foreground transition hover:border-cyan-glow hover:text-cyan-glow"
+              >
+                Get in Touch
+              </Link>
             </div>
           </div>
         </FadeUp>

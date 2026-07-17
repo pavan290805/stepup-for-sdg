@@ -79,15 +79,13 @@ export function WhyPartner() {
                     ))}
                   </ul>
 
-                  {!hideFundsAndContact && (
-                    <Link
-                      href="/contact"
-                      className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-cyan-glow transition hover:text-foreground"
-                    >
-                      Get Started
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1.5" />
-                    </Link>
-                  )}
+                  <Link
+                    href="/contact"
+                    className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-cyan-glow transition hover:text-foreground"
+                  >
+                    Get Started
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1.5" />
+                  </Link>
                 </div>
               </div>
             </TiltCard>
