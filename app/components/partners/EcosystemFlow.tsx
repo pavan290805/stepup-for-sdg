@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
-import { Home, Heart, Briefcase, GraduationCap } from "lucide-react";
+import { Home, Heart, Briefcase, GraduationCap, Building2 } from "lucide-react";
 import { Reveal } from "./primitives";
 import { ECOSYSTEM, type EcoNode } from "./partnersData";
 
