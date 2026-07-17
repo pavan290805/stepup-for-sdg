@@ -10,7 +10,6 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { DIRECTORY } from '@/app/components/partners/partnersData'
 import { getAdminStats, getContactMessages, getPartnershipSubmissions, type AdminStats } from '@/app/lib/adminStore'
-import { hideDefaultNumbers } from '@/app/lib/siteFlags'
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, Filler)
 
 const SDG_OPTIONS = [
@@ -98,7 +97,7 @@ export default function DashboardPage() {
           { label: 'Total Partners',       value: stats ? stats.totalPartners.toLocaleString() : '…', change: '+12% this month', up: true,  color: '#3b6ef6' },
           { label: 'Total Projects',        value: stats ? stats.totalProjects.toLocaleString() : '…', change: '+6% this month',  up: true,  color: '#8b5cf6' },
           { label: 'Total SDGs',            value: '17/17', change: 'All active',      up: null,  color: '#10b981' },
-           { label: 'Total Events',          value: stats ? (hideDefaultNumbers ? '—' : stats.totalEvents.toLocaleString()) : '…', change: '+18% this month', up: true,  color: '#f59e0b' },
+           { label: 'Total Events',          value: stats ? stats.totalEvents.toLocaleString() : '…', change: '+18% this month', up: true,  color: '#f59e0b' },
         ].map((s, i) => (
           <div key={i} className="card-hover fade-up" style={{ ...card, padding: '20px', animationDelay: `${i * .06}s`, overflow: 'hidden', position: 'relative' }}>
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: s.color, borderRadius: '14px 14px 0 0' }} />

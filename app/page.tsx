@@ -5,6 +5,7 @@ import { PartnerCards } from "@/app/components/site/PartnerCards";
 import LiveImpactMap from "@/app/components/site/LiveImpactMap";
 import { VisionBanner } from "@/app/components/site/VisionBanner";
 import { FadeUp } from "@/app/components/site/FadeUp";
+import { ImpactMetrics } from "@/app/components/site/ImpactMetrics";
 import { useTheme } from "@/app/components/ThemeProvider";
 
 export default function Home() {
@@ -74,6 +75,7 @@ function RahiniHome() {
         </div>
       </section>
 
+      <ImpactMetrics />
       <PartnerCards />
       <LiveImpactMap />
       <VisionBanner />

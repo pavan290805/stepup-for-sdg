@@ -31,28 +31,24 @@ export function FinalCTA() {
           </p>
 
           <div className="mt-9 flex flex-wrap justify-center gap-4">
-            {!hideFundsAndContact && (
-              <Link href="/contact">
-                <MagneticButton
-                  ariaLabel="Become a Partner"
-                  className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-electric to-cyan-glow px-8 py-4 text-sm font-semibold text-white shadow-[0_0_30px_rgba(0,194,255,0.45)] transition hover:brightness-110"
-                >
-                  Become a Partner
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </MagneticButton>
-              </Link>
-            )}
-            {!hideFundsAndContact && (
-              <Link href="/contact">
-                <MagneticButton
-                  ariaLabel="Schedule a Meeting"
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-card/40 px-8 py-4 text-sm font-semibold text-foreground backdrop-blur-md transition hover:border-cyan-glow/50"
-                >
-                  <CalendarDays className="h-4 w-4" />
-                  Schedule a Meeting
-                </MagneticButton>
-              </Link>
-            )}
+            <Link href="/contact">
+              <MagneticButton
+                ariaLabel="Become a Partner"
+                className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-electric to-cyan-glow px-8 py-4 text-sm font-semibold text-white shadow-[0_0_30px_rgba(0,194,255,0.45)] transition hover:brightness-110"
+              >
+                Become a Partner
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </MagneticButton>
+            </Link>
+            <Link href="/contact">
+              <MagneticButton
+                ariaLabel="Schedule a Meeting"
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-card/40 px-8 py-4 text-sm font-semibold text-foreground backdrop-blur-md transition hover:border-cyan-glow/50"
+              >
+                <CalendarDays className="h-4 w-4" />
+                Schedule a Meeting
+              </MagneticButton>
+            </Link>
           </div>
         </Reveal>
       </div>

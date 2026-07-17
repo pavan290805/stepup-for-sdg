@@ -80,7 +80,6 @@ const contactDetails = [
 
 export function Footer() {
   const pathname = usePathname();
-  const quickLinksToShow = quickLinks.filter((item) => !(hideFundsAndContact && (item.href === "/contact" || item.href === "/funds")));
 
   return (
     <footer className="relative mt-0" style={{ background: "linear-gradient(180deg, #0a0f1e 0%, #020814 100%)", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
@@ -119,7 +118,7 @@ export function Footer() {
         <div>
           <h4 className="text-sm font-bold uppercase tracking-[0.15em] mb-5" style={{ color: "#f1f5f9" }}>Quick Links</h4>
           <ul className="space-y-3 text-sm">
-            {quickLinksToShow.map((item) => {
+            {quickLinks.map((item) => {
               const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
 
               return (

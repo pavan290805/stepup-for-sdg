@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Handshake, Globe, type LucideIcon } from "lucide-react";
+import { BookOpen, School, Handshake, Globe, type LucideIcon } from "lucide-react";
 import { Counter } from "@/app/components/site/Counter";
 
 type ImpactCard = {
@@ -11,6 +11,16 @@ type ImpactCard = {
 };
 
 const impactCards: ImpactCard[] = [
+  {
+    icon: BookOpen,
+    title: "Education Access",
+    desc: "Supporting quality education for underserved communities.",
+  },
+  {
+    icon: School,
+    title: "School Development",
+    desc: "Helping schools with infrastructure, digital learning, and resources.",
+  },
   {
     icon: Handshake,
     title: "Partnerships",
@@ -91,18 +101,18 @@ export function OurImpact() {
         </p>
       </motion.div>
 
-      {/* Row 1: Partnerships left, Sustainable right */}
-      <div className="mt-12 grid grid-cols-2 gap-6">
-        <ImpactCardBox card={impactCards[0]} delay={0} />
-        <ImpactCardBox card={impactCards[1]} delay={0.1} />
+      {/* Impact cards - 4 columns */}
+      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {impactCards.map((card, i) => (
+          <ImpactCardBox key={card.title} card={card} delay={i * 0.12} />
+        ))}
       </div>
 
-      {/* Row 2: all 4 stats */}
-      <div className="mt-6 grid grid-cols-4 gap-6">
-        <StatBox s={stats[0]} delay={0} />
-        <StatBox s={stats[1]} delay={0.1} />
-        <StatBox s={stats[2]} delay={0.2} />
-        <StatBox s={stats[3]} delay={0.3} />
+      {/* Animated statistics - 4 columns */}
+      <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {stats.map((s, i) => (
+          <StatBox key={s.label} s={s} delay={i * 0.1} />
+        ))}
       </div>
     </div>
   );

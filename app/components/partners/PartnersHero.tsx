@@ -15,7 +15,7 @@ function scrollToDirectory() {
 
 export function PartnersHero() {
   const reduce = useReducedMotion();
-  const n = HERO_METRICS.length;
+  const n = METRIC_ICONS.length;
   const radius = 190;
 
   return (
@@ -79,17 +79,15 @@ export function PartnersHero() {
             transition={{ duration: 0.7, delay: 0.18 }}
             className="mt-9 flex flex-wrap gap-4"
           >
-            {!hideFundsAndContact && (
-              <Link href="/contact">
-                <MagneticButton
-                  ariaLabel="Become a Partner"
-                  className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-electric to-cyan-glow px-7 py-3.5 text-sm font-semibold text-white shadow-[0_0_30px_rgba(0,194,255,0.45)] transition hover:brightness-110"
-                >
-                  Become a Partner
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </MagneticButton>
-              </Link>
-            )}
+            <Link href="/contact">
+              <MagneticButton
+                ariaLabel="Become a Partner"
+                className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-electric to-cyan-glow px-7 py-3.5 text-sm font-semibold text-white shadow-[0_0_30px_rgba(0,194,255,0.45)] transition hover:brightness-110"
+              >
+                Become a Partner
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </MagneticButton>
+            </Link>
             <MagneticButton
               ariaLabel="Explore Ecosystem"
               onClick={scrollToDirectory}
