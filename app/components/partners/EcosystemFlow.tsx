@@ -10,7 +10,7 @@ function NodeIcon({ icon, color }: { icon: EcoNode["icon"]; color: string }) {
   const cls = "h-6 w-6";
   if (icon === "school") return <Home className={cls} style={{ color }} />;
   if (icon === "ngo") return <Heart className={cls} style={{ color }} />;
-  if (icon === "company") return <Briefcase className={cls} style={{ color }} />;
+  if (icon === "company") return <Building2 className={cls} style={{ color }} />;
   if (icon === "university") return <GraduationCap className={cls} style={{ color }} />;
   // hub = the StepUp logo
   return (

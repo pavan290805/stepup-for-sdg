@@ -71,7 +71,7 @@ export default function Hero() {
               className="absolute inset-0 w-full h-full object-cover"
               src={theme === "dark"
                 ? "sdg-dark.mp4"
-                : "sdg-light.mp4"
+                : "sdg-white.mp4"
               }
             />
           </div>
