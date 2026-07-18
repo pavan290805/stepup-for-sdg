@@ -83,58 +83,7 @@ export default function FundsPage() {
       {/* Form */}
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px 60px', marginTop: '-40px', position: 'relative', zIndex: 1, gap: 32 }}>
 
-        {/* LEFT - small graphs */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: 340, flexShrink: 0 }}>
 
-          {/* Stat pills */}
-          {[
-            { label: 'Total Raised',    value: '\u20b912.4L', color: '#00C2FF' },
-            { label: 'Projects Funded', value: '186',         color: '#00B050' },
-            { label: 'Students',        value: '12,400',      color: '#7B61FF' },
-            { label: 'NGOs',            value: '34',          color: '#FF7A00' },
-          ].map(s => (
-            <div key={s.label} style={{ background: 'var(--card)', border: `1px solid ${s.color}30`, borderRadius: 10, padding: '14px 18px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: 13, color: 'var(--muted-text)', fontWeight: 500 }}>{s.label}</span>
-              <span style={{ fontSize: 18, fontWeight: 800, color: s.color }}>{s.value}</span>
-            </div>
-          ))}
-
-          {/* SDG allocation bars */}
-          <div style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 10, padding: '12px 14px' }}>
-            <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--muted-text)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10 }}>Fund Allocation</div>
-            {[
-              { label: 'SDG 4',  pct: 42, color: '#E5243B' },
-              { label: 'SDG 13', pct: 22, color: '#3F7E44' },
-              { label: 'SDG 10', pct: 16, color: '#DD1367' },
-              { label: 'SDG 17', pct: 12, color: '#19486A' },
-              { label: 'SDG 9',  pct: 8,  color: '#FD6925' },
-            ].map(b => (
-              <div key={b.label} style={{ marginBottom: 7 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
-                  <span style={{ fontSize: 10, color: 'var(--foreground)' }}>{b.label}</span>
-                  <span style={{ fontSize: 10, fontWeight: 700, color: b.color }}>{b.pct}%</span>
-                </div>
-                <div style={{ height: 5, borderRadius: 99, background: 'rgba(255,255,255,0.07)' }}>
-                  <div style={{ height: '100%', borderRadius: 99, width: `${b.pct}%`, background: b.color }} />
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Mini bar chart */}
-          <div style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 10, padding: '12px 14px' }}>
-            <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--muted-text)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10 }}>Monthly Trend</div>
-            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 3, height: 44 }}>
-              {[18,32,24,45,38,55,42,68,52,74,61,88].map((h, i) => (
-                <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
-                  <div style={{ width: '100%', borderRadius: '3px 3px 0 0', height: `${(h/88)*36}px`, background: i === 11 ? '#00C2FF' : `rgba(0,194,255,${0.2+(h/88)*0.55})` }} />
-                  <span style={{ fontSize: 7, color: 'var(--muted-text)' }}>{['J','F','M','A','M','J','J','A','S','O','N','D'][i]}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-        </div>
         <div style={{ background: 'var(--card)', backdropFilter: 'blur(16px)', borderRadius: 18, boxShadow: '0 8px 40px rgba(0,0,0,0.15)', overflow: 'hidden', border: '1px solid var(--border)', width: '100%', maxWidth: 660 }}>
 
           {/* Form Header */}

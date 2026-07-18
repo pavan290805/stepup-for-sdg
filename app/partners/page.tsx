@@ -208,10 +208,10 @@ const tierConfig: Record<Tier, { label: string; color: string; bg: string }> = {
   Silver: { label:"Silver", color:"#94a3b8", bg:"rgba(148,163,184,0.1)" },
 };
 
-const tabs = ["All","NGOs","Companies"] as const;
+const tabs = ["All","NGOs","Companies","Schools & Colleges"] as const;
 type Tab = (typeof tabs)[number];
-const TAB_TO_TYPE: Record<Tab, PartnerType | null> = {
-  All:null, NGOs:"NGO", Companies:"Company",
+const TAB_TO_TYPE: Record<Tab, PartnerType[] | null> = {
+  All:null, NGOs:["NGO"], Companies:["Company"], "Schools & Colleges":["School","University"],
 };
 
 /* ─── DATA ────────────────────────────────────────────────────────────────── */
@@ -219,39 +219,39 @@ const partners: Partner[] = [
   { id:1, name:"Delhi Public School", type:"School", city:"New Delhi", initials:"DPS", sdgs:[4,13], since:"2023",
     story:"Students launched their own sustainability council after their first SDG workshop.",
     lastActivity:"Hosted an SDG workshop · 2 weeks ago", domain:"dpsrkp.net",
-    logoSources:["https://dpsrkp.net/wp-content/uploads/2019/06/logo-png-152x195.png","https://upload.wikimedia.org/wikipedia/en/3/3c/Delhi_Public_School_logo.png",`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://dpsrkp.net&size=128`]},
+    logoSources:[]},
   { id:2, name:"GreenEarth Initiative", type:"NGO", city:"Hyderabad", initials:"GE", sdgs:[13,15], since:"2024",
     story:"Co-designed a tree-cover restoration curriculum now used across 6 partner schools.",
     lastActivity:"Published impact report · 5 days ago", domain:"greenearth.org",
-    logoSources:["https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Green_Earth_logo.svg/240px-Green_Earth_logo.svg.png",`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://greenearth.org&size=128`]},
+    logoSources:[]},
   { id:3, name:"TechCorp India", type:"Company", city:"Bangalore", initials:"TC", sdgs:[4,9], since:"2023",
     story:"A Rs50L CSR commitment turned into 3 audited programs reaching 620 students.",
-    lastActivity:"Funded the AI Bootcamp cohort · 3 days ago", funds:"Rs50L", fundsLakh:50, tier:"Gold", domain:"techcorp.in",
-    logoSources:["https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Tata_Consultancy_Services_Logo.svg/240px-Tata_Consultancy_Services_Logo.svg.png",`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://tcs.com&size=128`]},
+    lastActivity:"Funded the AI Bootcamp cohort · 3 days ago", fundsLakh:50, tier:"Gold", domain:"techcorp.in",
+    logoSources:[]},
   { id:4, name:"IIT Hyderabad", type:"University", city:"Hyderabad", initials:"IIT", sdgs:[4,9,17], since:"2023",
     story:"420 student volunteers now run peer-led SDG workshops in government schools.",
     lastActivity:"Volunteer cohort onboarded · 1 week ago", domain:"iith.ac.in",
-    logoSources:["https://upload.wikimedia.org/wikipedia/en/thumb/1/10/Indian_Institute_of_Technology_Hyderabad_Logo.svg/240px-Indian_Institute_of_Technology_Hyderabad_Logo.svg.png",`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://iith.ac.in&size=128`]},
+    logoSources:["https://upload.wikimedia.org/wikipedia/en/thumb/1/10/Indian_Institute_of_Technology_Hyderabad_Logo.svg/240px-Indian_Institute_of_Technology_Hyderabad_Logo.svg.png"]},
   { id:5, name:"Bright Futures Academy", type:"School", city:"Mumbai", initials:"BF", sdgs:[4,10], since:"2024",
     story:"First cohort of 95% satisfaction-rated SDG electives — expanding to more grade levels.",
     lastActivity:"Completed term-1 workshops · 4 days ago", domain:"brightfuturesacademy.in",
-    logoSources:["https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Kendriya_Vidyalaya_logo.svg/240px-Kendriya_Vidyalaya_logo.svg.png",`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://brightfuturesacademy.in&size=128`]},
+    logoSources:[]},
   { id:6, name:"EcoVolt Energy", type:"Company", city:"Chennai", initials:"EV", sdgs:[7,13], since:"2024",
     story:"Brought hands-on renewable-energy labs to schools.",
-    lastActivity:"New funding round confirmed · 6 days ago", funds:"Rs20L", fundsLakh:20, tier:"Silver", domain:"ecovolt.in",
-    logoSources:["https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Tata_Power_Logo.svg/240px-Tata_Power_Logo.svg.png",`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ecovolt.in&size=128`]},
+    lastActivity:"New funding round confirmed · 6 days ago", fundsLakh:20, tier:"Silver", domain:"ecovolt.in",
+    logoSources:[]},
   { id:7, name:"Hope NGO", type:"NGO", city:"Delhi", initials:"HN", sdgs:[1,10], since:"2024",
     story:"Connected 840 beneficiaries across 4 cities with partner companies.",
     lastActivity:"Beneficiary survey completed · 2 weeks ago", domain:"hopengo.org",
-    logoSources:["https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CRY_logo.svg/240px-CRY_logo.svg.png",`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://hopengo.org&size=128`]},
+    logoSources:[]},
   { id:8, name:"Woxsen University", type:"University", city:"Hyderabad", initials:"WU", sdgs:[4,17], since:"2025",
     story:"Newest university partner — piloting a joint research project with GreenEarth.",
     lastActivity:"Joined the ecosystem · 3 weeks ago", domain:"woxsen.edu.in",
-    logoSources:["https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Woxsen.png/240px-Woxsen.png",`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://woxsen.edu.in&size=128`]},
+    logoSources:["https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Woxsen.png/240px-Woxsen.png"]},
   { id:9, name:"InfraBuild Corp", type:"Company", city:"Mumbai", initials:"IB", sdgs:[9,11], since:"2024",
     story:"Funding urban-planning workshops letting students redesign real city blocks.",
-    lastActivity:"Workshop showcase held · 1 week ago", funds:"Rs30L", fundsLakh:30, tier:"Silver", domain:"l-and-t.com",
-    logoSources:["https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Larsen_%26_Toubro_logo.svg/240px-Larsen_%26_Toubro_logo.svg.png",`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://larsentoubro.com&size=128`]},
+    lastActivity:"Workshop showcase held · 1 week ago", fundsLakh:30, tier:"Silver", domain:"l-and-t.com",
+    logoSources:[]},
 ];
 
 const ECOSYSTEM_LOGOS = [
@@ -407,15 +407,12 @@ function PartnerCard({partner,onSelect,theme,isDark}:{partner:Partner;onSelect:(
   const cfg=typeConfig[partner.type];
   const [hovered,setHovered]=useState(false);
   return (
-    <TiltCard onClick={onSelect} className="group relative cursor-pointer shine-sweep"
+    <div className="group relative shine-sweep"
       style={{backgroundColor:theme.card,border:`1px solid ${hovered?cfg.color:theme.border}`,borderRadius:20,overflow:"hidden",
         boxShadow:hovered?`0 24px 80px -24px ${cfg.color}40,0 0 0 1px ${cfg.color}40`:`0 1px 3px rgba(0,0,0,0.12)`,
-        transition:"transform 0.25s ease, box-shadow 0.25s ease",
+        transition:"box-shadow 0.25s ease, border-color 0.25s ease",
         backgroundImage:`radial-gradient(circle at top left, ${cfg.color}12, transparent 35%), radial-gradient(circle at bottom right, ${cfg.color}08, transparent 30%)`}}>
-      <div className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition duration-300 group-hover:opacity-100"
-        style={{background:`radial-gradient(circle at 20% 20%, ${cfg.color}18 0%, transparent 24%), radial-gradient(circle at 80% 80%, ${cfg.color}08 0%, transparent 18%)`}}/>
-      <motion.div onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>setHovered(false)}
-        animate={{y:hovered?-2:0}} transition={{type:"spring",stiffness:400,damping:25}}>
+      <div onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>setHovered(false)}>
         <PartnerLogoMark partner={partner} theme={theme} isDark={isDark}/>
         <div className="p-5 flex flex-col gap-3">
           <div className="flex items-start justify-between gap-2">
@@ -436,7 +433,7 @@ function PartnerCard({partner,onSelect,theme,isDark}:{partner:Partner;onSelect:(
               <Icon.Shield className="w-2.5 h-2.5"/>Verified
             </span>
             <span className="text-[10px]" style={{color:theme.dim}}>Since {partner.since}</span>
-            {partner.funds&&<span className="ml-auto text-[10px] font-semibold" style={{color:cfg.color}}>{partner.funds}</span>}
+
           </div>
           <div className="flex flex-wrap gap-1.5">{partner.sdgs.map(n=><SDGChip key={n} num={n} theme={theme}/>)}</div>
           <div className="flex items-center gap-2 pt-3 text-[10px]" style={{borderTop:`1px solid ${theme.border}`,color:theme.dim}}>
@@ -444,8 +441,8 @@ function PartnerCard({partner,onSelect,theme,isDark}:{partner:Partner;onSelect:(
             {partner.lastActivity}
           </div>
         </div>
-      </motion.div>
-    </TiltCard>
+      </div>
+    </div>
   );
 }
 
@@ -862,9 +859,8 @@ export default function PartnersPage() {
   },[mouseX,mouseY]);
 
   const filtered=partners.filter(p=>{
-    if(p.type==="School"||p.type==="University") return false;
-    const targetType=TAB_TO_TYPE[activeTab];
-    const matchesTab=targetType===null||p.type===targetType;
+    const targetTypes=TAB_TO_TYPE[activeTab];
+    const matchesTab=targetTypes===null||targetTypes.includes(p.type);
     const q=searchQuery.trim().toLowerCase();
     return matchesTab&&(q===""||p.name.toLowerCase().includes(q)||p.city.toLowerCase().includes(q));
   });
@@ -1205,10 +1201,7 @@ export default function PartnersPage() {
         </Reveal>
       </section>
 
-      {/* ── MODAL ── */}
-      <AnimatePresence>
-        {selectedPartner&&<PartnerModal partner={selectedPartner} onClose={()=>setSelected(null)} theme={theme} isDark={isDark}/>}
-      </AnimatePresence>
+
 
     </div>
   );
