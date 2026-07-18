@@ -10,7 +10,7 @@ import { hideFundsAndContact } from "@/app/lib/siteFlags";
 const navLinks = [
   { to: "/", label: "Home", disabled: false },
   { to: "/about", label: "About Us", disabled: false },
-  { to: "/events", label: "Events", disabled: false },
+  { to: "/projects", label: "Projects", disabled: false },
   { to: "/sdg", label: "SDG", disabled: false },
   { to: "/partners", label: "Partners", disabled: false },
   { to: "/contact", label: "Contact", disabled: false },

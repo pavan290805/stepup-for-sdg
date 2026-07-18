@@ -36,8 +36,8 @@ export default function HostEventPage() {
       </div>
       <div className="absolute inset-0 -z-10 bg-[#050B18]/80" />
       <div className="mx-auto max-w-2xl">
-        <Link href="/events" className="inline-flex items-center gap-2 text-sm text-muted-text hover:text-cyan-glow transition mb-8">
-          <ArrowLeft className="h-4 w-4" /> Back to Events
+        <Link href="/projects" className="inline-flex items-center gap-2 text-sm text-muted-text hover:text-cyan-glow transition mb-8">
+          <ArrowLeft className="h-4 w-4" /> Back to Projects
         </Link>
 
         <div className="glass rounded-3xl p-8 border border-border">
@@ -46,7 +46,7 @@ export default function HostEventPage() {
               <CheckCircle className="h-16 w-16" style={{ color: accent }} />
               <h2 className="text-2xl font-bold" style={{ color: "var(--foreground)" }}>Request Submitted!</h2>
               <p className="text-sm" style={{ color: "var(--muted-text)" }}>Thank you! Our team will review your event request and get back to you within 2–3 business days.</p>
-              <Link href="/events" className="mt-4 inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white" style={{ backgroundColor: accent }}>Back to Events</Link>
+              <Link href="/projects" className="mt-4 inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white" style={{ backgroundColor: accent }}>Back to Projects</Link>
             </div>
           ) : (
             <>

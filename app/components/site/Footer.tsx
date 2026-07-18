@@ -21,7 +21,7 @@ type SocialLinkItem = {
 const quickLinks: FooterLinkItem[] = [
   { href: "/", label: "Home", ariaLabel: "Go to the home page" },
   { href: "/about", label: "About Us", ariaLabel: "Go to the about page" },
-  { href: "/events", label: "Events", ariaLabel: "Go to the events page" },
+  { href: "/projects", label: "Projects", ariaLabel: "Go to the projects page" },
   { href: "/sdg", label: "SDG", ariaLabel: "Go to the SDG page" },
   { href: "/partners", label: "Partners", ariaLabel: "Go to the partners page" },
   { href: "/contact", label: "Contact", ariaLabel: "Go to the contact page" },
