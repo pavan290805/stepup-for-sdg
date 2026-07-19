@@ -41,7 +41,11 @@ export default function DashboardPage() {
       const s = getAdminStats()
       const unread = getContactMessages().filter(m => m.unread).length
       const pending = getPartnershipSubmissions().length
-      setStats({ ...s, pendingRequests: unread + pending })
+      const next = { ...s, pendingRequests: unread + pending }
+      setStats(prev => {
+        if (prev && JSON.stringify(prev) === JSON.stringify(next)) return prev
+        return next
+      })
     }
     load()
     const interval = setInterval(load, 2000)

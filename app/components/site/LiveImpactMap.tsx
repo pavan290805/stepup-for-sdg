@@ -3,14 +3,10 @@
 import { memo, useCallback, useEffect, useRef, useState, type MouseEvent } from "react"
 import { ComposableMap, Geographies, Geography, Sphere } from "react-simple-maps"
 import { motion } from "framer-motion"
-import { School, ClipboardList, Users, MapPin } from "lucide-react"
 import { Reveal } from "@/app/components/reveal"
 import { useTheme } from "@/app/components/ThemeProvider"
 
 const GEO_URL = "/india-states.geojson"
-const stats = [
-  { icon: School, value: "1,240+", label: "Schools Supported", accent: "#06B6D4" }, { icon: ClipboardList, value: "560+", label: "Projects Completed", accent: "#22C55E" }, { icon: Users, value: "380K+", label: "Students Enrolled", accent: "#F97316" }, { icon: MapPin, value: "320+", label: "NGO Partners", accent: "#A78BFA" },
-]
 type Impact = { schools?: number; students?: string; ngos?: number; projects?: number }
 type TooltipInfo = { name: string; impact: Impact | null }
 type GeoFeature = { rsmKey: string; properties: { STNAME?: string; STCODE11?: string } }
@@ -138,8 +134,8 @@ export function LiveImpactMap() {
 `}</style>
 <div className="impact-map-surface"><MapCanvas geoData={geoData} isDark={isDark} onTooltipEnter={showTooltip} onTooltipMove={scheduleTooltipMove} onTooltipLeave={hideTooltip} /></div></div>}</div>
       <motion.div ref={tooltipRef} className="pointer-events-none fixed left-2 top-2 z-30 w-60 max-w-[calc(100vw-16px)] rounded-2xl p-3.5 shadow-2xl backdrop-blur-xl" initial={false} animate={tooltipInfo ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.96 }} transition={{ duration: 0.15, ease: "easeOut" }} style={{ background: isDark ? "rgba(15,23,42,0.76)" : "rgba(255,255,255,0.78)", border: isDark ? "1px solid rgba(255,255,255,0.16)" : "1px solid rgba(15,23,42,0.12)", color: "var(--foreground)", boxShadow: isDark ? "0 18px 42px rgba(0,0,0,0.42), 0 0 24px rgba(249,115,22,0.14)" : "0 18px 42px rgba(15,23,42,0.16), 0 0 24px rgba(249,115,22,0.12)", WebkitBackdropFilter: "blur(18px)", backdropFilter: "blur(18px)" }}><div className="mb-2 text-sm font-bold" style={{ color: "var(--foreground)" }}>{tooltipInfo?.name}</div>{tooltipRows.length > 0 ? tooltipRows.map(({ key, label, icon, value }) => <div key={key} className="flex items-center justify-between gap-4 py-1 text-xs"><span style={{ color: "var(--muted-text)" }}>{icon} {label}</span><span className="font-semibold" style={{ color: "var(--foreground)" }}>{formatImpactValue(value)}</span></div>) : <div className="text-xs" style={{ color: "var(--muted-text)" }}>No data available.</div>}</motion.div>
-    </div><div className="px-4 py-3 text-center text-xs" style={{ color: "var(--muted-text)" }}>Hover over any state to view its impact.</div></div>
-    <div className="mt-6 rounded-3xl p-4 sm:p-5" style={{ background: "var(--card)", border: "1px solid var(--border)" }}><div className="grid grid-cols-2 lg:grid-cols-4 gap-3">{stats.map(({ icon: Icon, value, label, accent }) => <div key={label} className="rounded-2xl p-4 flex items-center gap-3" style={{ background: "color-mix(in srgb, var(--background) 72%, transparent)", border: "1px solid var(--border)" }}><div className="h-10 w-10 rounded-xl flex items-center justify-center" style={{ background: `${accent}18` }}><Icon className="w-5 h-5" style={{ color: accent }} /></div><div><div className="text-xl font-semibold" style={{ color: "var(--foreground)" }}>{value}</div><div className="text-xs mt-1" style={{ color: "var(--muted-text)" }}>{label}</div></div></div>)}</div></div>
+    </div><div className="px-4 py-3 text-center text-xs" style={{ color: "var(--muted-text)" }}>S</div></div>
+
   </section></Reveal>
 }
 
