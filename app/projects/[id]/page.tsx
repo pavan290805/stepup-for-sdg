@@ -29,8 +29,8 @@ function EventDetail({ event }: { event: (typeof EVENTS)[0] }) {
       <div className="mx-auto max-w-5xl">
 
         {/* Back */}
-        <Link href="/events" className="inline-flex items-center gap-2 text-sm text-muted-text hover:text-cyan-glow transition mb-8">
-          <ArrowLeft className="h-4 w-4" /> Back to Events
+        <Link href="/projects" className="inline-flex items-center gap-2 text-sm text-muted-text hover:text-cyan-glow transition mb-8">
+          <ArrowLeft className="h-4 w-4" /> Back to Projects
         </Link>
 
         <div className="grid gap-10 lg:grid-cols-2">
@@ -94,8 +94,8 @@ function EventDetail({ event }: { event: (typeof EVENTS)[0] }) {
                   <p className="text-sm" style={{ color: "var(--muted-text)" }}>
                     Thank you for registering for <strong>{event.title}</strong>. We'll send confirmation details to your email.
                   </p>
-                  <Link href="/events" className="mt-4 inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white transition hover:brightness-110" style={{ backgroundColor: event.accent }}>
-                    Browse More Events
+                  <Link href="/projects" className="mt-4 inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white transition hover:brightness-110" style={{ backgroundColor: event.accent }}>
+                    Browse More Projects
                   </Link>
                 </div>
               ) : (
