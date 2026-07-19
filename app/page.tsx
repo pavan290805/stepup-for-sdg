@@ -56,13 +56,22 @@ function RahiniHome() {
           <FadeUp>
             <div className="max-w-2xl">
               <h1 className="font-display text-4xl md:text-6xl font-bold leading-[1.05]" style={{ color: "var(--foreground)" }}>
-                Students, Companies and NGOs for{" "}
-                <span className="grad-text">SDG Impact</span>
+                StepUp for{" "}
+                <span className="grad-text relative">
+                  SDG
+                  <span className="absolute left-0 -bottom-1 w-full h-[3px] rounded-full" style={{ background: "linear-gradient(90deg,#00C2FF,#155DFC)" }} />
+                </span>
               </h1>
               <p className="mt-4 max-w-xl text-base md:text-lg leading-relaxed" style={{ color: "var(--muted-text)" }}>
                 Empowering Students through the Sustainable Development Goals
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  href="/sdg"
+                  className="btn-arrow inline-flex items-center gap-2 bg-cta text-white font-semibold rounded-full px-6 py-3 shadow-[0_0_24px_rgba(255,122,0,0.5)] hover:brightness-110 transition"
+                >
+                  Learn More about SDG Goals <ArrowRight className="arr h-4 w-4" />
+                </Link>
                 <Link
                   href="/work-with-us"
                   className="btn-arrow inline-flex items-center gap-2 bg-cta text-white font-semibold rounded-full px-6 py-3 shadow-[0_0_24px_rgba(255,122,0,0.5)] hover:brightness-110 transition"

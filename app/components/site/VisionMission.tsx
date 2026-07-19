@@ -1,13 +1,7 @@
 "use client";
 
 import { Eye, Target, type LucideIcon } from "lucide-react";
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
-  useMotionTemplate,
-} from "framer-motion";
+import { motion } from "framer-motion";
 
 type Stat = { icon: string; to: number; suffix: string; label: string };
 
@@ -65,124 +59,33 @@ const cards: CardData[] = [
 function PremiumCard({ data }: { data: CardData }) {
   const Icon = data.icon;
 
-  const nx = useMotionValue(0);
-  const ny = useMotionValue(0);
-  const gx = useMotionValue(50);
-  const gy = useMotionValue(50);
-
-  const spring = { stiffness: 150, damping: 18, mass: 0.4 };
-  const rotateX = useSpring(useTransform(ny, [-0.5, 0.5], [10, -10]), spring);
-  const rotateY = useSpring(useTransform(nx, [-0.5, 0.5], [-10, 10]), spring);
-  const magX = useSpring(useTransform(nx, [-0.5, 0.5], [-14, 14]), spring);
-  const magY = useSpring(useTransform(ny, [-0.5, 0.5], [-14, 14]), spring);
-
-  const glow = useMotionTemplate`radial-gradient(220px circle at ${gx}% ${gy}%, rgba(0,208,132,0.65), rgba(0,194,255,0.35) 45%, transparent 72%)`;
-
-  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const relX = (e.clientX - rect.left) / rect.width;
-    const relY = (e.clientY - rect.top) / rect.height;
-    nx.set(relX - 0.5);
-    ny.set(relY - 0.5);
-    gx.set(relX * 100);
-    gy.set(relY * 100);
-  }
-  function handleMouseLeave() {
-    nx.set(0);
-    ny.set(0);
-    gx.set(50);
-    gy.set(50);
-  }
-
   return (
-    <motion.div
-      initial={{
-        opacity: 0,
-        rotateY: data.from === "left" ? -55 : 55,
-        y: 40,
-        filter: "blur(14px)",
-      }}
-      whileInView={{ opacity: 1, rotateY: 0, y: 0, filter: "blur(0px)" }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{
-        type: "spring",
-        stiffness: 55,
-        damping: 16,
-        delay: data.delay,
-      }}
-      style={{ perspective: 1200 }}
-      className="[transform-style:preserve-3d]"
-    >
-      <motion.div
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        style={{
-          rotateX,
-          rotateY,
-          x: magX,
-          y: magY,
-          transformPerspective: 1000,
-        }}
-        whileHover={{ scale: 1.02 }}
-        className="vm-card group relative rounded-[32px] p-[1.5px] [transform-style:preserve-3d]"
-      >
-        <motion.span
-          aria-hidden
-          style={{ background: glow }}
-          className="vm-glow pointer-events-none absolute inset-0 rounded-[32px] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        />
-
-        <div className="vm-surface relative flex h-full min-h-[480px] flex-col gap-5 rounded-[31px] p-6 md:p-7">
-          <div className="flex items-center gap-3">
-            <motion.span
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
-              className="vm-icon grid h-12 w-12 place-items-center rounded-2xl transition-transform duration-500 group-hover:rotate-[18deg]"
-            >
-              <Icon className="h-6 w-6 text-white" />
-            </motion.span>
-            <h3 className="font-display text-xl font-bold text-white md:text-2xl">
-              {data.eyebrow}
-            </h3>
-          </div>
-
-          <div className="overflow-hidden rounded-3xl">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={data.image}
-              alt={data.imageAlt}
-              className="aspect-video w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.08]"
-            />
-          </div>
-
-          <div className="flex flex-1 flex-col gap-3">
-            <h4 className="font-display text-lg font-semibold leading-snug text-white">
-              {data.headline}
-            </h4>
-            {data.paragraphs.map((p, i) => (
-              <p key={i} className="text-[13px] leading-relaxed text-[#CBD5E1]">
-                {p}
-              </p>
-            ))}
-            <p className="vm-highlight mt-0.5 border-l-2 pl-3 text-[13px] font-medium italic">
-              "{data.highlight}"
-            </p>
-          </div>
-
-          {data.stats.length > 0 && (
-            <div className="grid grid-cols-3 gap-3 border-t border-white/10 pt-5">
-              {data.stats.map((s) => (
-                <div key={s.label} className="text-center">
-                  <div className="text-[11px] leading-tight text-[#CBD5E1]">
-                    {s.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
+    <div className="vm-card group relative rounded-[32px] p-[1.5px]">
+      <div className="vm-surface relative flex h-full flex-col gap-5 rounded-[31px] p-6 md:p-7">
+        <div className="flex items-center gap-3">
+          <span className="vm-icon grid h-12 w-12 place-items-center rounded-2xl">
+            <Icon className="h-6 w-6 text-white" />
+          </span>
+          <h3 className="font-display text-xl font-bold text-white md:text-2xl">
+            {data.eyebrow}
+          </h3>
         </div>
-      </motion.div>
-    </motion.div>
+
+        <div className="flex flex-1 flex-col gap-3">
+          <h4 className="font-display text-lg font-semibold leading-snug text-white">
+            {data.headline}
+          </h4>
+          {data.paragraphs.map((p, i) => (
+            <p key={i} className="text-[13px] leading-relaxed text-[#CBD5E1]">
+              {p}
+            </p>
+          ))}
+          <p className="vm-highlight mt-0.5 border-l-2 pl-3 text-[13px] font-medium italic">
+            "{data.highlight}"
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -203,13 +106,13 @@ export function VisionMission() {
         transition={{ duration: 0.7, ease: "easeOut" }}
         className="mx-auto max-w-3xl text-center"
       >
-        <h2 className="vision-title font-display text-4xl font-bold md:text-5xl">
-          Vision &amp; Mission
+        <h2 className="vision-title font-display text-4xl font-bold md:text-5xl relative inline-block">
+          Vision &amp;{" "}
+          <span className="grad-text relative">
+            Mission
+            <span className="absolute left-0 -bottom-1 w-full h-[3px] rounded-full" style={{ background: "linear-gradient(90deg,#00C2FF,#155DFC)" }} />
+          </span>
         </h2>
-        <p className="vision-subtitle mt-4 text-base md:text-lg">
-          Building a Future Where Every Child Has Equal Access to Quality
-          Education
-        </p>
       </motion.div>
 
       <div className="mx-auto mt-12 grid w-full max-w-[1120px] grid-cols-1 gap-8 md:grid-cols-2">

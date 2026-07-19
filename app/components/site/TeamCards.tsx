@@ -40,7 +40,7 @@ function FlipCard({ member }: { member: Member }) {
       className="glass rounded-2xl flex flex-col items-center justify-center text-center p-6 cursor-pointer hover:opacity-90 transition-opacity"
       style={{ height: "280px" }}
     >
-      <div className="w-40 h-40 rounded-full overflow-hidden border-2 border-white">
+      <div className="w-40 h-40 rounded-full overflow-hidden border-2 border-white bg-[#101D33]">
         <Image
           src={member.src}
           alt={member.name}
