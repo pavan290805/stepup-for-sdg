@@ -14,7 +14,7 @@ const team = [
   {
     name: "Vijay Vedantam",
     role: "Financial Advisor & Strategic Advisor",
-    src: "/team/vijay.png",
+    src: "/vj image.jpg",
     bio: "Guiding the organization's long-term vision through strategic planning, innovation, and partnerships that strengthen educational impact and sustainable growth.",
     tags: ["Strategy • Innovation", "Mentorship • Partnerships"],
     linkedin: "https://www.linkedin.com/in/vijayvedantam/",
@@ -40,7 +40,7 @@ function FlipCard({ member }: { member: Member }) {
       className="glass rounded-2xl flex flex-col items-center justify-center text-center p-6 cursor-pointer hover:opacity-90 transition-opacity"
       style={{ height: "280px" }}
     >
-      <div className="w-40 h-40 rounded-full overflow-hidden border-2 border-white bg-[#101D33]">
+      <div className="w-40 h-40 rounded-full overflow-hidden border-2 border-white">
         <Image
           src={member.src}
           alt={member.name}
