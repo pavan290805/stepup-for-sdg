@@ -134,7 +134,7 @@ export function LiveImpactMap() {
 `}</style>
 <div className="impact-map-surface"><MapCanvas geoData={geoData} isDark={isDark} onTooltipEnter={showTooltip} onTooltipMove={scheduleTooltipMove} onTooltipLeave={hideTooltip} /></div></div>}</div>
       <motion.div ref={tooltipRef} className="pointer-events-none fixed left-2 top-2 z-30 w-60 max-w-[calc(100vw-16px)] rounded-2xl p-3.5 shadow-2xl backdrop-blur-xl" initial={false} animate={tooltipInfo ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.96 }} transition={{ duration: 0.15, ease: "easeOut" }} style={{ background: isDark ? "rgba(15,23,42,0.76)" : "rgba(255,255,255,0.78)", border: isDark ? "1px solid rgba(255,255,255,0.16)" : "1px solid rgba(15,23,42,0.12)", color: "var(--foreground)", boxShadow: isDark ? "0 18px 42px rgba(0,0,0,0.42), 0 0 24px rgba(249,115,22,0.14)" : "0 18px 42px rgba(15,23,42,0.16), 0 0 24px rgba(249,115,22,0.12)", WebkitBackdropFilter: "blur(18px)", backdropFilter: "blur(18px)" }}><div className="mb-2 text-sm font-bold" style={{ color: "var(--foreground)" }}>{tooltipInfo?.name}</div>{tooltipRows.length > 0 ? tooltipRows.map(({ key, label, icon, value }) => <div key={key} className="flex items-center justify-between gap-4 py-1 text-xs"><span style={{ color: "var(--muted-text)" }}>{icon} {label}</span><span className="font-semibold" style={{ color: "var(--foreground)" }}>{formatImpactValue(value)}</span></div>) : <div className="text-xs" style={{ color: "var(--muted-text)" }}>No data available.</div>}</motion.div>
-    </div><div className="px-4 py-3 text-center text-xs" style={{ color: "var(--muted-text)" }}>S</div></div>
+    </div><div className="px-4 py-3 text-center text-xs" style={{ color: "var(--muted-text)" }}></div></div>
 
   </section></Reveal>
 }

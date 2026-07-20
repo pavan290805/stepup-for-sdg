@@ -45,11 +45,13 @@ function RahiniHome() {
               loop
               playsInline
               className="absolute inset-0 w-full h-full object-cover"
-              src={isDark
-                ? "home/home-dark.mp4"
-                : "home/home-light.mp4"
-              }
+              src={isDark ? "home/home-dark.mp4" : "home/home-light.mp4"}
             />
+            {!isDark && (
+              <div className="absolute inset-0 pointer-events-none" style={{
+                background: "linear-gradient(to right, #F5F7FF 0%, transparent 20%), linear-gradient(to left, #F5F7FF 0%, transparent 15%), linear-gradient(to bottom, #F5F7FF 0%, transparent 5%), linear-gradient(to top, #F5F7FF 0%, transparent 10%)"
+              }} />
+            )}
           </div>
 
         <div className="relative mx-auto max-w-7xl w-full" style={{ zIndex: 2 }}>
