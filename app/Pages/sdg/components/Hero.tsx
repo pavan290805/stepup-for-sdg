@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import SDGGrid from "./SDGGrid";
 import { useTheme } from "@/app/components/ThemeProvider";
@@ -9,7 +9,11 @@ export default function Hero() {
   const reduceMotion = useReducedMotion() ?? false;
   const goalsRef = useRef<HTMLElement | null>(null);
   const { theme } = useTheme();
-  const [, setDummy] = useState(0);
+  const [videoKey, setVideoKey] = useState(0);
+
+  useEffect(() => {
+    setVideoKey(k => k + 1);
+  }, []);
 
   const handleExplore = () => {
     goalsRef.current?.scrollIntoView({
@@ -69,7 +73,7 @@ export default function Hero() {
             }}
           >
             <video
-              key={theme}
+              key={`${theme}-${videoKey}`}
               autoPlay
               muted
               loop
