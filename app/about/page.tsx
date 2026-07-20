@@ -2,7 +2,6 @@ import Link from "next/link";
 import { FadeUp } from "@/app/components/site/FadeUp";
 import { SpaceBackdrop } from "@/app/components/site/SpaceBackdrop";
 import { VisionMission } from "@/app/components/site/VisionMission";
-import { OurImpact } from "@/app/components/site/OurImpact";
 import { TeamCards } from "@/app/components/site/TeamCards";
 import { FivePCards } from "@/app/components/site/FivePCards";
 import { hideFundsAndContact } from "@/app/lib/siteFlags";
@@ -50,13 +49,6 @@ export default function AboutPage() {
             </h2>
           </FadeUp>
           <FivePCards />
-        </div>
-      </section>
-
-      {/* 4. Our Impact */}
-      <section id="impact" className="px-6 py-20 scroll-mt-20">
-        <div className="mx-auto max-w-6xl">
-          <OurImpact />
         </div>
       </section>
 
