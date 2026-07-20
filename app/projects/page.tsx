@@ -65,7 +65,7 @@ const projects: Project[] = [
     sdgs: ["Quality Education", "Climate Action", "Life on Land"],
     icon: Award,
     color: "#155DFC",
-    backgroundImage: "/sdg/goal-04.png",
+    backgroundImage: "/sdg/sdg certt.png",
   },
   {
     name: "Rainwater Harvesting",
@@ -76,7 +76,7 @@ const projects: Project[] = [
     sdgs: ["Clean Water & Sanitation", "Climate Action"],
     icon: Leaf,
     color: "#26BDE2",
-    backgroundImage: "/sdg/goal-06.png",
+    backgroundImage: "/sdg/rw.png",
   },
   {
     name: "Community Clean Drive",
@@ -87,7 +87,7 @@ const projects: Project[] = [
     sdgs: ["Climate Action", "Life on Land"],
     icon: TreePine,
     color: "#3F7E44",
-    backgroundImage: "/sdg/goal-13.png",
+    backgroundImage: "/sdg/plant.png",
   },
   {
     name: "Career Exposure Program",
@@ -98,7 +98,7 @@ const projects: Project[] = [
     sdgs: ["Quality Education", "Decent Work & Economic Growth"],
     icon: Briefcase,
     color: "#A21942",
-    backgroundImage: "/sdg/goal-08.png",
+    backgroundImage: "/sdg/cg.png",
   },
   {
     name: "Solar Lamp Distribution",
@@ -109,7 +109,7 @@ const projects: Project[] = [
     sdgs: ["Affordable & Clean Energy", "Climate Action"],
     icon: Sun,
     color: "#FCC30B",
-    backgroundImage: "/sdg/goal-07.png",
+    backgroundImage: "/sdg/ld.png",
   },
 ];
 
@@ -304,52 +304,57 @@ function SdgEducationIncludesTree() {
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const Icon = project.icon;
   const isSdgEducationProgram = project.name === "SDG Education Program";
+  const isReversed = index % 2 === 1;
+  const imageOrder = isReversed ? "lg:order-2" : "lg:order-1";
+  const contentOrder = isReversed ? "lg:order-1" : "lg:order-2";
 
   return (
     <FadeUp delay={index * 45}>
-      <article className="group relative flex h-full min-h-[440px] flex-col overflow-hidden rounded-3xl border border-border bg-card/80 p-7 shadow-[0_18px_50px_-28px_rgba(0,0,0,0.55)] backdrop-blur-xl transition duration-300 hover:-translate-y-2 hover:border-cyan-glow/45 hover:shadow-[0_28px_70px_-32px_rgba(0,194,255,0.55)] sm:p-8">
+      <article className="group grid overflow-hidden rounded-3xl border border-slate-200/80 bg-[#ffffff] p-4 shadow-[0_18px_50px_-32px_rgba(15,23,42,0.36)] transition-[transform,box-shadow,background-color,border-color] duration-300 ease-out hover:-translate-y-2 hover:border-slate-300 hover:bg-[#f3f6fb] hover:shadow-[0_30px_70px_-34px_rgba(15,23,42,0.45)] dark:border-white/10 dark:bg-[#101827] dark:hover:border-white/15 dark:hover:bg-[#172235] dark:shadow-[0_18px_55px_-30px_rgba(0,0,0,0.75)] dark:hover:shadow-[0_32px_75px_-34px_rgba(0,0,0,0.85)] lg:grid-cols-[minmax(0,0.48fr)_minmax(0,0.52fr)] lg:gap-8 lg:p-6">
         <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-1"
-          style={{
-            backgroundImage: `linear-gradient(90deg, ${project.color}, #00C2FF)`,
-          }}
-        />
+          className={`${imageOrder} relative min-h-[260px] overflow-hidden rounded-[1.4rem] shadow-[0_20px_45px_-28px_rgba(15,23,42,0.55)] sm:min-h-[340px] lg:min-h-[520px]`}
+        >
+          <Image
+            src={project.backgroundImage}
+            alt={`${project.name} project placeholder`}
+            fill
+            sizes="(min-width: 1024px) 48vw, 100vw"
+            className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-white/10"
+          />
+          <span
+            className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/30 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-lg backdrop-blur-md"
+          >
+            Project {String(index + 1).padStart(2, "0")}
+          </span>
+        </div>
+
         <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 transition duration-300 group-hover:opacity-100"
-        />
-        <Image
-          src={project.backgroundImage}
-          alt=""
-          width={320}
-          height={320}
-          aria-hidden="true"
-          className="pointer-events-none absolute bottom-2 right-0 z-0 h-48 w-48 select-none object-contain opacity-[0.07] blur-[1px] transition duration-500 group-hover:opacity-[0.12] dark:opacity-[0.08] dark:group-hover:opacity-[0.11] sm:h-60 sm:w-60"
-        />
-        <div className="relative z-10 flex h-full flex-col">
-          <div className="flex items-start justify-between gap-4">
+          className={`${contentOrder} flex flex-col justify-center px-2 py-7 sm:px-4 sm:py-9 lg:px-6 lg:py-12`}
+        >
+          <div className="flex items-center gap-3">
             <span
-              className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl text-white shadow-[0_14px_30px_-18px_rgba(0,0,0,0.6)] transition duration-300 group-hover:scale-110"
-              style={{
-                backgroundImage: `linear-gradient(135deg, ${project.color}, #00C2FF)`,
-              }}
+              className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl text-white shadow-[0_14px_30px_-18px_rgba(0,0,0,0.6)]"
+              style={{ backgroundColor: project.color }}
             >
-              <Icon className="h-8 w-8" />
+              <Icon className="h-6 w-6" />
             </span>
-            <span className="rounded-full border border-border bg-background/55 px-3 py-1 text-xs font-semibold text-muted-text">
-              Project {String(index + 1).padStart(2, "0")}
+            <span className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-text">
+              Featured Project
             </span>
           </div>
 
-          <h3 className="mt-6 font-display text-xl font-bold leading-snug text-foreground">
+          <h3 className="mt-6 font-display text-3xl font-bold leading-tight text-foreground md:text-4xl">
             {project.name}
           </h3>
-          <p className="mt-3 text-sm leading-relaxed text-muted-text">
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-text">
             {project.description}
           </p>
 
-          <div className="mt-6">
+          <div className="mt-8">
             <div className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-text">
               Includes
             </div>
@@ -370,41 +375,52 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             )}
           </div>
 
-          <div className="mt-6 rounded-2xl border border-cyan-glow/25 bg-background/60 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
-            <div className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-text">
-              Estimated Cost
-            </div>
-            <div className="mt-2 grid gap-2">
-              {project.costItems.map((item) => (
-                <div key={`${item.label ?? "cost"}-${item.value}`}>
-                  {item.label && (
-                    <div className="text-xs font-semibold text-muted-text">
-                      {item.label}
+          <div className="mt-8 grid gap-4 md:grid-cols-[minmax(0,0.42fr)_minmax(0,0.58fr)]">
+            <div className="rounded-2xl border border-slate-200 bg-white/70 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] dark:border-white/10 dark:bg-white/[0.04]">
+              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-text">
+                Estimated Cost
+              </div>
+              <div className="mt-3 grid gap-2">
+                {project.costItems.map((item) => (
+                  <div key={`${item.label ?? "cost"}-${item.value}`}>
+                    {item.label && (
+                      <div className="text-xs font-semibold text-muted-text">
+                        {item.label}
+                      </div>
+                    )}
+                    <div className="font-display text-lg font-bold text-foreground">
+                      {item.value}
                     </div>
-                  )}
-                  <div className="font-display text-lg font-bold text-foreground">
-                    {item.value}
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <div className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-text">
+                Related SDGs
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {project.sdgs.map((sdg) => (
+                  <span
+                    key={sdg}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 text-xs font-semibold text-foreground dark:border-white/10 dark:bg-white/[0.04]"
+                  >
+                    <Check className="h-3.5 w-3.5 text-leaf" />
+                    {sdg}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
-          <div className="mt-auto pt-5">
-            <div className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-text">
-              Related SDGs
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {project.sdgs.map((sdg) => (
-                <span
-                  key={sdg}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 px-3 py-1.5 text-xs font-semibold text-foreground"
-                >
-                  <Check className="h-3.5 w-3.5 text-leaf" />
-                  {sdg}
-                </span>
-              ))}
-            </div>
+          <div className="mt-8">
+            <Link
+              href="/work-with-us"
+              className="btn-arrow inline-flex items-center justify-center gap-2 rounded-full bg-cta px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_-16px_rgba(255,122,0,0.9)] transition duration-300 hover:brightness-110"
+            >
+              Start This Project <ArrowRight className="arr h-4 w-4" />
+            </Link>
           </div>
         </div>
       </article>
@@ -501,7 +517,7 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      <section id="projects" className="scroll-mt-20 px-6 py-14 sm:py-16">
+      <section id="projects" className="scroll-mt-20 bg-white px-6 py-14 dark:bg-[#08111f] sm:py-16">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
             eyebrow="Our Projects"
@@ -509,7 +525,7 @@ export default function ProjectsPage() {
             subtitle="Choose a focused project model, align it with the relevant SDGs, and activate it with clear resources, coordination and reporting."
           />
 
-          <div className="mt-12 grid gap-7 md:grid-cols-2">
+          <div className="mt-12 grid gap-8">
             {projects.map((project, index) => (
               <ProjectCard key={project.name} project={project} index={index} />
             ))}

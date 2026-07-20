@@ -1,0 +1,33 @@
+[33m503effd[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m HEAD@{0}: pull origin master: Merge made by the 'ort' strategy.
+[33m82d2d84[m HEAD@{1}: commit: Rename Events page to Projects and update routes
+[33m2ce71a5[m HEAD@{2}: pull origin master: Fast-forward
+[33m31c31a4[m HEAD@{3}: reset: moving to origin/master
+[33m774eb17[m HEAD@{4}: reset: moving to HEAD
+[33m774eb17[m HEAD@{5}: rebase (abort): returning to refs/heads/master
+[33mb208005[m HEAD@{6}: pull --rebase origin master (start): checkout b208005ccbbe4f5bbe41aee40225fc6a534ba173
+[33m774eb17[m HEAD@{7}: commit: UPDATED MAP
+[33ma042088[m HEAD@{8}: pull origin master: Fast-forward
+[33m0e341ac[m HEAD@{9}: pull origin master: Fast-forward
+[33m685a7a7[m HEAD@{10}: pull origin master: Fast-forward
+[33m6161b71[m HEAD@{11}: pull origin master: Fast-forward
+[33me3f749d[m HEAD@{12}: commit: MERGED THE COLOURS
+[33mb661601[m HEAD@{13}: pull origin master: Fast-forward
+[33m748e891[m HEAD@{14}: checkout: moving from lasyabranch to master
+[33meb5b11a[m[33m ([m[1;31morigin/lasyabranch[m[33m, [m[1;32mlasyabranch[m[33m)[m HEAD@{15}: checkout: moving from kalyanbranch to lasyabranch
+[33m68a94fc[m[33m ([m[1;32mkalyanbranch[m[33m)[m HEAD@{16}: checkout: moving from master to kalyanbranch
+[33m748e891[m HEAD@{17}: reset: moving to HEAD
+[33m748e891[m HEAD@{18}: pull origin master: Fast-forward
+[33m3a56f81[m HEAD@{19}: pull origin master: Fast-forward
+[33mbd6391f[m HEAD@{20}: commit: Updated SDG goal navigator with square navigation cards
+[33m4d39e20[m HEAD@{21}: reset: moving to origin/master
+[33mc4a006a[m HEAD@{22}: commit: PERFECT SQAURE SHAPE
+[33m162e8fc[m HEAD@{23}: commit: Updated SDG detail page navigation
+[33m6e430d2[m HEAD@{24}: reset: moving to origin/master
+[33m2c32a18[m HEAD@{25}: checkout: moving from master to master
+[33m2c32a18[m HEAD@{26}: checkout: moving from Master to master
+[33m2c32a18[m HEAD@{27}: pull origin master: Fast-forward
+[33mf5c1e37[m HEAD@{28}: reset: moving to origin/master
+[33m92c2574[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/akhil_branch[m[33m)[m HEAD@{29}: reset: moving to HEAD
+[33m92c2574[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/akhil_branch[m[33m)[m HEAD@{30}: checkout: moving from kalyanbranch to Master
+[33m68a94fc[m[33m ([m[1;32mkalyanbranch[m[33m)[m HEAD@{31}: checkout: moving from master to kalyanbranch
+[33m92c2574[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/akhil_branch[m[33m)[m HEAD@{32}: clone: from https://github.com/pavan290805/stepup-for-sdg.git
