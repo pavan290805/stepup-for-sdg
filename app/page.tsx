@@ -63,7 +63,7 @@ function RahiniHome() {
                 </span>
               </h1>
               <p className="mt-4 max-w-xl text-base md:text-lg leading-relaxed" style={{ color: "var(--muted-text)" }}>
-                Empowering Students through the Sustainable Development Goals
+                Connecting students, schools, NGOs and companies to drive real change through the UN Sustainable Development Goals.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link

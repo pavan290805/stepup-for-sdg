@@ -24,12 +24,12 @@ const cards: CardData[] = [
     id: "vision",
     icon: Eye,
     eyebrow: "Our Vision",
-    headline: "Empowering Every Learner to Build a Better Tomorrow",
+    headline: "A World Where Every Child Can Learn, Grow and Lead",
     paragraphs: [
-      "We envision a future where every child, regardless of geography, income, or background, has equal access to quality education, technology, and opportunities that unlock their full potential.",
-      "StepUp for SDG aims to create inclusive schools, empowered educators, and connected communities that inspire lifelong learning and sustainable development.",
+      "We envision a future where no child is left behind — where quality education reaches every corner, every community, and every family, regardless of circumstance.",
+      "StepUp for SDG works to make that future real by connecting people who care with the schools and communities that need them most.",
     ],
-    highlight: "Education is the foundation for lasting change.",
+    highlight: "Education is the most powerful tool we have to change the world.",
     image:
       "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&q=80",
     imageAlt: "Children learning inside a modern classroom",
@@ -41,12 +41,12 @@ const cards: CardData[] = [
     id: "mission",
     icon: Target,
     eyebrow: "Our Mission",
-    headline: "Transforming Partnerships into Measurable Educational Impact",
+    headline: "Turning Goodwill into Real, Lasting Change for Children",
     paragraphs: [
-      "Our mission is to connect schools, NGOs, companies, volunteers, and communities through one collaborative platform that enables transparent educational initiatives, innovation, and measurable social impact.",
-      "Every contribution helps children gain knowledge, confidence, and opportunities for a brighter future.",
+      "Our mission is to unite schools, NGOs, companies and volunteers on one platform — making it simple to fund, deliver and track educational initiatives that truly matter.",
+      "Every action, big or small, helps a child gain the knowledge and confidence to build a better life.",
     ],
-    highlight: "Together we create opportunities that transform lives.",
+    highlight: "Together, we create opportunities that transform communities.",
     image:
       "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80",
     imageAlt: "Volunteers helping students in a rural school",

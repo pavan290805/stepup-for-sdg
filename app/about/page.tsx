@@ -20,11 +20,11 @@ export default function AboutPage() {
         <div className="relative mx-auto max-w-4xl text-center">
           <FadeUp>
             <h1 className="mt-4 font-display text-4xl md:text-6xl font-bold leading-tight">
-              Purpose-driven partnerships for a{" "}
-              <span className="grad-text">better tomorrow</span>
+              We believe every child deserves a{" "}
+              <span className="grad-text">chance to thrive</span>
             </h1>
             <p className="mt-6 text-muted-text max-w-2xl mx-auto">
-              Educating students on the UN Sustainable Development Goals, empowering them to adopt sustainable lifestyles, make informed choices, explore meaningful careers, and drive positive change in their families and communities.
+              StepUp for SDG brings together students, schools, NGOs and companies to create lasting educational change — rooted in the UN Sustainable Development Goals.
             </p>
           </FadeUp>
         </div>
@@ -65,22 +65,21 @@ export default function AboutPage() {
               </h2>
               <div className="mt-6 space-y-4 text-muted-text leading-relaxed">
                 <p>
-                  StepUp for SDG began with a simple conviction: that quality
-                  education is the most powerful lever for lasting change. What
-                  started as a handful of volunteers supporting local schools
-                  has grown into a collaborative platform uniting students,
-                  educators, NGOs and companies around a shared mission.
+                  StepUp for SDG was born from a simple belief: that every
+                  child deserves a fair chance to learn. What began as a small
+                  group of passionate volunteers has grown into a movement
+                  uniting students, educators, NGOs and companies around one
+                  shared purpose.
                 </p>
                 <p>
-                  Today we connect partners across regions to fund, design and
-                  deliver transparent educational initiatives — turning
-                  intention into measurable impact for the children who need it
-                  most.
+                  We build bridges between those who want to help and the
+                  communities that need it — making it easy to contribute,
+                  collaborate and see the difference your support makes.
                 </p>
                 <p>
-                  We believe progress should be visible. Every project we
-                  support is tracked, reported, and built to last, so every
-                  contribution becomes a real opportunity for a learner.
+                  Every initiative we run is transparent, trackable and built
+                  to last — because real change takes root when communities
+                  own it.
                 </p>
               </div>
             </div>

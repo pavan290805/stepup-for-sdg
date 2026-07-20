@@ -68,8 +68,8 @@
   --color-leaf: var(--leaf);
   --color-cta: var(--cta);
   --color-muted-text: var(--muted-text);
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Lato", "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
