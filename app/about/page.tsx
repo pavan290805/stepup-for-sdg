@@ -2,7 +2,6 @@ import Link from "next/link";
 import { FadeUp } from "@/app/components/site/FadeUp";
 import { SpaceBackdrop } from "@/app/components/site/SpaceBackdrop";
 import { VisionMission } from "@/app/components/site/VisionMission";
-import { OurImpact } from "@/app/components/site/OurImpact";
 import { TeamCards } from "@/app/components/site/TeamCards";
 import { FivePCards } from "@/app/components/site/FivePCards";
 import { hideFundsAndContact } from "@/app/lib/siteFlags";
@@ -32,20 +31,28 @@ export default function AboutPage() {
       </section>
 
       {/* 2. Vision & Mission */}
-      <section className="px-6 pb-12 scroll-mt-20">
+      <section className="px-6 py-12 scroll-mt-20">
         <div className="mx-auto max-w-[1400px]">
           <VisionMission />
         </div>
       </section>
 
-      {/* 3. Our Impact */}
-      <section id="impact" className="px-6 py-20 scroll-mt-20">
-        <div className="mx-auto max-w-6xl">
-          <OurImpact />
+      {/* 3. Five Pillars (5P Model) */}
+      <section id="5p" className="px-6 pt-8 pb-6 scroll-mt-20">
+        <div className="mx-auto max-w-6xl text-center">
+          <FadeUp>
+            <span className="text-xs uppercase tracking-[0.25em] text-cyan-glow">
+              5P Model
+            </span>
+            <h2 className="mt-3 text-3xl md:text-4xl font-bold">
+              Five pillars of sustainable impact
+            </h2>
+          </FadeUp>
+          <FivePCards />
         </div>
       </section>
 
-      {/* 4. Our Story / Who We Are */}
+{/* 4. Our Story / Who We Are */}
       <section id="story" className="px-6 py-12 scroll-mt-20">
         <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
           <FadeUp>
@@ -104,22 +111,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 6. Five Pillars (5P Model) */}
-      <section id="5p" className="px-6 pt-8 pb-6 scroll-mt-20">
-        <div className="mx-auto max-w-6xl text-center">
-          <FadeUp>
-            <span className="text-xs uppercase tracking-[0.25em] text-cyan-glow">
-              5P Model
-            </span>
-            <h2 className="mt-3 text-3xl md:text-4xl font-bold">
-              Five pillars of sustainable impact
-            </h2>
-          </FadeUp>
-          <FivePCards />
-        </div>
-      </section>
-
-      {/* 7. Join Our Mission CTA */}
+      {/* 6. Join Our Mission CTA */}
       <section id="join" className="px-6 pt-6 pb-10 scroll-mt-20">
         <FadeUp>
           <div className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl glass p-10 text-center md:p-14">

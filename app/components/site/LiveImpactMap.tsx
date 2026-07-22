@@ -2,14 +2,10 @@
 
 import { useEffect, useRef, useState, type MouseEvent } from "react"
 import { ComposableMap, Geographies, Geography, Sphere } from "react-simple-maps"
-import { School, ClipboardList, Users, MapPin } from "lucide-react"
 import { Reveal } from "@/app/components/reveal"
 import { useTheme } from "@/app/components/ThemeProvider"
 
 const GEO_URL = "/india-states.geojson"
-const stats = [
-  { icon: School, value: "1,240+", label: "Schools Supported", accent: "#06B6D4" }, { icon: ClipboardList, value: "560+", label: "Projects Completed", accent: "#22C55E" }, { icon: Users, value: "380K+", label: "Students Enrolled", accent: "#F97316" }, { icon: MapPin, value: "320+", label: "NGO Partners", accent: "#A78BFA" },
-]
 type Impact = { schools: number; students: string; ngos: number; projects: number }
 type Tooltip = { name: string; impact: Impact; x: number; y: number; maxX: number }
 const knownStateImpact: Record<string, Impact> = { DELHI: { schools: 120, students: "24,000+", ngos: 15, projects: 35 }, MAHARASHTRA: { schools: 135, students: "28,000+", ngos: 17, projects: 40 }, KARNATAKA: { schools: 80, students: "16,200+", ngos: 10, projects: 24 }, "TAMIL NADU": { schools: 65, students: "13,100+", ngos: 9, projects: 20 }, TELANGANA: { schools: 68, students: "13,600+", ngos: 7, projects: 20 }, "WEST BENGAL": { schools: 58, students: "11,700+", ngos: 7, projects: 17 }, GUJARAT: { schools: 43, students: "8,800+", ngos: 6, projects: 13 }, RAJASTHAN: { schools: 38, students: "7,700+", ngos: 5, projects: 11 }, "UTTAR PRADESH": { schools: 35, students: "7,100+", ngos: 5, projects: 10 }, BIHAR: { schools: 28, students: "5,700+", ngos: 3, projects: 7 }, "JAMMU & KASHMIR": { schools: 19, students: "4,150+", ngos: 3, projects: 5 } }
@@ -57,8 +53,7 @@ export function LiveImpactMap() {
   return geographies.map((geo, i) => <GeoShape key={i} geo={geo} isDark={isDark} cursorPosition={cursorPosition} setTooltip={setTooltip} />)
 }}</Geographies></ComposableMap></div>}</div>
       {tooltip && <div className="pointer-events-none absolute z-30 w-48 rounded-xl p-3 shadow-2xl" style={{ left: Math.min(tooltip.x + 16, tooltip.maxX), top: Math.max(tooltip.y - 116, 8), background: "rgba(15,23,42,0.96)", border: "1px solid rgba(255,255,255,0.12)" }}><div className="mb-2 text-xs font-bold uppercase tracking-wide text-orange-400">{tooltip.name}</div>{[["Schools", tooltip.impact.schools], ["Students", tooltip.impact.students], ["NGOs", tooltip.impact.ngos], ["Projects", tooltip.impact.projects]].map(([label, value]) => <div key={String(label)} className="flex justify-between py-0.5 text-[11px]"><span className="text-slate-400">{label}</span><span className="font-semibold text-slate-100">{value}</span></div>)}</div>}
-    </div><div className="px-4 py-3 text-center text-xs" style={{ color: "var(--muted-text)" }}>Hover over any state to view its impact.</div></div>
-    <div className="mt-6 rounded-3xl p-4 sm:p-5" style={{ background: "var(--card)", border: "1px solid var(--border)" }}><div className="grid grid-cols-2 lg:grid-cols-4 gap-3">{stats.map(({ icon: Icon, value, label, accent }) => <div key={label} className="rounded-2xl p-4 flex items-center gap-3" style={{ background: "color-mix(in srgb, var(--background) 72%, transparent)", border: "1px solid var(--border)" }}><div className="h-10 w-10 rounded-xl flex items-center justify-center" style={{ background: `${accent}18` }}><Icon className="w-5 h-5" style={{ color: accent }} /></div><div><div className="text-xl font-semibold" style={{ color: "var(--foreground)" }}>{value}</div><div className="text-xs mt-1" style={{ color: "var(--muted-text)" }}>{label}</div></div></div>)}</div></div>
+    </div><div className="px-4 py-3 text-center text-xs" style={{ color: "var(--muted-text)" }}></div></div>
   </section></Reveal>
 }
 

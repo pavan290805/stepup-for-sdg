@@ -19,7 +19,7 @@ export function VisionBanner() {
               United for Tomorrow
             </span>
             <h2 className="mt-4 text-4xl md:text-5xl font-bold text-white">
-              UNITE 2030 Vision
+              UNITE 2047 Vision
             </h2>
             <p className="mt-5 max-w-2xl mx-auto text-white/70">
               Building a future through collaboration, education, innovation and community-driven impact.
