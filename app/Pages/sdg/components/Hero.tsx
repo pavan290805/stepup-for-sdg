@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import SDGGrid from "./SDGGrid";
 import { useTheme } from "@/app/components/ThemeProvider";
@@ -9,23 +9,17 @@ export default function Hero() {
   const reduceMotion = useReducedMotion() ?? false;
   const goalsRef = useRef<HTMLElement | null>(null);
   const { theme } = useTheme();
-  const [, setDummy] = useState(0);
+  const [videoKey, setVideoKey] = useState(0);
+
+  useEffect(() => {
+    setVideoKey(k => k + 1);
+  }, []);
 
   const handleExplore = () => {
     goalsRef.current?.scrollIntoView({
       behavior: reduceMotion ? "auto" : "smooth",
       block: "start",
     });
-  };
-
-  const videoStyle: React.CSSProperties = {
-    position: "absolute",
-    width: "100%",
-    background: "transparent",
-    backfaceVisibility: "hidden",
-    WebkitBackfaceVisibility: "hidden",
-    transform: "translateZ(0)",
-    transition: "opacity 0.6s ease",
   };
 
   return (
@@ -53,32 +47,40 @@ export default function Hero() {
             <div className="stars-layer" style={{ animationDelay: "-2s", opacity: 0.6, transform: "rotate(15deg) scale(1.1)" }} />
             <div className="stars-layer" style={{ animationDelay: "-4s", opacity: 0.5, transform: "rotate(-10deg) scale(0.95)" }} />
           </div>
+
           <div
             aria-hidden="true"
-            className="absolute right-0 top-1/2 -translate-y-1/2 w-[70vw] max-w-[900px] overflow-hidden"
+            className="absolute right-0 top-1/2 -translate-y-1/2 w-[75vw] max-w-[950px] overflow-hidden"
             style={{
               aspectRatio: "16/9",
-              background: theme === "dark" ? "#000810" : "#e2eef7",
               WebkitMaskImage: theme === "dark"
-                ? "radial-gradient(ellipse 85% 85% at 65% 55%, black 25%, transparent 70%)"
-                : "radial-gradient(ellipse 85% 85% at 60% 55%, black 15%, transparent 65%)",
+                ? "linear-gradient(to left, transparent 0%, black 15%, black 100%)"
+                : "linear-gradient(to left, transparent 0%, black 25%, black 75%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
               maskImage: theme === "dark"
-                ? "radial-gradient(ellipse 85% 85% at 65% 55%, black 25%, transparent 70%)"
-                : "radial-gradient(ellipse 85% 85% at 60% 55%, black 15%, transparent 65%)",
+                ? "linear-gradient(to left, transparent 0%, black 15%, black 100%)"
+                : "linear-gradient(to left, transparent 0%, black 25%, black 75%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+              WebkitMaskComposite: theme === "dark" ? "source-over" : "source-in",
+              maskComposite: theme === "dark" ? "add" : "intersect",
             }}
           >
             <video
-              key={theme}
+              key={`${theme}-${videoKey}`}
               autoPlay
               muted
               loop
               playsInline
               className="absolute inset-0 w-full h-full object-cover"
-              src={theme === "dark"
-                ? "sdg-dark.mp4"
-                : "sdg-white.mp4"
-              }
+              style={theme === "dark" ? { mixBlendMode: "screen" } : {}}
+              src={theme === "dark" ? "sadg-dark.mp4" : "Sdg.white.mp4"}
             />
+            {theme === "dark" && (
+              <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to left, transparent 60%, #000810 100%), linear-gradient(to bottom, #000810 0%, transparent 20%, transparent 80%, #000810 100%)" }} />
+            )}
+            {theme !== "dark" && (
+              <div className="absolute inset-0 pointer-events-none" style={{
+                background: `linear-gradient(to right, #e2eef7 0%, transparent 20%), linear-gradient(to left, #e2eef7 0%, transparent 15%), linear-gradient(to bottom, #e2eef7 0%, transparent 5%), linear-gradient(to top, #e2eef7 0%, transparent 10%)`
+              }} />
+            )}
           </div>
 
           <div className="relative z-20 mx-auto w-full max-w-7xl">
