@@ -922,14 +922,6 @@ export default function PartnersPage() {
         <div className="relative z-10 w-full px-4 md:px-10 py-16">
           <div className="mx-auto max-w-5xl text-center flex flex-col items-center gap-8">
 
-            {/* Eyebrow badge */}
-            <motion.div initial={{opacity:0,y:16}} animate={mounted?{opacity:1,y:0}:{}} transition={{delay:0.1}}
-              className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-[11px] font-semibold uppercase tracking-widest"
-              style={{background:isDark?"rgba(14,165,201,0.12)":"rgba(2,132,199,0.08)",border:`1px solid ${isDark?"rgba(14,165,201,0.3)":"rgba(2,132,199,0.25)"}`,color:theme.accent}}>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#0ea5c9] animate-pulse"/>
-              Our Partner Ecosystem
-            </motion.div>
-
             {/* Headline */}
             <motion.h1 initial={{opacity:0,y:24}} animate={mounted?{opacity:1,y:0}:{}} transition={{delay:0.18}}
               className="font-black leading-[1.05] tracking-[-0.04em]"

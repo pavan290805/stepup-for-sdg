@@ -44,6 +44,7 @@ function RahiniHome() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden flex items-center py-12 px-6 space-bg" style={{ minHeight: "70vh" }}>
+        {/* Dark mode: stars */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none hidden dark:block">
           <div className="stars-layer" />
           <div className="stars-layer" style={{ animationDelay: "-2s", opacity: 0.6, transform: "rotate(15deg) scale(1.1)" }} />
@@ -52,6 +53,16 @@ function RahiniHome() {
           <span className="streak" style={{ top: "45%", animationDelay: "2s" }} />
           <span className="streak" style={{ top: "70%", animationDelay: "4s" }} />
           <span className="streak" style={{ top: "10%", animationDelay: "1s" }} />
+        </div>
+
+        {/* Light mode: gradient mesh background */}
+        <div className="absolute inset-0 pointer-events-none dark:hidden">
+          <div className="absolute inset-0" style={{background:"linear-gradient(135deg,#e8f4ff 0%,#f0f7ff 30%,#eef2ff 60%,#f5f0ff 100%)"}}/>
+          <div className="absolute rounded-full blur-[120px] opacity-60" style={{width:600,height:500,top:"-10%",left:"-5%",background:"radial-gradient(ellipse,rgba(59,130,246,0.25) 0%,rgba(99,102,241,0.1) 55%,transparent 75%)"}}/>
+          <div className="absolute rounded-full blur-[140px] opacity-50" style={{width:500,height:400,top:"20%",right:"-5%",background:"radial-gradient(ellipse,rgba(99,102,241,0.2) 0%,rgba(139,92,246,0.08) 55%,transparent 75%)"}}/>
+          <div className="absolute rounded-full blur-[100px] opacity-40" style={{width:400,height:350,bottom:"-10%",left:"30%",background:"radial-gradient(ellipse,rgba(16,185,129,0.15) 0%,rgba(6,182,212,0.06) 55%,transparent 75%)"}}/>
+          {/* Subtle grid */}
+          <div className="absolute inset-0 opacity-[0.03]" style={{backgroundImage:"linear-gradient(rgba(0,0,0,1) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,1) 1px,transparent 1px)",backgroundSize:"40px 40px"}}/>
         </div>
           <div
             aria-hidden="true"
@@ -97,9 +108,9 @@ function RahiniHome() {
                 </Link>
                 <Link
                   href="/sdg"
-                  className="inline-flex items-center gap-2 bg-cta text-white font-semibold rounded-full px-6 py-3 shadow-[0_0_24px_rgba(255,122,0,0.5)] hover:brightness-110 transition"
+                  className="btn-arrow inline-flex items-center gap-2 bg-cta text-white font-semibold rounded-full px-6 py-3 shadow-[0_0_24px_rgba(255,122,0,0.5)] hover:brightness-110 transition"
                 >
-                  Learn More about SDG Goals
+                  Learn More about SDG Goals <ArrowRight className="arr h-4 w-4" />
                 </Link>
               </div>
             </div>

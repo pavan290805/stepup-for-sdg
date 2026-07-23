@@ -352,9 +352,8 @@ export default function ImpactPage() {
           <div
             className="mt-8 rounded-[30px] px-6 py-7 text-white md:px-8 md:py-8"
             style={{
-              background:
-                "linear-gradient(135deg, var(--navy) 0%, var(--deep-blue) 100%)",
-              boxShadow: "0 28px 60px -36px rgba(21, 93, 252, 0.65)",
+              background: "linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 45%, #0369a1 100%)",
+              boxShadow: "0 28px 60px -36px rgba(29, 78, 216, 0.55)",
             }}
           >
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
