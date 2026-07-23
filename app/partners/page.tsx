@@ -219,39 +219,39 @@ const partners: Partner[] = [
   { id:1, name:"Delhi Public School", type:"School", city:"New Delhi", initials:"DPS", sdgs:[4,13], since:"2023",
     story:"Students launched their own sustainability council after their first SDG workshop.",
     lastActivity:"Hosted an SDG workshop · 2 weeks ago", domain:"dpsrkp.net",
-    logoSources:[]},
+    logoSources:["https://upload.wikimedia.org/wikipedia/en/thumb/b/b3/Delhi_Public_School_logo.png/200px-Delhi_Public_School_logo.png","https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://dpsrkp.net&size=128"]},
   { id:2, name:"GreenEarth Initiative", type:"NGO", city:"Hyderabad", initials:"GE", sdgs:[13,15], since:"2024",
     story:"Co-designed a tree-cover restoration curriculum now used across 6 partner schools.",
     lastActivity:"Published impact report · 5 days ago", domain:"greenearth.org",
-    logoSources:[]},
+    logoSources:["https://cdn.brandfetch.io/greenearth.org/w/180/h/60/logo","https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://greenearth.org&size=128"]},
   { id:3, name:"TechCorp India", type:"Company", city:"Bangalore", initials:"TC", sdgs:[4,9], since:"2023",
     story:"A Rs50L CSR commitment turned into 3 audited programs reaching 620 students.",
     lastActivity:"Funded the AI Bootcamp cohort · 3 days ago", fundsLakh:50, tier:"Gold", domain:"techcorp.in",
-    logoSources:[]},
+    logoSources:["https://cdn.brandfetch.io/techcorp.in/w/180/h/60/logo","https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://techcorp.in&size=128"]},
   { id:4, name:"IIT Hyderabad", type:"University", city:"Hyderabad", initials:"IIT", sdgs:[4,9,17], since:"2023",
     story:"420 student volunteers now run peer-led SDG workshops in government schools.",
     lastActivity:"Volunteer cohort onboarded · 1 week ago", domain:"iith.ac.in",
-    logoSources:["https://upload.wikimedia.org/wikipedia/en/thumb/1/10/Indian_Institute_of_Technology_Hyderabad_Logo.svg/240px-Indian_Institute_of_Technology_Hyderabad_Logo.svg.png"]},
+    logoSources:["https://upload.wikimedia.org/wikipedia/en/thumb/1/10/Indian_Institute_of_Technology_Hyderabad_Logo.svg/240px-Indian_Institute_of_Technology_Hyderabad_Logo.svg.png","https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://iith.ac.in&size=128"]},
   { id:5, name:"Bright Futures Academy", type:"School", city:"Mumbai", initials:"BF", sdgs:[4,10], since:"2024",
     story:"First cohort of 95% satisfaction-rated SDG electives — expanding to more grade levels.",
     lastActivity:"Completed term-1 workshops · 4 days ago", domain:"brightfuturesacademy.in",
-    logoSources:[]},
+    logoSources:["https://cdn.brandfetch.io/brightfuturesacademy.in/w/180/h/60/logo","https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://brightfuturesacademy.in&size=128"]},
   { id:6, name:"EcoVolt Energy", type:"Company", city:"Chennai", initials:"EV", sdgs:[7,13], since:"2024",
     story:"Brought hands-on renewable-energy labs to schools.",
     lastActivity:"New funding round confirmed · 6 days ago", fundsLakh:20, tier:"Silver", domain:"ecovolt.in",
-    logoSources:[]},
+    logoSources:["https://cdn.brandfetch.io/ecovolt.in/w/180/h/60/logo","https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ecovolt.in&size=128"]},
   { id:7, name:"Hope NGO", type:"NGO", city:"Delhi", initials:"HN", sdgs:[1,10], since:"2024",
     story:"Connected 840 beneficiaries across 4 cities with partner companies.",
     lastActivity:"Beneficiary survey completed · 2 weeks ago", domain:"hopengo.org",
-    logoSources:[]},
+    logoSources:["https://cdn.brandfetch.io/hopengo.org/w/180/h/60/logo","https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://hopengo.org&size=128"]},
   { id:8, name:"Woxsen University", type:"University", city:"Hyderabad", initials:"WU", sdgs:[4,17], since:"2025",
     story:"Newest university partner — piloting a joint research project with GreenEarth.",
     lastActivity:"Joined the ecosystem · 3 weeks ago", domain:"woxsen.edu.in",
-    logoSources:["https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Woxsen.png/240px-Woxsen.png"]},
+    logoSources:["https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Woxsen.png/240px-Woxsen.png","https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://woxsen.edu.in&size=128"]},
   { id:9, name:"InfraBuild Corp", type:"Company", city:"Mumbai", initials:"IB", sdgs:[9,11], since:"2024",
     story:"Funding urban-planning workshops letting students redesign real city blocks.",
     lastActivity:"Workshop showcase held · 1 week ago", fundsLakh:30, tier:"Silver", domain:"l-and-t.com",
-    logoSources:[]},
+    logoSources:["https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Larsen_and_Toubro_logo.svg/240px-Larsen_and_Toubro_logo.svg.png","https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://l-and-t.com&size=128"]},
 ];
 
 const ECOSYSTEM_LOGOS = [
@@ -436,10 +436,6 @@ function PartnerCard({partner,onSelect,theme,isDark}:{partner:Partner;onSelect:(
 
           </div>
           <div className="flex flex-wrap gap-1.5">{partner.sdgs.map(n=><SDGChip key={n} num={n} theme={theme}/>)}</div>
-          <div className="flex items-center gap-2 pt-3 text-[10px]" style={{borderTop:`1px solid ${theme.border}`,color:theme.dim}}>
-            <span className="h-1.5 w-1.5 shrink-0 rounded-full animate-pulse" style={{background:"#22c55e"}}/>
-            {partner.lastActivity}
-          </div>
         </div>
       </div>
     </div>
