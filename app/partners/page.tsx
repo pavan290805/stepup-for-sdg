@@ -870,33 +870,37 @@ export default function PartnersPage() {
         style={{minHeight:"calc(100vh - 80px)",display:"flex",alignItems:"center"}}>
 
         {/* ── BACKGROUND ── */}
-
-        {/* Crossfading photo slideshow */}
+        {/* Crossfading photo slideshow (both modes) */}
         <HeroBgSlideshow />
 
-        {/* Strong dark overlay so text is always readable */}
-        <div className="pointer-events-none absolute inset-0" style={{background:"linear-gradient(120deg,rgba(2,6,18,0.94) 0%,rgba(4,10,24,0.85) 55%,rgba(2,6,16,0.92) 100%)"}}/>
+        {/* Overlay — dark in dark mode, lighter in light mode */}
+        <div className="pointer-events-none absolute inset-0" style={{background:isDark?"linear-gradient(120deg,rgba(2,6,18,0.94) 0%,rgba(4,10,24,0.85) 55%,rgba(2,6,16,0.92) 100%)":"linear-gradient(120deg,rgba(255,255,255,0.55) 0%,rgba(240,246,255,0.45) 55%,rgba(255,255,255,0.55) 100%)"}}/>
 
         {/* Aurora blobs */}
         <div className="aurora-1 pointer-events-none absolute rounded-full blur-[140px]"
-          style={{width:700,height:500,top:"-10%",left:"-5%",background:"radial-gradient(ellipse,rgba(14,165,201,0.30) 0%,rgba(6,182,212,0.12) 55%,transparent 75%)"}}/>
+          style={{width:700,height:500,top:"-10%",left:"-5%",background:isDark
+            ?"radial-gradient(ellipse,rgba(14,165,201,0.30) 0%,rgba(6,182,212,0.12) 55%,transparent 75%)"
+            :"radial-gradient(ellipse,rgba(2,132,199,0.18) 0%,rgba(6,182,212,0.08) 55%,transparent 75%)"}}/>
         <div className="aurora-2 pointer-events-none absolute rounded-full blur-[160px]"
-          style={{width:750,height:580,top:"15%",right:"-8%",background:"radial-gradient(ellipse,rgba(99,102,241,0.25) 0%,rgba(139,92,246,0.10) 55%,transparent 75%)"}}/>
+          style={{width:750,height:580,top:"15%",right:"-8%",background:isDark
+            ?"radial-gradient(ellipse,rgba(99,102,241,0.25) 0%,rgba(139,92,246,0.10) 55%,transparent 75%)"
+            :"radial-gradient(ellipse,rgba(99,102,241,0.15) 0%,rgba(139,92,246,0.06) 55%,transparent 75%)"}}/>
         <div className="aurora-3 pointer-events-none absolute rounded-full blur-[180px]"
-          style={{width:600,height:500,bottom:"-15%",left:"28%",background:"radial-gradient(ellipse,rgba(16,185,129,0.20) 0%,rgba(6,182,212,0.08) 55%,transparent 75%)"}}/>
+          style={{width:600,height:500,bottom:"-15%",left:"28%",background:isDark
+            ?"radial-gradient(ellipse,rgba(16,185,129,0.20) 0%,rgba(6,182,212,0.08) 55%,transparent 75%)"
+            :"radial-gradient(ellipse,rgba(16,185,129,0.12) 0%,rgba(6,182,212,0.05) 55%,transparent 75%)"}}/>
 
-        {/* Drifting warm orb */}
-        <div className="orb-drift pointer-events-none absolute rounded-full blur-[100px] opacity-25"
-          style={{width:320,height:320,top:"40%",left:"42%",background:"radial-gradient(circle,rgba(251,191,36,0.4),rgba(249,115,22,0.15),transparent 70%)"}}/>
+        {isDark&&(
+          <>
+            <div className="orb-drift pointer-events-none absolute rounded-full blur-[100px] opacity-25"
+              style={{width:320,height:320,top:"40%",left:"42%",background:"radial-gradient(circle,rgba(251,191,36,0.4),rgba(249,115,22,0.15),transparent 70%)"}}/>
+            <div className="pointer-events-none absolute inset-0"
+              style={{background:"radial-gradient(ellipse 85% 75% at 50% 50%,transparent 45%,rgba(1,4,12,0.9) 100%)"}}/>
+          </>
+        )}
 
-
-
-        {/* Vignette */}
-        <div className="pointer-events-none absolute inset-0"
-          style={{background:"radial-gradient(ellipse 85% 75% at 50% 50%,transparent 45%,rgba(1,4,12,0.9) 100%)"}}/>
-
-        {/* Floating particles */}
-        {[
+        {/* Floating particles (dark only) */}
+        {isDark && [
           {size:5, top:"10%", left:"6%",   dur:"5s",   delay:"0s",   color:"#0ea5c9" },
           {size:3, top:"68%", left:"3%",   dur:"7s",   delay:"1s",   color:"#818cf8" },
           {size:7, top:"22%", left:"92%",  dur:"6s",   delay:"0.5s", color:"#0ea5c9" },
@@ -915,57 +919,87 @@ export default function PartnersPage() {
             }}/>
         ))}
 
-        <div className="relative z-10 w-full px-4 md:px-14 py-10">
-          <HeroCard mounted={mounted} mouseX={mouseX} mouseY={mouseY} heroRef={heroRef as React.RefObject<HTMLDivElement>}>
+        <div className="relative z-10 w-full px-4 md:px-10 py-16">
+          <div className="mx-auto max-w-5xl text-center flex flex-col items-center gap-8">
 
-            {/* Card inner layout: left text + right stats side by side */}
-            <div className="flex flex-col md:flex-row md:items-center gap-10 p-8 md:p-12">
+            {/* Eyebrow badge */}
+            <motion.div initial={{opacity:0,y:16}} animate={mounted?{opacity:1,y:0}:{}} transition={{delay:0.1}}
+              className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-[11px] font-semibold uppercase tracking-widest"
+              style={{background:isDark?"rgba(14,165,201,0.12)":"rgba(2,132,199,0.08)",border:`1px solid ${isDark?"rgba(14,165,201,0.3)":"rgba(2,132,199,0.25)"}`,color:theme.accent}}>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#0ea5c9] animate-pulse"/>
+              Our Partner Ecosystem
+            </motion.div>
 
-              {/* Left: Text content */}
-              <div className="flex flex-col gap-3 flex-1 min-w-0">
-                <motion.h1 initial={{opacity:0,y:20}} animate={mounted?{opacity:1,y:0}:{}} transition={{delay:0.22}}
-                  className="font-black leading-[1.05] tracking-[-0.035em]"
-                  style={{color:"#ffffff",fontSize:"clamp(28px,3.2vw,42px)"}}>
-                  <span style={{display:"block",whiteSpace:"nowrap"}}>Building impact</span>
-                  <span style={{backgroundImage:"linear-gradient(135deg,#0ea5c9 0%,#818cf8 60%,#c084fc 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text",display:"block"}}>
-                    through
-                  </span>
-                  <span style={{backgroundImage:"linear-gradient(135deg,#0ea5c9 0%,#818cf8 60%,#c084fc 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text",display:"block"}}>
-                    collaboration.
-                  </span>
-                </motion.h1>
+            {/* Headline */}
+            <motion.h1 initial={{opacity:0,y:24}} animate={mounted?{opacity:1,y:0}:{}} transition={{delay:0.18}}
+              className="font-black leading-[1.05] tracking-[-0.04em]"
+              style={{fontSize:"clamp(38px,6vw,80px)",color:isDark?"#ffffff":theme.text}}>
+              Building impact{" "}
+              <span style={{backgroundImage:"linear-gradient(135deg,#0ea5c9 0%,#818cf8 55%,#c084fc 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"}}>
+                through collaboration.
+              </span>
+            </motion.h1>
 
-                <motion.p initial={{opacity:0,y:12}} animate={mounted?{opacity:1,y:0}:{}} transition={{delay:0.3}}
-                  className="text-[15px] leading-[1.75]" style={{color:"rgba(200,212,224,0.80)",maxWidth:460}}>
-                  Schools, NGOs, universities, and companies united around the 17 UN SDGs.
-                  Every partnership creates a ripple of lasting change.
-                </motion.p>
+            {/* Subtext */}
+            <motion.p initial={{opacity:0,y:16}} animate={mounted?{opacity:1,y:0}:{}} transition={{delay:0.26}}
+              className="text-[17px] leading-[1.8] max-w-2xl"
+              style={{color:isDark?"rgba(200,212,224,0.78)":theme.textSub}}>
+              Schools, NGOs, universities, and companies united around the 17 UN SDGs.
+              Every partnership creates a ripple of lasting change across communities.
+            </motion.p>
 
-                {/* Trust badges hidden on About page UI only; markup left in place for later restoration */}
-                <motion.div initial={{opacity:0,y:8}} animate={mounted?{opacity:1,y:0}:{}} transition={{delay:0.36}}
-                  className="hidden flex-wrap gap-2">
-                  {["260+ Partners","17 UN SDGs","6 States"].map((badge,i)=>(
-                    <span key={badge} className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[11px] font-semibold"
-                      style={{background:"rgba(255,255,255,0.06)",border:"1px solid rgba(255,255,255,0.12)",color:"rgba(200,220,240,0.75)"}}>
-                      <span className="w-1.5 h-1.5 rounded-full" style={{background:i===0?"#0ea5c9":i===1?"#818cf8":"#34d399"}}/>
-                      {badge}
-                    </span>
-                  ))}
-                </motion.div>
+            {/* Trust badges */}
+            <motion.div initial={{opacity:0,y:12}} animate={mounted?{opacity:1,y:0}:{}} transition={{delay:0.34}}
+              className="flex flex-wrap justify-center gap-3">
+              {[
+                {label:"260+ Partners",  color:"#0ea5c9"},
+                {label:"17 UN SDGs",     color:"#818cf8"},
+                {label:"6 States",       color:"#34d399"},
+                {label:"12,000+ Students",color:"#fbbf24"},
+              ].map((b)=>(
+                <span key={b.label} className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-[12px] font-semibold"
+                  style={{background:isDark?"rgba(255,255,255,0.06)":"rgba(0,0,0,0.04)",border:`1px solid ${isDark?"rgba(255,255,255,0.12)":"rgba(0,0,0,0.1)"}`,color:isDark?"rgba(220,235,255,0.85)":theme.textSub}}>
+                  <span className="w-2 h-2 rounded-full" style={{background:b.color,boxShadow:`0 0 6px ${b.color}`}}/>
+                  {b.label}
+                </span>
+              ))}
+            </motion.div>
 
-                <motion.div initial={{opacity:0,y:10}} animate={mounted?{opacity:1,y:0}:{}} transition={{delay:0.42}}
-                  className="flex flex-wrap gap-3">
-                  <motion.a href="/work-with-us" whileHover={{scale:1.04,y:-2,boxShadow:"0 8px 30px rgba(14,165,201,0.55)"}} whileTap={{scale:0.97}}
-                    className="inline-flex items-center gap-2.5 rounded-2xl px-8 py-3.5 text-[14px] font-bold"
-                    style={{background:"linear-gradient(135deg,#0ea5c9,#0369a1)",color:"#fff",boxShadow:"0 4px 24px rgba(14,165,201,0.45)",transition:"box-shadow 0.2s"}}>
-                    Partner With Us <Icon.Arrow className="w-4 h-4"/>
-                  </motion.a>
+            {/* CTA buttons */}
+            <motion.div initial={{opacity:0,y:12}} animate={mounted?{opacity:1,y:0}:{}} transition={{delay:0.42}}
+              className="flex flex-wrap justify-center gap-4">
+              <motion.a href="/work-with-us"
+                whileHover={{scale:1.05,y:-3,boxShadow:`0 12px 40px ${theme.accent}60`}} whileTap={{scale:0.97}}
+                className="inline-flex items-center gap-2.5 rounded-2xl px-8 py-4 text-[15px] font-bold"
+                style={{background:`linear-gradient(135deg,${theme.accent},#0369a1)`,color:"#fff",boxShadow:`0 4px 24px ${theme.accent}45`}}>
+                Partner With Us <Icon.Arrow className="w-4 h-4"/>
+              </motion.a>
+              <motion.a href="#directory"
+                whileHover={{scale:1.04,y:-2}} whileTap={{scale:0.97}}
+                className="inline-flex items-center gap-2.5 rounded-2xl px-8 py-4 text-[15px] font-semibold"
+                style={{background:isDark?"rgba(255,255,255,0.07)":"rgba(0,0,0,0.05)",border:`1px solid ${isDark?"rgba(255,255,255,0.15)":"rgba(0,0,0,0.12)"}`,color:isDark?"rgba(220,235,255,0.9)":theme.textSub,backdropFilter:"blur(12px)"}}>
+                View Partners <Icon.Arrow className="w-4 h-4"/>
+              </motion.a>
+            </motion.div>
 
-                </motion.div>
-              </div>
+            {/* Stats row */}
+            <motion.div initial={{opacity:0,y:16}} animate={mounted?{opacity:1,y:0}:{}} transition={{delay:0.52}}
+              className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full mt-4">
+              {[
+                {value:"260+",  label:"Partner Orgs",    color:"#0ea5c9"},
+                {value:"12K+",  label:"Students Reached", color:"#818cf8"},
+                {value:"17",    label:"UN SDGs Covered",  color:"#34d399"},
+                {value:"6",     label:"States Active",    color:"#fbbf24"},
+              ].map((s)=>(
+                <div key={s.label} className="rounded-2xl p-5 text-center"
+                  style={{background:isDark?"rgba(255,255,255,0.04)":"rgba(255,255,255,0.7)",border:`1px solid ${isDark?"rgba(255,255,255,0.09)":"rgba(0,0,0,0.08)"}`,backdropFilter:"blur(12px)",boxShadow:isDark?"none":"0 2px 12px rgba(0,0,0,0.06)"}}>
+                  <div className="text-[32px] font-black tracking-tight leading-none mb-1" style={{color:s.color}}>{s.value}</div>
+                  <div className="text-[11px] font-medium" style={{color:isDark?"rgba(200,212,224,0.6)":theme.muted}}>{s.label}</div>
+                </div>
+              ))}
+            </motion.div>
 
-            </div>
-          </HeroCard>
+          </div>
         </div>
       </section>
 
