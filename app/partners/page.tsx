@@ -208,7 +208,7 @@ const tierConfig: Record<Tier, { label: string; color: string; bg: string }> = {
   Silver: { label:"Silver", color:"#94a3b8", bg:"rgba(148,163,184,0.1)" },
 };
 
-const tabs = ["All","NGOs","Companies","Schools & Colleges"] as const;
+const tabs = ["All","NGOs","Companies","Educational Organizations"] as const;
 type Tab = (typeof tabs)[number];
 const TAB_TO_TYPE: Record<Tab, PartnerType[] | null> = {
   All:null, NGOs:["NGO"], Companies:["Company"], "Schools & Colleges":["School","University"],
@@ -414,29 +414,6 @@ function PartnerCard({partner,onSelect,theme,isDark}:{partner:Partner;onSelect:(
         backgroundImage:`radial-gradient(circle at top left, ${cfg.color}12, transparent 35%), radial-gradient(circle at bottom right, ${cfg.color}08, transparent 30%)`}}>
       <div onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>setHovered(false)}>
         <PartnerLogoMark partner={partner} theme={theme} isDark={isDark}/>
-        <div className="p-5 flex flex-col gap-3">
-          <div className="flex items-start justify-between gap-2">
-            <div>
-              <div className="text-[14px] font-bold leading-snug tracking-[-0.01em]" style={{color:theme.text}}>{partner.name}</div>
-              <div className="flex items-center gap-1 mt-1 text-[11px]" style={{color:theme.muted}}><Icon.MapPin/>{partner.city}</div>
-            </div>
-            {partner.tier&&(
-              <span className="flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px] font-bold shrink-0"
-                style={{color:tierConfig[partner.tier].color,background:tierConfig[partner.tier].bg}}>
-                <Icon.Star/>{partner.tier}
-              </span>
-            )}
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="flex items-center gap-1 rounded-full px-2.5 py-[3px] text-[9px] font-semibold"
-              style={{background:`rgba(34,197,94,0.12)`,color:"#22c55e",border:`1px solid rgba(34,197,94,0.25)`}}>
-              <Icon.Shield className="w-2.5 h-2.5"/>Verified
-            </span>
-            <span className="text-[10px]" style={{color:theme.dim}}>Since {partner.since}</span>
-
-          </div>
-          <div className="flex flex-wrap gap-1.5">{partner.sdgs.map(n=><SDGChip key={n} num={n} theme={theme}/>)}</div>
-        </div>
       </div>
     </div>
   );
@@ -873,8 +850,8 @@ export default function PartnersPage() {
         {/* Crossfading photo slideshow (both modes) */}
         <HeroBgSlideshow />
 
-        {/* Overlay — dark in dark mode, lighter in light mode */}
-        <div className="pointer-events-none absolute inset-0" style={{background:"linear-gradient(120deg,rgba(2,6,18,0.88) 0%,rgba(4,10,24,0.80) 55%,rgba(2,6,16,0.88) 100%)"}}/>
+        {/* Overlay — lighter so background images show through */}
+        <div className="pointer-events-none absolute inset-0" style={{background:"linear-gradient(120deg,rgba(2,6,18,0.35) 0%,rgba(4,10,24,0.25) 55%,rgba(2,6,16,0.35) 100%)"}}/>
 
         {/* Aurora blobs */}
         <div className="aurora-1 pointer-events-none absolute rounded-full blur-[140px]"
@@ -920,40 +897,37 @@ export default function PartnersPage() {
         ))}
 
         <div className="relative z-10 w-full px-4 md:px-10 py-16">
-          <div className="mx-auto max-w-5xl flex flex-col md:flex-row items-center gap-10">
+          <div className="mx-auto max-w-5xl flex flex-col items-center gap-10">
 
-            {/* ── HERO CARD (left) ── */}
+            {/* ── HERO CARD ── */}
             <motion.div
               initial={{opacity:0,y:32}} animate={mounted?{opacity:1,y:0}:{}} transition={{duration:0.7,delay:0.15,ease:[0.21,0.47,0.32,0.98]}}
-              className="w-full md:max-w-[780px] rounded-[8px] p-12 flex flex-col gap-5 shrink-0"
+              className="w-full rounded-[8px] p-16 md:p-20 flex flex-col gap-8"
               style={{
                 background:"rgba(6,10,20,0.82)",
                 backdropFilter:"blur(28px)", WebkitBackdropFilter:"blur(28px)",
                 border:"1px solid rgba(14,165,201,0.28)",
                 boxShadow:"0 32px 80px rgba(0,0,0,0.55),inset 0 1px 0 rgba(255,255,255,0.06)",
               }}>
-              {/* Sweeping top border */}
-              <div className="hero-top-line pointer-events-none absolute top-0 left-0 right-0 h-[1.5px] rounded-t-[24px]"
+              <div className="hero-top-line pointer-events-none absolute top-0 left-0 right-0 h-[1.5px]"
                 style={{background:"linear-gradient(90deg,transparent,rgba(14,165,201,0.8),rgba(129,140,248,0.6),transparent)"}}/>
 
-              <h1 className="font-bold leading-[1.15] tracking-[-0.02em]" style={{fontSize:"clamp(26px,3.5vw,38px)",color:"#ffffff"}}>
+              <h1 className="font-bold leading-[1.15] tracking-[-0.02em]" style={{fontSize:"clamp(36px,5vw,64px)",color:"#ffffff"}}>
                 Building impact{" "}
                 <span style={{color:"#0ea5c9"}}>through<br/>collaboration.</span>
               </h1>
 
-              <p className="text-[15px] leading-[1.7] max-w-lg" style={{color:"rgba(200,212,224,0.75)"}}>
-                Schools, NGOs, universities, and companies united around the 17 UN SDGs. Every partnership creates a ripple of lasting change.
+              <p className="leading-[1.8] max-w-3xl" style={{fontSize:"clamp(16px,1.8vw,20px)",color:"rgba(200,212,224,0.75)"}}>
+                Schools, NGOs, universities, and companies united around the 17 UN SDGs. Every partnership creates a ripple of lasting change across communities.
               </p>
 
               <motion.a href="/work-with-us"
                 whileHover={{scale:1.03,y:-2}} whileTap={{scale:0.97}}
-                className="inline-flex items-center gap-2.5 self-start rounded-full px-6 py-2.5 text-[13px] font-semibold"
+                className="inline-flex items-center gap-2.5 self-start rounded-full px-8 py-3.5 text-[15px] font-semibold"
                 style={{background:"transparent",border:"1px solid rgba(14,165,201,0.55)",color:"#7dd3fc"}}>
-                Partner With Us <Icon.Arrow className="w-3.5 h-3.5"/>
+                Partner With Us <Icon.Arrow className="w-4 h-4"/>
               </motion.a>
             </motion.div>
-
-
 
           </div>
         </div>
