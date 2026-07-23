@@ -40,17 +40,17 @@ function RahiniHome() {
           <div className="absolute rounded-full blur-[100px] opacity-40" style={{width:400,height:350,bottom:"-10%",left:"30%",background:"radial-gradient(ellipse,rgba(16,185,129,0.15) 0%,rgba(6,182,212,0.06) 55%,transparent 75%)"}}/>
         </div>
 
-        <div className="relative mx-auto max-w-7xl w-full" style={{ zIndex: 2 }}>
+        <div className="relative mx-auto max-w-7xl w-full flex flex-col items-center text-center" style={{ zIndex: 2 }}>
           <FadeUp>
-            <div className="max-w-2xl">
+            <div>
               <h1 className="font-display text-4xl md:text-6xl font-bold leading-[1.05]" style={{ color: "var(--foreground)" }}>
                 StepUp for{" "}
                 <span className="grad-text">SDG</span>
               </h1>
-              <p className="mt-4 max-w-xl text-base md:text-lg leading-relaxed" style={{ color: "var(--muted-text)" }}>
+              <p className="mt-4 mx-auto max-w-xl text-base md:text-lg leading-relaxed" style={{ color: "var(--muted-text)" }}>
                 Empowering Students through the Sustainable Development Goals
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-8 flex flex-wrap gap-3 justify-center">
                 <Link
                   href="/work-with-us"
                   className="btn-arrow inline-flex items-center gap-2 bg-cta text-white font-semibold rounded-full px-6 py-3 shadow-[0_0_24px_rgba(255,122,0,0.5)] hover:brightness-110 transition"
