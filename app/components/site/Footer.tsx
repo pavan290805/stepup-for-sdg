@@ -22,7 +22,7 @@ const quickLinks: FooterLinkItem[] = [
   { href: "/", label: "Home", ariaLabel: "Go to the home page" },
   { href: "/about", label: "About Us", ariaLabel: "Go to the about page" },
   { href: "/impact", label: "Impact", ariaLabel: "Go to the impact page" },
-  { href: "/events", label: "Events", ariaLabel: "Go to the events page" },
+  { href: "/projects", label: "Projects", ariaLabel: "Go to the projects page" },
   { href: "/sdg", label: "SDG", ariaLabel: "Go to the SDG page" },
   {
     href: "/partners",
@@ -67,7 +67,7 @@ const whoWeServeLinks: FooterLinkItem[] = [
 
 const socialLinks: SocialLinkItem[] = [
   {
-    href: "https://www.linkedin.com/company/stepup-intern/posts/?feedView=all",
+    href: "https://www.linkedin.com/company/stepup-for-sdg/posts/?feedView=all",
     label: "LinkedIn",
     ariaLabel: "Visit LinkedIn",
     icon: (
@@ -89,7 +89,7 @@ const socialLinks: SocialLinkItem[] = [
     ),
   },
   {
-    href: "https://www.instagram.com/stepup_intern/?hl=en",
+    href: "https://www.instagram.com/stepup_for_sdg/?hl=en",
     label: "Instagram",
     ariaLabel: "Visit Instagram",
     icon: (
