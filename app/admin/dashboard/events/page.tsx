@@ -2,7 +2,6 @@
 
 import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { EVENTS } from "@/app/components/events/eventsData";
 import { useDashboardTheme } from "../ThemeContext";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -991,56 +990,6 @@ export default function EventsPage() {
 
       <div className={`sdg-root${dark ? ' sdg-dark' : ''}`}>
       <div className="sdg-page">
-
-        {/* ── Live Site Events Overview ── */}
-        {(() => {
-          const today = new Date();
-          const upcoming = EVENTS.filter(e => new Date(e.fullDate) >= today);
-          const categoryCounts = EVENTS.reduce((acc, e) => { acc[e.category] = (acc[e.category] || 0) + 1; return acc; }, {} as Record<string, number>);
-          const categoryColors: Record<string, string> = {
-            'School Drives': '#C5192D',
-            'Workshops': '#FF7A00',
-            'CSR Meets': '#7b61ff',
-            'NGO Collaboration': '#00b050',
-            'Youth Challenges': '#f4b400',
-          };
-          return (
-            <div style={{ marginBottom: 24 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--sdg-text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10 }}>Live Site — Upcoming Events</div>
-              {/* Summary stat strip */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 12, marginBottom: 14 }}>
-                {[
-                  { label: 'Total Events', value: EVENTS.length, color: '#6366f1' },
-                  { label: 'Upcoming', value: upcoming.length, color: '#10b981' },
-                  { label: 'School Drives', value: categoryCounts['School Drives'] || 0, color: categoryColors['School Drives'] },
-                  { label: 'Workshops', value: categoryCounts['Workshops'] || 0, color: categoryColors['Workshops'] },
-                  { label: 'CSR Meets', value: categoryCounts['CSR Meets'] || 0, color: categoryColors['CSR Meets'] },
-                ].map((s, i) => (
-                  <div key={i} style={{ background: 'var(--sdg-card-bg)', border: '1px solid var(--sdg-card-border)', borderRadius: 10, padding: '14px 16px', borderTop: `3px solid ${s.color}` }}>
-                    <div style={{ fontSize: 22, fontWeight: 800, color: s.color, lineHeight: 1 }}>{s.value}</div>
-                    <div style={{ fontSize: 11, color: 'var(--sdg-text-muted)', marginTop: 4, fontWeight: 500 }}>{s.label}</div>
-                  </div>
-                ))}
-              </div>
-              {/* Events list */}
-              <div style={{ background: 'var(--sdg-card-bg)', border: '1px solid var(--sdg-card-border)', borderRadius: 10, overflow: 'hidden' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 8, padding: '9px 16px', background: 'var(--sdg-table-head)', borderBottom: '1px solid var(--sdg-card-border)' }}>
-                  {['Event', 'Category', 'Date', 'Location'].map(h => (
-                    <div key={h} style={{ fontSize: 10, fontWeight: 700, color: 'var(--sdg-text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{h}</div>
-                  ))}
-                </div>
-                {EVENTS.map((e, i) => (
-                  <div key={e.id} style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 8, padding: '11px 16px', borderBottom: i < EVENTS.length - 1 ? '1px solid var(--sdg-card-border)' : 'none', alignItems: 'center' }}>
-                    <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--sdg-text)' }}>{e.title}</div>
-                    <span style={{ fontSize: 10, fontWeight: 700, color: categoryColors[e.category] || '#6366f1', background: `${categoryColors[e.category]}18`, border: `1px solid ${categoryColors[e.category]}40`, borderRadius: 5, padding: '2px 8px', width: 'fit-content' }}>{e.category}</span>
-                    <div style={{ fontSize: 12, color: 'var(--sdg-text-muted)' }}>{e.day} {e.month} {e.year}</div>
-                    <div style={{ fontSize: 12, color: 'var(--sdg-text-muted)' }}>{e.location}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          );
-        })()}
 
         {/* ── Header ── */}
         <div className="sdg-header">
