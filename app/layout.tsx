@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Script from "next/script";
-import { ThemeProvider } from "@/app/components/ThemeProvider";
 import SiteShell from "@/app/components/SiteShell";
 
 export const metadata: Metadata = {
@@ -32,9 +31,7 @@ export default function RootLayout({
         `}</style>
       </head>
       <body>
-        <ThemeProvider>
-            <SiteShell>{children}</SiteShell>
-        </ThemeProvider>
+        <SiteShell>{children}</SiteShell>
 
         <div id="google_translate_element" />
 

@@ -3,8 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
-import { Menu, X, Sun, Moon, Globe, ChevronDown } from "lucide-react";
-import { useTheme } from "@/app/components/ThemeProvider";
+import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import { hideFundsAndContact } from "@/app/lib/siteFlags";
 
 const navLinks = [
@@ -123,29 +122,12 @@ function LanguageSelect() {
   );
 }
 
-function ThemeToggle() {
-  const { theme, toggle } = useTheme();
-  return (
-    <button
-      onClick={toggle}
-      aria-label="Toggle theme"
-      className="inline-flex items-center justify-center h-9 w-9 rounded-full border border-border bg-background/60 text-muted-foreground hover:text-foreground transition"
-    >
-      {theme === "dark" ? (
-        <Sun className="h-4 w-4" />
-      ) : (
-        <Moon className="h-4 w-4" />
-      )}
-    </button>
-  );
-}
-
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl bg-white dark:bg-[#050B18] border-b border-border">
+    <header className="sticky top-0 z-50 backdrop-blur-xl bg-white border-b border-border">
       <div className="flex h-24 w-full items-center justify-between px-32 lg:px-44">
         <Link href="/" className="shrink-0 flex items-center group">
           <span className="inline-flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-white shadow-sm border border-border">
@@ -184,7 +166,6 @@ export function Navbar() {
 
         <div className="hidden md:flex items-center gap-3 shrink-0">
           <LanguageSelect />
-          <ThemeToggle />
           <Link
             href="/funds"
             className="inline-flex items-center whitespace-nowrap rounded-full bg-electric px-5 py-2.5 text-base font-semibold text-white shadow-[0_0_20px_rgba(21,93,252,0.45)] hover:brightness-110 transition"
@@ -201,7 +182,6 @@ export function Navbar() {
 
         <div className="md:hidden flex items-center gap-2">
           <LanguageSelect />
-          <ThemeToggle />
           <button
             onClick={() => setMobileOpen((v) => !v)}
             aria-label="Toggle menu"
