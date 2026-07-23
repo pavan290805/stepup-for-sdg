@@ -7,23 +7,19 @@ import {
   Award,
   BookOpen,
   Briefcase,
-  Check,
   Flag,
-  GraduationCap,
   HeartHandshake,
   Leaf,
   Mic,
   Package,
   School,
   Sparkles,
-  Sprout,
   Sun,
   Target,
   TreePine,
   Users,
   Video,
 } from "lucide-react";
-import { Counter } from "@/app/components/site/Counter";
 import { FadeUp } from "@/app/components/site/FadeUp";
 
 export const metadata = {
@@ -45,7 +41,7 @@ type Project = {
 
 const projects: Project[] = [
   {
-    name: "SDG Education Program",
+    name: "SDG Education for Students",
     description:
       "A comprehensive education and sustainability program that combines SDG awareness, school outreach, educational resources, certification, student engagement, and environmental activities.",
     includes: [
@@ -68,29 +64,18 @@ const projects: Project[] = [
     backgroundImage: "/sdg/sdg certt.png",
   },
   {
-    name: "Rainwater Harvesting",
+    name: "Sustainability Education Program",
     description:
-      "Promoting sustainable water conservation by implementing rainwater harvesting systems in schools and communities.",
-    includes: ["Rainwater Harvesting"],
+      "Providing solar lamps to rural schools and underserved communities to improve access to clean energy.",
+    includes: ["Solar Lamp Distribution"],
     costItems: [{ value: "Contact Us" }],
-    sdgs: ["Clean Water & Sanitation", "Climate Action"],
-    icon: Leaf,
-    color: "#26BDE2",
-    backgroundImage: "/sdg/rw.png",
+    sdgs: ["Affordable & Clean Energy", "Climate Action"],
+    icon: Sun,
+    color: "#FCC30B",
+    backgroundImage: "/sdg/ld.png",
   },
   {
-    name: "Community Clean Drive",
-    description:
-      "Community cleanliness campaigns encouraging environmental responsibility and sustainable living.",
-    includes: ["Community Clean Drive"],
-    costItems: [{ value: "Contact Us" }],
-    sdgs: ["Climate Action", "Life on Land"],
-    icon: TreePine,
-    color: "#3F7E44",
-    backgroundImage: "/sdg/plant.png",
-  },
-  {
-    name: "Career Exposure Program",
+    name: "Fellowship",
     description:
       "Industry experts guide students toward future careers, innovation, entrepreneurship and higher education opportunities.",
     includes: ["Career Exposure Program"],
@@ -101,15 +86,26 @@ const projects: Project[] = [
     backgroundImage: "/sdg/cg.png",
   },
   {
-    name: "Solar Lamp Distribution",
+    name: "Water Conservation Program",
     description:
-      "Providing solar lamps to rural schools and underserved communities to improve access to clean energy.",
-    includes: ["Solar Lamp Distribution"],
+      "Promoting sustainable water conservation by implementing rainwater harvesting systems in schools and communities.",
+    includes: ["Rainwater Harvesting"],
     costItems: [{ value: "Contact Us" }],
-    sdgs: ["Affordable & Clean Energy", "Climate Action"],
-    icon: Sun,
-    color: "#FCC30B",
-    backgroundImage: "/sdg/ld.png",
+    sdgs: ["Clean Water & Sanitation", "Climate Action"],
+    icon: Leaf,
+    color: "#26BDE2",
+    backgroundImage: "/sdg/rw.png",
+  },
+  {
+    name: "Clean Community Initiative",
+    description:
+      "Community cleanliness campaigns encouraging environmental responsibility and sustainable living.",
+    includes: ["Community Clean Drive"],
+    costItems: [{ value: "Contact Us" }],
+    sdgs: ["Climate Action", "Life on Land"],
+    icon: TreePine,
+    color: "#3F7E44",
+    backgroundImage: "/sdg/plant.png",
   },
 ];
 
@@ -121,17 +117,6 @@ const operationalRequirements = [
   { title: "Banners", icon: Flag, color: "#7B61FF" },
   { title: "Microphone Setup", icon: Mic, color: "#C5192D" },
   { title: "Video Recording", icon: Video, color: "#26BDE2" },
-];
-
-const impactStats = [
-  { value: 500, suffix: "+", label: "Schools Reached", color: "#155DFC" },
-  { value: 380000, suffix: "+", label: "Students Benefited", color: "#00B050" },
-  { value: 25000, suffix: "+", label: "Trees Planted", color: "#56C02B" },
-  { value: 1200, suffix: "+", label: "Solar Lamps Distributed", color: "#FCC30B" },
-  { value: 2100, suffix: "+", label: "Volunteers", color: "#FF7A00" },
-  { value: 85, suffix: "+", label: "NGO Partners", color: "#00A8A8" },
-  { value: 40, suffix: "+", label: "CSR Partners", color: "#A21942" },
-  { value: 180, suffix: "+", label: "Communities Impacted", color: "#26BDE2" },
 ];
 
 const supportedSdgs = [
@@ -179,131 +164,7 @@ function SectionHeading({
   );
 }
 
-function SdgEducationIncludesTree() {
-  return (
-    <div className="grid gap-2.5">
-      <style>{`
-        .sdg-tree-panel {
-          display: grid;
-          grid-template-rows: 0fr;
-          opacity: 0;
-          transition: grid-template-rows 300ms ease, opacity 220ms ease;
-        }
-
-        .sdg-tree-panel > div {
-          overflow: hidden;
-        }
-
-        .sdg-tree-input:checked + .sdg-tree-toggle .sdg-tree-arrow {
-          transform: rotate(90deg);
-        }
-
-        .sdg-tree-input:checked ~ .sdg-tree-panel {
-          grid-template-rows: 1fr;
-          opacity: 1;
-        }
-      `}</style>
-
-      <div className="flex items-start gap-2 text-sm leading-snug text-foreground">
-        <Check className="mt-0.5 h-4 w-4 shrink-0 text-leaf" />
-        <span>Teaching SDG</span>
-      </div>
-
-      <div>
-        <input
-          id="sdg-certification-tree"
-          type="checkbox"
-          className="sdg-tree-input peer sr-only"
-        />
-        <label
-          htmlFor="sdg-certification-tree"
-          className="sdg-tree-toggle flex cursor-pointer items-start gap-2 text-sm leading-snug text-foreground"
-        >
-          <span className="sdg-tree-arrow mt-0.5 inline-block shrink-0 text-xs text-cyan-glow transition-transform duration-300">
-            ▶
-          </span>
-          <span>SDG Certification</span>
-        </label>
-        <div className="sdg-tree-panel">
-          <div>
-            <div className="ml-6 mt-2 flex items-start gap-2 text-sm leading-snug text-muted-text">
-              <span className="text-cyan-glow">•</span>
-              <span>SDG Certification</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <input
-          id="schools-tree"
-          type="checkbox"
-          className="sdg-tree-input peer sr-only"
-        />
-        <label
-          htmlFor="schools-tree"
-          className="sdg-tree-toggle flex cursor-pointer items-start gap-2 text-sm leading-snug text-foreground"
-        >
-          <span className="sdg-tree-arrow mt-0.5 inline-block shrink-0 text-xs text-cyan-glow transition-transform duration-300">
-            ▶
-          </span>
-          <span>Schools</span>
-        </label>
-        <div className="sdg-tree-panel">
-          <div>
-            <div className="ml-6 mt-2 grid gap-2.5">
-              {["Educating Students on SDGs", "Stationery Distribution"].map(
-                (activity) => (
-                  <div
-                    key={activity}
-                    className="flex items-start gap-2 text-sm leading-snug text-muted-text"
-                  >
-                    <span className="text-cyan-glow">•</span>
-                    <span>{activity}</span>
-                  </div>
-                )
-              )}
-
-              <div>
-                <input
-                  id="compass-box-tree"
-                  type="checkbox"
-                  className="sdg-tree-input peer sr-only"
-                />
-                <label
-                  htmlFor="compass-box-tree"
-                  className="sdg-tree-toggle flex cursor-pointer items-start gap-2 text-sm leading-snug text-muted-text"
-                >
-                  <span className="sdg-tree-arrow mt-0.5 inline-block shrink-0 text-xs text-cyan-glow transition-transform duration-300">
-                    ▶
-                  </span>
-                  <span>Compass Box Distribution</span>
-                </label>
-                <div className="sdg-tree-panel">
-                  <div>
-                    <div className="ml-6 mt-2 flex items-start gap-2 text-sm leading-snug text-muted-text">
-                      <span className="text-cyan-glow">•</span>
-                      <span>Compass Box</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-2 text-sm leading-snug text-muted-text">
-                <span className="text-cyan-glow">•</span>
-                <span>Tree Plantation</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const Icon = project.icon;
-  const isSdgEducationProgram = project.name === "SDG Education Program";
   const isReversed = index % 2 === 1;
   const imageOrder = isReversed ? "lg:order-2" : "lg:order-1";
   const contentOrder = isReversed ? "lg:order-1" : "lg:order-2";
@@ -335,84 +196,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <div
           className={`${contentOrder} flex flex-col justify-center px-2 py-7 sm:px-4 sm:py-9 lg:px-6 lg:py-12`}
         >
-          <div className="flex items-center gap-3">
-            <span
-              className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl text-white shadow-[0_14px_30px_-18px_rgba(0,0,0,0.6)]"
-              style={{ backgroundColor: project.color }}
-            >
-              <Icon className="h-6 w-6" />
-            </span>
-            <span className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-text">
-              Featured Project
-            </span>
-          </div>
-
-          <h3 className="mt-6 font-display text-3xl font-bold leading-tight text-foreground md:text-4xl">
+          <h3 className="font-display text-3xl font-bold leading-tight text-foreground md:text-4xl">
             {project.name}
           </h3>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-text">
             {project.description}
           </p>
-
-          <div className="mt-8">
-            <div className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-text">
-              Includes
-            </div>
-            {isSdgEducationProgram ? (
-              <SdgEducationIncludesTree />
-            ) : (
-              <ul className="grid gap-2.5">
-                {project.includes.map((activity) => (
-                  <li
-                    key={activity}
-                    className="flex items-start gap-2 text-sm leading-snug text-foreground"
-                  >
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-leaf" />
-                    <span>{activity}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-
-          <div className="mt-8 grid gap-4 md:grid-cols-[minmax(0,0.42fr)_minmax(0,0.58fr)]">
-            <div className="rounded-2xl border border-slate-200 bg-white/70 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] dark:border-white/10 dark:bg-white/[0.04]">
-              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-text">
-                Estimated Cost
-              </div>
-              <div className="mt-3 grid gap-2">
-                {project.costItems.map((item) => (
-                  <div key={`${item.label ?? "cost"}-${item.value}`}>
-                    {item.label && (
-                      <div className="text-xs font-semibold text-muted-text">
-                        {item.label}
-                      </div>
-                    )}
-                    <div className="font-display text-lg font-bold text-foreground">
-                      {item.value}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <div className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-text">
-                Related SDGs
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {project.sdgs.map((sdg) => (
-                  <span
-                    key={sdg}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 text-xs font-semibold text-foreground dark:border-white/10 dark:bg-white/[0.04]"
-                  >
-                    <Check className="h-3.5 w-3.5 text-leaf" />
-                    {sdg}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
 
           <div className="mt-8">
             <Link
@@ -446,15 +235,15 @@ export default function ProjectsPage() {
         <div className="absolute inset-0 -z-20 bg-gradient-to-br from-background/95 via-background/76 to-background/42 dark:from-[#050B18]/96 dark:via-[#050B18]/80 dark:to-[#050B18]/46" />
         <div className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-background to-transparent" />
 
-        <div className="mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)]">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-center text-center">
           <FadeUp>
-            <div className="max-w-3xl">
+            <div className="mx-auto max-w-3xl">
               <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-cyan-glow backdrop-blur-xl">
                 <Sparkles className="h-4 w-4" />
                 Projects
               </span>
               <h1 className="mt-6 font-display text-4xl font-bold leading-[1.05] text-foreground sm:text-5xl lg:text-7xl">
-                Our SDG <span className="grad-text">Projects</span>
+                Our <span className="grad-text">Projects</span>
               </h1>
               <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-text md:text-lg">
                 Creating measurable impact through education, sustainability,
@@ -464,7 +253,7 @@ export default function ProjectsPage() {
                 Empowering schools, students, NGOs, volunteers and CSR partners
                 through real-world Sustainable Development Goal initiatives.
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
                 <a
                   href="#projects"
                   className="btn-arrow inline-flex items-center justify-center gap-2 rounded-full bg-cta px-7 py-3 text-sm font-semibold text-white shadow-[0_0_24px_rgba(255,122,0,0.45)] transition hover:brightness-110"
@@ -478,40 +267,6 @@ export default function ProjectsPage() {
                   Become a Partner <HeartHandshake className="h-4 w-4" />
                 </Link>
               </div>
-            </div>
-          </FadeUp>
-
-          <FadeUp delay={120}>
-            <div className="grid gap-4 lg:pl-6">
-              {[
-                { label: "Education", icon: GraduationCap, color: "#155DFC" },
-                { label: "Sustainability", icon: Leaf, color: "#00B050" },
-                { label: "Environment", icon: Sprout, color: "#56C02B" },
-                { label: "Partnerships", icon: HeartHandshake, color: "#FF7A00" },
-              ].map((item, index) => {
-                const Icon = item.icon;
-                return (
-                  <div
-                    key={item.label}
-                    className="glass flex items-center gap-4 rounded-3xl p-5 transition duration-300 hover:-translate-y-1 hover:border-cyan-glow/45"
-                  >
-                    <span
-                      className="grid h-12 w-12 place-items-center rounded-2xl text-white"
-                      style={{ backgroundColor: item.color }}
-                    >
-                      <Icon className="h-6 w-6" />
-                    </span>
-                    <div>
-                      <div className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-text">
-                         {index + 1}
-                      </div>
-                      <div className="font-display text-lg font-bold text-foreground">
-                        {item.label}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
             </div>
           </FadeUp>
         </div>
@@ -562,33 +317,6 @@ export default function ProjectsPage() {
                 </FadeUp>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-14 sm:py-16">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Our Impact"
-            title="Measured outcomes across learning and sustainability"
-          />
-
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {impactStats.map((stat, index) => (
-              <FadeUp key={stat.label} delay={index * 45}>
-                <div className="glass lift rounded-3xl p-6 text-center">
-                  <div
-                    className="font-display text-3xl font-bold md:text-4xl"
-                    style={{ color: stat.color }}
-                  >
-                    <Counter to={stat.value} suffix={stat.suffix} />
-                  </div>
-                  <div className="mt-3 text-sm font-medium text-muted-text">
-                    {stat.label}
-                  </div>
-                </div>
-              </FadeUp>
-            ))}
           </div>
         </div>
       </section>
