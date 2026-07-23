@@ -40,7 +40,7 @@ function Card({ data }: { data: CardData }) {
   const Icon = data.icon;
   return (
     <div className="vm-card group relative rounded-[32px] p-[1.5px]">
-      <div className="vm-surface relative flex h-full flex-col gap-5 rounded-[31px] p-6 md:p-7">
+      <div className="vm-surface relative flex h-full flex-col gap-5 rounded-[31px] p-6 md:p-7" style={{background: "#0f172a"}}>
         <div className="flex items-center gap-3">
           <span className="vm-icon grid h-12 w-12 place-items-center rounded-2xl">
             <Icon className="h-6 w-6 text-white" />
@@ -50,11 +50,11 @@ function Card({ data }: { data: CardData }) {
           </h3>
         </div>
         <div className="flex flex-1 flex-col gap-3">
-          <h4 className="font-display text-lg font-semibold leading-snug text-white">
+          <h4 className="font-display text-lg font-semibold leading-snug" style={{color:"#ffffff"}}>
             {data.headline}
           </h4>
           {data.paragraphs.map((p, i) => (
-            <p key={i} className="text-[13px] leading-relaxed text-[#CBD5E1]">
+            <p key={i} className="text-[13px] leading-relaxed" style={{color:"#e2e8f0"}}>
               {p}
             </p>
           ))}

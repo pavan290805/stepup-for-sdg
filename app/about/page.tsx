@@ -19,11 +19,11 @@ export default function AboutPage() {
         <SpaceBackdrop />
         <div className="relative mx-auto max-w-4xl text-center">
           <FadeUp>
-            <h1 className="mt-4 font-display text-4xl md:text-6xl font-bold leading-tight">
+            <h1 className="mt-4 font-display text-4xl md:text-6xl font-bold leading-tight text-white">
               Purpose-driven partnerships for a{" "}
               <span className="grad-text">better tomorrow</span>
             </h1>
-            <p className="mt-6 text-muted-text max-w-2xl mx-auto">
+            <p className="mt-6 max-w-2xl mx-auto" style={{color: "rgba(200,220,255,0.9)"}}>
               Educating students on the UN Sustainable Development Goals, empowering them to adopt sustainable lifestyles, make informed choices, explore meaningful careers, and drive positive change in their families and communities.
             </p>
           </FadeUp>
