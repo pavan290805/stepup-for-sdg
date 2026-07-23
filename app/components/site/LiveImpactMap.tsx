@@ -1,60 +1,277 @@
 "use client"
 
-import { useEffect, useRef, useState, type MouseEvent } from "react"
-import { ComposableMap, Geographies, Geography, Sphere } from "react-simple-maps"
+import { memo, useCallback, useEffect, useRef, useState, type MouseEvent } from "react"
+// @ts-ignore
+import { IndiaMap } from "@vishalvoid/react-india-map"
 import { Reveal } from "@/app/components/reveal"
 import { useTheme } from "@/app/components/ThemeProvider"
+import { stateImpactData, type Impact } from "@/app/data/stateData"
 
-const GEO_URL = "/india-states.geojson"
-type Impact = { schools: number; students: string; ngos: number; projects: number }
-type Tooltip = { name: string; impact: Impact; x: number; y: number; maxX: number }
-const knownStateImpact: Record<string, Impact> = { DELHI: { schools: 120, students: "24,000+", ngos: 15, projects: 35 }, MAHARASHTRA: { schools: 135, students: "28,000+", ngos: 17, projects: 40 }, KARNATAKA: { schools: 80, students: "16,200+", ngos: 10, projects: 24 }, "TAMIL NADU": { schools: 65, students: "13,100+", ngos: 9, projects: 20 }, TELANGANA: { schools: 68, students: "13,600+", ngos: 7, projects: 20 }, "WEST BENGAL": { schools: 58, students: "11,700+", ngos: 7, projects: 17 }, GUJARAT: { schools: 43, students: "8,800+", ngos: 6, projects: 13 }, RAJASTHAN: { schools: 38, students: "7,700+", ngos: 5, projects: 11 }, "UTTAR PRADESH": { schools: 35, students: "7,100+", ngos: 5, projects: 10 }, BIHAR: { schools: 28, students: "5,700+", ngos: 3, projects: 7 }, "JAMMU & KASHMIR": { schools: 19, students: "4,150+", ngos: 3, projects: 5 } }
+type TooltipInfo = { name: string; impact: Impact | null }
 
-function stateImpact(name: string, code: string): Impact {
-  if (knownStateImpact[name]) return knownStateImpact[name]
-  const seed = Number.parseInt(code, 10) || 1
-  return { schools: 12 + (seed * 7) % 32, students: `${(3000 + (seed * 1150) % 5000).toLocaleString()}+`, ngos: 2 + seed % 5, projects: 4 + seed % 10 }
+const impactFields = [
+  { key: "schools", label: "Partner Schools", icon: "🏫" },
+  { key: "students", label: "Impacted Students", icon: "👨‍🎓" },
+  { key: "ngos", label: "NGO Network", icon: "🤝" },
+  { key: "projects", label: "Active Projects", icon: "📋" },
+] as const
+
+function formatImpactValue(value: string | number) {
+  return typeof value === "number" ? value.toLocaleString("en-IN") : value
 }
 
-type GeoShapeProps = { geo: { rsmKey: string; properties: { STNAME?: string; STCODE11?: string } }; isDark: boolean; cursorPosition: (e: MouseEvent) => { x: number; y: number; maxX: number }; setTooltip: (t: Tooltip | null | ((current: Tooltip | null) => Tooltip | null)) => void }
-function GeoShape({ geo, isDark, cursorPosition, setTooltip }: GeoShapeProps) {
-  const stName = String(geo.properties.STNAME ?? "").trim() || "State"
-  const stCode = String(geo.properties.STCODE11 ?? "1").trim()
-  const impact = stateImpact(stName, stCode)
-  const showTooltip = (event: MouseEvent) => setTooltip({ name: stName, impact, ...cursorPosition(event) })
-  return <Geography geography={geo} className="rsm-geography"
-    onMouseEnter={showTooltip}
-    onMouseMove={showTooltip}
-    onMouseLeave={() => setTooltip(null)}
-    style={{ default: { fill: "rgba(0,0,0,0.001)", stroke: isDark ? "#f8fafc" : "#0f172a", strokeWidth: 2.3, outline: "none" }, hover: { fill: "rgba(249,115,22,0.08)", stroke: isDark ? "#f8fafc" : "#0f172a", strokeWidth: 2.3, outline: "none", cursor: "pointer" }, pressed: { outline: "none" } }} />
+const normalizeStateName = (name: string): string => {
+  const customMap: Record<string, string> = {
+    "in-ap": "Andhra Pradesh", "in-ar": "Arunachal Pradesh", "in-as": "Assam",
+    "in-br": "Bihar", "in-ct": "Chhattisgarh", "in-ga": "Goa", "in-gj": "Gujarat",
+    "in-hr": "Haryana", "in-hp": "Himachal Pradesh", "in-jk": "Jammu & Kashmir",
+    "in-jh": "Jharkhand", "in-ka": "Karnataka", "in-kl": "Kerala", "in-mp": "Madhya Pradesh",
+    "in-mh": "Maharashtra", "in-mn": "Manipur", "in-ml": "Meghalaya", "in-mz": "Mizoram",
+    "in-nl": "Nagaland", "in-or": "Odisha", "in-pb": "Punjab", "in-rj": "Rajasthan",
+    "in-sk": "Sikkim", "in-tn": "Tamil Nadu", "in-tg": "Telangana", "in-tr": "Tripura",
+    "in-up": "Uttar Pradesh", "in-ut": "Uttarakhand", "in-wb": "West Bengal"
+  }
+  const cleanKey = name.toLowerCase().trim()
+  return customMap[cleanKey] || name
 }
 
 export function LiveImpactMap() {
   const { theme } = useTheme()
   const isDark = theme === "dark"
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [geoData, setGeoData] = useState<unknown>(null)
-  const [tooltip, setTooltip] = useState<Tooltip | null>(null)
+  const mapContainerRef = useRef<HTMLDivElement>(null)
+  const tooltipRef = useRef<HTMLDivElement>(null)
+  const tooltipFrameRef = useRef<number | null>(null)
+  const pointerRef = useRef({ x: 0, y: 0 })
+  const [tooltipInfo, setTooltipInfo] = useState<TooltipInfo | null>(null)
+  const [pinned, setPinned] = useState<{ name: string; info: TooltipInfo } | null>(null)
 
-  useEffect(() => { fetch(GEO_URL).then((response) => response.json()).then(setGeoData).catch((error) => console.error("Map data failed to load:", error)) }, [])
-  function cursorPosition(event: MouseEvent) {
-    const rect = containerRef.current?.getBoundingClientRect()
-    return rect ? { x: event.clientX - rect.left, y: event.clientY - rect.top, maxX: rect.width - 210 } : { x: 0, y: 0, maxX: 190 }
-  }
+  const moveTooltipToPointer = useCallback(() => {
+    const tooltipEl = tooltipRef.current
+    if (!tooltipEl) return
 
-  return <Reveal><section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-    <div className="text-center mb-6"><h2 className="text-3xl sm:text-4xl font-bold" style={{ color: "var(--foreground)" }}>Impact across country</h2><p className="mt-2 text-sm" style={{ color: "var(--muted-text)" }}>Hover over a state to see its education impact.</p></div>
-    <div className="rounded-3xl overflow-hidden" style={{ background: "var(--card)" }}><div ref={containerRef} className="relative w-full py-4" style={{ background: isDark ? "#0b1121" : "#f1f5f9" }}>
-      <div className="mx-auto max-w-6xl px-4 py-6">{!geoData ? <div className="flex min-h-[680px] items-center justify-center text-sm" style={{ color: "var(--muted-text)" }}>Loading India map...</div> : <div className="relative rounded-3xl overflow-hidden border-2" style={{ borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.14)", background: isDark ? "#111827" : "#f8fafc" }}><style>{`
-  .rsm-geography { transition: none; }
-  .rsm-svg, .rsm-svg rect, .rsm-svg path.rsm-sphere { fill: transparent !important; background: transparent !important; }
-`}</style>
-<ComposableMap projection="geoMercator" projectionConfig={{ scale: 1200, center: [83, 23] }} width={1000} height={900} style={{ width: "100%", height: "auto", display: "block" }}><Sphere id="rsm-sphere" fill="transparent" stroke="transparent" strokeWidth={0} /><Geographies geography={geoData}>{({ geographies }: { geographies: Array<{ rsmKey: string; properties: { STNAME?: string; STCODE11?: string } }> }) => {
-  return geographies.map((geo, i) => <GeoShape key={i} geo={geo} isDark={isDark} cursorPosition={cursorPosition} setTooltip={setTooltip} />)
-}}</Geographies></ComposableMap></div>}</div>
-      {tooltip && <div className="pointer-events-none absolute z-30 w-48 rounded-xl p-3 shadow-2xl" style={{ left: Math.min(tooltip.x + 16, tooltip.maxX), top: Math.max(tooltip.y - 116, 8), background: "rgba(15,23,42,0.96)", border: "1px solid rgba(255,255,255,0.12)" }}><div className="mb-2 text-xs font-bold uppercase tracking-wide text-orange-400">{tooltip.name}</div>{[["Schools", tooltip.impact.schools], ["Students", tooltip.impact.students], ["NGOs", tooltip.impact.ngos], ["Projects", tooltip.impact.projects]].map(([label, value]) => <div key={String(label)} className="flex justify-between py-0.5 text-[11px]"><span className="text-slate-400">{label}</span><span className="font-semibold text-slate-100">{value}</span></div>)}</div>}
-    </div><div className="px-4 py-3 text-center text-xs" style={{ color: "var(--muted-text)" }}></div></div>
-  </section></Reveal>
+    const offset = 22 
+    const gap = 12
+    const width = tooltipEl.offsetWidth || 260
+    const height = tooltipEl.offsetHeight || 190
+    const { x, y } = pointerRef.current
+    const viewportWidth = window.innerWidth
+    const viewportHeight = window.innerHeight
+    const left = x + offset + width > viewportWidth - gap ? x - width - offset : x + offset
+    const top = y + offset + height > viewportHeight - gap ? y - height - offset : y + offset
+
+    tooltipEl.style.left = `${Math.max(gap, Math.min(left, viewportWidth - width - gap))}px`
+    tooltipEl.style.top = `${Math.max(gap, Math.min(top, viewportHeight - height - gap))}px`
+  }, [])
+
+  const scheduleTooltipMove = useCallback(
+    (clientX: number, clientY: number) => {
+      pointerRef.current = { x: clientX, y: clientY }
+      if (tooltipFrameRef.current !== null) return
+      tooltipFrameRef.current = window.requestAnimationFrame(() => {
+        tooltipFrameRef.current = null
+        moveTooltipToPointer()
+      })
+    },
+    [moveTooltipToPointer]
+  )
+
+  useEffect(() => {
+    const clearOnScroll = () => {
+      setTooltipInfo(null)
+    }
+    window.addEventListener("scroll", clearOnScroll, { passive: true })
+    return () => window.removeEventListener("scroll", clearOnScroll)
+  }, [])
+  useEffect(() => {
+    const container = mapContainerRef.current
+    if (!container) return
+
+    let currentScale = 1.0
+    let targetScale = 1.0
+    let activePath: SVGPathElement | null = null
+    let animationFrameId: number | null = null
+    let cX = 0
+    let cY = 0
+
+    const animatePopOut = () => {
+      if (!activePath) return
+
+      currentScale += (targetScale - currentScale) * 0.22
+
+      if (Math.abs(targetScale - currentScale) > 0.001) {
+        activePath.setAttribute("transform", `matrix(${currentScale} 0 0 ${currentScale} ${-(currentScale - 1) * cX} ${-(currentScale - 1) * cY})`)
+        activePath.style.filter = `drop-shadow(0px ${6 + (currentScale - 1) * 120}px ${12 + (currentScale - 1) * 180}px ${isDark ? "rgba(59,130,246,0.5)" : "rgba(15,23,42,0.15)"})`
+        animationFrameId = window.requestAnimationFrame(animatePopOut)
+      } else {
+        currentScale = targetScale
+        if (currentScale === 1.0) {
+          activePath.removeAttribute("transform")
+          activePath.style.filter = "none"
+          activePath = null
+        } else {
+          activePath.setAttribute("transform", `matrix(${currentScale} 0 0 ${currentScale} ${-(currentScale - 1) * cX} ${-(currentScale - 1) * cY})`)
+        }
+        animationFrameId = null
+      }
+    }
+
+    const handleMouseOver = (e: globalThis.MouseEvent) => {
+      const target = e.target as SVGPathElement
+      if (target && target.tagName === "path") {
+        if (animationFrameId) window.cancelAnimationFrame(animationFrameId)
+        
+        if (activePath && activePath !== target) {
+          activePath.removeAttribute("transform")
+          activePath.style.filter = "none"
+        }
+
+        activePath = target
+        targetScale = 1.08 
+
+        const parent = target.parentNode
+        if (parent) parent.appendChild(target)
+
+        const bbox = target.getBBox()
+        cX = bbox.x + bbox.width / 2
+        cY = bbox.y + bbox.height / 2
+
+        animationFrameId = window.requestAnimationFrame(animatePopOut)
+
+        const rawName = target.getAttribute("id") || target.getAttribute("data-name") || target.className?.baseVal || ""
+        if (rawName) {
+          const stateName = normalizeStateName(rawName)
+          const impact = stateImpactData[stateName] || null
+          setTooltipInfo({ name: stateName, impact })
+          scheduleTooltipMove(e.clientX, e.clientY)
+        }
+      }
+    }
+
+    const handleMouseMove = (e: globalThis.MouseEvent) => {
+      const target = e.target as SVGPathElement
+      if (target && target.tagName === "path") {
+        scheduleTooltipMove(e.clientX, e.clientY)
+      }
+    }
+
+    const handleMouseOut = (e: globalThis.MouseEvent) => {
+      const target = e.target as SVGPathElement
+      if (target && target.tagName === "path") {
+        if (animationFrameId) window.cancelAnimationFrame(animationFrameId)
+        
+        targetScale = 1.0 
+        animationFrameId = window.requestAnimationFrame(animatePopOut)
+
+        if (tooltipFrameRef.current !== null) {
+          window.cancelAnimationFrame(tooltipFrameRef.current)
+          tooltipFrameRef.current = null
+        }
+        setTooltipInfo(null)
+      }
+    }
+
+    const handleElementClick = (e: globalThis.MouseEvent) => {
+      const target = e.target as SVGPathElement
+      if (target && target.tagName === "path") {
+        const rawName = target.getAttribute("id") || target.getAttribute("data-name") || target.className?.baseVal || ""
+        if (rawName) {
+          const stateName = normalizeStateName(rawName)
+          const impact = stateImpactData[stateName] || null
+          const info = { name: stateName, impact }
+          setPinned((current) => (current?.name === stateName ? null : { name: stateName, info }))
+        }
+      }
+    }
+
+    container.addEventListener("mouseover", handleMouseOver)
+    container.addEventListener("mousemove", handleMouseMove)
+    container.addEventListener("mouseout", handleMouseOut)
+    container.addEventListener("click", handleElementClick)
+
+    return () => {
+      if (animationFrameId) window.cancelAnimationFrame(animationFrameId)
+      container.removeEventListener("mouseover", handleMouseOver)
+      container.removeEventListener("mousemove", handleMouseMove)
+      container.removeEventListener("mouseout", handleMouseOut)
+      container.removeEventListener("click", handleElementClick)
+    }
+  }, [scheduleTooltipMove, isDark])
+
+  const activeInfo = tooltipInfo || pinned?.info
+
+  return (
+    <div className="relative w-full max-w-6xl mx-auto p-4">
+      <style dangerouslySetInnerHTML={{ __html: `
+        .custom-india-map {
+          width: 100% !important;
+          max-width: 460px !important; 
+          margin: 0 auto !important;
+          display: block !important;
+        }
+        .custom-india-map svg {
+          overflow: visible !important;
+        }
+        .custom-india-map svg path {
+          fill: ${isDark ? "#1e293b" : "#f8fafc"} !important; 
+          stroke: ${isDark ? "#475569" : "#475569"} !important; 
+          stroke-width: 1.5px !important;
+          cursor: pointer !important;
+          pointer-events: auto !important;
+          paint-order: stroke fill !important;
+          transition: fill 0.25s ease, stroke 0.25s ease, stroke-width 0.25s ease !important;
+        }
+        .custom-india-map svg path:hover {
+          fill: ${isDark ? "#1e3a8a" : "#3b82f6"} !important; 
+          stroke: #ffffff !important; 
+          stroke-width: 2.5px !important; 
+        }
+      `}} />
+
+      <Reveal>
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+            Our Live Impact Map
+          </h2>
+        </div>
+      </Reveal>
+
+      <div className="relative bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 px-12 md:px-24 py-10 shadow-xl flex justify-center items-center min-h-[550px]">
+        <div ref={mapContainerRef} className="w-full custom-india-map">
+          <IndiaMap />
+        </div>
+
+        {activeInfo && (
+          <div
+            ref={tooltipRef}
+            className="fixed pointer-events-none z-50 min-w-[240px] rounded-2xl bg-slate-950/95 p-5 text-white shadow-2xl backdrop-blur-md border border-slate-800 animate-fadeIn"
+            style={{ position: "fixed", left: 0, top: 0 }}
+          >
+            {/* CLEAN CORPORATE TITLE BAR: Centered state indicator with no secondary labels */}
+            <div className="text-center text-blue-400 font-bold tracking-wider text-xs uppercase mb-3.5 border-b border-slate-800 pb-2.5">
+              {activeInfo.name}
+            </div>
+
+            {activeInfo.impact ? (
+              <div className="space-y-3">
+                {impactFields.map(({ key, label, icon }) => (
+                  <div key={key} className="flex justify-between items-center text-xs">
+                    <span className="flex items-center gap-2.5">
+                      <span className="text-base select-none">{icon}</span> 
+                      <span className="text-slate-400 font-medium">{label}</span>
+                    </span>
+                    <span className="font-bold text-white tracking-wide text-sm font-mono">
+                      {formatImpactValue(activeInfo.impact![key as keyof Impact])}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-xs text-slate-500 italic py-1 text-center">No operational metrics recorded</div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  )
 }
-
-export default LiveImpactMap
+export default LiveImpactMap;
