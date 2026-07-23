@@ -29,7 +29,10 @@ const normalizeStateName = (name: string): string => {
     "in-mh": "Maharashtra", "in-mn": "Manipur", "in-ml": "Meghalaya", "in-mz": "Mizoram",
     "in-nl": "Nagaland", "in-or": "Odisha", "in-pb": "Punjab", "in-rj": "Rajasthan",
     "in-sk": "Sikkim", "in-tn": "Tamil Nadu", "in-tg": "Telangana", "in-tr": "Tripura",
-    "in-up": "Uttar Pradesh", "in-ut": "Uttarakhand", "in-wb": "West Bengal"
+    "in-up": "Uttar Pradesh", "in-ut": "Uttarakhand", "in-wb": "West Bengal",
+    "in-an": "Andaman & Nicobar", "in-ch": "Chandigarh", "in-dn": "Dadra & Nagar Haveli",
+    "in-dd": "Daman & Diu", "in-dl": "Delhi", "in-ld": "Lakshadweep",
+    "in-py": "Puducherry", "in-la": "Ladakh"
   }
   const cleanKey = name.toLowerCase().trim()
   return customMap[cleanKey] || name
@@ -115,18 +118,32 @@ export function LiveImpactMap() {
       }
     }
 
+    const STATE_COLORS = [
+      "#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6",
+      "#06b6d4", "#f97316", "#ec4899", "#14b8a6", "#84cc16"
+    ]
+
     const handleMouseOver = (e: globalThis.MouseEvent) => {
       const target = e.target as SVGPathElement
       if (target && target.tagName === "path") {
         if (animationFrameId) window.cancelAnimationFrame(animationFrameId)
-        
+
         if (activePath && activePath !== target) {
           activePath.removeAttribute("transform")
           activePath.style.filter = "none"
+          activePath.style.fill = ""
         }
 
         activePath = target
-        targetScale = 1.08 
+        targetScale = 1.08
+
+        // pick a color based on the element's index among siblings
+        const siblings = Array.from(target.parentNode?.children || [])
+        const idx = siblings.indexOf(target)
+        const color = STATE_COLORS[idx % STATE_COLORS.length]
+        target.style.fill = color
+        target.style.stroke = "#ffffff"
+        target.style.strokeWidth = "2px"
 
         const parent = target.parentNode
         if (parent) parent.appendChild(target)
@@ -141,8 +158,12 @@ export function LiveImpactMap() {
         if (rawName) {
           const stateName = normalizeStateName(rawName)
           const impact = stateImpactData[stateName] || null
-          setTooltipInfo({ name: stateName, impact })
-          scheduleTooltipMove(e.clientX, e.clientY)
+          if (impact) {
+            setTooltipInfo({ name: stateName, impact })
+            scheduleTooltipMove(e.clientX, e.clientY)
+          } else {
+            setTooltipInfo(null)
+          }
         }
       }
     }
@@ -159,7 +180,10 @@ export function LiveImpactMap() {
       if (target && target.tagName === "path") {
         if (animationFrameId) window.cancelAnimationFrame(animationFrameId)
         
-        targetScale = 1.0 
+        targetScale = 1.0
+        target.style.fill = ""
+        target.style.stroke = ""
+        target.style.strokeWidth = ""
         animationFrameId = window.requestAnimationFrame(animatePopOut)
 
         if (tooltipFrameRef.current !== null) {
@@ -183,9 +207,18 @@ export function LiveImpactMap() {
       }
     }
 
+    const handleMouseLeave = () => {
+      setTooltipInfo(null)
+      if (tooltipFrameRef.current !== null) {
+        window.cancelAnimationFrame(tooltipFrameRef.current)
+        tooltipFrameRef.current = null
+      }
+    }
+
     container.addEventListener("mouseover", handleMouseOver)
     container.addEventListener("mousemove", handleMouseMove)
     container.addEventListener("mouseout", handleMouseOut)
+    container.addEventListener("mouseleave", handleMouseLeave)
     container.addEventListener("click", handleElementClick)
 
     return () => {
@@ -193,11 +226,12 @@ export function LiveImpactMap() {
       container.removeEventListener("mouseover", handleMouseOver)
       container.removeEventListener("mousemove", handleMouseMove)
       container.removeEventListener("mouseout", handleMouseOut)
+      container.removeEventListener("mouseleave", handleMouseLeave)
       container.removeEventListener("click", handleElementClick)
     }
   }, [scheduleTooltipMove, isDark])
 
-  const activeInfo = tooltipInfo || pinned?.info
+  const activeInfo = tooltipInfo
 
   return (
     <div className="relative w-full max-w-6xl mx-auto p-4">
@@ -240,7 +274,7 @@ export function LiveImpactMap() {
           <IndiaMap />
         </div>
 
-        {activeInfo && (
+        {activeInfo?.impact && (
           <div
             ref={tooltipRef}
             className="fixed pointer-events-none z-50 min-w-[240px] rounded-2xl bg-slate-950/95 p-5 text-white shadow-2xl backdrop-blur-md border border-slate-800 animate-fadeIn"
