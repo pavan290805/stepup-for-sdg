@@ -19,7 +19,7 @@ export function VisionBanner() {
               United for Tomorrow
             </span>
             <h2 className="mt-4 text-4xl md:text-5xl font-bold text-white">
-              Viksit 2047 Vision
+              Viksit India 2047 Vision
             </h2>
             <p className="mt-5 max-w-2xl mx-auto text-white/70">
               Join us in transforming India into a developed nation by 2047 through holistic development and empowerment.
