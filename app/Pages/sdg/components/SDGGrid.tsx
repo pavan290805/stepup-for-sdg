@@ -16,7 +16,7 @@ export default function SDGGrid({ isVisible, reduceMotion, sectionRef }: Props) 
     <motion.section
       ref={sectionRef}
       aria-hidden={!isVisible}
-      className="relative z-20 min-h-fit overflow-hidden px-4 pb-10 pt-0 sm:px-6 lg:px-10"
+      className="relative z-20 min-h-fit overflow-hidden bg-[#F8FAFC] px-4 pb-10 pt-0 sm:px-6 lg:px-10"
       id="goals"
       initial={false}
       animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: reduceMotion ? 0 : 40 }}

@@ -35,7 +35,7 @@ export default async function SDGDetailPage({ params }: PageProps) {
   const officialUnUrl = `https://sdgs.un.org/goals/goal${sdg.id}`;
 
   return (
-    <main className="relative min-h-fit overflow-hidden px-5 py-6 text-white sm:px-8 lg:px-12" style={{ background: "var(--background)", color: "var(--foreground)" }}>
+    <main className="relative min-h-fit overflow-hidden bg-white px-5 py-6 text-[#0F172A] sm:px-8 lg:px-12" style={{ background: "#FFFFFF", colorScheme: "light" }}>
       <style>
         {`
           @keyframes sdgInfoFadeInUp {
@@ -50,12 +50,9 @@ export default async function SDGDetailPage({ params }: PageProps) {
           }
         `}
       </style>
-      <div className="absolute inset-0 hidden bg-[radial-gradient(circle_at_50%_18%,rgba(56,189,248,0.22),transparent_28%),radial-gradient(circle_at_18%_88%,rgba(45,212,191,0.16),transparent_32%)] dark:block dark:opacity-100" />
-      <div className="absolute inset-0 hidden [background-image:radial-gradient(circle,rgba(255,255,255,0.72)_1px,transparent_1px)] [background-size:34px_34px] dark:block dark:opacity-50" />
-
       <div className="relative z-10 mx-auto flex min-h-[calc(100vh-4rem)] w-full max-w-6xl flex-col justify-center">
         <Link
-          className="mb-8 inline-flex w-fit rounded-full border border-white/14 bg-white/8 px-5 py-3 text-sm font-semibold backdrop-blur-md transition hover:border-cyan-200/60 hover:bg-white/12" style={{ color: "var(--foreground)" }}
+          className="mb-8 inline-flex w-fit rounded-full border border-[#E2E8F0] bg-white px-5 py-3 text-sm font-semibold text-[#0F172A] shadow-[0_10px_24px_-18px_rgba(15,23,42,0.35)] transition hover:border-[#CBD5E1] hover:bg-[#F8FAFC]"
           href="/sdg"
         >
           Back to Goals
@@ -66,10 +63,10 @@ export default async function SDGDetailPage({ params }: PageProps) {
         <SdgGoalNavigator currentGoalId={sdg.id} key={sdg.id} />
 
         <section
-          className="grid items-center gap-10 rounded-lg border border-white/12 bg-white/8 p-5 shadow-[0_28px_80px_-44px_rgba(0,0,0,0.95)] backdrop-blur-md sm:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:p-10"
-          style={{ boxShadow: `0 28px 90px -46px ${withAlpha(sdg.color, 0.78)}` }}
+          className="grid items-center gap-10 rounded-lg border border-[#E2E8F0] bg-white p-5 shadow-[0_28px_80px_-46px_rgba(15,23,42,0.32)] sm:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:p-10"
+          style={{ boxShadow: `0 28px 90px -46px ${withAlpha(sdg.color, 0.42)}` }}
         >
-          <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-lg shadow-[0_22px_52px_-28px_rgba(0,0,0,0.9)]">
+          <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-lg border border-[#E2E8F0] bg-white shadow-[0_22px_52px_-28px_rgba(15,23,42,0.32)]">
             <Image
               alt={`SDG Goal ${sdg.id}: ${sdg.title}`}
               className="object-cover"
@@ -81,19 +78,19 @@ export default async function SDGDetailPage({ params }: PageProps) {
           </div>
 
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.32em] text-cyan-500">
+            <p className="text-sm font-semibold uppercase tracking-[0.32em] text-[#155DFC]">
               Goal Number {sdg.id}
             </p>
-            <h1 className="mt-5 text-balance text-[clamp(2.4rem,6vw,5rem)] font-extrabold leading-none" style={{ color: "var(--foreground)" }}>
+            <h1 className="mt-5 text-balance text-[clamp(2.4rem,6vw,5rem)] font-extrabold leading-none text-[#0F172A]">
               {sdg.title}
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8" style={{ color: "var(--muted-text)" }}>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-[#475569]">
               Detailed information about SDG Goal {sdg.id}.
             </p>
 
-            <div className="mt-8 rounded-[24px] border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.05)] p-8 shadow-[0_24px_80px_-32px_rgba(56,189,248,0.72)] backdrop-blur-xl [animation:sdgInfoFadeInUp_700ms_ease-out_160ms_both]">
-              <h2 className="text-2xl font-bold" style={{ color: "var(--foreground)" }}>About this Goal</h2>
-              <p className="mt-4 text-base leading-8" style={{ color: "var(--muted-text)" }}>
+            <div className="mt-8 rounded-[24px] border border-[#E2E8F0] bg-[#F8FAFC] p-8 shadow-[0_24px_80px_-44px_rgba(15,23,42,0.28)] [animation:sdgInfoFadeInUp_700ms_ease-out_160ms_both]">
+              <h2 className="text-2xl font-bold text-[#0F172A]">About this Goal</h2>
+              <p className="mt-4 text-base leading-8 text-[#475569]">
                 This Sustainable Development Goal focuses on improving global conditions and encouraging collective
                 action. 
               </p>

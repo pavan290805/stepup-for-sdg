@@ -38,7 +38,7 @@ export default function SDGCard({ index, isVisible, reduceMotion, sdg }: Props) 
     >
       <Link
         aria-label={`Open SDG Goal ${sdg.id}: ${sdg.title}`}
-        className="group relative block aspect-square overflow-hidden rounded-lg border border-white/12 bg-white/8 shadow-[0_14px_34px_-20px_rgba(0,0,0,0.85)] outline-none transition duration-300 focus-visible:ring-2 focus-visible:ring-cyan-200/80"
+        className="group relative block aspect-square overflow-hidden rounded-lg border border-[#E2E8F0] bg-white shadow-[0_14px_34px_-20px_rgba(15,23,42,0.24)] outline-none transition duration-300 focus-visible:ring-2 focus-visible:ring-[#155DFC]/30"
         href={`/Pages/sdg/${sdg.id}`}
       >
         <Image

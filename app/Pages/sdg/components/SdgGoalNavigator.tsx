@@ -14,7 +14,6 @@ function goalImagePath(id: number) {
 }
 
 export default function SdgGoalNavigator({ currentGoalId }: Props) {
-  const currentIndex = sdgs.findIndex((sdg) => sdg.id === currentGoalId);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (dir: "left" | "right") => {
@@ -26,14 +25,14 @@ export default function SdgGoalNavigator({ currentGoalId }: Props) {
       <button
         onClick={() => scroll("left")}
         aria-label="Scroll left"
-        className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-full border border-white/12 bg-white/8 text-white backdrop-blur-md transition hover:bg-white/15"
+        className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-full border border-[#E2E8F0] bg-white text-[#0F172A] shadow-[0_10px_24px_-18px_rgba(15,23,42,0.35)] transition hover:bg-[#F8FAFC]"
       >
         &#8249;
       </button>
 
       <div
         ref={scrollRef}
-        className="flex items-center gap-3 overflow-x-auto scrollbar-none px-2 rounded-2xl border border-white/12 bg-white/8 py-3 shadow-[0_14px_34px_-20px_rgba(0,0,0,0.8)] backdrop-blur-md"
+        className="flex items-center gap-3 overflow-x-auto scrollbar-none px-2 rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] py-3 shadow-[0_14px_34px_-20px_rgba(15,23,42,0.24)]"
         style={{ scrollbarWidth: "none" }}
       >
         {sdgs.map((sdg) => {
@@ -44,7 +43,7 @@ export default function SdgGoalNavigator({ currentGoalId }: Props) {
               aria-current={active ? "page" : undefined}
               href={`/Pages/sdg/${sdg.id}`}
               className={`relative flex-shrink-0 flex h-20 w-20 items-center justify-center overflow-hidden rounded-xl border transition transform ${
-                active ? "ring-2 ring-cyan-300/60 scale-105" : "border-white/10 hover:scale-105"
+                active ? "border-[#155DFC] ring-2 ring-[#155DFC]/25 scale-105" : "border-[#E2E8F0] hover:scale-105"
               }`}
               aria-label={`Open SDG Goal ${sdg.id}: ${sdg.title}`}
             >
@@ -64,7 +63,7 @@ export default function SdgGoalNavigator({ currentGoalId }: Props) {
       <button
         onClick={() => scroll("right")}
         aria-label="Scroll right"
-        className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-full border border-white/12 bg-white/8 text-white backdrop-blur-md transition hover:bg-white/15"
+        className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-full border border-[#E2E8F0] bg-white text-[#0F172A] shadow-[0_10px_24px_-18px_rgba(15,23,42,0.35)] transition hover:bg-[#F8FAFC]"
       >
         &#8250;
       </button>
