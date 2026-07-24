@@ -9,6 +9,7 @@ export default function Hero() {
   const reduceMotion = useReducedMotion() ?? false;
   const goalsRef = useRef<HTMLElement | null>(null);
   const { theme } = useTheme();
+  const isDark = (theme as string) === "dark";
   const [videoKey, setVideoKey] = useState(0);
 
   useEffect(() => {
@@ -53,30 +54,30 @@ export default function Hero() {
             className="absolute right-0 top-1/2 -translate-y-1/2 w-[75vw] max-w-[950px] overflow-hidden"
             style={{
               aspectRatio: "16/9",
-              WebkitMaskImage: theme === "dark"
+              WebkitMaskImage: isDark
                 ? "linear-gradient(to left, transparent 0%, black 15%, black 100%)"
                 : "linear-gradient(to left, transparent 0%, black 25%, black 75%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
-              maskImage: theme === "dark"
+              maskImage: isDark
                 ? "linear-gradient(to left, transparent 0%, black 15%, black 100%)"
                 : "linear-gradient(to left, transparent 0%, black 25%, black 75%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
-              WebkitMaskComposite: theme === "dark" ? "source-over" : "source-in",
-              maskComposite: theme === "dark" ? "add" : "intersect",
+              WebkitMaskComposite: isDark ? "source-over" : "source-in",
+              maskComposite: isDark ? "add" : "intersect",
             }}
           >
             <video
-              key={`${theme}-${videoKey}`}
+              key={`${isDark ? "dark" : "light"}-${videoKey}`}
               autoPlay
               muted
               loop
               playsInline
               className="absolute inset-0 w-full h-full object-cover"
-              style={theme === "dark" ? { mixBlendMode: "screen" } : {}}
-              src={theme === "dark" ? "sadg-dark.mp4" : "Sdg.white.mp4"}
+              style={isDark ? { mixBlendMode: "screen" } : {}}
+              src={isDark ? "sadg-dark.mp4" : "Sdg.white.mp4"}
             />
-            {theme === "dark" && (
+            {isDark && (
               <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to left, transparent 60%, #000810 100%), linear-gradient(to bottom, #000810 0%, transparent 20%, transparent 80%, #000810 100%)" }} />
             )}
-            {theme !== "dark" && (
+            {!isDark && (
               <div className="absolute inset-0 pointer-events-none" style={{
                 background: `linear-gradient(to right, #e2eef7 0%, transparent 20%), linear-gradient(to left, #e2eef7 0%, transparent 15%), linear-gradient(to bottom, #e2eef7 0%, transparent 5%), linear-gradient(to top, #e2eef7 0%, transparent 10%)`
               }} />

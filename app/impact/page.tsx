@@ -36,18 +36,12 @@ type ImpactMetric = {
   label: string;
 };
 
-type ImpactBullet = {
-  label: string;
-  indent?: boolean;
-};
-
 type ImpactSection = {
   number: string;
   title: string;
   image: string;
   imageAlt: string;
   imagePosition?: string;
-  bullets: ImpactBullet[];
   metrics: ImpactMetric[];
 };
 
@@ -57,7 +51,6 @@ const sections: ImpactSection[] = [
     title: "Teaching SDG",
     image: "/assets/images/1.jpeg",
     imageAlt: "Students learning about the Sustainable Development Goals in a classroom",
-    bullets: [],
     metrics: [
       { icon: School, value: "150+", label: "Schools Reached" },
       { icon: GraduationCap, value: "18,500+", label: "Students Educated" },
@@ -70,7 +63,6 @@ const sections: ImpactSection[] = [
     title: "Water Harvesting",
     image: "/assets/images/2.jpeg",
     imageAlt: "Students gathered around a rainwater harvesting system",
-    bullets: [],
     metrics: [
       { icon: Droplets, value: "125+", label: "Awareness Sessions" },
       { icon: School, value: "60+", label: "Schools Involved" },
@@ -83,7 +75,6 @@ const sections: ImpactSection[] = [
     title: "Community Clean Drive",
     image: "/assets/images/3.jpeg",
     imageAlt: "Volunteers cleaning a public space during a community drive",
-    bullets: [],
     metrics: [
       { icon: Trash2, value: "200+", label: "Clean Drives" },
       { icon: Users, value: "15,000+", label: "Volunteers Engaged" },
@@ -96,7 +87,6 @@ const sections: ImpactSection[] = [
     title: "Different Career Exposure",
     image: fourthImage,
     imageAlt: "Students exploring different career paths and industry opportunities",
-    bullets: [],
     metrics: [
       { icon: BriefcaseBusiness, value: "250+", label: "Career Sessions" },
       { icon: Handshake, value: "20+", label: "Industry Experts" },
@@ -109,7 +99,6 @@ const sections: ImpactSection[] = [
     title: "Fellowship",
     image: "/sdg/cg.png",
     imageAlt: "Industry experts guiding students toward future careers and innovation",
-    bullets: [],
     metrics: [
       { icon: Briefcase, value: "100+", label: "Fellows Enrolled" },
       { icon: Star, value: "50+", label: "Mentors & Experts" },
