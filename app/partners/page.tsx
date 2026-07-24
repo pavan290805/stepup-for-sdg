@@ -208,7 +208,7 @@ const tierConfig: Record<Tier, { label: string; color: string; bg: string }> = {
   Silver: { label:"Silver", color:"#94a3b8", bg:"rgba(148,163,184,0.1)" },
 };
 
-const tabs = ["All","NGOs","Companies","Educational Organizations"] as const;
+const tabs = ["All","NGOs","Companies","Schools & Colleges"] as const;
 type Tab = (typeof tabs)[number];
 const TAB_TO_TYPE: Record<Tab, PartnerType[] | null> = {
   All:null, NGOs:["NGO"], Companies:["Company"], "Schools & Colleges":["School","University"],
