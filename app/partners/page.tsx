@@ -1,10 +1,10 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useTheme } from "@/app/components/ThemeProvider";
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence, useInView } from "framer-motion";
 
-/* ─── GLOBAL STYLES ───────────────────────────────────────────────────────── */
+/* --- GLOBAL STYLES --------------------------------------------------------- */
 const GLOBAL_STYLES = `
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
   *, *::before, *::after { box-sizing: border-box; }
@@ -127,7 +127,7 @@ const GLOBAL_STYLES = `
   }
 `;
 
-/* ─── THEMES ──────────────────────────────────────────────────────────────── */
+/* --- THEMES ---------------------------------------------------------------- */
 const DARK = {
   pageBg:"#060a10", sectionAlt:"#070c14", card:"#0d1625", cardHover:"#101c2e", footer:"#040810",
   border:"#1a2537", borderSubtle:"#111b28", text:"#f0f4f8", textSub:"#c8d4e0",
@@ -150,7 +150,7 @@ const LIGHT = {
 };
 type T = typeof DARK;
 
-/* ─── TYPES ───────────────────────────────────────────────────────────────── */
+/* --- TYPES ----------------------------------------------------------------- */
 type PartnerType = "School" | "NGO" | "Company" | "University";
 type Tier = "Gold" | "Silver";
 interface Partner {
@@ -160,7 +160,7 @@ interface Partner {
   logoSources: string[]; domain?: string;
 }
 
-/* ─── TYPE CONFIGS ────────────────────────────────────────────────────────── */
+/* --- TYPE CONFIGS ---------------------------------------------------------- */
 const typeConfig: Record<PartnerType, {
   color: string; bg: string; border: string; badgeBg: string; badgeText: string; gradient: string;
   IconEl: (p: { className?: string; style?: React.CSSProperties }) => React.JSX.Element;
@@ -214,7 +214,7 @@ const TAB_TO_TYPE: Record<Tab, PartnerType[] | null> = {
   All:null, NGOs:["NGO"], Companies:["Company"], "Schools & Colleges":["School","University"],
 };
 
-/* ─── DATA ────────────────────────────────────────────────────────────────── */
+/* --- DATA ------------------------------------------------------------------ */
 const partners: Partner[] = [
   { id:1, name:"Delhi Public School", type:"School", city:"New Delhi", initials:"DPS", sdgs:[4,13], since:"2023",
     story:"Students launched their own sustainability council after their first SDG workshop.",
@@ -302,7 +302,7 @@ const COMPANY_PROJECTS = [
 
 // METRICS_BY_TYPE removed — metrics cleared per request
 
-/* ─── ICONS ───────────────────────────────────────────────────────────────── */
+/* --- ICONS ----------------------------------------------------------------- */
 const Icon = {
   Search:({className="w-4 h-4"}:{className?:string})=>(<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>),
   X:({className="w-4 h-4"}:{className?:string})=>(<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>),
@@ -321,7 +321,7 @@ const Icon = {
   Megaphone:({className="w-4 h-4"}:{className?:string})=>(<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>),
 };
 
-/* ─── MULTI-SOURCE LOGO ───────────────────────────────────────────────────── */
+/* --- MULTI-SOURCE LOGO ----------------------------------------------------- */
 function MultiSourceImg({ sources,alt,initials,color,gradient,border,className,style,isDark }:{
   sources:string[]; alt:string; initials:string; color:string; gradient:string; border:string;
   className?:string; style?:React.CSSProperties; isDark:boolean;
@@ -344,10 +344,10 @@ function MultiSourceImg({ sources,alt,initials,color,gradient,border,className,s
   );
 }
 
-/* ─── ANIMATED COUNTER ────────────────────────────────────────────────────── */
+/* --- ANIMATED COUNTER ------------------------------------------------------ */
 // AnimatedCounter removed — metrics cleared per request
 
-/* ─── TILT CARD ───────────────────────────────────────────────────────────── */
+/* --- TILT CARD ------------------------------------------------------------- */
 function TiltCard({children,className,style,onClick}:{children:React.ReactNode;className?:string;style?:React.CSSProperties;onClick?:()=>void}) {
   const ref=useRef<HTMLDivElement>(null);
   const x=useMotionValue(0); const y=useMotionValue(0);
@@ -372,7 +372,7 @@ function TiltCard({children,className,style,onClick}:{children:React.ReactNode;c
   );
 }
 
-/* ─── PARTNER LOGO MARK ───────────────────────────────────────────────────── */
+/* --- PARTNER LOGO MARK ----------------------------------------------------- */
 function PartnerLogoMark({partner,theme,isDark}:{partner:Partner;theme:T;isDark:boolean}) {
   const cfg=typeConfig[partner.type];
   return (
@@ -392,7 +392,7 @@ function PartnerLogoMark({partner,theme,isDark}:{partner:Partner;theme:T;isDark:
   );
 }
 
-/* ─── SDG CHIP ────────────────────────────────────────────────────────────── */
+/* --- SDG CHIP -------------------------------------------------------------- */
 function SDGChip({num,theme}:{num:number;theme:T}) {
   return (
     <span className="inline-flex items-center rounded-md px-2 py-0.5 text-[10px] font-semibold"
@@ -402,7 +402,7 @@ function SDGChip({num,theme}:{num:number;theme:T}) {
   );
 }
 
-/* ─── PARTNER CARD ────────────────────────────────────────────────────────── */
+/* --- PARTNER CARD ---------------------------------------------------------- */
 function PartnerCard({partner,onSelect,theme,isDark}:{partner:Partner;onSelect:()=>void;theme:T;isDark:boolean}) {
   const cfg=typeConfig[partner.type];
   const [hovered,setHovered]=useState(false);
@@ -419,7 +419,7 @@ function PartnerCard({partner,onSelect,theme,isDark}:{partner:Partner;onSelect:(
   );
 }
 
-/* ─── PARTNER MODAL ───────────────────────────────────────────────────────── */
+/* --- PARTNER MODAL --------------------------------------------------------- */
 function PartnerModal({partner,onClose,theme,isDark}:{partner:Partner;onClose:()=>void;theme:T;isDark:boolean}) {
   const cfg=typeConfig[partner.type];
   const metrics:any[]=[];
@@ -509,7 +509,7 @@ function PartnerModal({partner,onClose,theme,isDark}:{partner:Partner;onClose:()
   );
 }
 
-/* ─── MARQUEE LOGO CARD ───────────────────────────────────────────────────── */
+/* --- MARQUEE LOGO CARD ----------------------------------------------------- */
 function MarqueeLogoCard({logo,theme,isDark}:{logo:{name:string;domain:string;wiki:string};theme:T;isDark:boolean}) {
   const sources=[logo.wiki,`https://cdn.brandfetch.io/${logo.domain}/w/180/h/60/logo`,`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${logo.domain}&size=128`];
   const [idx,setIdx]=useState(0);
@@ -546,7 +546,7 @@ function EcosystemLogoMarquee({theme,isDark}:{theme:T;isDark:boolean}) {
   );
 }
 
-/* ─── SCROLL REVEAL ───────────────────────────────────────────────────────── */
+/* --- SCROLL REVEAL --------------------------------------------------------- */
 function Reveal({children,delay=0}:{children:React.ReactNode;delay?:number}) {
   const ref=useRef(null);
   const isInView=useInView(ref,{once:true,margin:"-60px"});
@@ -558,7 +558,7 @@ function Reveal({children,delay=0}:{children:React.ReactNode;delay?:number}) {
   );
 }
 
-/* ─── HERO BACKGROUND SLIDESHOW ─────────────────────────────────────────── */
+/* --- HERO BACKGROUND SLIDESHOW ------------------------------------------- */
 const BG_IMAGES = [
   "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=1800&q=85",
   "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1800&q=85",
@@ -604,7 +604,7 @@ function HeroBgSlideshow() {
   );
 }
 
-/* ─── EXPANDABLE STAT CARD ───────────────────────────────────────────────── */
+/* --- EXPANDABLE STAT CARD ------------------------------------------------- */
 function ExpandableStatCard({card,index,mounted}:{
   card:{label:string;value:string;sub:string;delay:number;floatDur:number};
   index:number;
@@ -718,7 +718,7 @@ function ExpandableStatCard({card,index,mounted}:{
   );
 }
 
-/* ─── HERO STAT COUNTER ──────────────────────────────────────────────────── */
+/* --- HERO STAT COUNTER ---------------------------------------------------- */
 function HeroStatCounter({value,color}:{value:string;color:string}) {
   const ref=useRef<HTMLDivElement>(null);
   const isInView=useInView(ref,{once:true,margin:"-40px"});
@@ -742,7 +742,7 @@ function HeroStatCounter({value,color}:{value:string;color:string}) {
   return <div ref={ref} style={{color}}>{display}</div>;
 }
 
-/* ─── HERO CARD WRAPPER ───────────────────────────────────────────────────── */
+/* --- HERO CARD WRAPPER ----------------------------------------------------- */
 function HeroCard({children,mounted,mouseX,mouseY,heroRef}:{
   children:React.ReactNode;
   mounted:boolean;
@@ -806,7 +806,7 @@ function HeroCard({children,mounted,mouseX,mouseY,heroRef}:{
   );
 }
 
-/* ─── MAIN PAGE ───────────────────────────────────────────────────────────── */
+/* --- MAIN PAGE ------------------------------------------------------------- */
 export default function PartnersPage() {
   const { theme: siteTheme } = useTheme();
   const isDark = siteTheme === "dark";
@@ -842,11 +842,11 @@ export default function PartnersPage() {
     <div className="min-h-fit theme-transition" style={{background:theme.pageBg,color:theme.text,fontFamily:"'Inter',system-ui,sans-serif"}}>
       <style>{GLOBAL_STYLES}</style>
 
-      {/* ── HERO ── */}
+      {/* -- HERO -- */}
       <section ref={heroRef} onMouseMove={handleHeroMouseMove} className="relative overflow-hidden"
         style={{minHeight:"calc(100vh - 80px)",display:"flex",alignItems:"center"}}>
 
-        {/* ── BACKGROUND ── */}
+        {/* -- BACKGROUND -- */}
         {/* Crossfading photo slideshow (both modes) */}
         <HeroBgSlideshow />
 
@@ -899,7 +899,7 @@ export default function PartnersPage() {
         <div className="relative z-10 w-full px-4 md:px-10 py-16">
           <div className="mx-auto max-w-5xl flex flex-col items-center gap-10">
 
-            {/* ── HERO CARD ── */}
+            {/* -- HERO CARD -- */}
             <motion.div
               initial={{opacity:0,y:32}} animate={mounted?{opacity:1,y:0}:{}} transition={{duration:0.7,delay:0.15,ease:[0.21,0.47,0.32,0.98]}}
               className="w-full rounded-[8px] p-16 md:p-20 flex flex-col gap-8"
@@ -933,7 +933,7 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* ── ECOSYSTEM FLOW ── */}
+      {/* -- ECOSYSTEM FLOW -- */}
       <section className="px-6 md:px-10 py-10" style={{borderBottom:`1px solid ${theme.border}`,background:theme.sectionAlt}}>
         <Reveal>
           <div className="text-center mb-8">
@@ -1026,7 +1026,7 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* ── PARTNER DIRECTORY ── */}
+      {/* -- PARTNER DIRECTORY -- */}
       <section id="directory" className="px-6 md:px-10 py-10" style={{borderBottom:`1px solid ${theme.border}`}}>
         <Reveal>
           <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
@@ -1077,7 +1077,7 @@ export default function PartnersPage() {
         )}
       </section>
 
-      {/* ── LOGO MARQUEE ── */}
+      {/* -- LOGO MARQUEE -- */}
       <section className="py-12" style={{borderBottom:`1px solid ${theme.border}`,background:theme.sectionAlt}}>
         <Reveal>
           <p className="text-center text-[10px] font-semibold uppercase tracking-widest mb-8 px-6" style={{color:theme.dim}}>
@@ -1087,7 +1087,7 @@ export default function PartnersPage() {
         <EcosystemLogoMarquee theme={theme} isDark={isDark}/>
       </section>
 
-      {/* ── PARTNER WITH US ── */}
+      {/* -- PARTNER WITH US -- */}
       <section id="partner-form" className="relative overflow-hidden px-6 md:px-10 py-12"
         style={{borderTop:`1px solid ${theme.border}`,background:theme.sectionAlt}}>
         <div aria-hidden className="pointer-events-none absolute -bottom-48 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full blur-[140px]"
