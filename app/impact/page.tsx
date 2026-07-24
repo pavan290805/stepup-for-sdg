@@ -4,8 +4,8 @@ import Link from "next/link";
 import {
   ArrowRight,
   Award,
+  Briefcase,
   BriefcaseBusiness,
-  CheckCircle2,
   Droplets,
   GraduationCap,
   Handshake,
@@ -14,6 +14,7 @@ import {
   Recycle,
   School,
   Sparkles,
+  Star,
   Trash2,
   Trees,
   Users,
@@ -56,14 +57,7 @@ const sections: ImpactSection[] = [
     title: "Teaching SDG",
     image: "/assets/images/1.jpeg",
     imageAlt: "Students learning about the Sustainable Development Goals in a classroom",
-    bullets: [
-      { label: "Certification" },
-      { label: "Schools" },
-      { label: "Educating Students on the SDG", indent: true },
-      { label: "Stationery Distribution" },
-      { label: "Compass Box Distribution", indent: true },
-      { label: "Plantation" },
-    ],
+    bullets: [],
     metrics: [
       { icon: School, value: "150+", label: "Schools Reached" },
       { icon: GraduationCap, value: "18,500+", label: "Students Educated" },
@@ -76,12 +70,7 @@ const sections: ImpactSection[] = [
     title: "Water Harvesting",
     image: "/assets/images/2.jpeg",
     imageAlt: "Students gathered around a rainwater harvesting system",
-    bullets: [
-      { label: "Rainwater Harvesting Awareness" },
-      { label: "School Water Harvesting Initiatives" },
-      { label: "Water Conservation Programs" },
-      { label: "Sustainable Water Management" },
-    ],
+    bullets: [],
     metrics: [
       { icon: Droplets, value: "125+", label: "Awareness Sessions" },
       { icon: School, value: "60+", label: "Schools Involved" },
@@ -94,12 +83,7 @@ const sections: ImpactSection[] = [
     title: "Community Clean Drive",
     image: "/assets/images/3.jpeg",
     imageAlt: "Volunteers cleaning a public space during a community drive",
-    bullets: [
-      { label: "Community Cleanliness Campaigns" },
-      { label: "Waste Collection Drives" },
-      { label: "Environmental Awareness Programs" },
-      { label: "Volunteer Engagement Activities" },
-    ],
+    bullets: [],
     metrics: [
       { icon: Trash2, value: "200+", label: "Clean Drives" },
       { icon: Users, value: "15,000+", label: "Volunteers Engaged" },
@@ -112,18 +96,25 @@ const sections: ImpactSection[] = [
     title: "Different Career Exposure",
     image: fourthImage,
     imageAlt: "Students exploring different career paths and industry opportunities",
-    bullets: [
-      { label: "Career Guidance Sessions" },
-      { label: "Industry Expert Talks" },
-      { label: "Skill Development Workshops" },
-      { label: "Corporate Exposure Programs" },
-      { label: "Career Awareness Programs" },
-    ],
+    bullets: [],
     metrics: [
       { icon: BriefcaseBusiness, value: "250+", label: "Career Sessions" },
       { icon: Handshake, value: "20+", label: "Industry Experts" },
       { icon: GraduationCap, value: "10,000+", label: "Students Reached" },
       { icon: Sparkles, value: "95%", label: "Positive Feedback" },
+    ],
+  },
+  {
+    number: "05",
+    title: "Fellowship",
+    image: "/sdg/cg.png",
+    imageAlt: "Industry experts guiding students toward future careers and innovation",
+    bullets: [],
+    metrics: [
+      { icon: Briefcase, value: "100+", label: "Fellows Enrolled" },
+      { icon: Star, value: "50+", label: "Mentors & Experts" },
+      { icon: GraduationCap, value: "5,000+", label: "Students Guided" },
+      { icon: Sparkles, value: "90%", label: "Placement Rate" },
     ],
   },
 ];
@@ -184,74 +175,57 @@ function ImpactBlock({
   reverse?: boolean;
 }) {
   return (
-    <section className="py-7 md:py-10">
-      <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-        <div className={reverse ? "lg:order-2" : undefined}>
+    <section className="py-10 md:py-16">
+      <div className="grid items-stretch gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className={`flex flex-col ${reverse ? "lg:order-2" : ""}`}>
           <div
-            className="relative overflow-hidden rounded-[28px]"
+            className="relative flex-1 overflow-hidden rounded-[28px]"
             style={{
               background: "var(--card)",
               boxShadow: "0 32px 60px -42px rgba(21, 93, 252, 0.4)",
+              minHeight: "420px",
             }}
           >
-            <div className="relative aspect-[1.18/1] w-full">
-              <Image
-                src={section.image}
-                alt={section.imageAlt}
-                fill
-                sizes="(max-width: 1024px) 100vw, 55vw"
-                className="object-cover"
-                style={
-                  section.imagePosition
-                    ? { objectPosition: section.imagePosition }
-                    : undefined
-                }
-              />
-            </div>
+            <Image
+              src={section.image}
+              alt={section.imageAlt}
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+              style={section.imagePosition ? { objectPosition: section.imagePosition } : undefined}
+            />
           </div>
         </div>
 
-        <div className={reverse ? "lg:order-1" : undefined}>
+        <div className={`flex flex-col justify-center ${reverse ? "lg:order-1" : ""}`}>
           <div className="flex items-center gap-4">
-            <span
-              className="text-[1.75rem] font-semibold"
-              style={{ color: "var(--gold)" }}
-            >
+            <span className="text-[1.75rem] font-semibold" style={{ color: "var(--gold)" }}>
               {section.number}
             </span>
             <span className="h-px w-16" style={{ background: "var(--gold)" }} />
           </div>
 
           <h2
-            className="mt-4 text-4xl leading-tight md:text-[3.15rem]"
+            className="mt-5 text-4xl leading-tight md:text-[3.15rem]"
             style={{ color: "var(--foreground)", fontFamily: headingFont }}
           >
             {section.title}
           </h2>
 
-          <ul className="mt-6 space-y-3">
-            {section.bullets.map((bullet) => (
-              <li
-                key={bullet.label}
-                className={`flex items-start gap-3 text-[1.02rem] leading-7 ${
-                  bullet.indent ? "pl-6" : ""
-                }`}
-                style={{ color: "var(--muted-text)" }}
-              >
-                <CheckCircle2
-                  className="mt-1 h-[18px] w-[18px] shrink-0"
-                  style={{ color: "var(--gold)" }}
-                  strokeWidth={1.9}
-                />
-                <span>{bullet.label}</span>
-              </li>
-            ))}
-          </ul>
-
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {section.metrics.map((metric) => (
               <MetricCard key={metric.label} metric={metric} />
             ))}
+          </div>
+
+          <div className="mt-6">
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 rounded-full border px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5 hover:brightness-105"
+              style={{ borderColor: "var(--gold)", color: "var(--gold)" }}
+            >
+              See More <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </div>

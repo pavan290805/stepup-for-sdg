@@ -246,18 +246,13 @@ export function LiveImpactMap() {
           overflow: visible !important;
         }
         .custom-india-map svg path {
-          fill: ${isDark ? "#1e293b" : "#f8fafc"} !important; 
-          stroke: ${isDark ? "#475569" : "#475569"} !important; 
+          fill: ${isDark ? "#1e293b" : "#f8fafc"};
+          stroke: #475569;
           stroke-width: 1.5px !important;
           cursor: pointer !important;
           pointer-events: auto !important;
           paint-order: stroke fill !important;
           transition: fill 0.25s ease, stroke 0.25s ease, stroke-width 0.25s ease !important;
-        }
-        .custom-india-map svg path:hover {
-          fill: ${isDark ? "#1e3a8a" : "#3b82f6"} !important; 
-          stroke: #ffffff !important; 
-          stroke-width: 2.5px !important; 
         }
       `}} />
 

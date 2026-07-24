@@ -86,7 +86,7 @@ function RahiniHome() {
         <HeroBgSlideshow />
 
         {/* Dark overlay */}
-        <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(135deg,rgba(2,6,18,0.82) 0%,rgba(4,10,24,0.75) 55%,rgba(2,6,16,0.82) 100%)", zIndex: 1 }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(135deg,rgba(2,6,18,0.35) 0%,rgba(4,10,24,0.28) 55%,rgba(2,6,16,0.35) 100%)", zIndex: 1 }} />
 
         {/* Aurora blobs */}
         <div className="absolute pointer-events-none rounded-full blur-[140px]" style={{ width: 700, height: 500, top: "-10%", left: "-5%", background: "radial-gradient(ellipse,rgba(59,130,246,0.30) 0%,rgba(6,182,212,0.12) 55%,transparent 75%)", zIndex: 1 }} />

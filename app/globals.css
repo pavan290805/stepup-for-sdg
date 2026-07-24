@@ -1105,12 +1105,7 @@
   border: 1px solid rgba(13, 27, 62, 0.08);
   transition: background 0.6s ease;
 }
-.vm-card:hover .vm-surface {
-  background:
-    radial-gradient(120% 90% at 0% 0%, rgba(0, 194, 255, 0.16), transparent 55%),
-    radial-gradient(120% 90% at 100% 100%, rgba(0, 208, 132, 0.16), transparent 55%),
-    rgba(255, 255, 255, 0.92);
-}
+
 
 /* Glowing icon badge */
 .vm-icon {
@@ -1124,35 +1119,17 @@
   box-shadow: 0 0 38px rgba(0, 208, 132, 0.65);
 }
 
-/* Text color transitions for hover state */
+/* Text color transitions */
 .vm-card .vm-surface h3,
 .vm-card .vm-surface h4,
 .vm-card .vm-surface p,
-.vm-card .vm-surface span,
-.vm-card .vm-icon {
-  transition: color 0.3s ease;
-}
-
-/* All text white on hover - dark mode */
-.vm-card:hover .vm-surface h3,
-.vm-card:hover .vm-surface h4,
-.vm-card:hover .vm-surface p,
-.vm-card:hover .vm-surface span {
-  color: #ffffff !important;
-}
-
-.vm-card:hover .vm-icon {
-  color: #ffffff !important;
+.vm-card .vm-surface span {
+  transition: none;
 }
 
 .vm-highlight {
   border-color: #00c2ff;
   color: #00d084;
-  transition: color 0.3s ease;
-}
-
-.vm-card:hover .vm-highlight {
-  color: #ffffff !important;
 }
 
 .vm-stat {
