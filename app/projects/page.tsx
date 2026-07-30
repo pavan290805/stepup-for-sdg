@@ -176,10 +176,6 @@ export default function ProjectsPage() {
         <div className="mx-auto flex w-full max-w-7xl items-center justify-center text-center">
           <FadeUp>
             <div className="mx-auto max-w-4xl">
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-white shadow-[0_16px_40px_-28px_rgba(0,0,0,0.75)] backdrop-blur-xl">
-                <Sparkles className="h-4 w-4 text-white" />
-                PROJECTS
-              </span>
               <h1 className="mt-6 font-display text-4xl font-bold leading-[1.05] text-white sm:text-5xl lg:text-7xl">
                 Our Projects
               </h1>
