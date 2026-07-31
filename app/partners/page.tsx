@@ -850,8 +850,8 @@ export default function PartnersPage() {
         {/* Crossfading photo slideshow (both modes) */}
         <HeroBgSlideshow />
 
-        {/* Overlay — lighter so background images show through */}
-        <div className="pointer-events-none absolute inset-0" style={{background:"linear-gradient(120deg,rgba(2,6,18,0.35) 0%,rgba(4,10,24,0.25) 55%,rgba(2,6,16,0.35) 100%)"}}/>
+        {/* Overlay — strong left gradient, fades right so photo shows */}
+        <div className="pointer-events-none absolute inset-0" style={{background:"linear-gradient(105deg,rgba(2,6,18,0.92) 0%,rgba(4,10,24,0.75) 45%,rgba(2,6,16,0.25) 100%)"}}/>
 
         {/* Aurora blobs */}
         <div className="aurora-1 pointer-events-none absolute rounded-full blur-[140px]"
@@ -871,8 +871,6 @@ export default function PartnersPage() {
           <>
             <div className="orb-drift pointer-events-none absolute rounded-full blur-[100px] opacity-25"
               style={{width:320,height:320,top:"40%",left:"42%",background:"radial-gradient(circle,rgba(251,191,36,0.4),rgba(249,115,22,0.15),transparent 70%)"}}/>
-            <div className="pointer-events-none absolute inset-0"
-              style={{background:"radial-gradient(ellipse 85% 75% at 50% 50%,transparent 45%,rgba(1,4,12,0.9) 100%)"}}/>
           </>
         )}
 
@@ -896,37 +894,63 @@ export default function PartnersPage() {
             }}/>
         ))}
 
-        <div className="relative z-10 w-full px-4 md:px-10 py-16">
-          <div className="mx-auto max-w-5xl flex flex-col items-center gap-10">
+        {/* LEFT-ALIGNED HERO CONTENT */}
+        <div className="relative z-10 w-full px-8 md:px-16 lg:px-24 py-16">
+          <div className="max-w-2xl flex flex-col gap-7">
 
-            {/* -- HERO CARD -- */}
-            <motion.div
-              initial={{opacity:0,y:32}} animate={mounted?{opacity:1,y:0}:{}} transition={{duration:0.7,delay:0.15,ease:[0.21,0.47,0.32,0.98]}}
-              className="w-full rounded-[8px] p-16 md:p-20 flex flex-col gap-8"
-              style={{
-                background:"rgba(6,10,20,0.82)",
-                backdropFilter:"blur(28px)", WebkitBackdropFilter:"blur(28px)",
-                border:"1px solid rgba(14,165,201,0.28)",
-                boxShadow:"0 32px 80px rgba(0,0,0,0.55),inset 0 1px 0 rgba(255,255,255,0.06)",
-              }}>
-              <div className="hero-top-line pointer-events-none absolute top-0 left-0 right-0 h-[1.5px]"
-                style={{background:"linear-gradient(90deg,transparent,rgba(14,165,201,0.8),rgba(129,140,248,0.6),transparent)"}}/>
+            {/* eyebrow */}
+            <motion.div initial={{opacity:0,y:16}} animate={mounted?{opacity:1,y:0}:{}} transition={{duration:0.55,delay:0.1,ease:[0.21,0.47,0.32,0.98]}}
+              className="inline-flex items-center gap-2 self-start rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest"
+              style={{background:"rgba(14,165,201,0.15)",border:"1px solid rgba(14,165,201,0.35)",color:"#7dd3fc"}}>
+              <span className="w-1.5 h-1.5 rounded-full" style={{background:"#0ea5c9",boxShadow:"0 0 6px #0ea5c9"}}/>
+              SDG Partnership Platform
+            </motion.div>
 
-              <h1 className="font-bold leading-[1.15] tracking-[-0.02em]" style={{fontSize:"clamp(36px,5vw,64px)",color:"#ffffff"}}>
-                Building impact{" "}
-                <span style={{color:"#0ea5c9"}}>through<br/>collaboration.</span>
-              </h1>
+            {/* heading */}
+            <motion.h1 initial={{opacity:0,y:24}} animate={mounted?{opacity:1,y:0}:{}} transition={{duration:0.65,delay:0.2,ease:[0.21,0.47,0.32,0.98]}}
+              className="font-black leading-[1.08] tracking-[-0.03em]"
+              style={{fontSize:"clamp(40px,6vw,72px)",color:"#ffffff"}}>
+              Building impact{" "}
+              <span style={{color:"#0ea5c9"}}>through<br/>collaboration.</span>
+            </motion.h1>
 
-              <p className="leading-[1.8] max-w-3xl" style={{fontSize:"clamp(16px,1.8vw,20px)",color:"rgba(200,212,224,0.75)"}}>
-                Schools, NGOs, universities, and companies united around the 17 UN SDGs. Every partnership creates a ripple of lasting change across communities.
-              </p>
+            {/* subtext */}
+            <motion.p initial={{opacity:0,y:20}} animate={mounted?{opacity:1,y:0}:{}} transition={{duration:0.6,delay:0.32,ease:[0.21,0.47,0.32,0.98]}}
+              className="leading-[1.75] max-w-xl"
+              style={{fontSize:"clamp(15px,1.6vw,18px)",color:"rgba(200,212,224,0.82)"}}>
+              Schools, NGOs, universities, and companies united around the 17 UN SDGs. Every partnership creates a ripple of lasting change across communities.
+            </motion.p>
 
-              <motion.a href="/work-with-us"
-                whileHover={{scale:1.03,y:-2}} whileTap={{scale:0.97}}
-                className="inline-flex items-center gap-2.5 self-start rounded-full px-8 py-3.5 text-[15px] font-semibold"
-                style={{background:"transparent",border:"1px solid rgba(14,165,201,0.55)",color:"#7dd3fc"}}>
+            {/* CTAs */}
+            <motion.div initial={{opacity:0,y:16}} animate={mounted?{opacity:1,y:0}:{}} transition={{duration:0.55,delay:0.42,ease:[0.21,0.47,0.32,0.98]}}
+              className="flex flex-wrap items-center gap-3">
+              <motion.a href="/work-with-us" whileHover={{scale:1.04,y:-2}} whileTap={{scale:0.97}}
+                className="inline-flex items-center gap-2.5 rounded-2xl px-7 py-3.5 text-[15px] font-bold"
+                style={{background:"linear-gradient(135deg,#0ea5c9,#0284c7)",color:"#fff",boxShadow:"0 8px 28px rgba(14,165,201,0.45)"}}>
                 Partner With Us <Icon.Arrow className="w-4 h-4"/>
               </motion.a>
+              <motion.a href="#directory" whileHover={{scale:1.04,y:-2}} whileTap={{scale:0.97}}
+                className="inline-flex items-center gap-2.5 rounded-2xl px-7 py-3.5 text-[15px] font-semibold"
+                style={{background:"rgba(255,255,255,0.08)",border:"1px solid rgba(255,255,255,0.2)",color:"#e2e8f0",backdropFilter:"blur(8px)"}}>
+                View Partners <Icon.Arrow className="w-4 h-4"/>
+              </motion.a>
+            </motion.div>
+
+            {/* trust line */}
+            <motion.div initial={{opacity:0,y:12}} animate={mounted?{opacity:1,y:0}:{}} transition={{duration:0.5,delay:0.54,ease:[0.21,0.47,0.32,0.98]}}
+              className="flex items-center gap-3">
+              {/* avatar stack */}
+              <div className="flex -space-x-2">
+                {["#34d399","#38bdf8","#f87171","#fbbf24"].map((c,i)=>(
+                  <div key={i} className="flex h-7 w-7 items-center justify-center rounded-full border-2 text-[9px] font-black"
+                    style={{borderColor:"rgba(2,6,18,0.8)",background:`linear-gradient(135deg,${c}40,${c}20)`,color:c,zIndex:4-i}}>
+                    {["S","N","C","U"][i]}
+                  </div>
+                ))}
+              </div>
+              <span className="text-[13px]" style={{color:"rgba(200,212,224,0.6)"}}>
+                Trusted by <span style={{color:"#e2e8f0",fontWeight:600}}>9+ partners</span> across <span style={{color:"#e2e8f0",fontWeight:600}}>6 cities</span>
+              </span>
             </motion.div>
 
           </div>
@@ -942,87 +966,123 @@ export default function PartnersPage() {
             <p className="mt-2 text-sm max-w-md mx-auto" style={{color:theme.muted}}>Each partner plays a distinct role, working toward the same goals.</p>
           </div>
         </Reveal>
-        <div className="flex flex-wrap items-center justify-center gap-y-6">
-          {ecosystemRoles.map((node,i)=>{
-            const isHub=node.type==="Hub";
-            const cfg=!isHub?typeConfig[node.type as PartnerType]:null;
-            const color=isHub?theme.accent:cfg!.color;
-            const nodeDelay=i*0.85;
-            const ringDelay=i===0?0.3:nodeDelay+0.6;
+        {/*
+          Diamond layout — SVG canvas 520×460
+          Hub center : (210, 180)
+          TL Schools : circle center (80, 70)   → label below-left
+          TR NGOs    : circle center (340, 70)  → label below-right
+          BL Companies: circle center (80, 290) → label above-left
+          BR Univs   : circle center (340, 290) → label above-right
+          Corner r=32 (64px), Hub r=48 (96px)
+        */}
+        <div className="relative mx-auto" style={{width:"min(420px,100%)",height:360}}>
+
+          {/* SVG lines + traveling dots */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 420 360" preserveAspectRatio="xMidYMid meet">
+            {([
+              {x1: 80,y1: 70, x2:210,y2:180, color:typeConfig["School"].color,    delay:0.3},
+              {x1:340,y1: 70, x2:210,y2:180, color:typeConfig["NGO"].color,        delay:0.6},
+              {x1: 80,y1:290, x2:210,y2:180, color:typeConfig["Company"].color,    delay:0.9},
+              {x1:340,y1:290, x2:210,y2:180, color:typeConfig["University"].color, delay:1.2},
+            ] as {x1:number;y1:number;x2:number;y2:number;color:string;delay:number}[]).map((l,i)=>(
+              <g key={i}>
+                <line x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} stroke={theme.border} strokeWidth="1.5"/>
+                <motion.line x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
+                  stroke={l.color} strokeWidth="1.5" strokeOpacity="0.7"
+                  initial={{pathLength:0,opacity:0}} whileInView={{pathLength:1,opacity:1}}
+                  viewport={{once:true}} transition={{duration:0.6,delay:l.delay,ease:"easeInOut"}}
+                  style={{pathLength:0} as React.CSSProperties}/>
+                <circle r="5" fill={l.color} style={{filter:`drop-shadow(0 0 6px ${l.color})`}}>
+                  <animateMotion dur="1.8s" begin={`${l.delay}s`} repeatCount="indefinite" path={`M${l.x1},${l.y1} L${l.x2},${l.y2}`}/>
+                  <animate attributeName="opacity" values="0;1;1;0" dur="1.8s" begin={`${l.delay}s`} repeatCount="indefinite" keyTimes="0;0.1;0.85;1"/>
+                  <animate attributeName="r" values="0;5;5;0" dur="1.8s" begin={`${l.delay}s`} repeatCount="indefinite" keyTimes="0;0.1;0.85;1"/>
+                </circle>
+              </g>
+            ))}
+          </svg>
+
+          {/* 4 corner nodes */}
+          {([
+            {type:"School"     as PartnerType, title:"Schools",      role:"SDG education & awareness",          style:{top:"0%",   left:"0%"},  align:"flex-start" as const, textAlign:"left"  as const, delay:0.3},
+            {type:"NGO"        as PartnerType, title:"NGOs",         role:"Ground execution & community impact", style:{top:"0%",   right:"0%"}, align:"flex-end"   as const, textAlign:"right" as const, delay:0.6},
+            {type:"Company"    as PartnerType, title:"Companies",    role:"Funding & resources",                 style:{bottom:"0%",left:"0%"},  align:"flex-start" as const, textAlign:"left"  as const, delay:0.9},
+            {type:"University" as PartnerType, title:"Universities", role:"Research, innovation & volunteers",   style:{bottom:"0%",right:"0%"}, align:"flex-end"   as const, textAlign:"right" as const, delay:1.2},
+          ]).map((node)=>{
+            const cfg=typeConfig[node.type];
+            const rd=node.delay+0.5;
             return (
-              <div key={node.title} className="flex items-center">
-                {i!==0&&(
-                  <div className="hidden md:block relative h-px w-12 lg:w-20 shrink-0" style={{background:theme.border}}>
-                    <motion.div className="absolute inset-0"
-                      initial={{scaleX:0}} whileInView={{scaleX:1}} viewport={{once:true}}
-                      transition={{duration:0.55,delay:nodeDelay,ease:"easeInOut"}}
-                      style={{background:`linear-gradient(90deg,${color}80,${color})`,transformOrigin:"left",height:"100%"}}
-                    />
-                    <motion.div className="absolute top-1/2 -translate-y-1/2 rounded-full pointer-events-none"
-                      initial={{left:"0%",opacity:0,scale:0}}
-                      whileInView={{left:["0%","110%"],opacity:[0,1,1,0],scale:[0,1.6,1.6,0]}}
-                      viewport={{once:true}}
-                      transition={{duration:0.55,delay:nodeDelay,ease:"easeInOut",times:[0,0.1,0.85,1]}}
-                      style={{width:10,height:10,background:color,boxShadow:`0 0 12px ${color},0 0 24px ${color}`,position:"absolute"}}
-                    />
-                  </div>
-                )}
-                <div className={`flex flex-col items-center gap-3 text-center ${isHub?"w-[150px]":"w-[120px]"}`}>
-                  <div className="relative flex items-center justify-center">
-                    {/* one-time burst on arrival */}
-                    <motion.div className="absolute rounded-full pointer-events-none"
-                      initial={{scale:0.8,opacity:0}} whileInView={{scale:[0.8,1.8],opacity:[0.8,0]}}
-                      viewport={{once:true}}
-                      transition={{duration:0.65,delay:ringDelay,ease:"easeOut"}}
-                      style={{width:isHub?96:64,height:isHub?96:64,border:`2px solid ${color}`,borderRadius:"50%"}}
-                    />
-                    {/* continuous pulse ring 1 */}
-                    <motion.div className="absolute rounded-full pointer-events-none"
-                      animate={{scale:[1,1.5,1],opacity:[0.55,0,0.55]}}
-                      transition={{duration:2.6,repeat:Infinity,ease:"easeInOut",delay:ringDelay+0.8}}
-                      style={{width:isHub?96:64,height:isHub?96:64,border:`1.5px solid ${color}`,borderRadius:"50%"}}
-                    />
-                    {/* continuous pulse ring 2 */}
-                    <motion.div className="absolute rounded-full pointer-events-none"
-                      animate={{scale:[1,1.85,1],opacity:[0.3,0,0.3]}}
-                      transition={{duration:3.4,repeat:Infinity,ease:"easeInOut",delay:ringDelay+1.2}}
-                      style={{width:isHub?96:64,height:isHub?96:64,border:`1px solid ${color}`,borderRadius:"50%"}}
-                    />
-                    {/* node circle */}
-                    <motion.div
-                      whileHover={{scale:1.12,y:-4,boxShadow:`0 0 36px ${color}90`}}
-                      initial={{opacity:0,scale:0.4,y:16}}
-                      whileInView={{opacity:1,scale:1,y:0}}
-                      viewport={{once:true}}
-                      transition={{duration:0.55,delay:ringDelay,type:"spring",stiffness:240,damping:18}}
-                      className={`relative flex items-center justify-center rounded-full border-2 ${isHub?"h-24 w-24":"h-16 w-16"}`}
-                      style={{
-                        background:isHub?"rgba(255,255,255,0.95)":cfg?.gradient,
-                        borderColor:color,
-                        boxShadow:`0 0 22px ${color}55,0 0 0 3px ${color}20`,
-                        overflow:"hidden",padding:0,
-                      }}>
-                      {isHub
-                        ?<img src="/assets/SDG_LOGO-removebg-preview.png" alt="StepUp SDG" style={{width:"100%",height:"100%",objectFit:"contain",borderRadius:"50%",position:"absolute",inset:0}}/>
-                        :cfg&&<motion.span
-                          animate={{rotate:[0,10,-10,0],scale:[1,1.18,1]}}
-                          transition={{duration:3.5,repeat:Infinity,ease:"easeInOut",delay:i*0.5}}
-                          style={{color:cfg.color}}><cfg.IconEl className="w-6 h-6"/></motion.span>
-                      }
-                    </motion.div>
-                  </div>
-                  <motion.div
-                    initial={{opacity:0,y:12}} whileInView={{opacity:1,y:0}} viewport={{once:true}}
-                    transition={{duration:0.4,delay:ringDelay+0.15}}>
-                    <div className="text-[13px] font-bold" style={{color:isHub?theme.accent:theme.text}}>
-                      {isHub?<><span style={{color:theme.accent}}>StepUp</span>{" "}<span style={{color:"#ef4444"}}>For SDG</span></>:node.title}
-                    </div>
-                    <div className="mt-0.5 text-[11px] leading-snug" style={{color:theme.muted}}>{node.role}</div>
+              <div key={node.title} className="absolute flex flex-col gap-2"
+                style={{...node.style, width:130, alignItems:node.align, textAlign:node.textAlign}}>
+                <div className="relative flex items-center justify-center">
+                  <motion.div className="absolute rounded-full pointer-events-none"
+                    initial={{scale:0.8,opacity:0}} whileInView={{scale:[0.8,1.8],opacity:[0.8,0]}}
+                    viewport={{once:true}} transition={{duration:0.65,delay:rd,ease:"easeOut"}}
+                    style={{width:64,height:64,border:`2px solid ${cfg.color}`,borderRadius:"50%"}}/>
+                  <motion.div className="absolute rounded-full pointer-events-none"
+                    animate={{scale:[1,1.5,1],opacity:[0.55,0,0.55]}}
+                    transition={{duration:2.6,repeat:Infinity,ease:"easeInOut",delay:rd+0.8}}
+                    style={{width:64,height:64,border:`1.5px solid ${cfg.color}`,borderRadius:"50%"}}/>
+                  <motion.div className="absolute rounded-full pointer-events-none"
+                    animate={{scale:[1,1.85,1],opacity:[0.3,0,0.3]}}
+                    transition={{duration:3.4,repeat:Infinity,ease:"easeInOut",delay:rd+1.2}}
+                    style={{width:64,height:64,border:`1px solid ${cfg.color}`,borderRadius:"50%"}}/>
+                  <motion.div whileHover={{scale:1.12,y:-4,boxShadow:`0 0 36px ${cfg.color}90`}}
+                    initial={{opacity:0,scale:0.4,y:16}} whileInView={{opacity:1,scale:1,y:0}}
+                    viewport={{once:true}} transition={{duration:0.55,delay:rd,type:"spring",stiffness:240,damping:18}}
+                    className="relative flex h-16 w-16 items-center justify-center rounded-full border-2"
+                    style={{background:cfg.gradient,borderColor:cfg.color,boxShadow:`0 0 22px ${cfg.color}55,0 0 0 3px ${cfg.color}20`}}>
+                    <motion.span animate={{rotate:[0,10,-10,0],scale:[1,1.18,1]}}
+                      transition={{duration:3.5,repeat:Infinity,ease:"easeInOut",delay:node.delay}}
+                      style={{color:cfg.color}}><cfg.IconEl className="w-6 h-6"/></motion.span>
                   </motion.div>
                 </div>
+                <motion.div initial={{opacity:0,y:12}} whileInView={{opacity:1,y:0}} viewport={{once:true}}
+                  transition={{duration:0.4,delay:rd+0.15}}>
+                  <div className="text-[13px] font-bold" style={{color:theme.text}}>{node.title}</div>
+                  <div className="mt-0.5 text-[11px] leading-snug" style={{color:theme.muted}}>{node.role}</div>
+                </motion.div>
               </div>
             );
           })}
+
+          {/* Center hub */}
+          {(()=>{
+            const color=theme.accent; const rd=0.15;
+            return (
+              <div className="absolute flex flex-col items-center gap-2 text-center"
+                style={{top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:150}}>
+                <div className="relative flex items-center justify-center">
+                  <motion.div className="absolute rounded-full pointer-events-none"
+                    initial={{scale:0.8,opacity:0}} whileInView={{scale:[0.8,1.8],opacity:[0.8,0]}}
+                    viewport={{once:true}} transition={{duration:0.65,delay:rd,ease:"easeOut"}}
+                    style={{width:96,height:96,border:`2px solid ${color}`,borderRadius:"50%"}}/>
+                  <motion.div className="absolute rounded-full pointer-events-none"
+                    animate={{scale:[1,1.5,1],opacity:[0.55,0,0.55]}}
+                    transition={{duration:2.6,repeat:Infinity,ease:"easeInOut",delay:rd+0.8}}
+                    style={{width:96,height:96,border:`1.5px solid ${color}`,borderRadius:"50%"}}/>
+                  <motion.div className="absolute rounded-full pointer-events-none"
+                    animate={{scale:[1,1.85,1],opacity:[0.3,0,0.3]}}
+                    transition={{duration:3.4,repeat:Infinity,ease:"easeInOut",delay:rd+1.2}}
+                    style={{width:96,height:96,border:`1px solid ${color}`,borderRadius:"50%"}}/>
+                  <motion.div whileHover={{scale:1.12,boxShadow:`0 0 36px ${color}90`}}
+                    initial={{opacity:0,scale:0.4}} whileInView={{opacity:1,scale:1}}
+                    viewport={{once:true}} transition={{duration:0.55,delay:rd,type:"spring",stiffness:240,damping:18}}
+                    className="relative flex h-24 w-24 items-center justify-center rounded-full border-2 overflow-hidden"
+                    style={{background:"rgba(255,255,255,0.95)",borderColor:color,boxShadow:`0 0 22px ${color}55,0 0 0 3px ${color}20`,padding:0}}>
+                    <img src="/assets/SDG_LOGO-removebg-preview.png" alt="StepUp SDG"
+                      style={{width:"100%",height:"100%",objectFit:"contain",position:"absolute",inset:0}}/>
+                  </motion.div>
+                </div>
+                <motion.div initial={{opacity:0,y:12}} whileInView={{opacity:1,y:0}} viewport={{once:true}}
+                  transition={{duration:0.4,delay:rd+0.15}}>
+                  <div className="text-[13px] font-bold">
+                    <span style={{color:theme.accent}}>StepUp</span>{" "}<span style={{color:"#ef4444"}}>For SDG</span>
+                  </div>
+                  <div className="mt-0.5 text-[11px] leading-snug" style={{color:theme.muted}}>Coordination & impact tracking</div>
+                </motion.div>
+              </div>
+            );
+          })()}
         </div>
       </section>
 
@@ -1077,88 +1137,156 @@ export default function PartnersPage() {
         )}
       </section>
 
-      {/* -- LOGO MARQUEE -- */}
-      <section className="py-12" style={{borderBottom:`1px solid ${theme.border}`,background:theme.sectionAlt}}>
-        <Reveal>
-          <p className="text-center text-[10px] font-semibold uppercase tracking-widest mb-8 px-6" style={{color:theme.dim}}>
-            Organizations in our ecosystem
-          </p>
-        </Reveal>
-        <EcosystemLogoMarquee theme={theme} isDark={isDark}/>
-      </section>
-
       {/* -- PARTNER WITH US -- */}
-      <section id="partner-form" className="relative overflow-hidden px-6 md:px-10 py-12"
-        style={{borderTop:`1px solid ${theme.border}`,background:theme.sectionAlt}}>
-        <div aria-hidden className="pointer-events-none absolute -bottom-48 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full blur-[140px]"
-          style={{background:`${theme.accent}08`}}/>
-        <Reveal>
-          <div className="text-center mb-8">
-            <p className="text-[10px] font-semibold uppercase tracking-widest mb-3" style={{color:theme.muted}}>Join the ecosystem</p>
-            <h2 className="text-[34px] md:text-[44px] font-black tracking-[-0.03em] mb-4" style={{color:theme.text}}>Partner with StepUp For SDG</h2>
-            <p className="mx-auto max-w-[480px] text-[15px] leading-relaxed" style={{color:theme.muted}}>
-              Whether you&apos;re a school, NGO, company or volunteer, there&apos;s a place for you in building a future where every child has learned about the UN SDG Goals and creates an impact on the world.
-            </p>
-          </div>
-        </Reveal>
+      <section id="partner-form" className="relative overflow-hidden"
+        style={{background:isDark?"#04080f":"#f0f5ff"}}>
 
-        <div className="grid gap-4 mb-6 md:grid-cols-3">
-          {audienceCards.map((card,idx)=>{
-            const cfg=typeConfig[card.type];
-            return (
-              <Reveal key={card.title} delay={idx*0.08}>
-                <motion.div whileHover={{y:-4}} className="rounded-[20px] p-7 h-full"
-                  style={{background:theme.card,border:`1px solid ${theme.border}`}}>
-                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl border"
-                    style={{background:cfg.gradient,borderColor:cfg.border,color:cfg.color}}>
-                    <cfg.IconEl className="w-5 h-5"/>
-                  </div>
-                  <div className="mb-4 text-[15px] font-bold tracking-tight" style={{color:theme.text}}>{card.title}</div>
-                  <ul className="flex flex-col gap-3 mb-6">
-                    {card.benefits.map(b=>(
-                      <li key={b} className="flex items-start gap-2.5 text-[13px] leading-snug" style={{color:theme.muted}}>
-                        <Icon.Check className="mt-0.5 w-3.5 h-3.5 shrink-0" style={{color:theme.accent}}/>{b}
-                      </li>
-                    ))}
-                  </ul>
-                  <a href={card.href}
-                    className="inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-[12px] font-semibold transition-opacity hover:opacity-80"
-                    style={{background:cfg.bg,color:cfg.color,border:`1px solid ${cfg.border}`}}>
-                    {card.btnLabel} <Icon.Arrow className="w-3.5 h-3.5"/>
-                  </a>
-                </motion.div>
-              </Reveal>
-            );
-          })}
+        {/* Full-bleed ambient background */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-0" style={{background:isDark
+            ?"radial-gradient(ellipse 80% 60% at 50% 0%, rgba(14,165,201,0.18) 0%, transparent 65%)"
+            :"radial-gradient(ellipse 80% 60% at 50% 0%, rgba(2,132,199,0.12) 0%, transparent 65%)"}} />
+          <div className="absolute inset-0" style={{background:isDark
+            ?"radial-gradient(ellipse 60% 50% at 20% 100%, rgba(99,102,241,0.12) 0%, transparent 60%)"
+            :"radial-gradient(ellipse 60% 50% at 20% 100%, rgba(99,102,241,0.08) 0%, transparent 60%)"}} />
+          <div className="absolute inset-0" style={{background:isDark
+            ?"radial-gradient(ellipse 50% 40% at 80% 80%, rgba(16,185,129,0.10) 0%, transparent 55%)"
+            :"radial-gradient(ellipse 50% 40% at 80% 80%, rgba(16,185,129,0.07) 0%, transparent 55%)"}} />
+
         </div>
 
-        <Reveal delay={0.1}>
-          <div className="mb-6 rounded-[20px] p-7" style={{background:theme.card,border:`1px solid ${theme.border}`}}>
-            <p className="text-[10px] font-semibold uppercase tracking-widest mb-5" style={{color:theme.muted}}>Partnership models</p>
-            <div className="grid gap-3.5 md:grid-cols-3">
-              {[{IconEl:Icon.BarChart,...partnershipModels[0]},{IconEl:Icon.Handshake,...partnershipModels[1]},{IconEl:Icon.Megaphone,...partnershipModels[2]}].map(m=>(
-                <motion.div key={m.title} whileHover={{y:-2}} className="rounded-[14px] p-5"
-                  style={{background:theme.pageBg,border:`1px solid ${theme.border}`}}>
-                  <span style={{color:theme.accent}}><m.IconEl className="w-4 h-4"/></span>
-                  <div className="mb-1.5 mt-3 text-[13px] font-semibold" style={{color:theme.text}}>{m.title}</div>
-                  <div className="text-[12px] leading-relaxed" style={{color:theme.muted}}>{m.desc}</div>
-                </motion.div>
+        {/* Top headline band */}
+        <div className="relative z-10 pt-20 pb-14 px-6 md:px-10 text-center">
+          <Reveal>
+            <motion.span
+              initial={{opacity:0,scale:0.9}} whileInView={{opacity:1,scale:1}} viewport={{once:true}}
+              transition={{duration:0.5}}
+              className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest mb-6"
+              style={{background:isDark?"rgba(14,165,201,0.12)":"rgba(2,132,199,0.1)",border:`1px solid ${theme.accent}40`,color:theme.accent}}>
+              <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{background:theme.accent}}/>
+              Join the ecosystem
+            </motion.span>
+            <h2 className="font-black tracking-[-0.03em] leading-[1.1] mb-5"
+              style={{fontSize:"clamp(32px,5vw,58px)",color:theme.text}}>
+              Partner with{" "}
+              <span style={{background:`linear-gradient(135deg,${theme.accent},#818cf8)`,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>StepUp For SDG</span>
+            </h2>
+            <p className="mx-auto max-w-[520px] text-[16px] leading-relaxed" style={{color:theme.muted}}>
+              Whether you&apos;re a school, NGO, company or volunteer — there&apos;s a place for you in building a future where every child creates real-world impact.
+            </p>
+          </Reveal>
+        </div>
+
+        {/* Audience cards — immersive color-wash style */}
+        <div className="relative z-10 px-6 md:px-10 pb-10">
+          <div className="grid gap-5 md:grid-cols-3 max-w-6xl mx-auto">
+            {audienceCards.map((card,idx)=>{
+              const cfg=typeConfig[card.type];
+              return (
+                <Reveal key={card.title} delay={idx*0.1}>
+                  <motion.div
+                    whileHover={{y:-8,scale:1.02}}
+                    transition={{type:"spring",stiffness:300,damping:22}}
+                    className="relative overflow-hidden rounded-[28px] p-8 h-full flex flex-col"
+                    style={{
+                      background:isDark
+                        ?`linear-gradient(145deg,rgba(13,22,37,0.95) 0%,rgba(8,14,28,0.98) 100%)`
+                        :`linear-gradient(145deg,#ffffff 0%,${cfg.color}08 100%)`,
+                      border:`1px solid ${cfg.color}35`,
+                      boxShadow:isDark
+                        ?`0 0 0 1px ${cfg.color}20, 0 24px 60px -12px ${cfg.color}25`
+                        :`0 0 0 1px ${cfg.color}15, 0 20px 50px -10px ${cfg.color}20`,
+                    }}>
+                    {/* color wash top */}
+                    <div className="pointer-events-none absolute top-0 left-0 right-0 h-32 rounded-t-[28px]"
+                      style={{background:`linear-gradient(180deg,${cfg.color}18 0%,transparent 100%)`}}/>
+                    {/* large faint icon watermark */}
+                    <div className="pointer-events-none absolute -right-4 -top-4 opacity-[0.06]">
+                      <cfg.IconEl className="w-36 h-36" style={{color:cfg.color}}/>
+                    </div>
+                    <div className="relative z-10 mb-2 text-[18px] font-black tracking-tight" style={{color:theme.text}}>{card.title}</div>
+                    <ul className="relative z-10 flex flex-col gap-3 mb-8 flex-1">
+                      {card.benefits.map(b=>(
+                        <li key={b} className="flex items-start gap-3 text-[13px] leading-snug" style={{color:theme.muted}}>
+                          <span className="mt-[3px] flex h-4 w-4 shrink-0 items-center justify-center rounded-full"
+                            style={{background:`${cfg.color}20`,border:`1px solid ${cfg.color}40`}}>
+                            <Icon.Check className="w-2.5 h-2.5" style={{color:cfg.color}}/>
+                          </span>
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                    <motion.a href={card.href}
+                      whileHover={{scale:1.04}} whileTap={{scale:0.97}}
+                      className="relative z-10 inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 text-[13px] font-bold"
+                      style={{background:`linear-gradient(135deg,${cfg.color},${cfg.color}cc)`,color:"#fff",boxShadow:`0 6px 20px ${cfg.color}50`}}>
+                      {card.btnLabel} <Icon.Arrow className="w-4 h-4"/>
+                    </motion.a>
+                  </motion.div>
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Partnership models — large immersive cards */}
+        <div className="relative z-10 px-6 md:px-10 pb-10 max-w-6xl mx-auto">
+          <Reveal delay={0.1}>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-px flex-1" style={{background:`linear-gradient(90deg,transparent,${theme.border})`}}/>
+              <span className="text-[10px] font-bold uppercase tracking-[0.18em]" style={{color:theme.muted}}>How we work together</span>
+              <div className="h-px flex-1" style={{background:`linear-gradient(90deg,${theme.border},transparent)`}}/>
+            </div>
+            <div className="grid md:grid-cols-3 gap-5">
+              {([{IconEl:Icon.BarChart,color:"#0ea5c9",num:"01",...partnershipModels[0]},{IconEl:Icon.Handshake,color:"#818cf8",num:"02",...partnershipModels[1]},{IconEl:Icon.Megaphone,color:"#34d399",num:"03",...partnershipModels[2]}]).map((m,i)=>(
+                <Reveal key={m.title} delay={i*0.08}>
+                  <motion.div
+                    whileHover={{y:-6,scale:1.02}}
+                    transition={{type:"spring",stiffness:300,damping:22}}
+                    className="relative overflow-hidden rounded-[24px] p-7"
+                    style={{
+                      background:isDark
+                        ?`linear-gradient(145deg,rgba(13,22,37,0.9),rgba(8,14,28,0.95))`
+                        :`linear-gradient(145deg,#ffffff,${m.color}06)`,
+                      border:`1px solid ${m.color}30`,
+                      boxShadow:isDark
+                        ?`0 0 0 1px ${m.color}15, 0 20px 50px -10px ${m.color}20`
+                        :`0 0 0 1px ${m.color}10, 0 16px 40px -8px ${m.color}18`,
+                    }}>
+                    {/* large step number watermark */}
+                    <div className="pointer-events-none absolute -right-2 -bottom-4 font-black leading-none select-none"
+                      style={{fontSize:96,color:m.color,opacity:0.06}}>{m.num}</div>
+                    {/* top color bar */}
+                    <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-[24px]"
+                      style={{background:`linear-gradient(90deg,${m.color},${m.color}60,transparent)`}}/>
+                    {/* step pill */}
+                    <div className="mb-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest"
+                      style={{background:`${m.color}15`,color:m.color,border:`1px solid ${m.color}30`}}>Step {m.num}</div>
+                    <div className="text-[16px] font-black tracking-tight mb-2" style={{color:theme.text}}>{m.title}</div>
+                    <div className="text-[13px] leading-relaxed" style={{color:theme.muted}}>{m.desc}</div>
+                  </motion.div>
+                </Reveal>
               ))}
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
 
-        <Reveal delay={0.15}>
-          <div className="flex justify-center w-full">
-            <motion.a
-              href="/work-with-us"
-              whileHover={{scale:1.05,y:-2}} whileTap={{scale:0.97}}
-              className="inline-flex items-center gap-3 rounded-2xl px-10 py-4 text-[16px] font-bold"
-              style={{background:`linear-gradient(135deg,${theme.accent},#0284c7)`,color:"#fff",boxShadow:`0 8px 32px ${theme.accent}40`}}>
+        {/* CTA */}
+        <div className="relative z-10 pb-20 flex flex-col items-center gap-4">
+          <Reveal delay={0.15}>
+            <motion.a href="/work-with-us"
+              whileHover={{scale:1.06,y:-3}} whileTap={{scale:0.97}}
+              className="inline-flex items-center gap-3 rounded-2xl px-12 py-5 text-[16px] font-black tracking-tight"
+              style={{
+                background:`linear-gradient(135deg,${theme.accent} 0%,#818cf8 100%)`,
+                color:"#fff",
+                boxShadow:`0 12px 40px ${theme.accent}50, 0 0 0 1px ${theme.accent}30`,
+              }}>
               Work with us <Icon.Arrow className="w-5 h-5"/>
             </motion.a>
-          </div>
-        </Reveal>
+            <p className="mt-3 text-[12px] text-center" style={{color:theme.dim}}>No commitment required · We&apos;ll reach out within 48 hours</p>
+          </Reveal>
+        </div>
       </section>
 
 
