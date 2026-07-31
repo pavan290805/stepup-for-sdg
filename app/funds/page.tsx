@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useRef, useState, type FormEvent } from 'react'
+import { useState, type FormEvent } from 'react'
 import {
   BadgeCheck,
   Check,
@@ -12,10 +12,8 @@ import {
   Landmark,
   LockKeyhole,
   Mail,
-  Play,
   ShieldCheck,
   Smartphone,
-  Sparkles,
   Users,
   X,
   type LucideIcon,
@@ -24,9 +22,10 @@ import { addDonation } from '@/app/lib/adminStore'
 
 const currencySymbol = '\u20B9'
 const rightArrow = '\u2192'
+const checkMark = '\u2713'
 
 const presetAmounts = [500, 1000, 2500, 5000]
-const featuredVideoSrc = '/PROJECT video.mp4'
+const featuredVideoId = 'BMgAM-PG0_I'
 
 const communityProfiles = [
   '/team/pavan.png',
@@ -73,6 +72,12 @@ const contactItems = [
     label: 'Partnerships',
     email: 'partner@stepupforsdg.org',
   },
+]
+
+const newsletterBenefits = [
+  'We respect your privacy.',
+  'No spam.',
+  'Unsubscribe anytime.',
 ]
 
 const inputClass =
@@ -135,6 +140,80 @@ function FundsPageStyles() {
   )
 }
 
+function NewsletterSubscription() {
+  const [newsletterEmail, setNewsletterEmail] = useState('')
+  const [isSubscribed, setIsSubscribed] = useState(false)
+
+  const handleNewsletterSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (!newsletterEmail.trim()) return
+    setIsSubscribed(true)
+  }
+
+  return (
+    <section className="relative z-10 px-5 pb-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl rounded-[24px] border border-white/75 bg-[linear-gradient(135deg,rgba(234,244,255,0.96)_0%,rgba(255,255,255,0.94)_58%,rgba(255,255,255,0.88)_100%)] p-6 shadow-[0_32px_90px_-50px_rgba(21,93,252,0.42)] backdrop-blur-xl sm:p-8 lg:p-10">
+        <form
+          onSubmit={handleNewsletterSubmit}
+          className="grid items-center gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.75fr)_auto] lg:gap-8"
+        >
+          <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center">
+            <span className="grid h-20 w-20 shrink-0 place-items-center rounded-full bg-[linear-gradient(135deg,#155DFC_0%,#0099CC_58%,#00A86B_100%)] text-white shadow-[0_22px_48px_-26px_rgba(21,93,252,0.75)]">
+              <Mail className="h-9 w-9" />
+            </span>
+            <div>
+              <h2 className="font-display text-3xl font-extrabold text-[#0F172A] sm:text-4xl">
+                Stay Updated
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm font-medium leading-7 text-[#475569] sm:text-base">
+                Subscribe to our newsletter and receive updates about SDG
+                projects, community impact, volunteering opportunities, success
+                stories, and upcoming initiatives.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <input
+              required
+              type="email"
+              value={newsletterEmail}
+              onChange={(e) => {
+                setNewsletterEmail(e.target.value)
+                setIsSubscribed(false)
+              }}
+              placeholder="Enter your email address"
+              className="h-14 w-full rounded-2xl border border-[#D7E0EA] bg-white/95 px-5 text-base font-semibold text-[#0F172A] outline-none shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] transition placeholder:text-[#94A3B8] focus:border-[#155DFC] focus:ring-4 focus:ring-[#155DFC]/15"
+            />
+            <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-xs font-semibold text-[#64748B]">
+              {newsletterBenefits.map((benefit) => (
+                <span key={benefit} className="inline-flex items-center gap-1.5">
+                  <span className="font-extrabold text-[#00A86B]">
+                    {checkMark}
+                  </span>
+                  {benefit}
+                </span>
+              ))}
+            </div>
+            {isSubscribed && (
+              <p className="mt-3 text-sm font-bold text-[#00A86B]">
+                Thank you for subscribing.
+              </p>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            className="inline-flex h-14 w-full items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#00A86B_0%,#16C784_100%)] px-8 text-base font-extrabold text-white shadow-[0_20px_44px_-26px_rgba(0,168,107,0.85)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_58px_-28px_rgba(0,168,107,0.95)] lg:w-auto"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </section>
+  )
+}
+
 function ContactInformation() {
   return (
     <section className="relative z-10 px-5 pb-4 sm:px-6 lg:px-8">
@@ -190,8 +269,6 @@ export default function FundsPage() {
   const [cardName, setCardName] = useState('')
   const [selectedBank, setSelectedBank] = useState('')
   const [paying, setPaying] = useState(false)
-  const [isVideoPlaying, setIsVideoPlaying] = useState(true)
-  const videoRef = useRef<HTMLVideoElement>(null)
 
   const finalAmount = customAmount || amount
 
@@ -216,19 +293,6 @@ export default function FundsPage() {
       setShowPayModal(false)
       setSubmitted(true)
     }, 2000)
-  }
-
-  const toggleVideo = () => {
-    const video = videoRef.current
-    if (!video) return
-
-    if (video.paused) {
-      void video.play()
-      setIsVideoPlaying(true)
-    } else {
-      video.pause()
-      setIsVideoPlaying(false)
-    }
   }
 
   if (submitted) {
@@ -280,6 +344,7 @@ export default function FundsPage() {
           </div>
         </section>
 
+        <NewsletterSubscription />
         <ContactInformation />
         <CopyrightLine />
       </div>
@@ -301,11 +366,6 @@ export default function FundsPage() {
         <div className="mx-auto grid max-w-7xl items-stretch gap-8 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,0.55fr)] lg:gap-10">
           <div className="funds-fade flex h-full flex-col justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-[#CFE4FF] bg-white/75 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#155DFC] shadow-[0_14px_34px_-30px_rgba(21,93,252,0.75)] backdrop-blur-xl">
-                <Sparkles className="h-4 w-4" />
-                Support SDG Projects
-              </div>
-
               <h1 className="mt-7 font-display text-5xl font-extrabold leading-[1.02] text-[#0F172A] sm:text-6xl lg:text-[72px]">
                 Your Support.
                 <br />
@@ -341,35 +401,14 @@ export default function FundsPage() {
 
               <div className="mt-7 overflow-hidden rounded-[24px] border border-white/70 bg-white shadow-[0_32px_80px_-42px_rgba(15,23,42,0.55)]">
                 <div className="relative aspect-video overflow-hidden bg-[#EAF4FF]">
-                  <video
-                    ref={videoRef}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    poster="/assets/images/1.jpeg"
-                    onPlay={() => setIsVideoPlaying(true)}
-                    onPause={() => setIsVideoPlaying(false)}
+                  <iframe
+                    src={`https://www.youtube.com/embed/${featuredVideoId}?autoplay=1&mute=1&loop=1&playlist=${featuredVideoId}&rel=0`}
+                    title="StepUp for SDG - Impact Video"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
                     className="h-full w-full object-cover"
-                  >
-                    <source src={featuredVideoSrc} type="video/mp4" />
-                  </video>
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.04)_0%,rgba(15,23,42,0.28)_100%)]" />
-                  <button
-                    type="button"
-                    onClick={toggleVideo}
-                    aria-label="Play featured impact video"
-                    className={`absolute inset-0 grid place-items-center transition duration-300 ${
-                      isVideoPlaying
-                        ? 'opacity-0 hover:opacity-100 focus-visible:opacity-100'
-                        : 'opacity-100'
-                    }`}
-                  >
-                    <span className="grid h-16 w-16 place-items-center rounded-full bg-white/90 text-[#155DFC] shadow-[0_18px_50px_-18px_rgba(15,23,42,0.55)] backdrop-blur-md transition duration-300 hover:scale-105">
-                      <Play className="ml-1 h-7 w-7 fill-current" />
-                    </span>
-                  </button>
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.04)_0%,rgba(15,23,42,0.28)_100%)] pointer-events-none" />
                 </div>
               </div>
             </div>
@@ -564,6 +603,7 @@ export default function FundsPage() {
         </div>
       </section>
 
+      <NewsletterSubscription />
       <ContactInformation />
       <CopyrightLine />
 
