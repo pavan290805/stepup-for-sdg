@@ -2,7 +2,13 @@
 
 // use native <img> for a resilient fallback when the public PNG may be missing
 import { useState } from "react";
-import { User, Phone, Mail, FileText, MessageSquare } from "lucide-react";
+import {
+  User,
+  Phone,
+  Mail,
+  Send,
+  MessageSquare,
+} from "lucide-react";
 import { Playfair_Display, Poppins } from "next/font/google";
 import { addContactMessage } from "@/app/lib/adminStore";
 
@@ -68,204 +74,214 @@ export default function ContactPage() {
           </p>
 
           <h1
-            className={`${playfairDisplay.className} mt-4 text-4xl font-semibold leading-none text-[#023047] sm:text-5xl lg:text-6xl`}
-          >
-            Let's Build
-            <br />
-            <span className="text-[#0096C7]">Meaningful Connections</span>
-          </h1>
-
+  className={`${playfairDisplay.className} mt-4 text-4xl font-semibold leading-none text-[#023047] sm:text-5xl lg:text-6xl`}
+>
+  Let's Build
+  <br />
+  <span className="text-[#0096C7]">a Better Future</span>
+</h1>
         </div>
       </div>
     </section>
+<section
+  id="contact-forms"
+  className="bg-[#CAF0F8] px-6 pb-16 pt-4 lg:px-8 lg:pb-20"
+>
+  <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14">
 
-            <section id="contact-forms" className="bg-[#CAF0F8] px-6 pb-16 pt-4 lg:px-8 lg:pb-20">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14">
+    <section className="rounded-[30px] border border-[#8ECAE6] bg-white p-8 shadow-[0_8px_30px_rgba(2,48,71,0.08)] sm:p-10">
 
-          <section className="rounded-[24px] border border-[#8ECAE6] bg-white p-6 shadow-[0_8px_24px_rgba(2,48,71,0.08)] sm:p-8 lg:p-10">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.32em] text-[#0077B6]">
-                Contact Form
-              </p>
+      <div>
+        <h2
+          className={`${playfairDisplay.className} text-3xl font-semibold text-[#023047] sm:text-4xl`}
+        >
+          Get In Touch
+        </h2>
 
-              <h2 className={`${playfairDisplay.className} mt-3 text-3xl font-semibold tracking-tight text-[#023047] sm:text-4xl`}>
-                Get In Touch
-              </h2>
-
-              <p className="mt-3 max-w-xl text-sm leading-7 text-[#023047] sm:text-base">
-                Tell us what you need and our team will connect with you as soon as possible.
-              </p>
-            </div>
-
-            {contactSubmitted ? (
-              <div className="mt-8 rounded-4xl border border-[#8ECAE6] bg-[#ADE8F4] px-6 py-10 text-center">
-
-                <h3 className={`${playfairDisplay.className} mt-4 text-2xl font-semibold text-[#023047]`}>
-                  Message Sent!
-                </h3>
-
-                <p className="mt-3 text-sm leading-7 text-[#023047]">
-                  Thank you for reaching out. We&apos;ll respond as soon as possible.
-                </p>
-
-                <button
-                  onClick={() => {
-                    setContactSubmitted(false);
-                    setContactForm({
-                      name: "",
-                      phone: "",
-                      email: "",
-                      subject: "",
-                      message: "",
-                    });
-                  }}
-                  className={`mt-6 inline-flex items-center justify-center rounded-full bg-[#0077B6] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0096C7] ${poppins.className}`}
-                >
-                  Send Another
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleContactSubmit} className="mt-8 space-y-4">
-
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-
-                  <label className="block">
-  <span className="mb-2 block text-sm font-medium text-[#023047]">
-    Name
-  </span>
-
-  <div className="relative">
-    <User className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#0077B6]" />
-
-    <input
-      type="text"
-      value={contactForm.name}
-      onChange={(e) =>
-        setContactForm((current) => ({
-          ...current,
-          name: e.target.value,
-        }))
-      }
-      className="w-full rounded-xl border border-[#8ECAE6] bg-white py-3 pl-11 pr-4 text-sm text-[#023047] outline-none placeholder:text-[#219EBC]"
-      placeholder="Your name"
-      required
-    />
-  </div>
-</label>
+        <div className="mt-3 h-1 w-20 rounded-full bg-[#0077B6]" />
+      </div>
 
 
-<label className="block">
-  <span className="mb-2 block text-sm font-medium text-[#023047]">
-    Phone Number
-  </span>
+      {contactSubmitted ? (
 
-  <div className="relative">
-    <Phone className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#0077B6]" />
+        <div className="mt-8 rounded-3xl border border-[#8ECAE6] bg-[#ADE8F4] px-6 py-10 text-center">
 
-    <input
-      type="tel"
-      value={contactForm.phone}
-      onChange={(e) =>
-        setContactForm((current) => ({
-          ...current,
-          phone: e.target.value,
-        }))
-      }
-      className="w-full rounded-xl border border-[#8ECAE6] bg-white py-3 pl-11 pr-4 text-sm text-[#023047] outline-none placeholder:text-[#219EBC]"
-      placeholder="Your number"
-      required
-    />
-  </div>
-</label>
+          <h3
+            className={`${playfairDisplay.className} text-2xl font-semibold text-[#023047]`}
+          >
+            Message Sent!
+          </h3>
 
-</div>
+          <p className="mt-3 text-sm leading-7 text-[#023047]">
+            Thank you for reaching out. We&apos;ll respond as soon as possible.
+          </p>
 
+          <button
+            onClick={() => {
+              setContactSubmitted(false);
+              setContactForm({
+                name: "",
+                phone: "",
+                email: "",
+                subject: "",
+                message: "",
+              });
+            }}
+            className="mt-6 rounded-full bg-[#0077B6] px-6 py-3 text-sm font-semibold text-white hover:bg-[#0096C7]"
+          >
+            Send Another
+          </button>
 
-<label className="block">
-  <span className="mb-2 block text-sm font-medium text-[#023047]">
-    Email
-  </span>
+        </div>
 
-  <div className="relative">
-    <Mail className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#0077B6]" />
+      ) : (
 
-    <input
-      type="email"
-      value={contactForm.email}
-      onChange={(e) =>
-        setContactForm((current) => ({
-          ...current,
-          email: e.target.value,
-        }))
-      }
-      className="w-full rounded-xl border border-[#8ECAE6] bg-white py-3 pl-11 pr-4 text-sm text-[#023047] outline-none placeholder:text-[#219EBC]"
-      placeholder="Your email"
-      required
-    />
-  </div>
-</label>
+        <form onSubmit={handleContactSubmit} className="mt-8 space-y-5">
 
 
-<label className="block">
-  <span className="mb-2 block text-sm font-medium text-[#023047]">
-    Subject
-  </span>
+          {/* Name */}
+          <div className="relative">
+            <User className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-[#0077B6]" />
 
-  <div className="relative">
-    <FileText className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#0077B6]" />
-
-    <input
-      type="text"
-      value={contactForm.subject}
-      onChange={(e) =>
-        setContactForm((current) => ({
-          ...current,
-          subject: e.target.value,
-        }))
-      }
-      className="w-full rounded-xl border border-[#8ECAE6] bg-white py-3 pl-11 pr-4 text-sm text-[#023047] outline-none placeholder:text-[#219EBC]"
-      placeholder="Subject"
-      required
-    />
-  </div>
-</label>
+            <input
+              type="text"
+              value={contactForm.name}
+              onChange={(e) =>
+                setContactForm((current) => ({
+                  ...current,
+                  name: e.target.value,
+                }))
+              }
+              placeholder="Your Name"
+              required
+              className="h-16 w-full rounded-2xl border border-[#8ECAE6] bg-white pl-14 pr-5 text-base text-[#023047] outline-none placeholder:text-[#8AA9BC] focus:border-[#0077B6]"
+            />
+          </div>
 
 
-<label className="block">
-  <span className="mb-2 block text-sm font-medium text-[#023047]">
-    Message
-  </span>
+          {/* Phone */}
+          <div className="relative">
+            <Phone className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-[#0077B6]" />
 
-  <div className="relative">
-    <MessageSquare className="absolute left-4 top-5 h-4 w-4 text-[#0077B6]" />
+            <input
+              type="tel"
+              value={contactForm.phone}
+              onChange={(e) =>
+                setContactForm((current) => ({
+                  ...current,
+                  phone: e.target.value,
+                }))
+              }
+              placeholder="Your Number"
+              required
+              className="h-16 w-full rounded-2xl border border-[#8ECAE6] bg-white pl-14 pr-5 text-base text-[#023047] outline-none placeholder:text-[#8AA9BC] focus:border-[#0077B6]"
+            />
+          </div>
 
-    <textarea
-      rows={5}
-      value={contactForm.message}
-      onChange={(e) =>
-        setContactForm((current) => ({
-          ...current,
-          message: e.target.value,
-        }))
-      }
-      className="w-full rounded-4xl border border-[#8ECAE6] bg-white py-4 pl-11 pr-4 text-sm text-[#023047] outline-none placeholder:text-[#219EBC]"
-      placeholder="Tell us about your inquiry"
-      required
-    />
-  </div>
-</label>
 
-                <button
-                  type="submit"
-                  className={`inline-flex w-full items-center justify-center rounded-full bg-[#0077B6] px-6 py-4 text-sm font-semibold text-white transition hover:bg-[#0096C7] ${poppins.className}`}
-                >
-                  Send Message
-                </button>
+          {/* Email */}
+          <div className="relative">
+            <Mail className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-[#0077B6]" />
 
-              </form>
-            )}
-          </section>
+            <input
+              type="email"
+              value={contactForm.email}
+              onChange={(e) =>
+                setContactForm((current) => ({
+                  ...current,
+                  email: e.target.value,
+                }))
+              }
+              placeholder="Your Email"
+              required
+              className="h-16 w-full rounded-2xl border border-[#8ECAE6] bg-white pl-14 pr-5 text-base text-[#023047] outline-none placeholder:text-[#8AA9BC] focus:border-[#0077B6]"
+            />
+          </div>
 
+
+          {/* Dropdown */}
+          <div className="relative">
+            <MessageSquare className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-[#0077B6]" />
+
+            <select
+              value={contactForm.subject}
+              onChange={(e) =>
+                setContactForm((current) => ({
+                  ...current,
+                  subject: e.target.value,
+                }))
+              }
+              required
+              className="h-16 w-full appearance-none rounded-2xl border border-[#8ECAE6] bg-white pl-14 pr-10 text-base text-[#023047] outline-none focus:border-[#0077B6]"
+            >
+              <option value="">
+                Contacting us regarding...
+              </option>
+
+              <option value="NGO">
+                NGO
+              </option>
+
+              <option value="Volunteer">
+                Volunteer
+              </option>
+
+              <option value="School/University/College">
+                School/University/College
+              </option>
+
+              <option value="CSR Funds">
+                CSR Funds
+              </option>
+
+            </select>
+
+            <span className="absolute right-5 top-1/2 -translate-y-1/2 text-[#8AA9BC]">
+              ▾
+            </span>
+
+          </div>
+
+
+
+          {/* Message */}
+          <div className="relative">
+
+            <MessageSquare className="absolute left-5 top-5 h-5 w-5 text-[#0077B6]" />
+
+            <textarea
+              rows={5}
+              value={contactForm.message}
+              onChange={(e) =>
+                setContactForm((current) => ({
+                  ...current,
+                  message: e.target.value,
+                }))
+              }
+              placeholder="Your Message"
+              required
+              className="min-h-[140px] w-full rounded-2xl border border-[#8ECAE6] bg-white py-5 pl-14 pr-5 text-base text-[#023047] outline-none placeholder:text-[#8AA9BC] focus:border-[#0077B6]"
+            />
+
+          </div>
+
+
+
+          {/* Button */}
+          <button
+            type="submit"
+            className={`flex h-16 w-full items-center justify-center gap-3 rounded-2xl bg-[#0077B6] text-base font-semibold text-white transition hover:bg-[#0096C7] ${poppins.className}`}
+          >
+            <Send className="h-5 w-5" />
+            SEND MESSAGE
+          </button>
+
+
+        </form>
+
+      )}
+
+    </section>
 
           <section className="pt-2 lg:pt-10">
             <div className="max-w-2xl">
@@ -404,11 +420,35 @@ export default function ContactPage() {
                 </button>
 
               </form>
-            )}
-          </section>
-          </div>
+            )}          </section>
+        </div>
       </section>
 
+     {/* Contact Information */}
+<div className="flex flex-wrap items-center justify-center gap-8 py-2 text-sm font-medium">
+
+  <a
+    href="mailto:contact@stepupforsdg.org"
+    className="flex items-center gap-2 text-[#023047] transition hover:text-[#0077B6] hover:underline"
+  >
+    📧 <span>contact@stepupforsdg.org</span>
+  </a>
+
+  <a
+    href="mailto:info@stepupforsdg.org"
+    className="flex items-center gap-2 text-[#023047] transition hover:text-[#0077B6] hover:underline"
+  >
+    📧 <span>info@stepupforsdg.org</span>
+  </a>
+
+  <a
+    href="mailto:partner@stepupforsdg.org"
+    className="flex items-center gap-2 text-[#023047] transition hover:text-[#0077B6] hover:underline"
+  >
+    📧 <span>partner@stepupforsdg.org</span>
+  </a>
+
+</div>
       <p className="px-6 pb-8 text-center text-xs text-[#64748B] lg:px-8">
         © 2026 Pavdhan Foundation • Empowering Students through the Sustainable Development Goals
       </p>
