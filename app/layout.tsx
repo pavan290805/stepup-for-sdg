@@ -1,36 +1,53 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Script from "next/script";
+import SiteShell from "@/app/components/SiteShell";
 
 export const metadata: Metadata = {
-  title: "StepUp SDG",
-  description: "StepUp for SDG - UN SDG Monitoring Hub",
+  title: "StepUp for SDG — Global Education Impact Platform",
+  description:
+    "Uniting students, schools, NGOs and companies to advance SDG 4 — Quality Education — through transparent, measurable impact.",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+          rel="stylesheet"
+        />
+        <style>{`
+          .goog-te-banner-frame { display: none !important; }
+          .skiptranslate { display: none !important; }
+          body { top: 0 !important; position: static !important; }
+          #google_translate_element { position: absolute; left: -9999px; top: -9999px; }
+        `}</style>
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body>
+        <SiteShell>{children}</SiteShell>
+
+        <div id="google_translate_element" />
+
+        <Script
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+          strategy="afterInteractive"
+        />
+        <Script id="gt-init" strategy="afterInteractive">{`
+          function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+              { pageLanguage: 'en', autoDisplay: false },
+              'google_translate_element'
+            );
+          }
+        `}</Script>
+      </body>
     </html>
   );
 }
