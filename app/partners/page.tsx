@@ -226,39 +226,39 @@ const TAB_TO_TYPE: Record<Tab, PartnerType[] | null> = {
 const partners: Partner[] = [
   { id:1, name:"Delhi Public School", type:"School", city:"New Delhi", initials:"DPS", sdgs:[4,13], since:"2023",
     story:"Students launched their own sustainability council after their first SDG workshop.",
-    lastActivity:"Hosted an SDG workshop ï¿½ 2 weeks ago", domain:"dpsrkp.net",
+    lastActivity:"Hosted an SDG workshop � 2 weeks ago", domain:"dpsrkp.net",
     logoSources:["https://upload.wikimedia.org/wikipedia/en/thumb/b/b3/Delhi_Public_School_logo.png/200px-Delhi_Public_School_logo.png","https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://dpsrkp.net&size=128"]},
   { id:2, name:"GreenEarth Initiative", type:"NGO", city:"Hyderabad", initials:"GE", sdgs:[13,15], since:"2024",
     story:"Co-designed a tree-cover restoration curriculum now used across 6 partner schools.",
-    lastActivity:"Published impact report ï¿½ 5 days ago", domain:"greenearth.org",
+    lastActivity:"Published impact report � 5 days ago", domain:"greenearth.org",
     logoSources:["https://cdn.brandfetch.io/greenearth.org/w/180/h/60/logo","https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://greenearth.org&size=128"]},
   { id:3, name:"TechCorp India", type:"Company", city:"Bangalore", initials:"TC", sdgs:[4,9], since:"2023",
     story:"A Rs50L CSR commitment turned into 3 audited programs reaching 620 students.",
-    lastActivity:"Funded the AI Bootcamp cohort ï¿½ 3 days ago", fundsLakh:50, tier:"Gold", domain:"techcorp.in",
+    lastActivity:"Funded the AI Bootcamp cohort � 3 days ago", fundsLakh:50, tier:"Gold", domain:"techcorp.in",
     logoSources:["https://cdn.brandfetch.io/techcorp.in/w/180/h/60/logo","https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://techcorp.in&size=128"]},
   { id:4, name:"IIT Hyderabad", type:"University", city:"Hyderabad", initials:"IIT", sdgs:[4,9,17], since:"2023",
     story:"420 student volunteers now run peer-led SDG workshops in government schools.",
-    lastActivity:"Volunteer cohort onboarded ï¿½ 1 week ago", domain:"iith.ac.in",
+    lastActivity:"Volunteer cohort onboarded � 1 week ago", domain:"iith.ac.in",
     logoSources:["https://upload.wikimedia.org/wikipedia/en/thumb/1/10/Indian_Institute_of_Technology_Hyderabad_Logo.svg/240px-Indian_Institute_of_Technology_Hyderabad_Logo.svg.png","https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://iith.ac.in&size=128"]},
   { id:5, name:"Bright Futures Academy", type:"School", city:"Mumbai", initials:"BF", sdgs:[4,10], since:"2024",
-    story:"First cohort of 95% satisfaction-rated SDG electives ï¿½ expanding to more grade levels.",
-    lastActivity:"Completed term-1 workshops ï¿½ 4 days ago", domain:"brightfuturesacademy.in",
+    story:"First cohort of 95% satisfaction-rated SDG electives � expanding to more grade levels.",
+    lastActivity:"Completed term-1 workshops � 4 days ago", domain:"brightfuturesacademy.in",
     logoSources:["https://cdn.brandfetch.io/brightfuturesacademy.in/w/180/h/60/logo","https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://brightfuturesacademy.in&size=128"]},
   { id:6, name:"EcoVolt Energy", type:"Company", city:"Chennai", initials:"EV", sdgs:[7,13], since:"2024",
     story:"Brought hands-on renewable-energy labs to schools.",
-    lastActivity:"New funding round confirmed ï¿½ 6 days ago", fundsLakh:20, tier:"Silver", domain:"ecovolt.in",
+    lastActivity:"New funding round confirmed � 6 days ago", fundsLakh:20, tier:"Silver", domain:"ecovolt.in",
     logoSources:["https://cdn.brandfetch.io/ecovolt.in/w/180/h/60/logo","https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ecovolt.in&size=128"]},
   { id:7, name:"Hope NGO", type:"NGO", city:"Delhi", initials:"HN", sdgs:[1,10], since:"2024",
     story:"Connected 840 beneficiaries across 4 cities with partner companies.",
-    lastActivity:"Beneficiary survey completed ï¿½ 2 weeks ago", domain:"hopengo.org",
+    lastActivity:"Beneficiary survey completed � 2 weeks ago", domain:"hopengo.org",
     logoSources:["https://cdn.brandfetch.io/hopengo.org/w/180/h/60/logo","https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://hopengo.org&size=128"]},
   { id:8, name:"Woxsen University", type:"University", city:"Hyderabad", initials:"WU", sdgs:[4,17], since:"2025",
-    story:"Newest university partner ï¿½ piloting a joint research project with GreenEarth.",
-    lastActivity:"Joined the ecosystem ï¿½ 3 weeks ago", domain:"woxsen.edu.in",
+    story:"Newest university partner � piloting a joint research project with GreenEarth.",
+    lastActivity:"Joined the ecosystem � 3 weeks ago", domain:"woxsen.edu.in",
     logoSources:["https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Woxsen.png/240px-Woxsen.png","https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://woxsen.edu.in&size=128"]},
   { id:9, name:"InfraBuild Corp", type:"Company", city:"Mumbai", initials:"IB", sdgs:[9,11], since:"2024",
     story:"Funding urban-planning workshops letting students redesign real city blocks.",
-    lastActivity:"Workshop showcase held ï¿½ 1 week ago", fundsLakh:30, tier:"Silver", domain:"l-and-t.com",
+    lastActivity:"Workshop showcase held � 1 week ago", fundsLakh:30, tier:"Silver", domain:"l-and-t.com",
     logoSources:["https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Larsen_and_Toubro_logo.svg/240px-Larsen_and_Toubro_logo.svg.png","https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://l-and-t.com&size=128"]},
 ];
 
@@ -280,7 +280,7 @@ const ECOSYSTEM_LOGOS = [
   { name:"Capgemini",     domain:"capgemini.com",    wiki:"https://upload.wikimedia.org/wikipedia/commons/f/f9/Capgemini_201x_logo.svg" },
 ];
 
-// heroFloatingCards removed ï¿½ metrics cleared per request
+// heroFloatingCards removed � metrics cleared per request
 
 const ecosystemRoles: { type: PartnerType | "Hub"; title: string; role: string }[] = [
   { type:"School",     title:"Schools",      role:"SDG education & awareness"           },
@@ -303,12 +303,12 @@ const audienceCards: { title: string; type: PartnerType; benefits: string[]; hre
 ];
 
 const COMPANY_PROJECTS = [
-  { name:"SDG Workshop ï¿½ Hyderabad", amount:"Rs15L", status:"Completed" as const, verified:true  },
+  { name:"SDG Workshop � Hyderabad", amount:"Rs15L", status:"Completed" as const, verified:true  },
   { name:"AI Bootcamp for Schools",  amount:"Rs12L", status:"Ongoing"   as const, verified:false },
   { name:"Climate Action Camp",      amount:"Rs11L", status:"Completed" as const, verified:true  },
 ];
 
-// METRICS_BY_TYPE removed ï¿½ metrics cleared per request
+// METRICS_BY_TYPE removed � metrics cleared per request
 
 /* --- ICONS ----------------------------------------------------------------- */
 const Icon = {
@@ -347,13 +347,13 @@ function MultiSourceImg({ sources,alt,initials,color,gradient,border,className,s
     <div className={className} style={{...style,position:"relative",overflow:"hidden"}}>
       {!loaded&&<div className="logo-shimmer" style={{position:"absolute",inset:0,borderRadius:"inherit"}}/>}
       <img key={idx} src={sources[idx]} alt={alt} onLoad={()=>setLoaded(true)} onError={tryNext}
-        style={{width:"100%",height:"100%",objectFit:"contain",padding:"12%",opacity:loaded?1:0,transition:"opacity 0.35s ease",filter:isDark?"brightness(0.9) saturate(0.85)":"none"}}/>
+        style={{width:"100%",height:"100%",objectFit:"contain",padding:"8%",opacity:loaded?1:0,transition:"opacity 0.35s ease",filter:isDark?"brightness(0.85) saturate(0.9) contrast(1.1)":"brightness(0.3) saturate(1.2) contrast(1.3)"}}/>
     </div>
   );
 }
 
 /* --- ANIMATED COUNTER ------------------------------------------------------ */
-// AnimatedCounter removed ï¿½ metrics cleared per request
+// AnimatedCounter removed � metrics cleared per request
 
 /* --- TILT CARD ------------------------------------------------------------- */
 function TiltCard({children,className,style,onClick}:{children:React.ReactNode;className?:string;style?:React.CSSProperties;onClick?:()=>void}) {
@@ -380,26 +380,6 @@ function TiltCard({children,className,style,onClick}:{children:React.ReactNode;c
   );
 }
 
-/* --- PARTNER LOGO MARK ----------------------------------------------------- */
-function PartnerLogoMark({partner,theme,isDark}:{partner:Partner;theme:T;isDark:boolean}) {
-  const cfg=typeConfig[partner.type];
-  return (
-    <div className="relative w-full flex items-center justify-center overflow-hidden"
-      style={{background:cfg.gradient,height:148,borderBottom:`1px solid ${theme.border}`}}>
-      <div className="absolute inset-0 opacity-20" style={{backgroundImage:`linear-gradient(${theme.gridLine} 1px,transparent 1px),linear-gradient(90deg,${theme.gridLine} 1px,transparent 1px)`,backgroundSize:"24px 24px"}}/>
-      <div className="relative z-10 flex flex-col items-center gap-2">
-        <MultiSourceImg sources={partner.logoSources} alt={partner.name} initials={partner.initials}
-          color={cfg.color} gradient={cfg.gradient} border={cfg.border} isDark={isDark}
-          style={{width:90,height:60,borderRadius:10}}/>
-        <span className="rounded-full px-2 py-[2px] text-[9px] font-bold uppercase tracking-widest"
-          style={{background:cfg.badgeBg,color:cfg.badgeText}}>{partner.type}</span>
-      </div>
-      <div className="absolute bottom-0 left-0 right-0 h-px"
-        style={{background:`linear-gradient(90deg,transparent,${cfg.color}60,transparent)`}}/>
-    </div>
-  );
-}
-
 /* --- SDG CHIP -------------------------------------------------------------- */
 function SDGChip({num,theme}:{num:number;theme:T}) {
   return (
@@ -414,16 +394,66 @@ function SDGChip({num,theme}:{num:number;theme:T}) {
 function PartnerCard({partner,onSelect,theme,isDark}:{partner:Partner;onSelect:()=>void;theme:T;isDark:boolean}) {
   const cfg=typeConfig[partner.type];
   const [hovered,setHovered]=useState(false);
+  const [spotlight,setSpotlight]=useState({x:50,y:50});
+  const cardRef=useRef<HTMLDivElement>(null);
+  const handleMouseMove=useCallback((e:React.MouseEvent<HTMLDivElement>)=>{
+    if(!cardRef.current) return;
+    const r=cardRef.current.getBoundingClientRect();
+    setSpotlight({x:((e.clientX-r.left)/r.width)*100,y:((e.clientY-r.top)/r.height)*100});
+  },[]);
   return (
-    <div className="group relative shine-sweep"
-      style={{backgroundColor:theme.card,border:`1px solid ${hovered?cfg.color:theme.border}`,borderRadius:20,overflow:"hidden",
-        boxShadow:hovered?`0 24px 80px -24px ${cfg.color}40,0 0 0 1px ${cfg.color}40`:`0 1px 3px rgba(0,0,0,0.12)`,
-        transition:"box-shadow 0.25s ease, border-color 0.25s ease",
-        backgroundImage:`radial-gradient(circle at top left, ${cfg.color}12, transparent 35%), radial-gradient(circle at bottom right, ${cfg.color}08, transparent 30%)`}}>
-      <div onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>setHovered(false)}>
-        <PartnerLogoMark partner={partner} theme={theme} isDark={isDark}/>
+    <motion.div
+      ref={cardRef}
+      onClick={onSelect}
+      onMouseEnter={()=>setHovered(true)}
+      onMouseLeave={()=>setHovered(false)}
+      onMouseMove={handleMouseMove}
+      whileHover={{y:-8,scale:1.03}}
+      whileTap={{scale:0.97}}
+      transition={{type:"spring",stiffness:320,damping:24}}
+      style={{
+        cursor:"pointer",borderRadius:24,overflow:"hidden",position:"relative",
+        background:isDark?"#0d1625":"#ffffff",
+        border:`1.5px solid ${hovered?cfg.color:theme.border}`,
+        boxShadow:hovered
+          ?`0 20px 60px -12px ${cfg.color}55, 0 0 0 1px ${cfg.color}40`
+          :`0 2px 12px rgba(0,0,0,0.08)`,
+        transition:"border-color 0.25s ease, box-shadow 0.25s ease",
+        minHeight:180,
+      }}
+    >
+      {/* Spotlight glow on hover */}
+      <div className="pointer-events-none absolute inset-0 transition-opacity duration-300"
+        style={{opacity:hovered?1:0,background:`radial-gradient(280px circle at ${spotlight.x}% ${spotlight.y}%, ${cfg.color}10 0%, transparent 65%)`}}/>
+
+      {/* Top accent bar */}
+      <div className="absolute top-0 left-0 right-0 h-[3px]"
+        style={{background:`linear-gradient(90deg,transparent,${cfg.color},transparent)`,opacity:hovered?1:0.5,transition:"opacity 0.25s ease"}}/>
+
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center justify-center gap-3 px-5 py-7" style={{minHeight:180}}>
+        {/* Logo — no box, transparent, large */}
+        <MultiSourceImg sources={partner.logoSources} alt={partner.name} initials={partner.initials}
+          color={cfg.color} gradient="transparent" border="transparent" isDark={isDark}
+          style={{width:150,height:80,borderRadius:0,background:"transparent"}}/>
+
+        {/* Location */}
+        <div className="flex items-center gap-1" style={{color:isDark?"rgba(107,128,153,0.85)":"#6b7280"}}>
+          <Icon.MapPin className="w-3 h-3" style={{color:cfg.color}}/>
+          <span className="text-[11px] font-medium">{partner.city}</span>
+        </div>
+
+        {/* Badge */}
+        <span className="rounded-full px-3 py-[3px] text-[9px] font-black uppercase tracking-[0.12em]"
+          style={{background:cfg.badgeBg,color:cfg.badgeText,border:`1px solid ${cfg.color}40`}}>
+          {partner.type}
+        </span>
       </div>
-    </div>
+
+      {/* Bottom shimmer line */}
+      <div className="absolute bottom-0 left-0 right-0 h-px"
+        style={{background:`linear-gradient(90deg,transparent,${cfg.color}80,transparent)`,opacity:hovered?1:0,transition:"opacity 0.25s ease"}}/>
+    </motion.div>
   );
 }
 
@@ -449,7 +479,7 @@ function PartnerModal({partner,onClose,theme,isDark}:{partner:Partner;onClose:()
             <div>
               <div className="text-[17px] font-bold tracking-tight" style={{color:theme.text}}>{partner.name}</div>
               <div className="flex items-center gap-1.5 mt-1 text-xs" style={{color:theme.muted}}>
-                <Icon.MapPin className="w-3 h-3"/>{partner.city} ï¿½ Since {partner.since}
+                <Icon.MapPin className="w-3 h-3"/>{partner.city} � Since {partner.since}
               </div>
               <div className="flex items-center gap-2 mt-2">
                 <span className="rounded-full px-2.5 py-[3px] text-[11px] font-semibold"
@@ -478,7 +508,7 @@ function PartnerModal({partner,onClose,theme,isDark}:{partner:Partner;onClose:()
             style={{border:"1px solid rgba(34,197,94,0.2)",background:"rgba(34,197,94,0.06)"}}>
             <Icon.Shield className="w-4 h-4" style={{color:"#22c55e"}}/>
             <span className="text-[13px] font-semibold" style={{color:"#22c55e"}}>Verified Partner</span>
-            <span className="ml-auto text-[11px]" style={{color:"#4ade80"}}>Audited ï¿½ Impact verified</span>
+            <span className="ml-auto text-[11px]" style={{color:"#4ade80"}}>Audited � Impact verified</span>
           </div>
           <div className="grid grid-cols-3 gap-2.5">
             {metrics.map(([val,label])=>(
@@ -648,7 +678,7 @@ function ExpandableStatCard({card,index,mounted}:{
           transformOrigin:"center center",
         }}
       >
-        {/* Glow blob ï¿½ grows on expand */}
+        {/* Glow blob � grows on expand */}
         <motion.div
           className="pointer-events-none absolute -top-6 -right-6 rounded-full blur-2xl"
           animate={{opacity:expanded?0.6:0.28,width:expanded?120:96,height:expanded?120:96}}
@@ -671,7 +701,7 @@ function ExpandableStatCard({card,index,mounted}:{
           )}
         </AnimatePresence>
 
-        {/* Float bob ï¿½ stops when expanded */}
+        {/* Float bob � stops when expanded */}
         <motion.div
           animate={expanded?{y:0}:{y:[0,-5,0]}}
           transition={expanded
@@ -850,6 +880,12 @@ export default function PartnersPage() {
     <div className="min-h-fit theme-transition" style={{background:theme.pageBg,color:theme.text,fontFamily:"'Inter',system-ui,sans-serif"}}>
       <style>{GLOBAL_STYLES}</style>
 
+      <AnimatePresence>
+        {selectedPartner&&(
+          <PartnerModal partner={selectedPartner} onClose={()=>setSelected(null)} theme={theme} isDark={isDark}/>
+        )}
+      </AnimatePresence>
+
       {/* -- HERO -- */}
       <section ref={heroRef} onMouseMove={handleHeroMouseMove} className="relative overflow-hidden"
         style={{minHeight:"calc(100vh - 80px)",display:"flex",alignItems:"center"}}>
@@ -858,7 +894,7 @@ export default function PartnersPage() {
         {/* Crossfading photo slideshow (both modes) */}
         <HeroBgSlideshow />
 
-        {/* Overlay ï¿½ strong left gradient, fades right so photo shows */}
+        {/* Overlay � strong left gradient, fades right so photo shows */}
         <div className="pointer-events-none absolute inset-0" style={{background:"linear-gradient(105deg,rgba(2,6,18,0.92) 0%,rgba(4,10,24,0.75) 45%,rgba(2,6,16,0.25) 100%)"}}/>
 
         {/* Aurora blobs */}
@@ -937,7 +973,7 @@ export default function PartnersPage() {
                 style={{background:"linear-gradient(135deg,#0ea5c9,#0284c7)",color:"#fff",boxShadow:"0 8px 28px rgba(14,165,201,0.45)"}}>
                 Partner With Us <Icon.Arrow className="w-4 h-4"/>
               </motion.a>
-              <motion.a href="#directory" whileHover={{scale:1.04,y:-2}} whileTap={{scale:0.97}}
+              <motion.a href="#directory" onClick={(e)=>{e.preventDefault();document.getElementById("directory")?.scrollIntoView({behavior:"smooth",block:"start"})}} whileHover={{scale:1.04,y:-2}} whileTap={{scale:0.97}}
                 className="inline-flex items-center gap-2.5 rounded-2xl px-7 py-3.5 text-[15px] font-semibold"
                 style={{background:"rgba(255,255,255,0.08)",border:"1px solid rgba(255,255,255,0.2)",color:"#e2e8f0",backdropFilter:"blur(8px)"}}>
                 View Partners <Icon.Arrow className="w-4 h-4"/>
@@ -975,7 +1011,7 @@ export default function PartnersPage() {
           </div>
         </Reveal>
         {/*
-          Diamond layout ï¿½ SVG canvas 520ï¿½460
+          Diamond layout � SVG canvas 520�460
           Hub center : (210, 180)
           TL Schools : circle center (80, 70)   ? label below-left
           TR NGOs    : circle center (340, 70)  ? label below-right
@@ -1053,7 +1089,7 @@ export default function PartnersPage() {
             );
           })}
 
-          {/* Center hub â€” fixed on top, opaque bg blocks icons passing behind */}
+          {/* Center hub — fixed on top, opaque bg blocks icons passing behind */}
           {(()=>{
             const color=theme.accent; const rd=0.15;
             return (
@@ -1096,96 +1132,78 @@ export default function PartnersPage() {
 
 
 
-      {/* -- ECOSYSTEM MAP -- */}
-      <section className="px-6 md:px-10 py-16" style={{background:theme.pageBg,borderBottom:`1px solid ${theme.border}`}}>
+      {/* -- PARTNER DIRECTORY -- */}
+      <section id="directory" className="px-6 md:px-10 py-12" style={{background:theme.sectionAlt,borderTop:`1px solid ${theme.border}`,borderBottom:`1px solid ${theme.border}`}}>
         <Reveal>
-          <p className="text-center text-[13px] italic mb-12" style={{color:theme.accent}}>
-            together with <span style={{fontWeight:600}}>schools</span>, <span style={{fontWeight:600}}>companies</span> and <span style={{fontWeight:600}}>NGOs</span>
-          </p>
+          <div className="text-center mb-8">
+            <p className="text-[10px] font-semibold uppercase tracking-widest mb-2" style={{color:theme.muted}}>Our partners</p>
+            <h2 className="text-[28px] md:text-[34px] font-black tracking-tight" style={{color:theme.text}}>Partner directory</h2>
+          </div>
         </Reveal>
 
-        {([
-          { type:"School"  as PartnerType, label:"Schools",   color:typeConfig["School"].color,  dur:20, dir:"l" as const },
-          { type:"Company" as PartnerType, label:"Companies", color:typeConfig["Company"].color, dur:26, dir:"r" as const },
-          { type:"NGO"     as PartnerType, label:"NGOs",      color:typeConfig["NGO"].color,     dur:22, dir:"l" as const },
-        ]).map((row, rowIdx)=>{
-          const rowPartners = partners.filter(p=>
-            p.type===row.type||(row.type==="NGO"&&p.type==="University"));
-          const MIN_ITEMS = 14; const times = Math.ceil(MIN_ITEMS / Math.max(rowPartners.length,1)); const half = Array.from({length:times},()=>rowPartners).flat(); const looped = [...half,...half];
-          const cfg = typeConfig[row.type];
-          const isLast = rowIdx===2;
+        {/* Search + Tabs */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+          {/* Search */}
+          <div className="relative">
+            <Icon.Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" />
+            <input
+              type="text"
+              placeholder="Search by name or city..."
+              value={searchQuery}
+              onChange={e=>setSearchQuery(e.target.value)}
+              onFocus={()=>setSearchFocused(true)}
+              onBlur={()=>setSearchFocused(false)}
+              className="glass-input rounded-full pl-9 pr-4 py-2 text-[13px]"
+              style={{
+                background:theme.inputBg,
+                border:`1px solid ${searchFocused?theme.accent:theme.border}`,
+                color:theme.text,
+                width:220,
+                boxShadow:searchFocused?`0 0 0 3px ${theme.accentGlow}`:"none",
+              }}
+            />
+            {searchQuery&&(
+              <button onClick={()=>setSearchQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2" style={{color:theme.muted}}>
+                <Icon.X className="w-3.5 h-3.5"/>
+              </button>
+            )}
+          </div>
 
-          const LogoCard = ({p}:{p:Partner})=>(
-            <div className="flex flex-col items-center gap-1.5 shrink-0" style={{margin:"0 20px"}}>
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl overflow-hidden">
-                <MultiSourceImg sources={p.logoSources} alt={p.name} initials={p.initials}
-                  color={cfg.color} gradient={cfg.gradient} border={cfg.border} isDark={isDark}
-                  style={{width:56,height:56,borderRadius:12}}/>
-              </div>
-              <span className="text-[10px] font-medium text-center leading-tight" style={{color:theme.muted,maxWidth:72}}>
-                {p.name.split(" ").slice(0,2).join(" ")}
-              </span>
-            </div>
-          );
-
-          return (
-            <div key={row.label}>
-              <Reveal delay={rowIdx*0.1}>
-                <div className="eco-row relative overflow-hidden" style={{
-                  height:96,
-                  WebkitMaskImage:"linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)",
-                  maskImage:"linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)",
+          {/* Tabs */}
+          <div className="flex items-center gap-1 rounded-full p-1" style={{background:theme.card,border:`1px solid ${theme.border}`}}>
+            {tabs.map(tab=>(
+              <button key={tab} onClick={()=>setActiveTab(tab)}
+                className="segmented-tab rounded-full px-4 py-1.5 text-[12px] font-semibold"
+                style={{
+                  background:activeTab===tab?theme.accent:"transparent",
+                  color:activeTab===tab?"#fff":theme.muted,
+                  transition:"background 0.2s,color 0.2s",
                 }}>
-                  <div className={`eco-track eco-track-${row.dir}`} style={{["--dur" as string]:`${row.dur}s`,height:"100%"}}>
-                    {looped.map((p,i)=><LogoCard key={`${p.id}-${i}`} p={p}/>)}
-                  </div>
+                {tab}
+              </button>
+            ))}
+          </div>
+        </div>
 
-                  {/* Center hub Ã¢â‚¬â€ icon only, label rendered outside */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center gap-1"
-                    style={{width:100}}>
-
-                    <motion.div whileHover={{scale:1.08}}
-                      transition={{type:"spring",stiffness:260,damping:18}}
-                      className="relative flex h-[72px] w-[72px] items-center justify-center rounded-full border-2"
-                      style={{
-                        background:theme.pageBg,
-                        borderColor:`${row.color}80`,
-                        boxShadow:`0 0 0 10px ${theme.pageBg}, 0 0 28px ${row.color}40`,
-                      }}>
-                      <motion.div className="absolute rounded-full pointer-events-none"
-                        animate={{scale:[1,1.6,1],opacity:[0.5,0,0.5]}}
-                        transition={{duration:2.4,repeat:Infinity,ease:"easeInOut"}}
-                        style={{width:72,height:72,border:`1.5px solid ${row.color}`,borderRadius:"50%"}}/>
-                      <motion.span animate={{rotate:[0,8,-8,0],scale:[1,1.12,1]}}
-                        transition={{duration:4,repeat:Infinity,ease:"easeInOut",delay:rowIdx*0.8}}
-                        style={{color:row.color}}>
-                        <cfg.IconEl className="w-7 h-7"/>
-                      </motion.span>
-                    </motion.div>
-                    <div className="text-[11px] font-bold" style={{color:row.color}}>{row.label}</div>
-                  </div>
-                </div>
-              </Reveal>
-
-              {/* vertical connector */}
-              {!isLast&&(
-                <div className="flex justify-center my-3">
-                  <div className="flex flex-col items-center gap-1">
-                    {[0,1,2].map(i=>(
-                      <div key={i} className="w-[2px] h-[6px] rounded-full" style={{background:theme.border}}/>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          );
-        })}
-
-        <Reveal delay={0.2}>
-          <p className="text-center text-[13px] italic mt-12" style={{color:theme.accent}}>
-            with focus on <span style={{fontWeight:600}}>building lasting SDG impact</span> for all
-          </p>
-        </Reveal>
+        {/* Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          <AnimatePresence mode="popLayout">
+            {filtered.map((partner,i)=>(
+              <motion.div key={partner.id}
+                layout
+                initial={{opacity:0,scale:0.92}}
+                animate={{opacity:1,scale:1}}
+                exit={{opacity:0,scale:0.88}}
+                transition={{duration:0.25,delay:i*0.04}}
+              >
+                <PartnerCard partner={partner} onSelect={()=>setSelected(partner)} theme={theme} isDark={isDark}/>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+          {filtered.length===0&&(
+            <div className="col-span-full py-16 text-center text-[14px]" style={{color:theme.muted}}>No partners found.</div>
+          )}
+        </div>
       </section>
 
       {/* -- PARTNER WITH US -- */}
@@ -1223,12 +1241,12 @@ export default function PartnersPage() {
               <span style={{background:`linear-gradient(135deg,${theme.accent},#818cf8)`,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>StepUp For SDG</span>
             </h2>
             <p className="mx-auto max-w-[520px] text-[16px] leading-relaxed" style={{color:theme.muted}}>
-              Whether you&apos;re a school, NGO, company or volunteer ï¿½ there&apos;s a place for you in building a future where every child creates real-world impact.
+              Whether you&apos;re a school, NGO, company or volunteer � there&apos;s a place for you in building a future where every child creates real-world impact.
             </p>
           </Reveal>
         </div>
 
-        {/* Audience cards ï¿½ immersive color-wash style */}
+        {/* Audience cards � immersive color-wash style */}
         <div className="relative z-10 px-6 md:px-10 pb-10">
           <div className="grid gap-5 md:grid-cols-3 max-w-6xl mx-auto">
             {audienceCards.map((card,idx)=>{
@@ -1280,7 +1298,7 @@ export default function PartnersPage() {
           </div>
         </div>
 
-        {/* Partnership models ï¿½ large immersive cards */}
+        {/* Partnership models � large immersive cards */}
         <div className="relative z-10 px-6 md:px-10 pb-10 max-w-6xl mx-auto">
           <Reveal delay={0.1}>
             <div className="flex items-center gap-3 mb-6">
@@ -1335,7 +1353,7 @@ export default function PartnersPage() {
               }}>
               Work with us <Icon.Arrow className="w-5 h-5"/>
             </motion.a>
-            <p className="mt-3 text-[12px] text-center" style={{color:theme.dim}}>No commitment required ï¿½ We&apos;ll reach out within 48 hours</p>
+            <p className="mt-3 text-[12px] text-center" style={{color:theme.dim}}>No commitment required � We&apos;ll reach out within 48 hours</p>
           </Reveal>
         </div>
       </section>
