@@ -38,7 +38,7 @@ const metadata = {
 
 export default function AboutPage() {
   return (
-    <div style={{ background: "#f0f4ff" }}>
+    <div style={{ background: "linear-gradient(160deg, #e8f5e9 0%, #f1f8f1 30%, #f7fbf7 60%, #ffffff 100%)" }}>
       {/* 1. Hero */}
       <section className="relative overflow-hidden min-h-[88vh] flex items-center px-6 py-16">
         {/* soft light blobs */}
@@ -160,18 +160,12 @@ export default function AboutPage() {
                   {/* top accent bar */}
                   <div className="h-1 w-12 rounded-full" style={{ background: "linear-gradient(90deg,#155dfc,#00c2ff)" }} />
 
-                  <div className="flex items-start gap-4">
-                    {/* icon */}
-                    <div className="shrink-0 h-14 w-14 rounded-2xl flex items-center justify-center text-2xl shadow-md" style={{ background: "linear-gradient(135deg,#155dfc,#00c2ff)" }}>
-                      👁️
-                    </div>
-                    <div>
+                  <div>
                       <p className="text-xs font-semibold uppercase tracking-widest text-[#155dfc]">Our Vision</p>
                       <h3 className="mt-1 font-display text-xl font-bold text-[#0d1b3e] leading-snug">
                         Empowering Every Learner to Build a Better Tomorrow
                       </h3>
                     </div>
-                  </div>
 
                   <div className="flex flex-col gap-3 text-[#4a5980] text-sm leading-relaxed">
                     <p>We envision a future where every child, regardless of geography, income, or background, has equal access to quality education, technology, and opportunities that unlock their full potential.</p>
@@ -193,18 +187,12 @@ export default function AboutPage() {
                   {/* top accent bar */}
                   <div className="h-1 w-12 rounded-full" style={{ background: "linear-gradient(90deg,#00c2ff,#00d084)" }} />
 
-                  <div className="flex items-start gap-4">
-                    {/* icon */}
-                    <div className="shrink-0 h-14 w-14 rounded-2xl flex items-center justify-center text-2xl shadow-md" style={{ background: "linear-gradient(135deg,#00c2ff,#00d084)" }}>
-                      🎯
-                    </div>
-                    <div>
+                  <div>
                       <p className="text-xs font-semibold uppercase tracking-widest text-[#00a89a]">Our Mission</p>
                       <h3 className="mt-1 font-display text-xl font-bold text-[#0d1b3e] leading-snug">
                         Transforming Partnerships into Measurable Educational Impact
                       </h3>
                     </div>
-                  </div>
 
                   <div className="flex flex-col gap-3 text-[#4a5980] text-sm leading-relaxed">
                     <p>Our mission is to connect schools, NGOs, companies, volunteers, and communities through one collaborative platform that enables transparent educational initiatives, innovation, and measurable social impact.</p>
@@ -225,126 +213,121 @@ export default function AboutPage() {
       </section>
 
       {/* 3. Five Pillars */}
-      <section id="5p" className="relative px-6 py-24 scroll-mt-20 overflow-hidden">
+      <section id="5p" className="relative px-6 py-20 scroll-mt-20 overflow-hidden">
+        {/* decorative leaves top-left */}
+        <svg aria-hidden="true" className="pointer-events-none absolute top-4 left-4 w-20 opacity-60" viewBox="0 0 100 100" fill="none">
+          <path d="M15 85 Q10 40 55 10 Q80 5 85 15 Q90 25 60 35 Q35 45 25 75 Z" fill="#4C9F38" opacity="0.7"/>
+          <path d="M8 92 Q5 55 40 25 Q20 60 18 88 Z" fill="#4C9F38" opacity="0.4"/>
+        </svg>
+        {/* decorative leaves top-right */}
+        <svg aria-hidden="true" className="pointer-events-none absolute top-4 right-4 w-20 opacity-50" viewBox="0 0 100 100" fill="none">
+          <path d="M85 85 Q90 40 45 10 Q20 5 15 15 Q10 25 40 35 Q65 45 75 75 Z" fill="#b2dfdb" opacity="0.8"/>
+          <path d="M92 92 Q95 55 60 25 Q80 60 82 88 Z" fill="#80cbc4" opacity="0.5"/>
+        </svg>
 
-        <div className="relative mx-auto max-w-6xl">
-
+        <div className="relative mx-auto max-w-7xl">
           {/* heading */}
           <FadeUp>
-            <div className="text-center mb-16">
-              <span className="inline-block rounded-full border border-[rgba(76,159,56,0.3)] bg-[rgba(76,159,56,0.08)] px-4 py-1 text-xs font-semibold uppercase tracking-widest text-[#4C9F38]">5P Model</span>
-              <h2 className="mt-4 font-display text-4xl md:text-5xl font-black text-[#0d1b3e] leading-tight">
-                Five Pillars of{" "}
-                <span className="relative inline-block">
-                  Sustainable Impact
-                  <svg aria-hidden="true" className="absolute -bottom-1 left-0 w-full" viewBox="0 0 380 10" fill="none">
-                    <path d="M2 7 Q95 1 190 6 Q285 11 378 4" stroke="#4C9F38" strokeWidth="4" strokeLinecap="round" fill="none"/>
-                  </svg>
-                </span>
+            <div className="text-center mb-12">
+              <h2 className="font-display text-4xl md:text-5xl font-black text-[#0d1b3e] leading-tight">
+                The 5 Pillars<br/>That Build Our Future
               </h2>
-              <p className="mt-4 text-[#4a5980] max-w-xl mx-auto text-sm leading-relaxed">
-                Our work is grounded in the United Nations&apos; 5P framework — a holistic approach to sustainable development that leaves no one behind.
+              <p className="mt-4 text-[#6b7a99] max-w-sm mx-auto text-[15px] leading-relaxed">
+                The Sustainable Development Goals are built on<br/>5 interconnected pillars.
               </p>
             </div>
           </FadeUp>
 
-          {/* 5 flip cards — 2 row layout: 3 top + 2 bottom centered */}
-          <style>{`
-            .flip-card { perspective: 1000px; }
-            .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
-            .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
-            .flip-card-front, .flip-card-back { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 1.5rem; overflow: hidden; }
-            .flip-card-back { transform: rotateY(180deg); }
-          `}</style>
-
-          <div className="flex flex-col gap-6">
-            {/* row 1 */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  num: "01", title: "People", emoji: "👥",
-                  color: "#155DFC", grad: "linear-gradient(135deg,#155DFC,#00C2FF)",
-                  tag: "Inclusive Education",
-                  desc: "Empowering every individual — students, teachers, parents and communities — to participate actively in the education ecosystem and drive inclusive, lifelong learning.",
-                },
-                {
-                  num: "02", title: "Planet", emoji: "🌍",
-                  color: "#4C9F38", grad: "linear-gradient(135deg,#4C9F38,#26BDE2)",
-                  tag: "Environmental Action",
-                  desc: "Embedding environmental responsibility into every programme — from eco-friendly school infrastructure to climate literacy curricula that prepare students for a sustainable future.",
-                },
-                {
-                  num: "03", title: "Prosperity", emoji: "📈",
-                  color: "#E86A00", grad: "linear-gradient(135deg,#E86A00,#FFB070)",
-                  tag: "Economic Empowerment",
-                  desc: "Ensuring education investments generate measurable economic returns for communities — through skill-building, employment pathways, and entrepreneurship programmes for youth.",
-                },
-              ].map(({ num, title, emoji, color, grad, tag, desc }) => (
-                <FadeUp key={title}>
-                  <div className="flip-card h-44" style={{ boxShadow: `0 8px 32px ${color}18` }}>
-                    <div className="flip-card-inner h-full">
-                      {/* Front */}
-                      <div className="flip-card-front flex flex-col" style={{ background: grad }}>
-                        <span className="pointer-events-none absolute top-1 right-3 font-black text-[3rem] leading-none text-white opacity-10 select-none">{num}</span>
-                        <div className="flex flex-col items-center justify-center h-full gap-2 p-4">
-                          <div className="h-10 w-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-2xl shadow-lg border border-white/30">{emoji}</div>
-                          <h3 className="font-display text-lg font-black text-white">{title}</h3>
-                          <span className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold bg-white/20 text-white border border-white/30">{tag}</span>
-                        </div>
-                      </div>
-                      {/* Back */}
-                      <div className="flip-card-back flex flex-col items-center justify-center gap-2 p-4" style={{ background: grad }}>
-                        <span className="text-xl">{emoji}</span>
-                        <h3 className="font-display text-sm font-black text-white">{title}</h3>
-                        <p className="text-[11px] text-white/90 leading-relaxed text-center">{desc}</p>
-                        <div className="h-1 w-8 rounded-full bg-white/40" />
-                      </div>
-                    </div>
-                  </div>
-                </FadeUp>
-              ))}
-            </div>
-
-            {/* row 2 — centered */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:w-2/3 mx-auto">
-              {[
-                {
-                  num: "04", title: "Peace", emoji: "☮️",
-                  color: "#8B5CF6", grad: "linear-gradient(135deg,#8B5CF6,#C4B5FD)",
-                  tag: "Safe Spaces",
-                  desc: "Fostering inclusive, safe learning environments that celebrate diversity, resolve conflict through dialogue, and build the social cohesion necessary for lasting community well-being.",
-                },
-                {
-                  num: "05", title: "Partnership", emoji: "🤝",
-                  color: "#06B6D4", grad: "linear-gradient(135deg,#06B6D4,#0EA5E9)",
-                  tag: "Collaboration",
-                  desc: "Building transparent, accountable alliances between schools, NGOs, corporations and governments — because lasting impact requires every stakeholder working toward a shared goal.",
-                },
-              ].map(({ num, title, emoji, color, grad, tag, desc }) => (
-                <FadeUp key={title} delay={80}>
-                  <div className="flip-card h-44" style={{ boxShadow: `0 8px 32px ${color}18` }}>
-                    <div className="flip-card-inner h-full">
-                      {/* Front */}
-                      <div className="flip-card-front flex flex-col" style={{ background: grad }}>
-                        <span className="pointer-events-none absolute top-1 right-3 font-black text-[3rem] leading-none text-white opacity-10 select-none">{num}</span>
-                        <div className="flex flex-col items-center justify-center h-full gap-2 p-4">
-                          <div className="h-10 w-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-2xl shadow-lg border border-white/30">{emoji}</div>
-                          <h3 className="font-display text-lg font-black text-white">{title}</h3>
-                          <span className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold bg-white/20 text-white border border-white/30">{tag}</span>
-                        </div>
-                      </div>
-                      {/* Back */}
-                      <div className="flip-card-back flex flex-col items-center justify-center gap-2 p-4" style={{ background: grad }}>
-                        <span className="text-xl">{emoji}</span>
-                        <h3 className="font-display text-sm font-black text-white">{title}</h3>
-                        <p className="text-[11px] text-white/90 leading-relaxed text-center">{desc}</p>
-                        <div className="h-1 w-8 rounded-full bg-white/40" />
-                      </div>
-                    </div>
-                  </div>
-                </FadeUp>
-              ))}
-            </div>
+          {/* pillar cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            {[
+              {
+                title: "PEOPLE",
+                color: "#2196f3",
+                glow: "rgba(33,150,243,0.18)",
+                border: "rgba(33,150,243,0.35)",
+                desc: "End poverty and hunger in all forms and ensure dignity and equality.",
+                icon: (
+                  <svg width="68" height="68" viewBox="0 0 52 52" fill="none">
+                    <circle cx="26" cy="16" r="8" fill="#2196f3"/>
+                    <ellipse cx="14" cy="13" rx="5.5" ry="5.5" fill="#2196f3" opacity="0.7"/>
+                    <ellipse cx="38" cy="13" rx="5.5" ry="5.5" fill="#2196f3" opacity="0.7"/>
+                    <path d="M6 40c0-8 6-13 8-13h24c2 0 8 5 8 13" fill="#2196f3"/>
+                    <path d="M2 40c0-6 4-10 6-10h8" stroke="#2196f3" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+                    <path d="M50 40c0-6-4-10-6-10h-8" stroke="#2196f3" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+                  </svg>
+                ),
+              },
+              {
+                title: "PLANET",
+                color: "#4caf50",
+                glow: "rgba(76,175,80,0.18)",
+                border: "rgba(76,175,80,0.35)",
+                desc: "Protect the planet's natural resources and climate for future generations.",
+                icon: (
+                  <svg width="68" height="68" viewBox="0 0 52 52" fill="none">
+                    <path d="M26 6 C18 6 10 14 10 26 C10 34 14 40 20 44 C20 44 18 36 22 30 C24 26 28 26 30 22 C32 18 28 12 26 6Z" fill="#4caf50"/>
+                    <path d="M26 6 C34 8 42 16 42 26 C42 36 36 44 26 46 C28 40 32 36 32 30 C32 24 28 22 28 18 C28 14 28 10 26 6Z" fill="#81c784"/>
+                    <path d="M10 26 C14 22 20 22 24 26 C20 30 14 30 10 26Z" fill="#2e7d32"/>
+                  </svg>
+                ),
+              },
+              {
+                title: "PROSPERITY",
+                color: "#ff9800",
+                glow: "rgba(255,152,0,0.18)",
+                border: "rgba(255,152,0,0.35)",
+                desc: "Ensure prosperous and fulfilling lives in harmony with nature.",
+                icon: (
+                  <svg width="68" height="68" viewBox="0 0 52 52" fill="none">
+                    <rect x="6" y="30" width="8" height="16" rx="2" fill="#ff9800"/>
+                    <rect x="18" y="22" width="8" height="24" rx="2" fill="#ff9800"/>
+                    <rect x="30" y="14" width="8" height="32" rx="2" fill="#ff9800"/>
+                    <rect x="42" y="6" width="8" height="40" rx="2" fill="#ff9800"/>
+                  </svg>
+                ),
+              },
+              {
+                title: "PEACE",
+                color: "#9c27b0",
+                glow: "rgba(156,39,176,0.18)",
+                border: "rgba(156,39,176,0.35)",
+                desc: "Foster peaceful, just and inclusive societies free from fear and violence.",
+                icon: (
+                  <svg width="68" height="68" viewBox="0 0 52 52" fill="none">
+                    <path d="M26 8 C22 6 16 8 14 14 C12 20 16 26 20 28 L26 44 L32 28 C36 26 40 20 38 14 C36 8 30 6 26 8Z" fill="#9c27b0"/>
+                    <path d="M26 8 C24 12 22 18 22 26 C22 32 24 38 26 44 C28 38 30 32 30 26 C30 18 28 12 26 8Z" fill="#ce93d8"/>
+                  </svg>
+                ),
+              },
+              {
+                title: "PARTNERSHIP",
+                color: "#e91e8c",
+                glow: "rgba(233,30,140,0.18)",
+                border: "rgba(233,30,140,0.35)",
+                desc: "Strengthen global solidarity through partnerships and collaboration.",
+                icon: (
+                  <svg width="68" height="68" viewBox="0 0 52 52" fill="none">
+                    <path d="M10 30 C10 24 14 20 18 20 C20 20 22 21 24 23 L26 26 L28 23 C30 21 32 20 34 20 C38 20 42 24 42 30 C42 34 40 37 36 40 L26 48 L16 40 C12 37 10 34 10 30Z" fill="#e91e8c"/>
+                    <path d="M26 26 L24 23 C22 21 20 20 18 20 C14 20 10 24 10 30 C10 34 12 37 16 40 L26 48" fill="#f48fb1" opacity="0.6"/>
+                  </svg>
+                ),
+              },
+            ].map(({ title, color, glow, border, desc, icon }, i) => (
+              <FadeUp key={title} delay={i * 80}>
+                <div
+                  className="flex flex-col rounded-2xl bg-white p-8 gap-5 h-full transition-transform hover:-translate-y-1"
+                  style={{
+                    border: `2px solid ${border}`,
+                    boxShadow: `0 8px 32px ${glow}, 0 2px 8px rgba(0,0,0,0.06)`,
+                  }}
+                >
+                  <div>{icon}</div>
+                  <h3 className="font-display text-[18px] font-black tracking-widest" style={{ color }}>{title}</h3>
+                  <p className="text-[15px] leading-relaxed flex-1 text-[#6b7a99]">{desc}</p>
+                </div>
+              </FadeUp>
+            ))}
           </div>
         </div>
       </section>
@@ -498,7 +481,7 @@ export default function AboutPage() {
       </section>
 
       {/* 6. Join Our Mission CTA */}
-      <section id="join" className="px-6 pt-6 pb-16 scroll-mt-20">
+      <section id="join" className="px-6 pt-6 pb-16 scroll-mt-20" style={{ background: "transparent" }}>
         <FadeUp>
           <div className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl p-10 text-center md:p-14" style={{ background: "linear-gradient(135deg,#0d1b3e 0%,#1a2f6e 60%,#0d1b3e 100%)" }}>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-white">
