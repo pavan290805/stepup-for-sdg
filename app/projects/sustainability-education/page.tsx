@@ -314,13 +314,6 @@ export default function SustainabilityEducationPage() {
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:justify-center">
             <Link
               href="/projects/sustainability-education/courses"
-              className="inline-flex items-center justify-center rounded-full border border-[#0fae83] bg-white px-6 py-3 text-sm font-semibold text-[#0fae83] transition hover:bg-[#f0fdf4]"
-            >
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to courses
-            </Link>
-            <Link
-              href="/projects/sustainability-education/courses"
               className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#0fae83] to-[#1f80ff] px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-cyan-500/15 transition hover:opacity-95"
             >
               Get Verified
