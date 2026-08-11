@@ -69,6 +69,7 @@ const projects: Project[] = [
     icon: Sun,
     color: "#FCC30B",
     backgroundImage: "/sdg/ld.png",
+    href: "/projects/sustainability-education",
   },
   {
     name: "Fellowship",
