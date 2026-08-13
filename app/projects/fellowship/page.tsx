@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Award, BadgeCheck, Briefcase, CalendarDays, CheckCircle2, Clock, HeartHandshake, MapPin, Sparkles, Users } from 'lucide-react';
+import { ArrowRight, Award, BadgeCheck, Briefcase, CalendarDays, CheckCircle2, Clock, HeartHandshake, MapPin, Search, Sparkles, Users } from 'lucide-react';
 import { FadeUp } from '@/app/components/site/FadeUp';
 
 const headingFont = '"Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif';
@@ -60,11 +61,75 @@ const INTERNSHIPS: Internship[] = [
   },
 ];
 
+type Opportunity = {
+  id: string;
+  title: string;
+  organization: string;
+  category: string;
+  verified: boolean;
+  location: string;
+  duration: string;
+  closes: string;
+  compensation: string;
+  domain: string;
+};
+
+const OPPORTUNITIES: Opportunity[] = [
+  {
+    id: 'ocean-stewardship',
+    title: 'Ocean Stewardship Fellowship',
+    organization: 'Blue Horizon Network',
+    category: 'FELLOWSHIP',
+    verified: false,
+    location: 'International · Remote',
+    duration: '3–6 months',
+    closes: '9 Apr',
+    compensation: 'Unpaid',
+    domain: 'Ocean & Marine Conservation',
+  },
+  {
+    id: 'circular-cities-design',
+    title: 'Circular Cities Design Intern',
+    organization: 'ReLoop Collective',
+    category: 'INTERNSHIP',
+    verified: true,
+    location: 'Bengaluru, India',
+    duration: '3 months',
+    closes: '17 Apr',
+    compensation: 'Paid',
+    domain: 'Circular Economy',
+  },
+  {
+    id: 'climate-data-policy',
+    title: 'Climate Data & Policy Fellow',
+    organization: 'Terra Nova Institute',
+    category: 'FELLOWSHIP',
+    verified: true,
+    location: 'Remote · India',
+    duration: '6 months',
+    closes: '28 May',
+    compensation: 'Stipend',
+    domain: 'Climate Change',
+  },
+  {
+    id: 'clean-energy-access',
+    title: 'Clean Energy Access Associate',
+    organization: 'Sunrise Commons',
+    category: 'RESEARCH',
+    verified: true,
+    location: 'New Delhi, India',
+    duration: '12 months',
+    closes: '12 Jun',
+    compensation: 'Scholarship',
+    domain: 'Renewable Energy',
+  },
+];
+
 export default function FellowshipPage() {
   const [statement, setStatement] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!statement.trim()) return;
     setSubmitted(true);
@@ -74,353 +139,165 @@ export default function FellowshipPage() {
     <div style={{ background: 'var(--background)', color: 'var(--foreground)' }}>
 
       {/* ── Hero ── */}
-      <section
-        className="relative isolate overflow-hidden text-white"
-        style={{ background: 'var(--navy)' }}
-      >
-        {/* background image */}
-        <div
-          className="absolute inset-0 -z-10"
-          style={{
-            backgroundImage: "url('/sdg/cg.png')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-        {/* overlays */}
-        <div
-          className="absolute inset-0 -z-10"
-          style={{
-            background:
-              'linear-gradient(90deg, rgba(5,11,24,0.96) 0%, rgba(5,11,24,0.82) 40%, rgba(16,29,51,0.42) 100%)',
-          }}
-        />
-        <div
-          className="absolute inset-x-0 bottom-0 h-40 -z-10"
-          style={{
-            background:
-              'linear-gradient(to top, rgba(5,11,24,1) 0%, rgba(5,11,24,0.5) 48%, transparent 100%)',
-          }}
-        />
-
-        <div className="mx-auto max-w-[1460px] px-5 py-20 md:px-8 md:py-28">
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-white/60 transition hover:text-white mb-10"
-          >
-            ← All projects
-          </Link>
-
-          <FadeUp>
-            <p
-              className="text-sm font-semibold uppercase tracking-[0.2em] mb-4"
-              style={{ color: 'var(--gold)' }}
-            >
-              Fellowship Program
-            </p>
-            <h1
-              className="text-[2.8rem] leading-[1.05] text-white md:text-[4.2rem] max-w-3xl"
-              style={{ fontFamily: headingFont }}
-            >
-              Turn a certificate<br />
-              into a{' '}
-              <span style={{ color: 'var(--gold)' }}>fellowship.</span>
+      <section className="bg-[#F8FAF4] text-slate-950">
+        <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 py-16 md:px-8 lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:py-20">
+          <div className="max-w-2xl">
+            <h1 className="mt-6 text-5xl font-bold tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
+              Build your future. <span className="text-[#14532d]">Create real-world impact.</span>
             </h1>
-            <p className="mt-5 max-w-xl text-lg leading-8 text-white/75">
-              The StepUp Fellowship is for certificate holders who want to go further —
-              mentorship, community, and a direct line to internships with our partner organizations.
+            <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl">
+              Find fellowships, internships, and research opportunities with teams shaping a more sustainable world.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <a
+                href="#opportunities"
+                className="inline-flex items-center justify-center rounded-full bg-[#0f3e1f] px-8 py-4 text-sm font-semibold text-white shadow-[0_15px_40px_-25px_rgba(15,23,42,0.3)] transition hover:bg-[#164e28]"
+              >
+                Explore opportunities
+              </a>
               <a
                 href="#apply"
-                className="inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold text-white transition hover:brightness-105"
-                style={{
-                  background: 'var(--cta)',
-                  boxShadow: '0 18px 40px -20px rgba(255,122,0,0.7)',
-                }}
+                className="inline-flex items-center justify-center rounded-full border border-[#0f3e1f] bg-white px-8 py-4 text-sm font-semibold text-[#0f3e1f] transition hover:bg-slate-50"
               >
-                Apply Now <ArrowRight className="h-4 w-4" />
-              </a>
-              <a
-                href="#internships"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/20"
-              >
-                View Internships
+                Post a fellowship
               </a>
             </div>
-          </FadeUp>
-        </div>
-      </section>
-
-      {/* ── Eligibility + Benefits ── */}
-      <section className="mx-auto max-w-[1460px] px-5 py-16 md:px-8 md:py-20">
-        <FadeUp>
-          <div className="grid gap-8 lg:grid-cols-2">
-
-            {/* Eligibility */}
-            <div
-              className="rounded-[24px] p-8"
-              style={{
-                background: 'var(--card)',
-                border: '1px solid var(--border)',
-                boxShadow: '0 22px 50px -30px rgba(21,93,252,0.18)',
-              }}
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div
-                  className="flex h-10 w-10 items-center justify-center rounded-2xl"
-                  style={{ background: 'color-mix(in srgb, var(--electric) 12%, var(--card) 88%)', color: 'var(--electric)' }}
-                >
-                  <CheckCircle2 className="h-5 w-5" />
-                </div>
-                <h2 className="text-xl font-bold" style={{ color: 'var(--foreground)', fontFamily: headingFont }}>
-                  Eligibility
-                </h2>
+            <div className="mt-12 grid max-w-xl grid-cols-3 gap-4 sm:grid-cols-3">
+              <div className="rounded-[28px] bg-white px-6 py-6 text-center shadow-sm">
+                <p className="text-3xl font-semibold text-slate-950">4+</p>
+                <p className="mt-2 text-xs uppercase tracking-[0.28em] text-slate-500">opportunities</p>
               </div>
-              <ul className="space-y-4">
-                {ELIGIBILITY.map(({ icon: Icon, text }, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <Icon className="mt-0.5 h-5 w-5 shrink-0" style={{ color: 'var(--electric)' }} />
-                    <span className="text-sm leading-relaxed" style={{ color: 'var(--muted-text)' }}>{text}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Benefits */}
-            <div
-              className="rounded-[24px] p-8"
-              style={{
-                background: 'var(--card)',
-                border: '1px solid var(--border)',
-                boxShadow: '0 22px 50px -30px rgba(21,93,252,0.18)',
-              }}
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div
-                  className="flex h-10 w-10 items-center justify-center rounded-2xl"
-                  style={{ background: 'color-mix(in srgb, var(--cta) 12%, var(--card) 88%)', color: 'var(--cta)' }}
-                >
-                  <Sparkles className="h-5 w-5" />
-                </div>
-                <h2 className="text-xl font-bold" style={{ color: 'var(--foreground)', fontFamily: headingFont }}>
-                  What you get
-                </h2>
+              <div className="rounded-[28px] bg-white px-6 py-6 text-center shadow-sm">
+                <p className="text-3xl font-semibold text-slate-950">4+</p>
+                <p className="mt-2 text-xs uppercase tracking-[0.28em] text-slate-500">organizations</p>
               </div>
-              <ul className="space-y-4">
-                {BENEFITS.map(({ icon: Icon, text }, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <Icon className="mt-0.5 h-5 w-5 shrink-0" style={{ color: 'var(--cta)' }} />
-                    <span className="text-sm leading-relaxed" style={{ color: 'var(--muted-text)' }}>{text}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="rounded-[28px] bg-white px-6 py-6 text-center shadow-sm">
+                <p className="text-3xl font-semibold text-slate-950">4+</p>
+                <p className="mt-2 text-xs uppercase tracking-[0.28em] text-slate-500">impact domains</p>
+              </div>
             </div>
-
           </div>
-        </FadeUp>
-      </section>
 
-      {/* ── Application Form ── */}
-      <section id="apply" className="mx-auto max-w-[1460px] px-5 pb-16 md:px-8 md:pb-20">
-        <FadeUp>
-          <div
-            className="rounded-[28px] p-8 md:p-10"
-            style={{
-              background: 'var(--card)',
-              border: '1px solid var(--border)',
-              boxShadow: '0 28px 60px -36px rgba(21,93,252,0.22)',
-            }}
-          >
-            <div className="flex items-center gap-3 mb-2">
-              <div
-                className="flex h-10 w-10 items-center justify-center rounded-2xl"
-                style={{ background: 'color-mix(in srgb, var(--electric) 12%, var(--card) 88%)', color: 'var(--electric)' }}
-              >
-                <HeartHandshake className="h-5 w-5" />
-              </div>
-              <h2 className="text-2xl font-bold" style={{ color: 'var(--foreground)', fontFamily: headingFont }}>
-                Apply for the fellowship
-              </h2>
-            </div>
-            <p className="mb-8 text-sm" style={{ color: 'var(--muted-text)' }}>
-              Takes less than 2 minutes. We'll reach out within 3 business days.
-            </p>
-
-            {submitted ? (
-              <div
-                className="flex flex-col items-center gap-3 rounded-2xl py-12 text-center"
-                style={{ background: 'color-mix(in srgb, var(--electric) 6%, var(--card) 94%)' }}
-              >
-                <CheckCircle2 className="h-10 w-10" style={{ color: 'var(--electric)' }} />
-                <p className="text-lg font-semibold" style={{ color: 'var(--foreground)' }}>Application submitted!</p>
-                <p className="text-sm" style={{ color: 'var(--muted-text)' }}>We'll be in touch within 3 business days.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div>
-                  <label
-                    className="mb-2 block text-sm font-semibold"
-                    style={{ color: 'var(--foreground)' }}
-                  >
-                    Statement of interest
-                  </label>
-                  <textarea
-                    value={statement}
-                    onChange={(e) => setStatement(e.target.value)}
-                    placeholder="Tell us which course you completed and why the fellowship interests you..."
-                    rows={5}
-                    required
-                    className="w-full rounded-xl p-4 text-sm outline-none transition focus:ring-2"
-                    style={{
-                      background: 'var(--input)',
-                      border: '1px solid var(--border)',
-                      color: 'var(--foreground)',
-                      fontFamily: 'inherit',
-                      resize: 'vertical',
-                      // @ts-ignore
-                      '--tw-ring-color': 'var(--electric)',
-                    }}
+          <div className="relative mx-auto w-full max-w-2xl lg:ml-auto lg:max-w-[52rem] lg:-mr-16">
+            <div className="relative overflow-visible rounded-[44px] p-5 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.18)] lg:-mr-14">
+              <div className="absolute inset-0 rounded-[40px] border border-[#dce8db]" />
+              <div className="absolute -top-4 -left-4 h-full w-full rounded-[40px] border border-[#d7e6d9] bg-white/0" />
+              <div className="relative overflow-hidden rounded-[34px] border border-[#ebf3ec] bg-white">
+                <div className="relative aspect-[5/4] w-full">
+                  <Image
+                    src="/fellowship.png"
+                    alt="Fellowship image"
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover"
                   />
                 </div>
-                <button
-                  type="submit"
-                  className="inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-sm font-semibold text-white transition hover:brightness-105"
-                  style={{
-                    background: 'var(--electric)',
-                    boxShadow: '0 14px 32px -16px rgba(21,93,252,0.55)',
-                  }}
-                >
-                  Submit application <ArrowRight className="h-4 w-4" />
-                </button>
-              </form>
-            )}
-          </div>
-        </FadeUp>
-      </section>
-
-      {/* ── Internships ── */}
-      <section
-        id="internships"
-        className="py-16 md:py-20"
-        style={{ background: 'color-mix(in srgb, var(--electric) 4%, var(--background) 96%)' }}
-      >
-        <div className="mx-auto max-w-[1460px] px-5 md:px-8">
-          <FadeUp>
-            <p
-              className="text-sm font-semibold uppercase tracking-[0.2em] mb-2"
-              style={{ color: 'var(--gold)' }}
-            >
-              Open Roles
-            </p>
-            <h2
-              className="text-3xl font-bold md:text-4xl mb-2"
-              style={{ color: 'var(--foreground)', fontFamily: headingFont }}
-            >
-              Internships open to fellows
-            </h2>
-            <p className="text-sm mb-10" style={{ color: 'var(--muted-text)' }}>
-              Visible once your fellowship application is approved.
-            </p>
-          </FadeUp>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {INTERNSHIPS.map((role, i) => (
-              <FadeUp key={role.id} delay={i * 80}>
-                <div
-                  className="group flex flex-col rounded-[22px] p-6 transition-all duration-300 hover:-translate-y-1.5"
-                  style={{
-                    background: 'var(--card)',
-                    border: '1px solid var(--border)',
-                    boxShadow: '0 18px 40px -28px rgba(21,93,252,0.18)',
-                  }}
-                >
-                  {/* SDG badge + location */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span
-                      className="inline-flex items-center justify-center rounded-lg text-xs font-bold text-white"
-                      style={{ background: role.sdgColor, width: 32, height: 32 }}
-                    >
-                      {role.sdgNumber}
-                    </span>
-                    <span
-                      className="flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium"
-                      style={{
-                        background: 'color-mix(in srgb, var(--electric) 8%, var(--card) 92%)',
-                        color: 'var(--electric)',
-                      }}
-                    >
-                      <MapPin className="h-3 w-3" />
-                      {role.location}
-                    </span>
-                  </div>
-
-                  <h3 className="text-base font-bold mb-1" style={{ color: 'var(--foreground)' }}>
-                    {role.role}
-                  </h3>
-                  <p className="text-sm mb-4 flex-1" style={{ color: 'var(--muted-text)' }}>
-                    {role.organization}
-                  </p>
-
-                  <div className="flex items-center justify-between mt-auto pt-4" style={{ borderTop: '1px solid var(--border)' }}>
-                    <span className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--muted-text)' }}>
-                      <Clock className="h-3.5 w-3.5" />
-                      {role.duration}
-                    </span>
-                    <button
-                      className="inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-xs font-semibold text-white transition hover:brightness-110"
-                      style={{ background: 'var(--electric)' }}
-                    >
-                      Apply <ArrowRight className="h-3 w-3" />
-                    </button>
-                  </div>
-                </div>
-              </FadeUp>
-            ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── CTA Banner ── */}
-      <section className="mx-auto max-w-[1460px] px-5 py-16 md:px-8 md:py-20">
-        <FadeUp>
-          <div
-            className="rounded-[30px] px-8 py-10 text-white md:px-12 md:py-12"
-            style={{
-              background: 'linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 45%, #0369a1 100%)',
-              boxShadow: '0 28px 60px -36px rgba(29,78,216,0.55)',
-            }}
-          >
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-              <div>
-                <h2
-                  className="text-[2rem] leading-tight md:text-[2.5rem]"
-                  style={{ fontFamily: headingFont }}
-                >
-                  Ready to take the next step?
-                </h2>
-                <p className="mt-2 max-w-xl text-base leading-7 text-white/75">
-                  Join the StepUp Fellowship and turn your learning into real-world impact.
+      <section id="opportunities" className="mx-auto max-w-7xl px-5 pb-20 md:px-8">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_0.5fr] lg:items-end">
+          <div>
+            <h2 className="text-5xl font-bold tracking-tight text-slate-950 sm:text-6xl">
+              Opportunities with purpose built in.
+            </h2>
+          </div>
+          <p className="max-w-xl text-sm leading-7 text-slate-600 lg:text-right">
+            Every listing is a chance to learn, contribute, and move the needle on the issues that matter.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-4 xl:grid-cols-[1.75fr_0.9fr_0.9fr_0.9fr]">
+          <label className="relative block rounded-[18px] border border-slate-200 bg-white px-4 py-4 shadow-sm focus-within:border-slate-900">
+            <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400">
+              <Search className="h-4 w-4" />
+            </span>
+            <input
+              type="search"
+              placeholder="Search roles, organizations, or skills"
+              className="w-full rounded-[18px] border-none bg-transparent pl-11 text-sm text-slate-950 outline-none placeholder:text-slate-400"
+            />
+          </label>
+          <select className="rounded-[18px] border border-slate-200 bg-white px-4 py-4 text-sm text-slate-900 shadow-sm outline-none transition focus:border-slate-900">
+            <option>All domains</option>
+            <option>Ocean & Marine</option>
+            <option>Climate</option>
+          </select>
+          <select className="rounded-[18px] border border-slate-200 bg-white px-4 py-4 text-sm text-slate-900 shadow-sm outline-none transition focus:border-slate-900">
+            <option>All types</option>
+            <option>Fellowship</option>
+            <option>Internship</option>
+            <option>Research</option>
+          </select>
+          <select className="rounded-[18px] border border-slate-200 bg-white px-4 py-4 text-sm text-slate-900 shadow-sm outline-none transition focus:border-slate-900">
+            <option>Closing soon</option>
+            <option>Newest</option>
+            <option>Verified</option>
+          </select>
+        </div>
+
+        <div className="mt-6 flex flex-col gap-2 border-t border-slate-200 pt-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-slate-600">4 opportunities</p>
+          <p className="text-sm text-slate-500">Curated for your impact journey</p>
+        </div>
+
+        <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {OPPORTUNITIES.map((opportunity) => (
+            <article key={opportunity.id} className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+              <div className="flex items-center justify-between gap-4">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-sm font-semibold text-white">
+                  {opportunity.title.split(' ').map((word) => word[0]).slice(0,2).join('')}
+                </span>
+                <button className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-slate-200 text-slate-500 transition hover:bg-slate-100">
+                  <span className="text-xs">☆</span>
+                </button>
+              </div>
+
+              <div className="mt-5 flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-emerald-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-emerald-700">
+                  {opportunity.category}
+                </span>
+                {opportunity.verified && (
+                  <span className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">Verified</span>
+                )}
+              </div>
+
+              <h3 className="mt-4 text-xl font-semibold text-slate-950">{opportunity.title}</h3>
+              <p className="mt-2 text-sm text-slate-500">{opportunity.organization}</p>
+
+              <div className="mt-5 space-y-3 text-sm text-slate-600">
+                <p className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-slate-400" />
+                  {opportunity.location}
+                </p>
+                <p className="flex items-center gap-2">
+                  <Clock className="h-4 w-4 text-slate-400" />
+                  {opportunity.duration}
                 </p>
               </div>
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href="#apply"
-                  className="inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold text-white transition hover:brightness-105"
-                  style={{ background: 'var(--cta)', boxShadow: '0 18px 40px -20px rgba(255,122,0,0.7)' }}
-                >
-                  Apply Now <ArrowRight className="h-4 w-4" />
-                </a>
-                <Link
-                  href="/projects"
-                  className="inline-flex items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/20"
-                >
-                  All Projects
+
+              <div className="mt-6 flex items-center justify-between border-t border-slate-200 pt-4 text-sm text-slate-600">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Closes</p>
+                  <p className="mt-1 font-semibold text-slate-950">{opportunity.closes}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-xs uppercase tracking-[0.2em] text-slate-400">{opportunity.compensation}</p>
+                </div>
+              </div>
+
+              <div className="mt-4 flex items-center justify-between text-sm text-slate-500">
+                <p>{opportunity.domain}</p>
+                <Link href={`/projects/${opportunity.id}`} className="font-semibold text-slate-950 transition hover:text-slate-700">
+                  View details <ArrowRight className="ml-1 inline-block h-4 w-4" />
                 </Link>
               </div>
-            </div>
-          </div>
-        </FadeUp>
+            </article>
+          ))}
+        </div>
       </section>
 
     </div>
