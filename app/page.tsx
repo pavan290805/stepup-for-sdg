@@ -1,10 +1,11 @@
 "use client";
-import { ArrowRight, Users, BookOpen, Globe, Heart, CheckCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { useEffect, useState, useRef } from "react";
 import { FadeUp } from "@/app/components/site/FadeUp";
-import { Counter } from "@/app/components/site/Counter";
+import HeroSection from "@/app/components/home/HeroSection";
+import { CheckCircle } from "lucide-react";
+
 
 const LiveImpactMap = dynamic(
   () => import("@/app/components/site/LiveImpactMap").then((m) => m.default),
@@ -25,12 +26,7 @@ const SDG_GOALS = [
   { num: 10, name: "Reduced Inequalities",color:"#DD1367"},
 ];
 
-const metrics = [
-  { value: 1240,   suffix: "+", label: "Schools Supported",  icon: BookOpen, color: "#155DFC" },
-  { value: 380000, suffix: "+", label: "Students Enrolled",  icon: Users,    color: "#00B050" },
-  { value: 560,    suffix: "+", label: "Projects Completed", icon: Globe,    color: "#00A8A8" },
-  { value: 45000,  suffix: "+", label: "Volunteer Hours",    icon: Heart,    color: "#FF7A00" },
-];
+
 
 const partners = [
   {
@@ -86,293 +82,12 @@ function FloatingBadge({ goal, style }: { goal: typeof SDG_GOALS[0]; style: Reac
   );
 }
 
-/* ── Particle canvas ───────────────────────────────────────────────────────── */
-function ParticleCanvas() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    let animId: number;
-    const resize = () => { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; };
-    resize();
-    window.addEventListener("resize", resize);
-
-    const dots = Array.from({ length: 55 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 1.5 + 0.4,
-      vx: (Math.random() - 0.5) * 0.35,
-      vy: (Math.random() - 0.5) * 0.35,
-    }));
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      dots.forEach(d => {
-        d.x += d.vx; d.y += d.vy;
-        if (d.x < 0 || d.x > canvas.width) d.vx *= -1;
-        if (d.y < 0 || d.y > canvas.height) d.vy *= -1;
-        ctx.beginPath();
-        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(255,255,255,0.45)";
-        ctx.fill();
-      });
-      // connect close dots
-      for (let i = 0; i < dots.length; i++) {
-        for (let j = i + 1; j < dots.length; j++) {
-          const dx = dots[i].x - dots[j].x, dy = dots[i].y - dots[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 110) {
-            ctx.beginPath();
-            ctx.moveTo(dots[i].x, dots[i].y);
-            ctx.lineTo(dots[j].x, dots[j].y);
-            ctx.strokeStyle = `rgba(255,255,255,${0.12 * (1 - dist / 110)})`;
-            ctx.lineWidth = 0.6;
-            ctx.stroke();
-          }
-        }
-      }
-      animId = requestAnimationFrame(draw);
-    };
-    draw();
-    return () => { cancelAnimationFrame(animId); window.removeEventListener("resize", resize); };
-  }, []);
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" style={{ zIndex: 1 }} />;
-}
-
 export default function Home() {
-  const [imgIdx, setImgIdx] = useState(0);
-  const BG = [
-    "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1800&q=85",
-    "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=1800&q=85",
-    "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1800&q=85",
-    "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1800&q=85",
-  ];
-  useEffect(() => {
-    const id = setInterval(() => setImgIdx(n => (n + 1) % BG.length), 6000);
-    return () => clearInterval(id);
-  }, []);
-
   return (
     <>
-      <style>{`
-        @keyframes slowZoom {
-          0%,100% { transform: scale(1); }
-          50%      { transform: scale(1.1); }
-        }
-        @keyframes floatY {
-          0%,100% { transform: translateY(0px); }
-          50%      { transform: translateY(-12px); }
-        }
-        @keyframes floatY2 {
-          0%,100% { transform: translateY(0px); }
-          50%      { transform: translateY(-8px); }
-        }
-        @keyframes fadeUp {
-          from { opacity:0; transform:translateY(30px); }
-          to   { opacity:1; transform:translateY(0); }
-        }
-        @keyframes shimmerText {
-          0%   { background-position: 0% 50%; }
-          100% { background-position: 200% 50%; }
-        }
-        @keyframes pulseDot {
-          0%,100% { transform:scale(1);   opacity:0.7; }
-          50%      { transform:scale(1.4); opacity:1; }
-        }
-        @keyframes slideInLeft {
-          from { opacity:0; transform:translateX(-40px); }
-          to   { opacity:1; transform:translateX(0); }
-        }
-        @keyframes slideInRight {
-          from { opacity:0; transform:translateX(40px); }
-          to   { opacity:1; transform:translateX(0); }
-        }
-        .hero-bg-img { animation: slowZoom 22s ease-in-out infinite; }
-        .badge-float-1 { animation: floatY  5s ease-in-out infinite; }
-        .badge-float-2 { animation: floatY2 7s ease-in-out infinite 1s; }
-        .badge-float-3 { animation: floatY  6s ease-in-out infinite 2s; }
-        .badge-float-4 { animation: floatY2 8s ease-in-out infinite 0.5s; }
-        .badge-float-5 { animation: floatY  5.5s ease-in-out infinite 3s; }
-        .anim-fade-up-1 { animation: fadeUp 0.75s ease both; }
-        .anim-fade-up-2 { animation: fadeUp 0.75s ease 0.15s both; }
-        .anim-fade-up-3 { animation: fadeUp 0.75s ease 0.3s both; }
-        .anim-fade-up-4 { animation: fadeUp 0.75s ease 0.45s both; }
-        .anim-fade-up-5 { animation: fadeUp 0.75s ease 0.6s both; }
-        .anim-slide-left { animation: slideInLeft  0.9s ease 0.2s both; }
-        .anim-slide-right { animation: slideInRight 0.9s ease 0.4s both; }
-        .shimmer-headline {
-          background: linear-gradient(90deg, #fff 0%, #93c5fd 30%, #6ee7b7 60%, #fff 100%);
-          background-size: 200% auto;
-          -webkit-background-clip: text; background-clip: text; color: transparent;
-          animation: shimmerText 4s linear infinite;
-        }
-        .pulse-dot { animation: pulseDot 2.4s ease-in-out infinite; }
-        .stat-card { backdrop-filter: blur(14px); }
-        .btn-glow:hover { box-shadow: 0 0 28px rgba(21,93,252,0.55); }
-        .btn-glow-ghost:hover { box-shadow: 0 0 24px rgba(255,255,255,0.2); }
-        .partner-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .partner-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,0.12); }
-      `}</style>
-
-      {/* ══════════════════════════════════════════════════════════════════
-          HERO — split layout: left copy | right floating SDG badges
-      ══════════════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background slideshow */}
-        <div className="absolute inset-0">
-          {BG.map((src, i) => (
-            <div
-              key={src}
-              className={`absolute inset-[-4%] hero-bg-img`}
-              style={{
-                backgroundImage: `url('${src}')`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                opacity: i === imgIdx ? 1 : 0,
-                transition: "opacity 2.5s ease-in-out",
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Dark overlay — gradient left-heavy to keep right side slightly lighter */}
-        <div className="absolute inset-0" style={{ background: "linear-gradient(105deg, rgba(3,8,22,0.90) 0%, rgba(3,8,22,0.75) 55%, rgba(3,8,22,0.60) 100%)", zIndex: 2 }} />
-
-        {/* Particle network */}
-        <div className="absolute inset-0" style={{ zIndex: 3 }}>
-          <ParticleCanvas />
-        </div>
-
-        {/* Blue left glow */}
-        <div className="absolute pointer-events-none" style={{ width: 640, height: 640, top: "-10%", left: "-12%", background: "radial-gradient(ellipse,rgba(21,93,252,0.28) 0%,transparent 68%)", filter: "blur(70px)", zIndex: 2 }} />
-        {/* Green bottom-right glow */}
-        <div className="absolute pointer-events-none" style={{ width: 500, height: 500, bottom: "-5%", right: "-5%", background: "radial-gradient(ellipse,rgba(0,176,80,0.20) 0%,transparent 68%)", filter: "blur(70px)", zIndex: 2 }} />
-
-        {/* ── MAIN CONTENT ─────────────────────────────────── */}
-        <div className="relative w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-20 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center" style={{ zIndex: 10 }}>
-
-          {/* ── LEFT: Copy ── */}
-          <div className="anim-slide-left">
-            {/* Live badge */}
-            <div className="anim-fade-up-1 inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/8 backdrop-blur-sm px-4 py-2 mb-7">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 pulse-dot" />
-              <span className="text-[11px] font-bold tracking-[0.18em] text-white/75 uppercase">Empowering India's Future</span>
-            </div>
-
-            {/* Headline */}
-            <h1 className="anim-fade-up-2 font-display font-black text-white leading-[1.03] mb-6" style={{ fontSize: "clamp(2.8rem, 5.5vw, 5rem)" }}>
-              Driving{" "}
-              <span className="shimmer-headline">Sustainable</span>
-              <br />
-              Development<br />
-              <span className="shimmer-headline">for Every Child</span>
-            </h1>
-
-            {/* Sub */}
-            <p className="anim-fade-up-3 text-base md:text-lg leading-relaxed mb-8 max-w-xl" style={{ color: "rgba(200,220,245,0.82)" }}>
-              Connecting schools, companies, NGOs and volunteers to build measurable, lasting educational impact across India — aligned with all 17 UN Sustainable Development Goals.
-            </p>
-
-            {/* Trust proof-points */}
-            <div className="anim-fade-up-3 flex flex-col gap-2 mb-8">
-              {["UN SDG Aligned Programs across 6 states", "100% transparent CSR fund tracking", "12,000+ students impacted this year"].map(t => (
-                <div key={t} className="flex items-center gap-2.5 text-sm" style={{ color: "rgba(190,215,240,0.8)" }}>
-                  <CheckCircle className="h-4 w-4 text-emerald-400 flex-shrink-0" />
-                  {t}
-                </div>
-              ))}
-            </div>
-
-            {/* CTAs */}
-            <div className="anim-fade-up-4 flex flex-wrap gap-4 mb-12">
-              <Link
-                href="/work-with-us"
-                className="btn-glow inline-flex items-center gap-2.5 rounded-full font-bold px-7 py-3.5 text-sm text-slate-900 transition"
-                style={{ background: "linear-gradient(90deg,#60a5fa,#34d399)" }}
-              >
-                Work With Us <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/sdg"
-                className="btn-glow-ghost inline-flex items-center gap-2.5 rounded-full border border-white/25 bg-white/8 backdrop-blur-sm text-white font-semibold px-7 py-3.5 text-sm hover:bg-white/15 transition"
-              >
-                Explore SDG Goals <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-
-            {/* Stats bar */}
-            <div className="anim-fade-up-5 grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {metrics.map(m => {
-                const Icon = m.icon;
-                return (
-                  <div key={m.label} className="stat-card rounded-2xl px-3 py-4 text-center border border-white/10 bg-black/25">
-                    <div className="inline-flex items-center justify-center w-8 h-8 rounded-lg mb-2" style={{ background: `${m.color}22` }}>
-                      <Icon className="h-4 w-4" style={{ color: m.color }} />
-                    </div>
-                    <div className="font-display font-black text-xl text-white leading-none">
-                      <Counter to={m.value} suffix={m.suffix} />
-                    </div>
-                    <div className="mt-1 text-[10px] text-white/50 font-medium leading-tight">{m.label}</div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* ── RIGHT: Floating SDG badges visual ── */}
-          <div className="anim-slide-right hidden lg:block relative" style={{ height: 540 }}>
-
-            {/* Central hub circle */}
-            <div className="absolute" style={{ top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 180, height: 180, borderRadius: "50%", background: "radial-gradient(circle,rgba(21,93,252,0.25) 0%,rgba(0,176,80,0.12) 100%)", border: "1.5px solid rgba(255,255,255,0.15)", backdropFilter: "blur(16px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/SDG_LOGO-removebg-preview.png" alt="StepUp SDG" style={{ width: 90, height: 90, objectFit: "contain", filter: "brightness(1.2)" }} />
-              <span className="text-white/60 text-[9px] font-bold tracking-[0.2em] uppercase mt-1">Partnership Hub</span>
-            </div>
-
-            {/* Orbit ring 1 */}
-            <div className="absolute" style={{ top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 340, height: 340, borderRadius: "50%", border: "1px dashed rgba(255,255,255,0.08)" }} />
-            {/* Orbit ring 2 */}
-            <div className="absolute" style={{ top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 490, height: 490, borderRadius: "50%", border: "1px dashed rgba(255,255,255,0.05)" }} />
-
-            {/* Floating SDG badges — arranged around hub */}
-            <FloatingBadge goal={SDG_GOALS[3]} style={{ top: "4%",  left: "28%", zIndex: 5 }} />
-            <FloatingBadge goal={SDG_GOALS[0]} style={{ top: "18%", right: "4%", zIndex: 5 }} />
-            <FloatingBadge goal={SDG_GOALS[2]} style={{ top: "42%", right: "0%", zIndex: 5 }} />
-            <FloatingBadge goal={SDG_GOALS[6]} style={{ bottom: "14%", right: "8%", zIndex: 5 }} />
-            <FloatingBadge goal={SDG_GOALS[4]} style={{ bottom: "2%",  left: "25%", zIndex: 5 }} />
-            <FloatingBadge goal={SDG_GOALS[5]} style={{ bottom: "22%", left: "0%", zIndex: 5 }} />
-            <FloatingBadge goal={SDG_GOALS[1]} style={{ top: "38%", left: "-2%", zIndex: 5 }} />
-            <FloatingBadge goal={SDG_GOALS[7]} style={{ top: "10%", left: "5%", zIndex: 5 }} />
-
-            {/* Animated float wrappers */}
-            <style>{`
-              .absolute:nth-child(4)  { animation: floatY  5.2s ease-in-out infinite; }
-              .absolute:nth-child(5)  { animation: floatY2 6.8s ease-in-out infinite 0.5s; }
-              .absolute:nth-child(6)  { animation: floatY  7s   ease-in-out infinite 1.2s; }
-              .absolute:nth-child(7)  { animation: floatY2 5.5s ease-in-out infinite 2s; }
-              .absolute:nth-child(8)  { animation: floatY  6.2s ease-in-out infinite 0.8s; }
-              .absolute:nth-child(9)  { animation: floatY2 7.5s ease-in-out infinite 1.5s; }
-              .absolute:nth-child(10) { animation: floatY  5.8s ease-in-out infinite 3s; }
-              .absolute:nth-child(11) { animation: floatY2 6.4s ease-in-out infinite 2.5s; }
-            `}</style>
-
-            {/* Connection lines SVG */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 4 }}>
-              <line x1="50%" y1="50%" x2="42%"  y2="8%"  stroke="rgba(96,165,250,0.18)" strokeWidth="1" strokeDasharray="4 6"/>
-              <line x1="50%" y1="50%" x2="88%"  y2="22%" stroke="rgba(52,211,153,0.18)"  strokeWidth="1" strokeDasharray="4 6"/>
-              <line x1="50%" y1="50%" x2="97%"  y2="46%" stroke="rgba(251,191,36,0.18)"  strokeWidth="1" strokeDasharray="4 6"/>
-              <line x1="50%" y1="50%" x2="82%"  y2="82%" stroke="rgba(248,113,113,0.18)" strokeWidth="1" strokeDasharray="4 6"/>
-              <line x1="50%" y1="50%" x2="42%"  y2="95%" stroke="rgba(167,139,250,0.18)" strokeWidth="1" strokeDasharray="4 6"/>
-              <line x1="50%" y1="50%" x2="5%"   y2="80%" stroke="rgba(34,211,238,0.18)"  strokeWidth="1" strokeDasharray="4 6"/>
-              <line x1="50%" y1="50%" x2="2%"   y2="43%" stroke="rgba(74,222,128,0.18)"  strokeWidth="1" strokeDasharray="4 6"/>
-              <line x1="50%" y1="50%" x2="12%"  y2="13%" stroke="rgba(251,146,60,0.18)"  strokeWidth="1" strokeDasharray="4 6"/>
-            </svg>
-          </div>
-        </div>
-
-        {/* Bottom fade to page bg */}
+      <section className="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden pt-20">
+        <HeroSection />
+        <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-50/50 via-transparent to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 h-28 pointer-events-none" style={{ background: "linear-gradient(to bottom, transparent, var(--background))", zIndex: 11 }} />
       </section>
 

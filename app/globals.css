@@ -1,6 +1,5 @@
 @import "tailwindcss" source(none);
 @source ".";
-@source "../src";
 @import "tw-animate-css";
 
 
@@ -149,6 +148,13 @@
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
 }
 
 .space-bg {
