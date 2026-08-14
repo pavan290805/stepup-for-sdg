@@ -57,7 +57,6 @@ const FORM_FEATURES = [
   'Instant access to the introductory SDG lesson',
   '12+ free official UN course pathway',
   'Certificate upload & verification',
-  'Personal learning dashboard',
 ];
 
 export default function SustainabilityEducationPage() {
@@ -80,9 +79,9 @@ export default function SustainabilityEducationPage() {
   }
 
   return (
-    <div className="bg-[#F8FDFF] text-slate-950">
+    <div className="bg-[#f0f9ff] text-slate-950">
       <section className="relative overflow-hidden pt-20 pb-24">
-        <div className="absolute inset-x-0 top-0 h-48 bg-[#E6FBFF]/70" />
+        <div className="absolute inset-x-0 top-0 h-48 bg-[#f0f9ff]" />
         <div className="mx-auto max-w-365 px-5 lg:px-8 relative">
           <div className="grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr]">
             <FadeUp>

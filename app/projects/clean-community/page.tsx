@@ -15,10 +15,8 @@ const STEPS = [
 
 const BENEFITS = [
   'Certificate of participation for every volunteer',
-  'StepUp impact badge added to your school profile',
   'Free waste segregation and clean-drive toolkit',
   'Feature on the StepUp community impact map',
-  'Quarterly waste diversion reports for your institution',
 ];
 
 const STATS = [
@@ -129,10 +127,10 @@ const BLOGS = [
 
 export default function CleanCommunityPage() {
   return (
-    <div className="bg-[#f5f6fa] text-slate-950">
+    <div className="bg-[#f0fdf4] text-slate-950">
 
       {/* Hero */}
-      <section className="bg-white">
+      <section className="bg-[#f0fdf4]">
         <div className="mx-auto flex max-w-7xl flex-col gap-10 px-5 py-16 md:px-8 lg:flex-row lg:items-center lg:justify-between lg:py-20">
           <FadeUp>
             <div className="max-w-2xl">
@@ -160,7 +158,7 @@ export default function CleanCommunityPage() {
 
               <div className="mt-12 grid max-w-xl grid-cols-2 gap-4 sm:grid-cols-4">
                 {STATS.map(({ icon: Icon, value, label }) => (
-                  <div key={label} className="rounded-[24px] bg-[#f5f6fa] px-4 py-5 text-center">
+                  <div key={label} className="rounded-[24px] bg-white/70 px-4 py-5 text-center">
                     <Icon className="mx-auto h-5 w-5 mb-2" style={{ color: GREEN }} />
                     <p className="text-2xl font-bold text-slate-950">{value}</p>
                     <p className="mt-1 text-[10px] uppercase tracking-[0.22em] text-slate-500">{label}</p>
@@ -201,7 +199,7 @@ export default function CleanCommunityPage() {
           {STEPS.map(({ step, title, desc }, i) => (
             <FadeUp key={step} delay={i * 80}>
               <div className="rounded-[28px] border border-slate-200 bg-white p-8 shadow-sm transition hover:shadow-md">
-                <span className="rounded-full border border-slate-200 bg-[#f5f6fa] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-500">
+                <span className="rounded-full border border-slate-200 bg-white/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-500">
                   STEP {step}
                 </span>
                 <div className="mt-6 flex h-12 w-12 items-center justify-center rounded-2xl" style={{ background: GREEN_LIGHT }}>
@@ -271,7 +269,7 @@ export default function CleanCommunityPage() {
                     <p className="text-[10px] uppercase tracking-[0.2em] text-slate-400">Availability</p>
                     <p className="mt-0.5 font-semibold text-slate-950">{ev.spots}</p>
                   </div>
-                  <span className="rounded-full border border-slate-200 bg-[#f5f6fa] px-3 py-1 text-[11px] font-semibold text-slate-500">{ev.tag}</span>
+                  <span className="rounded-full border border-slate-200 bg-white/70 px-3 py-1 text-[11px] font-semibold text-slate-500">{ev.tag}</span>
                 </div>
                 <div className="mt-4">
                   <Link
@@ -357,10 +355,9 @@ export default function CleanCommunityPage() {
               </p>
               <div className="mt-8 space-y-4">
                 {[
-                  { label: 'Who can join',  value: 'Schools, colleges, NGOs, resident groups' },
-                  { label: 'Cost',          value: 'Free to register' },
-                  { label: 'SDGs aligned',  value: 'SDG 13 · SDG 15' },
-                  { label: 'Timeline',      value: 'Toolkit delivered within 1 week' },
+                  { label: 'Who can join', value: 'Schools, colleges, NGOs, resident groups' },
+                  { label: 'SDGs aligned', value: 'SDG 13 · SDG 15' },
+                  { label: 'Timeline',     value: 'Toolkit delivered within 1 week' },
                 ].map(({ label, value }) => (
                   <div key={label} className="flex items-start justify-between gap-4 border-b border-slate-100 pb-4 last:border-0 last:pb-0">
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">{label}</p>

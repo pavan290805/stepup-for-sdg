@@ -193,12 +193,12 @@ export default function FellowshipPage() {
   }, [showModal]);
 
   return (
-    <div className="bg-white text-slate-950">
+    <div className="bg-[#fdfcf9] text-slate-950">
 
       {showModal && <PostFellowshipForm onClose={() => setShowModal(false)} />}
 
       {/* Hero */}
-      <section className="bg-[#f5f6fa] text-slate-950">
+      <section className="bg-[#fdfcf9] text-slate-950">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 py-16 md:px-8 lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:py-20">
           <div className="max-w-2xl">
             <h1 className="mt-6 text-5xl font-bold tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
@@ -243,7 +243,7 @@ export default function FellowshipPage() {
       </section>
 
       {/* Opportunities */}
-      <section id="opportunities" className="mx-auto max-w-7xl px-5 pb-20 md:px-8">
+      <section id="opportunities" className="mx-auto max-w-7xl px-5 pb-20 md:px-8 bg-[#fdfcf9]">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_0.5fr] lg:items-end">
           <h2 className="text-5xl font-bold tracking-tight text-slate-950 sm:text-6xl">Opportunities with purpose built in.</h2>
           <p className="max-w-xl text-sm leading-7 text-slate-600 lg:text-right">Every listing is a chance to learn, contribute, and move the needle on the issues that matter.</p>

@@ -15,9 +15,7 @@ const STEPS = [
 
 const BENEFITS = [
   'Reduce dependence on municipal water supply',
-  'Lower water bills for schools and communities',
   'Hands-on SDG 6 learning for students',
-  'Certificate of participation for your institution',
   'Quarterly impact reports with water saved data',
 ];
 
@@ -129,10 +127,10 @@ const STATS = [
 
 export default function WaterConservationPage() {
   return (
-    <div className="bg-[#f5f6fa] text-slate-950">
+    <div className="bg-[#f0f9ff] text-slate-950">
 
       {/* Hero */}
-      <section className="bg-white">
+      <section className="bg-[#f0f9ff]">
         <div className="mx-auto flex max-w-7xl flex-col gap-10 px-5 py-16 md:px-8 lg:flex-row lg:items-center lg:justify-between lg:py-20">
           <FadeUp>
             <div className="max-w-2xl">
@@ -160,7 +158,7 @@ export default function WaterConservationPage() {
 
               <div className="mt-12 grid max-w-xl grid-cols-2 gap-4 sm:grid-cols-4">
                 {STATS.map(({ icon: Icon, value, label }) => (
-                  <div key={label} className="rounded-[24px] bg-[#f5f6fa] px-4 py-5 text-center">
+                  <div key={label} className="rounded-[24px] bg-white/70 px-4 py-5 text-center">
                     <Icon className="mx-auto h-5 w-5 mb-2" style={{ color: BLUE }} />
                     <p className="text-2xl font-bold text-slate-950">{value}</p>
                     <p className="mt-1 text-[10px] uppercase tracking-[0.22em] text-slate-500">{label}</p>
@@ -185,30 +183,6 @@ export default function WaterConservationPage() {
                     alt="Water conservation - rainwater harvesting"
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                   />
-                  {/* Gradient overlay at bottom */}
-                  <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0369a1]/70 to-transparent" />
-                  {/* Bottom label */}
-                  <div className="absolute bottom-5 left-5 right-5">
-                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/80">StepUp Initiative</p>
-                    <p className="mt-0.5 text-base font-bold text-white">Rainwater Harvesting Program</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating SDG badge */}
-              <div className="absolute -right-4 -top-4 overflow-hidden rounded-2xl border-2 border-white shadow-lg">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/sdg/goal-06.png" alt="SDG 6" width={72} height={72} style={{ display: 'block', width: 72, height: 72 }} />
-              </div>
-
-              {/* Floating stat pill */}
-              <div className="absolute -bottom-4 -left-4 flex items-center gap-3 rounded-2xl border border-[#bae6fd] bg-white px-4 py-3 shadow-lg">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl" style={{ background: '#e0f2fe' }}>
-                  <Droplets className="h-4 w-4" style={{ color: BLUE }} />
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-slate-950">2M+ Litres</p>
-                  <p className="text-[10px] uppercase tracking-[0.18em] text-slate-400">Harvested</p>
                 </div>
               </div>
             </div>
@@ -217,7 +191,7 @@ export default function WaterConservationPage() {
       </section>
 
       {/* How it works */}
-      <section id="how-it-works" className="mx-auto max-w-7xl px-5 py-20 md:px-8">
+      <section id="how-it-works" className="mx-auto max-w-7xl px-5 py-20 md:px-8 bg-[#f0f9ff]">
         <FadeUp>
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.28em]" style={{ color: BLUE }}>How it works</p>
@@ -388,9 +362,8 @@ export default function WaterConservationPage() {
               <div className="mt-8 space-y-4">
                 {[
                   { label: 'Who can join', value: 'Schools, colleges, NGOs, community groups' },
-                  { label: 'Cost', value: 'Contact us for pricing' },
                   { label: 'SDGs aligned', value: 'SDG 6 · SDG 13' },
-                  { label: 'Timeline', value: 'Assessment within 2 weeks of registration' },
+                  { label: 'Timeline', value: 'Assessment within 2 weeks' },
                 ].map(({ label, value }) => (
                   <div key={label} className="flex items-start justify-between gap-4 border-b border-slate-100 pb-4 last:border-0 last:pb-0">
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">{label}</p>
