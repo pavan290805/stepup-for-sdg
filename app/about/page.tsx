@@ -38,7 +38,7 @@ const metadata = {
 
 export default function AboutPage() {
   return (
-    <div style={{ background: "linear-gradient(160deg, #e8f5e9 0%, #f1f8f1 30%, #f7fbf7 60%, #ffffff 100%)" }}>
+    <div style={{ background: "linear-gradient(160deg, #f0faf0 0%, #f7fbf7 40%, #fafffe 70%, #ffffff 100%)" }}>
       {/* 1. Hero */}
       <section className="relative overflow-hidden min-h-[88vh] flex items-center px-6 py-16">
         {/* soft light blobs */}
