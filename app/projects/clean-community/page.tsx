@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle2, Leaf, Globe2, MapPin, Users, Calendar, Recycle } from 'lucide-react';
 import { FadeUp } from '@/app/components/site/FadeUp';
@@ -176,35 +175,13 @@ export default function CleanCommunityPage() {
               <div className="absolute -inset-3 rounded-[48px] border border-[#bbf7d0]/60" />
               <div className="absolute -inset-6 rounded-[56px] border border-[#bbf7d0]/30" />
               <div className="relative overflow-hidden rounded-[40px] border border-[#bbf7d0] bg-white shadow-[0_40px_100px_-40px_rgba(63,126,68,0.22)]">
-                <div className="relative aspect-[4/3] w-full">
-                  <Image
-                    src="/sdg/plant.png"
+                <div className="relative w-full" style={{ aspectRatio: '4/3' }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&auto=format&fit=crop"
                     alt="Clean Community Initiative"
-                    fill
-                    sizes="(min-width: 1024px) 42vw, 90vw"
-                    className="object-cover"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                   />
-                  <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#3F7E44]/70 to-transparent" />
-                  <div className="absolute bottom-5 left-5 right-5">
-                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/80">StepUp Initiative</p>
-                    <p className="mt-0.5 text-base font-bold text-white">Clean Community Drive Program</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating SDG badge */}
-              <div className="absolute -right-4 -top-4 overflow-hidden rounded-2xl border-2 border-white shadow-lg">
-                <Image src="/sdg/goal-13.png" alt="SDG 13" width={72} height={72} className="block" />
-              </div>
-
-              {/* Floating stat pill */}
-              <div className="absolute -bottom-4 -left-4 flex items-center gap-3 rounded-2xl border border-[#bbf7d0] bg-white px-4 py-3 shadow-lg">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl" style={{ background: GREEN_LIGHT }}>
-                  <Recycle className="h-4 w-4" style={{ color: GREEN }} />
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-slate-950">48T+ Waste</p>
-                  <p className="text-[10px] uppercase tracking-[0.18em] text-slate-400">Collected</p>
                 </div>
               </div>
             </div>

@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle2, Droplets, Globe2, MapPin, School, Users, Calendar } from 'lucide-react';
 import { FadeUp } from '@/app/components/site/FadeUp';
@@ -179,13 +178,12 @@ export default function WaterConservationPage() {
 
               {/* Main image card */}
               <div className="relative overflow-hidden rounded-[40px] border border-[#bae6fd] bg-white shadow-[0_40px_100px_-40px_rgba(3,105,161,0.22)]">
-                <div className="relative aspect-[4/3] w-full">
-                  <Image
-                    src="/sdg/RW.png"
-                    alt="Rainwater harvesting"
-                    fill
-                    sizes="(min-width: 1024px) 42vw, 90vw"
-                    className="object-cover"
+                <div className="relative w-full" style={{ aspectRatio: '4/3' }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/waterrr.jpeg"
+                    alt="Water conservation - rainwater harvesting"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                   />
                   {/* Gradient overlay at bottom */}
                   <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0369a1]/70 to-transparent" />
@@ -199,7 +197,8 @@ export default function WaterConservationPage() {
 
               {/* Floating SDG badge */}
               <div className="absolute -right-4 -top-4 overflow-hidden rounded-2xl border-2 border-white shadow-lg">
-                <Image src="/sdg/goal-06.png" alt="SDG 6" width={72} height={72} className="block" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/sdg/goal-06.png" alt="SDG 6" width={72} height={72} style={{ display: 'block', width: 72, height: 72 }} />
               </div>
 
               {/* Floating stat pill */}
