@@ -133,7 +133,90 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 2. Vision & Mission */}
+      {/* 2. Our Story */}
+      <section id="story" className="relative scroll-mt-20 overflow-hidden py-24 px-6">
+
+        <div className="relative mx-auto max-w-6xl">
+          {/* heading */}
+          <FadeUp>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="h-px w-10 bg-[#155dfc] opacity-40" />
+              <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#155dfc]">Who We Are</span>
+            </div>
+            <h2 className="font-display font-black text-[#0d1b3e] leading-none" style={{ fontSize: "clamp(2.8rem,6vw,5rem)" }}>
+              Our{" "}
+              <span className="relative inline-block">
+                Story
+                <svg aria-hidden="true" className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 14" fill="none">
+                  <path d="M2 10 Q50 2 100 8 Q150 14 198 5" stroke="#4C9F38" strokeWidth="6" strokeLinecap="round" fill="none"/>
+                </svg>
+              </span>
+            </h2>
+          </FadeUp>
+
+          {/* 2-col grid */}
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+
+            {/* LEFT — video */}
+            <FadeUp delay={80}>
+              <div className="relative group">
+                {/* glow ring */}
+                <div className="absolute -inset-1 rounded-3xl opacity-30 blur-xl" style={{ background: "linear-gradient(135deg,#155dfc,#4C9F38,#00c2ff)" }} />
+                {/* video */}
+                <div className="relative overflow-hidden rounded-3xl shadow-[0_32px_80px_rgba(13,27,62,0.15)]">
+                  <video
+                    src="/Sdg.white.mp4"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="w-full aspect-video object-cover"
+                  />
+                  {/* bottom fade */}
+                  <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-[rgba(13,27,62,0.25)] to-transparent" />
+                  {/* live badge */}
+                  <div className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-sm px-4 py-1.5 shadow-md">
+                    <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+                    <span className="text-xs font-semibold text-[#0d1b3e]">Our Journey</span>
+                  </div>
+                </div>
+                {/* floating founded card */}
+                <div className="absolute -top-4 -right-4 z-10 rounded-2xl bg-white px-4 py-3 shadow-[0_12px_40px_rgba(13,27,62,0.14)] border border-[rgba(13,27,62,0.06)]">
+                  <p className="text-[10px] font-semibold uppercase tracking-widest text-[#155dfc]">Est.</p>
+                  <p className="font-display text-2xl font-black text-[#0d1b3e]">2019</p>
+                  <p className="text-[10px] text-[#4a5980]">Founded</p>
+                </div>
+              </div>
+            </FadeUp>
+
+            {/* RIGHT — text + timeline + pills */}
+            <FadeUp delay={160}>
+              <div className="flex flex-col gap-7">
+
+                {/* story paragraphs */}
+                <div className="space-y-4 text-[15px] leading-relaxed">
+                  <p className="text-[#0d1b3e] font-semibold text-lg leading-snug">
+                    StepUp for SDG began with a simple conviction: that quality education is the most powerful lever for lasting change.
+                  </p>
+                  <p className="text-[#4a5980]">
+                    What started as a handful of volunteers supporting local schools has grown into a collaborative platform uniting students, educators, NGOs and companies around a shared mission.
+                  </p>
+                  <p className="text-[#4a5980]">
+                    Today we connect partners across regions to fund, design and deliver transparent educational initiatives — turning intention into measurable impact for the children who need it most.
+                  </p>
+                  <p className="text-[#4a5980]">
+                    We believe progress should be visible. Every project we support is tracked, reported, and built to last, so every contribution becomes a real opportunity for a learner.
+                  </p>
+                </div>
+
+
+              </div>
+            </FadeUp>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Vision & Mission */}
       <section className="relative px-6 py-20 scroll-mt-20 overflow-hidden">
 
         <div className="relative mx-auto max-w-6xl">
@@ -328,89 +411,6 @@ export default function AboutPage() {
                 </div>
               </FadeUp>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Our Story */}
-      <section id="story" className="relative scroll-mt-20 overflow-hidden py-24 px-6">
-
-        <div className="relative mx-auto max-w-6xl">
-          {/* heading */}
-          <FadeUp>
-            <div className="flex items-center gap-3 mb-2">
-              <div className="h-px w-10 bg-[#155dfc] opacity-40" />
-              <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#155dfc]">Who We Are</span>
-            </div>
-            <h2 className="font-display font-black text-[#0d1b3e] leading-none" style={{ fontSize: "clamp(2.8rem,6vw,5rem)" }}>
-              Our{" "}
-              <span className="relative inline-block">
-                Story
-                <svg aria-hidden="true" className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 14" fill="none">
-                  <path d="M2 10 Q50 2 100 8 Q150 14 198 5" stroke="#4C9F38" strokeWidth="6" strokeLinecap="round" fill="none"/>
-                </svg>
-              </span>
-            </h2>
-          </FadeUp>
-
-          {/* 2-col grid */}
-          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-
-            {/* LEFT — video */}
-            <FadeUp delay={80}>
-              <div className="relative group">
-                {/* glow ring */}
-                <div className="absolute -inset-1 rounded-3xl opacity-30 blur-xl" style={{ background: "linear-gradient(135deg,#155dfc,#4C9F38,#00c2ff)" }} />
-                {/* video */}
-                <div className="relative overflow-hidden rounded-3xl shadow-[0_32px_80px_rgba(13,27,62,0.15)]">
-                  <video
-                    src="/Sdg.white.mp4"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-full aspect-video object-cover"
-                  />
-                  {/* bottom fade */}
-                  <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-[rgba(13,27,62,0.25)] to-transparent" />
-                  {/* live badge */}
-                  <div className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-sm px-4 py-1.5 shadow-md">
-                    <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
-                    <span className="text-xs font-semibold text-[#0d1b3e]">Our Journey</span>
-                  </div>
-                </div>
-                {/* floating founded card */}
-                <div className="absolute -top-4 -right-4 z-10 rounded-2xl bg-white px-4 py-3 shadow-[0_12px_40px_rgba(13,27,62,0.14)] border border-[rgba(13,27,62,0.06)]">
-                  <p className="text-[10px] font-semibold uppercase tracking-widest text-[#155dfc]">Est.</p>
-                  <p className="font-display text-2xl font-black text-[#0d1b3e]">2019</p>
-                  <p className="text-[10px] text-[#4a5980]">Founded</p>
-                </div>
-              </div>
-            </FadeUp>
-
-            {/* RIGHT — text + timeline + pills */}
-            <FadeUp delay={160}>
-              <div className="flex flex-col gap-7">
-
-                {/* story paragraphs */}
-                <div className="space-y-4 text-[15px] leading-relaxed">
-                  <p className="text-[#0d1b3e] font-semibold text-lg leading-snug">
-                    StepUp for SDG began with a simple conviction: that quality education is the most powerful lever for lasting change.
-                  </p>
-                  <p className="text-[#4a5980]">
-                    What started as a handful of volunteers supporting local schools has grown into a collaborative platform uniting students, educators, NGOs and companies around a shared mission.
-                  </p>
-                  <p className="text-[#4a5980]">
-                    Today we connect partners across regions to fund, design and deliver transparent educational initiatives — turning intention into measurable impact for the children who need it most.
-                  </p>
-                  <p className="text-[#4a5980]">
-                    We believe progress should be visible. Every project we support is tracked, reported, and built to last, so every contribution becomes a real opportunity for a learner.
-                  </p>
-                </div>
-
-
-              </div>
-            </FadeUp>
           </div>
         </div>
       </section>
