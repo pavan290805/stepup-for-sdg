@@ -7,14 +7,12 @@ import { useRouter } from 'next/navigation';
 import {
   ArrowLeft,
   ArrowRight,
-  BookOpen,
   CheckCircle2,
   Globe2,
-  GraduationCap,
-  ShieldCheck,
   Trophy,
   Users,
 } from 'lucide-react';
+import { Counter } from '@/app/components/site/Counter';
 import { FadeUp } from '@/app/components/site/FadeUp';
 
 const headingFont = '"Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif';
@@ -27,22 +25,48 @@ const TOP_STATS = [
 
 const PATHWAY_STEPS = [
   {
-    icon: BookOpen,
     title: 'Learn the SDGs',
-    description:
-      'Watch a curated introductory video on the UN’s 2030 Agenda for Sustainable Development.',
+    description: 'Explore 17 goals to understand real-world challenges and how global action creates a better future for all.',
+    icon: (
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="#0fae83" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M10 40 Q28 32 46 40" />
+        <path d="M10 40 Q28 48 46 40" />
+        <path d="M10 16 Q28 8 46 16 L46 40 Q28 32 10 40 Z" />
+        <line x1="28" y1="8" x2="28" y2="48" />
+        <line x1="28" y1="48" x2="24" y2="44" />
+      </svg>
+    ),
   },
   {
-    icon: GraduationCap,
-    title: 'Enroll in UN Courses',
-    description:
-      'Access 12+ official free courses from UN SDG Learn and UN Women aligned with each SDG.',
+    title: 'Enroll in UN Course',
+    description: 'Access bite-sized lessons, real-life examples, and quizzes to build your knowledge and skills with ease.',
+    icon: (
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="#0fae83" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="8" y="14" width="40" height="26" rx="3" />
+        <line x1="20" y1="40" x2="20" y2="46" />
+        <line x1="36" y1="40" x2="36" y2="46" />
+        <line x1="14" y1="46" x2="42" y2="46" />
+        <circle cx="28" cy="27" r="6" />
+        <polygon points="25,24 25,30 33,27" fill="#0fae83" stroke="none" />
+        <path d="M36 10 l4 4 -12 4 -4-4z" />
+      </svg>
+    ),
   },
   {
-    icon: ShieldCheck,
-    title: 'Get Verified',
-    description:
-      'Upload your official UN certificate for verification and unlock the “Verified” badge on your profile.',
+    title: 'Get Certified',
+    description: 'Complete the course and earn your UN-recognized certificate to showcase your impact and stand out.',
+    icon: (
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="#0fae83" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="8" y="10" width="30" height="36" rx="2" />
+        <line x1="14" y1="20" x2="32" y2="20" />
+        <line x1="14" y1="26" x2="28" y2="26" />
+        <line x1="14" y1="32" x2="24" y2="32" />
+        <path d="M22 38 l4 6 4-6" />
+        <circle cx="40" cy="38" r="8" />
+        <circle cx="40" cy="38" r="4" />
+        <path d="M34 46 l6-4 6 4 v6 l-6-3-6 3z" />
+      </svg>
+    ),
   },
 ];
 
@@ -86,6 +110,9 @@ export default function SustainabilityEducationPage() {
           <div className="grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr]">
             <FadeUp>
               <div className="max-w-2xl">
+              <Link href="/projects" className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-600 transition hover:bg-slate-50">
+                ← Back to Projects
+              </Link>
                 <h1 className="text-5xl font-bold tracking-tight text-slate-950 sm:text-6xl" style={{ fontFamily: headingFont }}>
                   Sustainable <span className="text-[#0fae83]">Education</span> Program
                 </h1>
@@ -104,12 +131,20 @@ export default function SustainabilityEducationPage() {
                 </div>
 
                 <div className="mt-12 grid gap-6 sm:grid-cols-3">
-                  {TOP_STATS.map((stat) => (
-                    <div key={stat.label} className="text-center">
-                      <p className="text-4xl font-semibold text-slate-950">{stat.value}</p>
-                      <p className="mt-3 text-xs uppercase tracking-[0.2em] text-slate-500">{stat.label}</p>
-                    </div>
-                  ))}
+                  {TOP_STATS.map((stat) => {
+                    const match = stat.value.match(/^([\d.]+)([A-Za-z+∞]*)$/);
+                    const num = match ? parseFloat(match[1]) : 0;
+                    const suffix = match ? match[2] : stat.value;
+                    const isSymbol = !match;
+                    return (
+                      <div key={stat.label} className="text-center">
+                        <p className="text-4xl font-semibold text-slate-950">
+                          {isSymbol ? stat.value : <Counter to={num} suffix={suffix} />}
+                        </p>
+                        <p className="mt-3 text-xs uppercase tracking-[0.2em] text-slate-500">{stat.label}</p>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </FadeUp>
@@ -126,17 +161,7 @@ export default function SustainabilityEducationPage() {
                       className="h-120 w-full object-cover"
                     />
                   </div>
-                  <div className="-mt-14 rounded-[24px] border border-white bg-white/95 p-5 shadow-xl shadow-slate-900/10 backdrop-blur-sm">
-                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                      <div>
-                        <p className="text-sm font-semibold text-slate-950">Join learners from 190+ countries</p>
-                        <p className="mt-1 text-sm text-slate-500">Certified pathways to real UN internships.</p>
-                      </div>
-                      <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[#0fae83] text-white">
-                        <Globe2 className="h-5 w-5" />
-                      </div>
-                    </div>
-                  </div>
+
                 </div>
               </div>
             </FadeUp>
@@ -147,29 +172,36 @@ export default function SustainabilityEducationPage() {
       <section className="mx-auto max-w-365 px-5 pb-24 lg:px-8">
         <FadeUp>
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs uppercase tracking-[0.36em] text-[#0fae83]">A structured pathway to global impact</p>
             <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
               Three simple steps take you from curiosity to a UN-recognized certification pathway.
             </h2>
           </div>
         </FadeUp>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="relative mt-12 grid gap-6 md:grid-cols-3">
+          {/* dashed connectors */}
+          <div className="absolute hidden md:block" style={{ left: 'calc(33.33%)', top: '38%', width: 'calc(33.33% - 16px)', borderTop: '2px dashed #6ee7b7' }}>
+            <span className="absolute -left-2 -top-[5px] h-3 w-3 rounded-full bg-[#0fae83]" />
+            <span className="absolute -right-2 -top-[5px] h-3 w-3 rounded-full bg-[#0fae83]" />
+          </div>
+          <div className="absolute hidden md:block" style={{ left: 'calc(66.66%)', top: '38%', width: 'calc(33.33% - 16px)', borderTop: '2px dashed #6ee7b7' }}>
+            <span className="absolute -left-2 -top-[5px] h-3 w-3 rounded-full bg-[#0fae83]" />
+            <span className="absolute -right-2 -top-[5px] h-3 w-3 rounded-full bg-[#0fae83]" />
+          </div>
+
           {PATHWAY_STEPS.map((step, idx) => (
             <FadeUp key={step.title} delay={idx * 80}>
-              <div className="relative overflow-hidden rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm transition hover:shadow-xl">
-                <div className="absolute right-6 top-6">
-                  <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-500">
-                    STEP {idx + 1}
-                  </span>
-                </div>
+              <div className="relative overflow-hidden rounded-[24px] border border-slate-100 bg-white p-8 shadow-sm">
+                <span className="absolute right-5 top-5 text-xs font-semibold uppercase tracking-[0.22em]" style={{ color: '#0fae83' }}>
+                  STEP {idx + 1}
+                </span>
                 <div className="flex justify-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#E6FBF6] text-[#0fae83] shadow-sm">
-                    <step.icon className="h-6 w-6" />
+                  <div className="flex h-28 w-28 items-center justify-center rounded-full" style={{ background: '#e6fbf6' }}>
+                    {step.icon}
                   </div>
                 </div>
-                <h3 className="mt-8 text-xl font-semibold text-slate-950 text-center">{step.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-slate-600 text-center">{step.description}</p>
+                <h3 className="mt-8 text-center text-xl font-bold text-slate-950">{step.title}</h3>
+                <p className="mt-4 text-center text-sm leading-7 text-slate-500">{step.description}</p>
               </div>
             </FadeUp>
           ))}
@@ -179,13 +211,17 @@ export default function SustainabilityEducationPage() {
       <section className="bg-linear-to-r from-[#0d9488] via-[#059669] to-[#2563eb] py-16 text-white">
         <div className="mx-auto max-w-365 px-5 lg:px-8">
           <div className="grid gap-6 md:grid-cols-4">
-            {IMPACT_METRICS.map((metric) => (
-              <div key={metric.label} className="rounded-[28px] bg-white/10 px-6 py-8 text-center shadow-xl shadow-slate-950/10">
-                <metric.icon className="mx-auto h-7 w-7 text-white" />
-                <p className="mt-5 text-3xl font-semibold">{metric.value}</p>
-                <p className="mt-2 text-sm uppercase tracking-[0.2em] text-white/80">{metric.label}</p>
-              </div>
-            ))}
+            {IMPACT_METRICS.map((metric) => {
+              const match = metric.value.match(/^([\d.]+)([A-Za-z+%]*)$/);
+              const num = match ? parseFloat(match[1]) : 0;
+              const suffix = match ? match[2] : '';
+              return (
+                <div key={metric.label} className="rounded-[28px] bg-white/10 px-6 py-8 text-center shadow-xl shadow-slate-950/10">
+                  <p className="mt-5 text-3xl font-semibold"><Counter to={num} suffix={suffix} /></p>
+                  <p className="mt-2 text-sm uppercase tracking-[0.2em] text-white/80">{metric.label}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

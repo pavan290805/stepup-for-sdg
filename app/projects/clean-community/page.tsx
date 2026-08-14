@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowRight, CheckCircle2, Leaf, Globe2, MapPin, Users, Calendar, Recycle } from 'lucide-react';
+import { Counter } from '@/app/components/site/Counter';
 import { FadeUp } from '@/app/components/site/FadeUp';
 
 const GREEN = '#3F7E44';
@@ -134,6 +135,9 @@ export default function CleanCommunityPage() {
         <div className="mx-auto flex max-w-7xl flex-col gap-10 px-5 py-16 md:px-8 lg:flex-row lg:items-center lg:justify-between lg:py-20">
           <FadeUp>
             <div className="max-w-2xl">
+              <Link href="/projects" className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-600 transition hover:bg-slate-50">
+                ← Back to Projects
+              </Link>
               <h1 className="mt-6 text-5xl font-bold tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
                 Clean Community <span style={{ color: GREEN }}>Initiative</span>
               </h1>
@@ -157,13 +161,19 @@ export default function CleanCommunityPage() {
               </div>
 
               <div className="mt-12 grid max-w-xl grid-cols-2 gap-4 sm:grid-cols-4">
-                {STATS.map(({ icon: Icon, value, label }) => (
-                  <div key={label} className="rounded-[24px] bg-white/70 px-4 py-5 text-center">
-                    <Icon className="mx-auto h-5 w-5 mb-2" style={{ color: GREEN }} />
-                    <p className="text-2xl font-bold text-slate-950">{value}</p>
-                    <p className="mt-1 text-[10px] uppercase tracking-[0.22em] text-slate-500">{label}</p>
-                  </div>
-                ))}
+                {STATS.map(({ value, label }) => {
+                  const match = value.match(/^([\d.]+)([A-Za-z+]*)$/);
+                  const num = match ? parseFloat(match[1]) : 0;
+                  const suffix = match ? match[2] : '';
+                  return (
+                    <div key={label} className="text-center">
+                      <p className="text-2xl font-bold text-slate-950">
+                        <Counter to={num} suffix={suffix} />
+                      </p>
+                      <p className="mt-1 text-[10px] uppercase tracking-[0.22em] text-slate-500">{label}</p>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </FadeUp>
@@ -217,13 +227,17 @@ export default function CleanCommunityPage() {
       <section className="py-16 text-white" style={{ background: `linear-gradient(135deg, ${GREEN} 0%, #4ade80 100%)` }}>
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <div className="grid gap-6 md:grid-cols-4">
-            {STATS.map(({ icon: Icon, value, label }) => (
-              <div key={label} className="rounded-[24px] bg-white/10 px-6 py-8 text-center shadow-xl">
-                <Icon className="mx-auto h-7 w-7 text-white" />
-                <p className="mt-4 text-3xl font-bold">{value}</p>
-                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-white/80">{label}</p>
-              </div>
-            ))}
+            {STATS.map(({ value, label }) => {
+              const match = value.match(/^([\d.]+)([A-Za-z+]*)$/);
+              const num = match ? parseFloat(match[1]) : 0;
+              const suffix = match ? match[2] : '';
+              return (
+                <div key={label} className="rounded-[24px] bg-white/10 px-6 py-8 text-center shadow-xl">
+                  <p className="text-3xl font-bold"><Counter to={num} suffix={suffix} /></p>
+                  <p className="mt-2 text-xs uppercase tracking-[0.2em] text-white/80">{label}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

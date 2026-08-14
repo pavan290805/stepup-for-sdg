@@ -2,15 +2,59 @@
 
 import Link from 'next/link';
 import { ArrowRight, CheckCircle2, Droplets, Globe2, MapPin, School, Users, Calendar } from 'lucide-react';
+import { Counter } from '@/app/components/site/Counter';
 import { FadeUp } from '@/app/components/site/FadeUp';
 
 const BLUE = '#0369a1';
 const BLUE_LIGHT = '#e0f2fe';
 
-const STEPS = [
-  { step: '01', title: 'Site Assessment', desc: 'Our team evaluates your school or community site for rainwater harvesting potential and water usage patterns.' },
+const STEP_ICONS = [
+  <svg key="w1" width="56" height="56" viewBox="0 0 90 90" fill="none">
+    <circle cx="45" cy="45" r="45" fill="#e0f2fe"/>
+    <rect x="22" y="36" width="34" height="24" rx="3" fill="none" stroke="#0369a1" strokeWidth="2"/>
+    <line x1="26" y1="44" x2="38" y2="44" stroke="#0369a1" strokeWidth="1.5"/>
+    <line x1="26" y1="49" x2="34" y2="49" stroke="#0369a1" strokeWidth="1.5"/>
+    <line x1="26" y1="54" x2="50" y2="54" stroke="#0369a1" strokeWidth="1.5"/>
+    <rect x="28" y="62" width="22" height="3" rx="1" fill="#0369a1"/>
+    <line x1="39" y1="60" x2="39" y2="62" stroke="#0369a1" strokeWidth="2"/>
+    <circle cx="62" cy="32" r="6" fill="none" stroke="#0369a1" strokeWidth="2"/>
+    <path d="M57 44 Q57 38 62 38 Q67 38 67 44" fill="none" stroke="#0369a1" strokeWidth="2"/>
+    <circle cx="28" cy="28" r="5" fill="none" stroke="#0369a1" strokeWidth="2"/>
+    <path d="M23 38 Q23 33 28 33 Q33 33 33 38" fill="none" stroke="#0369a1" strokeWidth="2"/>
+  </svg>,
+  <svg key="w2" width="56" height="56" viewBox="0 0 90 90" fill="none">
+    <circle cx="45" cy="45" r="45" fill="#e0f2fe"/>
+    <rect x="16" y="26" width="42" height="28" rx="2" fill="none" stroke="#0369a1" strokeWidth="2"/>
+    <line x1="16" y1="44" x2="58" y2="44" stroke="#0369a1" strokeWidth="1.5"/>
+    <line x1="22" y1="34" x2="42" y2="34" stroke="#0369a1" strokeWidth="1.5"/>
+    <line x1="22" y1="39" x2="36" y2="39" stroke="#0369a1" strokeWidth="1.5"/>
+    <line x1="37" y1="54" x2="37" y2="60" stroke="#0369a1" strokeWidth="2"/>
+    <line x1="26" y1="60" x2="48" y2="60" stroke="#0369a1" strokeWidth="2"/>
+    <circle cx="66" cy="34" r="5" fill="none" stroke="#0369a1" strokeWidth="2"/>
+    <path d="M61 46 Q61 40 66 40 Q71 40 71 46" fill="none" stroke="#0369a1" strokeWidth="2"/>
+    <circle cx="56" cy="60" r="4" fill="none" stroke="#0369a1" strokeWidth="1.5"/>
+    <circle cx="66" cy="60" r="4" fill="none" stroke="#0369a1" strokeWidth="1.5"/>
+    <circle cx="76" cy="60" r="4" fill="none" stroke="#0369a1" strokeWidth="1.5"/>
+  </svg>,
+  <svg key="w3" width="56" height="56" viewBox="0 0 90 90" fill="none">
+    <circle cx="45" cy="45" r="45" fill="#e0f2fe"/>
+    <rect x="18" y="20" width="36" height="46" rx="3" fill="none" stroke="#0369a1" strokeWidth="2"/>
+    <line x1="26" y1="32" x2="46" y2="32" stroke="#0369a1" strokeWidth="1.5"/>
+    <line x1="26" y1="38" x2="42" y2="38" stroke="#0369a1" strokeWidth="1.5"/>
+    <line x1="26" y1="44" x2="38" y2="44" stroke="#0369a1" strokeWidth="1.5"/>
+    <circle cx="60" cy="56" r="12" fill="#0369a1"/>
+    <polyline points="54,56 58,61 67,50" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>,
+
+  { step: '01', title: 'Site Assessment',    desc: 'Our team evaluates your school or community site for rainwater harvesting potential and water usage patterns.' },
   { step: '02', title: 'System Installation', desc: 'We install rainwater collection systems, storage tanks, and filtration units tailored to your site.' },
-  { step: '03', title: 'Monitor & Maintain', desc: 'Ongoing monitoring, community training, and maintenance support to ensure long-term impact.' },
+  { step: '03', title: 'Monitor & Maintain',  desc: 'Ongoing monitoring, community training, and maintenance support to ensure long-term impact.' },
+];
+
+const STEPS = [
+  { step: '01', title: 'Site Assessment',    desc: 'Our team evaluates your school or community site for rainwater harvesting potential and water usage patterns.' },
+  { step: '02', title: 'System Installation', desc: 'We install rainwater collection systems, storage tanks, and filtration units tailored to your site.' },
+  { step: '03', title: 'Monitor & Maintain',  desc: 'Ongoing monitoring, community training, and maintenance support to ensure long-term impact.' },
 ];
 
 const BENEFITS = [
@@ -134,6 +178,9 @@ export default function WaterConservationPage() {
         <div className="mx-auto flex max-w-7xl flex-col gap-10 px-5 py-16 md:px-8 lg:flex-row lg:items-center lg:justify-between lg:py-20">
           <FadeUp>
             <div className="max-w-2xl">
+              <Link href="/projects" className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-600 transition hover:bg-slate-50">
+                ← Back to Projects
+              </Link>
               <h1 className="mt-6 text-5xl font-bold tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
                 Water Conservation <span style={{ color: BLUE }}>Program</span>
               </h1>
@@ -157,13 +204,19 @@ export default function WaterConservationPage() {
               </div>
 
               <div className="mt-12 grid max-w-xl grid-cols-2 gap-4 sm:grid-cols-4">
-                {STATS.map(({ icon: Icon, value, label }) => (
-                  <div key={label} className="rounded-[24px] bg-white/70 px-4 py-5 text-center">
-                    <Icon className="mx-auto h-5 w-5 mb-2" style={{ color: BLUE }} />
-                    <p className="text-2xl font-bold text-slate-950">{value}</p>
-                    <p className="mt-1 text-[10px] uppercase tracking-[0.22em] text-slate-500">{label}</p>
-                  </div>
-                ))}
+                {STATS.map(({ value, label }) => {
+                  const match = value.match(/^([\d.]+)([A-Za-z+]*)$/);
+                  const num = match ? parseFloat(match[1]) : 0;
+                  const suffix = match ? match[2] : '';
+                  return (
+                    <div key={label} className="text-center">
+                      <p className="text-2xl font-bold text-slate-950">
+                        <Counter to={num} suffix={suffix} />
+                      </p>
+                      <p className="mt-1 text-[10px] uppercase tracking-[0.22em] text-slate-500">{label}</p>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </FadeUp>
@@ -199,18 +252,30 @@ export default function WaterConservationPage() {
           </div>
         </FadeUp>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="relative mt-12 grid gap-6 md:grid-cols-3">
+          <div className="absolute hidden md:block" style={{ left: 'calc(33.33%)', top: '40%', width: 'calc(33.33% - 16px)', borderTop: '2px dashed #7dd3fc' }}>
+            <span className="absolute -left-[5px] -top-[5px] h-3 w-3 rounded-full bg-[#0369a1]" />
+            <span className="absolute -right-[5px] -top-[5px] h-3 w-3 rounded-full bg-[#0369a1]" />
+          </div>
+          <div className="absolute hidden md:block" style={{ left: 'calc(66.66%)', top: '40%', width: 'calc(33.33% - 16px)', borderTop: '2px dashed #7dd3fc' }}>
+            <span className="absolute -left-[5px] -top-[5px] h-3 w-3 rounded-full bg-[#0369a1]" />
+            <span className="absolute -right-[5px] -top-[5px] h-3 w-3 rounded-full bg-[#0369a1]" />
+          </div>
           {STEPS.map(({ step, title, desc }, i) => (
             <FadeUp key={step} delay={i * 80}>
-              <div className="rounded-[28px] border border-slate-200 bg-white p-8 shadow-sm transition hover:shadow-md">
-                <span className="rounded-full border border-slate-200 bg-[#f5f6fa] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-500">
+              <div className="rounded-[20px] border border-slate-100 bg-white p-6 shadow-sm">
+                <span className="inline-block rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em]" style={{ background: BLUE_LIGHT, color: BLUE }}>
                   STEP {step}
                 </span>
-                <div className="mt-6 flex h-12 w-12 items-center justify-center rounded-2xl" style={{ background: BLUE_LIGHT }}>
-                  <Droplets className="h-5 w-5" style={{ color: BLUE }} />
+                <div className="mt-4 flex items-center gap-4">
+                  <div className="shrink-0 flex h-24 w-24 items-center justify-center rounded-full" style={{ background: BLUE_LIGHT }}>
+                    {STEP_ICONS[i]}
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-slate-950">{title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-500">{desc}</p>
+                  </div>
                 </div>
-                <h3 className="mt-5 text-lg font-bold text-slate-950">{title}</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">{desc}</p>
               </div>
             </FadeUp>
           ))}
@@ -221,13 +286,17 @@ export default function WaterConservationPage() {
       <section className="py-16 text-white" style={{ background: `linear-gradient(135deg, ${BLUE} 0%, #0284c7 50%, #0ea5e9 100%)` }}>
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <div className="grid gap-6 md:grid-cols-4">
-            {STATS.map(({ icon: Icon, value, label }) => (
-              <div key={label} className="rounded-[24px] bg-white/10 px-6 py-8 text-center shadow-xl">
-                <Icon className="mx-auto h-7 w-7 text-white" />
-                <p className="mt-4 text-3xl font-bold">{value}</p>
-                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-white/80">{label}</p>
-              </div>
-            ))}
+            {STATS.map(({ value, label }) => {
+              const match = value.match(/^([\d.]+)([A-Za-z+]*)$/);
+              const num = match ? parseFloat(match[1]) : 0;
+              const suffix = match ? match[2] : '';
+              return (
+                <div key={label} className="rounded-[24px] bg-white/10 px-6 py-8 text-center shadow-xl">
+                  <p className="text-3xl font-bold"><Counter to={num} suffix={suffix} /></p>
+                  <p className="mt-2 text-xs uppercase tracking-[0.2em] text-white/80">{label}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

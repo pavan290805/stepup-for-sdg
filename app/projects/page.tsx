@@ -32,6 +32,7 @@ type Project = {
   icon: LucideIcon;
   color: string;
   backgroundImage: string;
+  sdgIcon: string;
   href?: string;
 };
 
@@ -58,6 +59,8 @@ const projects: Project[] = [
     icon: Award,
     color: "#155DFC",
     backgroundImage: "/sdg/sdg certt.png",
+    sdgIcon: "/sdg/goal-04.png",
+    href: "/projects/sdg-education",
   },
   {
     name: "Sustainability Education Program",
@@ -69,6 +72,7 @@ const projects: Project[] = [
     icon: Sun,
     color: "#FCC30B",
     backgroundImage: "/sdg/ld.png",
+    sdgIcon: "/sdg/goal-07.png",
     href: "/projects/sustainability-education",
   },
   {
@@ -81,6 +85,7 @@ const projects: Project[] = [
     icon: Briefcase,
     color: "#A21942",
     backgroundImage: "/sdg/cg.png",
+    sdgIcon: "/sdg/goal-08.png",
     href: "/projects/fellowship",
   },
   {
@@ -93,6 +98,7 @@ const projects: Project[] = [
     icon: Leaf,
     color: "#26BDE2",
     backgroundImage: "/sdg/rw.png",
+    sdgIcon: "/sdg/goal-06.png",
     href: "/projects/water-conservation",
   },
   {
@@ -105,6 +111,7 @@ const projects: Project[] = [
     icon: TreePine,
     color: "#3F7E44",
     backgroundImage: "/sdg/plant.png",
+    sdgIcon: "/sdg/goal-13.png",
     href: "/projects/clean-community",
   },
 ];
@@ -220,10 +227,10 @@ export default function ProjectsPage() {
           />
 
           <div className="mt-12 grid gap-10">
-            {projects.map(({ name, description, backgroundImage, href }, index) => (
+            {projects.map(({ name, description, backgroundImage, sdgIcon, href }, index) => (
               <ProjectCard
                 key={name}
-                project={{ name, description, backgroundImage, href }}
+                project={{ name, description, backgroundImage, sdgIcon, href }}
                 index={index}
               />
             ))}
