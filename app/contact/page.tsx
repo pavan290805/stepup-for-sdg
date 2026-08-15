@@ -1,16 +1,27 @@
 "use client";
 
-// use native <img> for a resilient fallback when the public PNG may be missing
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+
 import {
-  User,
-  Phone,
+  CheckCircle,
   Mail,
+  MessageCircle,
+  Phone,
   Send,
-  MessageSquare,
+  User,
 } from "lucide-react";
-import { Playfair_Display, Poppins } from "next/font/google";
+
 import { addContactMessage } from "@/app/lib/adminStore";
+
+import {
+  Playfair_Display,
+  Poppins,
+} from "next/font/google";
+
+
+/* =========================================================
+   FONTS
+========================================================= */
 
 const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
@@ -24,434 +35,997 @@ const poppins = Poppins({
   display: "swap",
 });
 
+
+/* =========================================================
+   CONTACT PAGE
+========================================================= */
+
 export default function ContactPage() {
-  // keep the expected public path; render with <img> to avoid next/image parsing errors
+
+  /* =======================================================
+     CONTACT FORM
+  ======================================================= */
+
   const [contactForm, setContactForm] = useState({
     name: "",
     phone: "",
     email: "",
-    subject: "",
     message: "",
   });
+
+
+  /* =======================================================
+     NEWSLETTER FORM
+  ======================================================= */
+
   const [newsletterForm, setNewsletterForm] = useState({
     firstName: "",
     lastName: "",
     email: "",
     message: "",
   });
-  const [contactSubmitted, setContactSubmitted] = useState(false);
-  const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
 
-  function handleContactSubmit(e: import("react").SyntheticEvent<HTMLFormElement>) {
+
+  /* =======================================================
+     SUBMISSION STATES
+  ======================================================= */
+
+  const [contactSubmitted, setContactSubmitted] =
+    useState(false);
+
+  const [newsletterSubmitted, setNewsletterSubmitted] =
+    useState(false);
+
+
+  /* =======================================================
+     CONTACT SUBMIT
+  ======================================================= */
+
+  function handleContactSubmit(
+    e: FormEvent<HTMLFormElement>
+  ) {
     e.preventDefault();
+
     addContactMessage({
       from: contactForm.name,
       email: contactForm.email,
       phone: contactForm.phone,
-      subject: contactForm.subject || "General Enquiry",
+      subject: "Contact Enquiry",
       body: contactForm.message,
-      time: new Date().toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" }),
+      time: new Date().toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
       date: "Today",
       tag: "Contact",
     });
+
     setContactSubmitted(true);
   }
 
-  function handleNewsletterSubmit(e: import("react").SyntheticEvent<HTMLFormElement>) {
+
+  /* =======================================================
+     NEWSLETTER SUBMIT
+  ======================================================= */
+
+  function handleNewsletterSubmit(
+    e: FormEvent<HTMLFormElement>
+  ) {
     e.preventDefault();
+
     setNewsletterSubmitted(true);
   }
+    return (
+    <main
+      className={`${poppins.className} min-h-screen bg-[#F8F5E9] text-[#12372A]`}
+    >
 
- return (
-  <main className={`min-h-screen bg-[#CAF0F8] ${poppins.className}`}>
-    {/* Hero Section */}
-    <section className="bg-[#CAF0F8]">
-      <div className="mx-auto max-w-5xl px-6 py-12 lg:py-16">
-        <div className="text-center">
+      {/* =====================================================
+          IMAGE AREA
+          
+          >>> PUT YOUR IMAGE HERE <<<
+          
+          Just change the src:
+          
+          /assets/images/YOUR-IMAGE.png
+          
+          Nothing else needs to be changed.
+      ===================================================== */}
 
-          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#0077B6]">
-            CONTACT US
-          </p>
+    {/* =====================================================
+    INTEGRATED CONTACT IMAGE
+===================================================== */}
 
-          <h1
-  className={`${playfairDisplay.className} mt-4 text-4xl font-semibold leading-none text-[#023047] sm:text-5xl lg:text-6xl`}
->
-  Let's Build
-  <br />
-  <span className="text-[#0096C7]">a Better Future</span>
-</h1>
-        </div>
-      </div>
-    </section>
-<section
-  id="contact-forms"
-  className="bg-[#CAF0F8] px-6 pb-16 pt-4 lg:px-8 lg:pb-20"
->
-  <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14">
+<section className="relative -mt-1 w-full overflow-hidden">
 
-    <section className="rounded-[30px] border border-[#8ECAE6] bg-white p-8 shadow-[0_8px_30px_rgba(2,48,71,0.08)] sm:p-10">
+  <div className="relative w-full">
 
-      <div>
-        <h2
-          className={`${playfairDisplay.className} text-3xl font-semibold text-[#023047] sm:text-4xl`}
-        >
-          Get In Touch
-        </h2>
+    <img
+      src="/assets/images/contact-banner.png"
+      alt="Get in touch for sustainable development"
+      className="
+        block
+        h-[190px]
+        w-full
+        object-cover
+        object-center
+        sm:h-[220px]
+        lg:h-[250px]
+      "
+    />
 
-        <div className="mt-3 h-1 w-20 rounded-full bg-[#0077B6]" />
-      </div>
+    {/* Top blend */}
+    <div
+      className="
+        pointer-events-none
+        absolute
+        inset-x-0
+        top-0
+        h-10
+        bg-gradient-to-b
+        from-[#F8F5E9]
+        to-transparent
+      "
+    />
+
+    {/* Bottom blend */}
+    <div
+      className="
+        pointer-events-none
+        absolute
+        inset-x-0
+        bottom-0
+        h-16
+        bg-gradient-to-t
+        from-[#F8F5E9]
+        to-transparent
+      "
+    />
+
+  </div>
+
+</section>
 
 
-      {contactSubmitted ? (
+      {/* =====================================================
+          CONTACT + NEWSLETTER
+      ===================================================== */}
 
-        <div className="mt-8 rounded-3xl border border-[#8ECAE6] bg-[#ADE8F4] px-6 py-10 text-center">
+      <section
+        className="
+          px-6
+          pb-14
+          pt-10
+          sm:px-10
+          lg:px-14
+          lg:pb-20
+          lg:pt-12
+        "
+      >
 
-          <h3
-            className={`${playfairDisplay.className} text-2xl font-semibold text-[#023047]`}
+        <div className="mx-auto max-w-7xl">
+
+          <div
+            className="
+              grid
+              lg:grid-cols-[minmax(0,1fr)_1px_minmax(0,1fr)]
+            "
           >
-            Message Sent!
-          </h3>
-
-          <p className="mt-3 text-sm leading-7 text-[#023047]">
-            Thank you for reaching out. We&apos;ll respond as soon as possible.
-          </p>
-
-          <button
-            onClick={() => {
-              setContactSubmitted(false);
-              setContactForm({
-                name: "",
-                phone: "",
-                email: "",
-                subject: "",
-                message: "",
-              });
-            }}
-            className="mt-6 rounded-full bg-[#0077B6] px-6 py-3 text-sm font-semibold text-white hover:bg-[#0096C7]"
-          >
-            Send Another
-          </button>
-
-        </div>
-
-      ) : (
-
-        <form onSubmit={handleContactSubmit} className="mt-8 space-y-5">
 
 
-          {/* Name */}
-          <div className="relative">
-            <User className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-[#0077B6]" />
+            {/* =================================================
+                CONTACT — LEFT SIDE
+            ================================================= */}
 
-            <input
-              type="text"
-              value={contactForm.name}
-              onChange={(e) =>
-                setContactForm((current) => ({
-                  ...current,
-                  name: e.target.value,
-                }))
-              }
-              placeholder="Your Name"
-              required
-              className="h-16 w-full rounded-2xl border border-[#8ECAE6] bg-white pl-14 pr-5 text-base text-[#023047] outline-none placeholder:text-[#8AA9BC] focus:border-[#0077B6]"
-            />
-          </div>
+            <div className="lg:pr-14">
 
+              {/* Contact heading */}
 
-          {/* Phone */}
-          <div className="relative">
-            <Phone className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-[#0077B6]" />
+              <div className="mb-7">
 
-            <input
-              type="tel"
-              value={contactForm.phone}
-              onChange={(e) =>
-                setContactForm((current) => ({
-                  ...current,
-                  phone: e.target.value,
-                }))
-              }
-              placeholder="Your Number"
-              required
-              className="h-16 w-full rounded-2xl border border-[#8ECAE6] bg-white pl-14 pr-5 text-base text-[#023047] outline-none placeholder:text-[#8AA9BC] focus:border-[#0077B6]"
-            />
-          </div>
-
-
-          {/* Email */}
-          <div className="relative">
-            <Mail className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-[#0077B6]" />
-
-            <input
-              type="email"
-              value={contactForm.email}
-              onChange={(e) =>
-                setContactForm((current) => ({
-                  ...current,
-                  email: e.target.value,
-                }))
-              }
-              placeholder="Your Email"
-              required
-              className="h-16 w-full rounded-2xl border border-[#8ECAE6] bg-white pl-14 pr-5 text-base text-[#023047] outline-none placeholder:text-[#8AA9BC] focus:border-[#0077B6]"
-            />
-          </div>
-
-
-          {/* Dropdown */}
-          <div className="relative">
-            <MessageSquare className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-[#0077B6]" />
-
-            <select
-              value={contactForm.subject}
-              onChange={(e) =>
-                setContactForm((current) => ({
-                  ...current,
-                  subject: e.target.value,
-                }))
-              }
-              required
-              className="h-16 w-full appearance-none rounded-2xl border border-[#8ECAE6] bg-white pl-14 pr-10 text-base text-[#023047] outline-none focus:border-[#0077B6]"
-            >
-              <option value="">
-                Contacting us regarding...
-              </option>
-
-              <option value="NGO">
-                NGO
-              </option>
-
-              <option value="Volunteer">
-                Volunteer
-              </option>
-
-              <option value="School/University/College">
-                School/University/College
-              </option>
-
-              <option value="CSR Funds">
-                CSR Funds
-              </option>
-
-            </select>
-
-            <span className="absolute right-5 top-1/2 -translate-y-1/2 text-[#8AA9BC]">
-              ▾
-            </span>
-
-          </div>
-
-
-
-          {/* Message */}
-          <div className="relative">
-
-            <MessageSquare className="absolute left-5 top-5 h-5 w-5 text-[#0077B6]" />
-
-            <textarea
-              rows={5}
-              value={contactForm.message}
-              onChange={(e) =>
-                setContactForm((current) => ({
-                  ...current,
-                  message: e.target.value,
-                }))
-              }
-              placeholder="Your Message"
-              required
-              className="min-h-[140px] w-full rounded-2xl border border-[#8ECAE6] bg-white py-5 pl-14 pr-5 text-base text-[#023047] outline-none placeholder:text-[#8AA9BC] focus:border-[#0077B6]"
-            />
-
-          </div>
-
-
-
-          {/* Button */}
-          <button
-            type="submit"
-            className={`flex h-16 w-full items-center justify-center gap-3 rounded-2xl bg-[#0077B6] text-base font-semibold text-white transition hover:bg-[#0096C7] ${poppins.className}`}
-          >
-            <Send className="h-5 w-5" />
-            SEND MESSAGE
-          </button>
-
-
-        </form>
-
-      )}
-
-    </section>
-
-          <section className="pt-2 lg:pt-10">
-            <div className="max-w-2xl">
-
-              <p className="text-sm font-semibold uppercase tracking-[0.32em] text-[#0077B6]">
-                Newsletter
-              </p>
-
-              <h2 className={`${playfairDisplay.className} mt-3 text-3xl font-semibold tracking-tight text-[#023047] sm:text-4xl`}>
-                Subscribe to our Newsletter
-              </h2>
-
-              <p className="mt-3 max-w-xl text-sm leading-7 text-[#023047] sm:text-base">
-                Stay updated with our latest stories, community initiatives, events, and opportunities to make an impact.
-              </p>
-
-            </div>         
-               {newsletterSubmitted ? (
-              <div className="mt-8 max-w-2xl px-0 py-4">
-
-                <h3
-                  className={`${playfairDisplay.className} mt-4 text-2xl font-semibold text-[#023047]`}
+                <p
+                  className="
+                    mb-3
+                    flex
+                    items-center
+                    gap-2
+                    text-[10px]
+                    font-semibold
+                    uppercase
+                    tracking-[0.28em]
+                    text-[#16865F]
+                  "
                 >
-                  Thanks for subscribing!
-                </h3>
+                  <span className="text-sm">
+                    🌱
+                  </span>
 
-                <p className="mt-3 text-sm leading-7 text-[#023047]">
-                  We&apos;ll send our latest updates to your inbox.
+                  START A CONVERSATION
                 </p>
 
-                <button
-                  onClick={() => {
-                    setNewsletterSubmitted(false);
-                    setNewsletterForm({
-                      firstName: "",
-                      lastName: "",
-                      email: "",
-                      message: "",
-                    });
-                  }}
-                  className={`mt-6 inline-flex items-center justify-center rounded-full bg-[#0077B6] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0096C7] ${poppins.className}`}
+
+                <h2
+                  className={`
+                    ${playfairDisplay.className}
+                    text-3xl
+                    font-semibold
+                    leading-tight
+                    text-[#12372A]
+                    sm:text-4xl
+                  `}
                 >
-                  Subscribe Another Email
-                </button>
+                  Let&apos;s create
+                  <br />
+                  meaningful change.
+                </h2>
+
+
+                <p
+                  className="
+                    mt-3
+                    max-w-xl
+                    text-sm
+                    leading-6
+                    text-[#527568]
+                  "
+                >
+                  Tell us how you would like to contribute,
+                  collaborate or support sustainable development.
+                </p>
 
               </div>
-            ) : (
-
-              <form onSubmit={handleNewsletterSubmit} className="mt-8 space-y-6">
-
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8">
-
-                  <label className="block">
-                    <span className="sr-only">First Name</span>
-                    <input
-                      type="text"
-                      placeholder="First Name"
-                      value={newsletterForm.firstName}
-                      onChange={(e) =>
-                        setNewsletterForm((current) => ({
-                          ...current,
-                          firstName: e.target.value,
-                        }))
-                      }
-                      className="w-full border-0 border-b border-[#8ECAE6] bg-transparent px-0 pb-3 text-sm text-[#023047] outline-none transition placeholder:text-[#219EBC] focus:border-[#0077B6] focus:ring-0"
-                      required
-                    />
-                  </label>
 
 
-                  <label className="block">
-                    <span className="sr-only">Last Name</span>
-                    <input
-                      type="text"
-                      placeholder="Last Name"
-                      value={newsletterForm.lastName}
-                      onChange={(e) =>
-                        setNewsletterForm((current) => ({
-                          ...current,
-                          lastName: e.target.value,
-                        }))
-                      }
-                      className="w-full border-0 border-b border-[#8ECAE6] bg-transparent px-0 pb-3 text-sm text-[#023047] outline-none transition placeholder:text-[#219EBC] focus:border-[#0077B6] focus:ring-0"
-                      required
-                    />
-                  </label>
+              {/* =================================================
+                  CONTACT SUCCESS
+              ================================================= */}
+
+              {contactSubmitted ? (
+
+                <div className="flex min-h-[300px] items-center justify-center">
+
+                  <div className="text-center">
+
+                    <div
+                      className="
+                        mx-auto
+                        mb-5
+                        flex
+                        h-14
+                        w-14
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-[#DDEFE7]
+                      "
+                    >
+                      <CheckCircle
+                        className="h-7 w-7 text-[#16865F]"
+                      />
+                    </div>
+
+
+                    <h3
+                      className={`
+                        ${playfairDisplay.className}
+                        text-2xl
+                        font-semibold
+                        text-[#12372A]
+                      `}
+                    >
+                      Thank you!
+                    </h3>
+
+
+                    <p className="mt-2 text-sm text-[#527568]">
+                      Your message has been received.
+                    </p>
+
+
+                    <p className="mt-1 text-sm text-[#527568]">
+                      We&apos;ll get back to you soon.
+                    </p>
+
+                  </div>
 
                 </div>
 
+              ) : (
 
-                <label className="block">
-                  <span className="sr-only">Email</span>
+                /* =================================================
+                   CONTACT FORM
+                ================================================= */
 
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    value={newsletterForm.email}
-                    onChange={(e) =>
-                      setNewsletterForm((current) => ({
-                        ...current,
-                        email: e.target.value,
-                      }))
-                    }
-                    className="w-full border-0 border-b border-[#8ECAE6] bg-transparent px-0 pb-3 text-sm text-[#023047] outline-none transition placeholder:text-[#219EBC] focus:border-[#0077B6] focus:ring-0"
-                    required
-                  />
-
-                </label>
-
-
-                <label className="block">
-                  <span className="sr-only">Message</span>
-
-                  <textarea
-                    rows={5}
-                    placeholder="Message"
-                    value={newsletterForm.message}
-                    onChange={(e) =>
-                      setNewsletterForm((current) => ({
-                        ...current,
-                        message: e.target.value,
-                      }))
-                    }
-                    className="w-full resize-none rounded-[18px] border border-[#8ECAE6] bg-white px-4 py-4 text-sm text-[#023047] outline-none placeholder:text-[#219EBC] focus:border-[#0077B6]"
-                    required
-                  />
-
-                </label>
-
-
-                <button
-                  type="submit"
-                  className={`inline-flex items-center justify-center rounded-full bg-[#0077B6] px-8 py-4 text-sm font-semibold text-white transition hover:bg-[#0096C7] ${poppins.className}`}
+                <form
+                  onSubmit={handleContactSubmit}
+                  className="space-y-5"
                 >
-                  Submit
-                </button>
 
-              </form>
-            )}          </section>
+                  {/* NAME + PHONE */}
+
+                  <div className="grid gap-5 sm:grid-cols-2">
+
+                    {/* NAME */}
+
+                    <label className="block">
+
+                      <span
+                        className="
+                          mb-2
+                          flex
+                          items-center
+                          gap-2
+                          text-[10px]
+                          font-semibold
+                          uppercase
+                          tracking-[0.2em]
+                          text-[#527568]
+                        "
+                      >
+                        <User className="h-3.5 w-3.5" />
+
+                        NAME
+                      </span>
+
+
+                      <input
+                        type="text"
+                        value={contactForm.name}
+                        onChange={(e) =>
+                          setContactForm((current) => ({
+                            ...current,
+                            name: e.target.value,
+                          }))
+                        }
+                        placeholder="Your name"
+                        required
+                        className="
+                          w-full
+                          border-0
+                          border-b
+                          border-[#BFD5C8]
+                          bg-transparent
+                          px-0
+                          py-3
+                          text-sm
+                          text-[#12372A]
+                          outline-none
+                          transition
+                          placeholder:text-[#9BAFA4]
+                          focus:border-[#16865F]
+                        "
+                      />
+
+                    </label>
+
+
+                    {/* PHONE */}
+
+                    <label className="block">
+
+                      <span
+                        className="
+                          mb-2
+                          flex
+                          items-center
+                          gap-2
+                          text-[10px]
+                          font-semibold
+                          uppercase
+                          tracking-[0.2em]
+                          text-[#527568]
+                        "
+                      >
+                        <Phone className="h-3.5 w-3.5" />
+
+                        PHONE
+                      </span>
+
+
+                      <input
+                        type="tel"
+                        value={contactForm.phone}
+                        onChange={(e) =>
+                          setContactForm((current) => ({
+                            ...current,
+                            phone: e.target.value,
+                          }))
+                        }
+                        placeholder="Your number"
+                        required
+                        className="
+                          w-full
+                          border-0
+                          border-b
+                          border-[#BFD5C8]
+                          bg-transparent
+                          px-0
+                          py-3
+                          text-sm
+                          text-[#12372A]
+                          outline-none
+                          transition
+                          placeholder:text-[#9BAFA4]
+                          focus:border-[#16865F]
+                        "
+                      />
+
+                    </label>
+
+                  </div>
+
+
+                  {/* EMAIL */}
+
+                  <label className="block">
+
+                    <span
+                      className="
+                        mb-2
+                        flex
+                        items-center
+                        gap-2
+                        text-[10px]
+                        font-semibold
+                        uppercase
+                        tracking-[0.2em]
+                        text-[#527568]
+                      "
+                    >
+                      <Mail className="h-3.5 w-3.5" />
+
+                      EMAIL ADDRESS
+                    </span>
+
+
+                    <input
+                      type="email"
+                      value={contactForm.email}
+                      onChange={(e) =>
+                        setContactForm((current) => ({
+                          ...current,
+                          email: e.target.value,
+                        }))
+                      }
+                      placeholder="you@example.com"
+                      required
+                      className="
+                        w-full
+                        border-0
+                        border-b
+                        border-[#BFD5C8]
+                        bg-transparent
+                        px-0
+                        py-3
+                        text-sm
+                        text-[#12372A]
+                        outline-none
+                        transition
+                        placeholder:text-[#9BAFA4]
+                        focus:border-[#16865F]
+                      "
+                    />
+
+                  </label>
+
+
+                  {/* MESSAGE */}
+
+                  <label className="block">
+
+                    <span
+                      className="
+                        mb-2
+                        flex
+                        items-center
+                        gap-2
+                        text-[10px]
+                        font-semibold
+                        uppercase
+                        tracking-[0.2em]
+                        text-[#527568]
+                      "
+                    >
+                      <MessageCircle className="h-3.5 w-3.5" />
+
+                      YOUR MESSAGE
+                    </span>
+
+
+                    <textarea
+                      rows={4}
+                      value={contactForm.message}
+                      onChange={(e) =>
+                        setContactForm((current) => ({
+                          ...current,
+                          message: e.target.value,
+                        }))
+                      }
+                      placeholder="Tell us about your idea, question or opportunity..."
+                      required
+                      className="
+                        w-full
+                        resize-none
+                        border-0
+                        border-b
+                        border-[#BFD5C8]
+                        bg-transparent
+                        px-0
+                        py-3
+                        text-sm
+                        leading-6
+                        text-[#12372A]
+                        outline-none
+                        placeholder:text-[#9BAFA4]
+                        transition
+                        focus:border-[#16865F]
+                      "
+                    />
+
+                  </label>
+
+
+                  {/* SEND */}
+
+                  <button
+                    type="submit"
+                    className="
+                      group
+                      inline-flex
+                      items-center
+                      gap-3
+                      rounded-full
+                      bg-[#12372A]
+                      px-7
+                      py-3.5
+                      text-sm
+                      font-semibold
+                      text-white
+                      transition
+                      hover:-translate-y-0.5
+                      hover:bg-[#16865F]
+                    "
+                  >
+
+                    Send Message
+
+                    <Send
+                      className="
+                        h-4
+                        w-4
+                        transition-transform
+                        group-hover:translate-x-1
+                      "
+                    />
+
+                  </button>
+
+                </form>
+
+              )}
+
+            </div>
+
+
+            {/* =================================================
+                MIDDLE LINE
+            ================================================= */}
+
+            <div
+              className="
+                hidden
+                bg-[#CFE0D7]
+                lg:block
+              "
+            />
+
+
+            {/* =================================================
+                NEWSLETTER — RIGHT SIDE
+            ================================================= */}
+
+            <div
+              className="
+                mt-14
+                border-t
+                border-[#D5E2DB]
+                pt-12
+                lg:mt-0
+                lg:border-t-0
+                lg:pl-14
+                lg:pt-0
+              "
+            >
+
+              {/* Newsletter heading */}
+
+              <div className="mb-7">
+
+                <p
+                  className="
+                    mb-3
+                    flex
+                    items-center
+                    gap-2
+                    text-[10px]
+                    font-semibold
+                    uppercase
+                    tracking-[0.28em]
+                    text-[#16865F]
+                  "
+                >
+
+                  <span className="text-sm">
+                    🌍
+                  </span>
+
+                  STAY CONNECTED
+
+                </p>
+
+
+                <h2
+                  className={`
+                    ${playfairDisplay.className}
+                    text-3xl
+                    font-semibold
+                    leading-tight
+                    text-[#12372A]
+                    sm:text-4xl
+                  `}
+                >
+                  Subscribe to our
+                  <br />
+                  newsletter.
+                </h2>
+
+
+                <p
+                  className="
+                    mt-3
+                    max-w-xl
+                    text-sm
+                    leading-6
+                    text-[#527568]
+                  "
+                >
+                  Stay connected with our work, opportunities,
+                  stories and initiatives for sustainable
+                  development. 🌱
+                </p>
+
+              </div>
+
+
+              {/* =================================================
+                  NEWSLETTER SUCCESS
+              ================================================= */}
+
+              {newsletterSubmitted ? (
+
+                <div className="flex min-h-[300px] items-center justify-center">
+
+                  <div className="text-center">
+
+                    <div
+                      className="
+                        mx-auto
+                        mb-5
+                        flex
+                        h-14
+                        w-14
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-[#DDEFE7]
+                      "
+                    >
+
+                      <CheckCircle
+                        className="h-7 w-7 text-[#16865F]"
+                      />
+
+                    </div>
+
+
+                    <h3
+                      className={`
+                        ${playfairDisplay.className}
+                        text-2xl
+                        font-semibold
+                        text-[#12372A]
+                      `}
+                    >
+                      You&apos;re connected!
+                    </h3>
+
+
+                    <p className="mt-2 text-sm text-[#527568]">
+                      Thank you for joining our journey.
+                    </p>
+
+                  </div>
+
+                </div>
+
+              ) : (
+
+                /* =================================================
+                   NEWSLETTER FORM
+                ================================================= */
+
+                <form
+                  onSubmit={handleNewsletterSubmit}
+                  className="space-y-5"
+                >
+
+                  {/* FIRST NAME + LAST NAME */}
+
+                  <div className="grid gap-5 sm:grid-cols-2">
+
+                    {/* FIRST NAME */}
+
+                    <label className="block">
+
+                      <span
+                        className="
+                          mb-2
+                          block
+                          text-[10px]
+                          font-semibold
+                          uppercase
+                          tracking-[0.2em]
+                          text-[#527568]
+                        "
+                      >
+                        FIRST NAME
+                      </span>
+
+
+                      <input
+                        type="text"
+                        value={newsletterForm.firstName}
+                        onChange={(e) =>
+                          setNewsletterForm((current) => ({
+                            ...current,
+                            firstName: e.target.value,
+                          }))
+                        }
+                        placeholder="First name"
+                        required
+                        className="
+                          w-full
+                          border-0
+                          border-b
+                          border-[#BFD5C8]
+                          bg-transparent
+                          px-0
+                          py-3
+                          text-sm
+                          text-[#12372A]
+                          outline-none
+                          transition
+                          placeholder:text-[#9BAFA4]
+                          focus:border-[#16865F]
+                        "
+                      />
+
+                    </label>
+
+
+                    {/* LAST NAME */}
+
+                    <label className="block">
+
+                      <span
+                        className="
+                          mb-2
+                          block
+                          text-[10px]
+                          font-semibold
+                          uppercase
+                          tracking-[0.2em]
+                          text-[#527568]
+                        "
+                      >
+                        LAST NAME
+                      </span>
+
+
+                      <input
+                        type="text"
+                        value={newsletterForm.lastName}
+                        onChange={(e) =>
+                          setNewsletterForm((current) => ({
+                            ...current,
+                            lastName: e.target.value,
+                          }))
+                        }
+                        placeholder="Last name"
+                        required
+                        className="
+                          w-full
+                          border-0
+                          border-b
+                          border-[#BFD5C8]
+                          bg-transparent
+                          px-0
+                          py-3
+                          text-sm
+                          text-[#12372A]
+                          outline-none
+                          transition
+                          placeholder:text-[#9BAFA4]
+                          focus:border-[#16865F]
+                        "
+                      />
+
+                    </label>
+
+                  </div>
+
+
+                  {/* EMAIL */}
+
+                  <label className="block">
+
+                    <span
+                      className="
+                        mb-2
+                        flex
+                        items-center
+                        gap-2
+                        text-[10px]
+                        font-semibold
+                        uppercase
+                        tracking-[0.2em]
+                        text-[#527568]
+                      "
+                    >
+
+                      <Mail className="h-3.5 w-3.5" />
+
+                      EMAIL ADDRESS
+
+                    </span>
+
+
+                    <input
+                      type="email"
+                      value={newsletterForm.email}
+                      onChange={(e) =>
+                        setNewsletterForm((current) => ({
+                          ...current,
+                          email: e.target.value,
+                        }))
+                      }
+                      placeholder="you@example.com"
+                      required
+                      className="
+                        w-full
+                        border-0
+                        border-b
+                        border-[#BFD5C8]
+                        bg-transparent
+                        px-0
+                        py-3
+                        text-sm
+                        text-[#12372A]
+                        outline-none
+                        transition
+                        placeholder:text-[#9BAFA4]
+                        focus:border-[#16865F]
+                      "
+                    />
+
+                  </label>
+
+
+                  {/* MESSAGE */}
+
+                  <label className="block">
+
+                    <span
+                      className="
+                        mb-2
+                        flex
+                        items-center
+                        gap-2
+                        text-[10px]
+                        font-semibold
+                        uppercase
+                        tracking-[0.2em]
+                        text-[#527568]
+                      "
+                    >
+
+                      <MessageCircle className="h-3.5 w-3.5" />
+
+                      MESSAGE
+
+                    </span>
+
+
+                    <textarea
+                      rows={4}
+                      value={newsletterForm.message}
+                      onChange={(e) =>
+                        setNewsletterForm((current) => ({
+                          ...current,
+                          message: e.target.value,
+                        }))
+                      }
+                      placeholder="What would you like to hear about?"
+                      required
+                      className="
+                        w-full
+                        resize-none
+                        border-0
+                        border-b
+                        border-[#BFD5C8]
+                        bg-transparent
+                        px-0
+                        py-3
+                        text-sm
+                        leading-6
+                        text-[#12372A]
+                        outline-none
+                        placeholder:text-[#9BAFA4]
+                        transition
+                        focus:border-[#16865F]
+                      "
+                    />
+
+                  </label>
+
+
+                  {/* SUBSCRIBE */}
+
+                  <button
+                    type="submit"
+                    className="
+                      group
+                      inline-flex
+                      items-center
+                      gap-3
+                      rounded-full
+                      bg-[#16865F]
+                      px-7
+                      py-3.5
+                      text-sm
+                      font-semibold
+                      text-white
+                      transition
+                      hover:-translate-y-0.5
+                      hover:bg-[#12372A]
+                    "
+                  >
+
+                    Subscribe
+
+                    <Send
+                      className="
+                        h-4
+                        w-4
+                        transition-transform
+                        group-hover:translate-x-1
+                      "
+                    />
+
+                  </button>
+
+                </form>
+
+              )}
+
+            </div>
+
+          </div>
+
         </div>
+
       </section>
 
-     {/* Contact Information */}
-<div className="flex flex-wrap items-center justify-center gap-8 py-2 text-sm font-medium">
-
-  <a
-    href="mailto:contact@stepupforsdg.org"
-    className="flex items-center gap-2 text-[#023047] transition hover:text-[#0077B6] hover:underline"
-  >
-    📧 <span>contact@stepupforsdg.org</span>
-  </a>
-
-  <a
-    href="mailto:info@stepupforsdg.org"
-    className="flex items-center gap-2 text-[#023047] transition hover:text-[#0077B6] hover:underline"
-  >
-    📧 <span>info@stepupforsdg.org</span>
-  </a>
-
-  <a
-    href="mailto:partner@stepupforsdg.org"
-    className="flex items-center gap-2 text-[#023047] transition hover:text-[#0077B6] hover:underline"
-  >
-    📧 <span>partner@stepupforsdg.org</span>
-  </a>
-
-</div>
-      <p className="px-6 pb-8 text-center text-xs text-[#64748B] lg:px-8">
-        © 2026 Pavdhan Foundation • Empowering Students through the Sustainable Development Goals
-      </p>
     </main>
   );
 }
