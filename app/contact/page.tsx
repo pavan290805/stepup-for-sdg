@@ -14,8 +14,8 @@ import {
 import { addContactMessage } from "@/app/lib/adminStore";
 
 import {
-  Playfair_Display,
-  Poppins,
+  Manrope,
+  Cormorant_Garamond,
 } from "next/font/google";
 
 
@@ -23,15 +23,16 @@ import {
    FONTS
 ========================================================= */
 
-const playfairDisplay = Playfair_Display({
+const manrope = Manrope({
   subsets: ["latin"],
-  weight: ["600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
-const poppins = Poppins({
+const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400"],
+  style: ["italic"],
   display: "swap",
 });
 
@@ -115,76 +116,64 @@ export default function ContactPage() {
 
     setNewsletterSubmitted(true);
   }
-    return (
+
+
+  return (
     <main
-      className={`${poppins.className} min-h-screen bg-[#F8F5E9] text-[#12372A]`}
+      className={`${manrope.className} min-h-screen bg-[#F8F5E9] text-[#12372A]`}
     >
 
       {/* =====================================================
-          IMAGE AREA
-          
-          >>> PUT YOUR IMAGE HERE <<<
-          
-          Just change the src:
-          
-          /assets/images/YOUR-IMAGE.png
-          
-          Nothing else needs to be changed.
+          CONTACT IMAGE
       ===================================================== */}
 
-    {/* =====================================================
-    INTEGRATED CONTACT IMAGE
-===================================================== */}
+      <section className="relative -mt-1 w-full overflow-hidden">
 
-<section className="relative -mt-1 w-full overflow-hidden">
+        <div className="relative w-full">
 
-  <div className="relative w-full">
+          <img
+            src="/assets/images/contact-banner.png"
+            alt="Get in touch for sustainable development"
+            className="
+              block
+              h-[190px]
+              w-full
+              object-cover
+              object-center
+              sm:h-[220px]
+              lg:h-[250px]
+            "
+          />
 
-    <img
-      src="/assets/images/contact-banner.png"
-      alt="Get in touch for sustainable development"
-      className="
-        block
-        h-[190px]
-        w-full
-        object-cover
-        object-center
-        sm:h-[220px]
-        lg:h-[250px]
-      "
-    />
+          <div
+            className="
+              pointer-events-none
+              absolute
+              inset-x-0
+              top-0
+              h-10
+              bg-gradient-to-b
+              from-[#F8F5E9]
+              to-transparent
+            "
+          />
 
-    {/* Top blend */}
-    <div
-      className="
-        pointer-events-none
-        absolute
-        inset-x-0
-        top-0
-        h-10
-        bg-gradient-to-b
-        from-[#F8F5E9]
-        to-transparent
-      "
-    />
+          <div
+            className="
+              pointer-events-none
+              absolute
+              inset-x-0
+              bottom-0
+              h-16
+              bg-gradient-to-t
+              from-[#F8F5E9]
+              to-transparent
+            "
+          />
 
-    {/* Bottom blend */}
-    <div
-      className="
-        pointer-events-none
-        absolute
-        inset-x-0
-        bottom-0
-        h-16
-        bg-gradient-to-t
-        from-[#F8F5E9]
-        to-transparent
-      "
-    />
+        </div>
 
-  </div>
-
-</section>
+      </section>
 
 
       {/* =====================================================
@@ -212,16 +201,15 @@ export default function ContactPage() {
             "
           >
 
-
             {/* =================================================
                 CONTACT — LEFT SIDE
             ================================================= */}
 
             <div className="lg:pr-14">
 
-              {/* Contact heading */}
-
               <div className="mb-7">
+
+                {/* LABEL — 12 / 18 / 500 */}
 
                 <p
                   className="
@@ -229,8 +217,9 @@ export default function ContactPage() {
                     flex
                     items-center
                     gap-2
-                    text-[10px]
-                    font-semibold
+                    text-[12px]
+                    font-medium
+                    leading-[18px]
                     uppercase
                     tracking-[0.28em]
                     text-[#16865F]
@@ -244,15 +233,17 @@ export default function ContactPage() {
                 </p>
 
 
+                {/* H2 — 48 / 60 / 700 */}
+
                 <h2
-                  className={`
-                    ${playfairDisplay.className}
-                    text-3xl
-                    font-semibold
-                    leading-tight
+                  className="
+                    text-[36px]
+                    font-bold
+                    leading-[44px]
                     text-[#12372A]
-                    sm:text-4xl
-                  `}
+                    sm:text-[48px]
+                    sm:leading-[60px]
+                  "
                 >
                   Let&apos;s create
                   <br />
@@ -260,12 +251,15 @@ export default function ContactPage() {
                 </h2>
 
 
+                {/* BODY — 18 / 30 / 400 */}
+
                 <p
                   className="
                     mt-3
                     max-w-xl
-                    text-sm
-                    leading-6
+                    text-[18px]
+                    font-normal
+                    leading-[30px]
                     text-[#527568]
                   "
                 >
@@ -305,24 +299,45 @@ export default function ContactPage() {
                     </div>
 
 
+                    {/* H3 — 36 / 48 / 600 */}
+
                     <h3
-                      className={`
-                        ${playfairDisplay.className}
-                        text-2xl
+                      className="
+                        text-[30px]
                         font-semibold
+                        leading-[40px]
                         text-[#12372A]
-                      `}
+                        sm:text-[36px]
+                        sm:leading-[48px]
+                      "
                     >
                       Thank you!
                     </h3>
 
 
-                    <p className="mt-2 text-sm text-[#527568]">
+                    {/* BODY */}
+
+                    <p
+                      className="
+                        mt-2
+                        text-[18px]
+                        font-normal
+                        leading-[30px]
+                        text-[#527568]
+                      "
+                    >
                       Your message has been received.
                     </p>
 
-
-                    <p className="mt-1 text-sm text-[#527568]">
+                    <p
+                      className="
+                        mt-1
+                        text-[18px]
+                        font-normal
+                        leading-[30px]
+                        text-[#527568]
+                      "
+                    >
                       We&apos;ll get back to you soon.
                     </p>
 
@@ -355,16 +370,19 @@ export default function ContactPage() {
                           flex
                           items-center
                           gap-2
-                          text-[10px]
-                          font-semibold
+                          text-[12px]
+                          font-medium
+                          leading-[18px]
                           uppercase
                           tracking-[0.2em]
                           text-[#527568]
                         "
                       >
+
                         <User className="h-3.5 w-3.5" />
 
                         NAME
+
                       </span>
 
 
@@ -387,7 +405,9 @@ export default function ContactPage() {
                           bg-transparent
                           px-0
                           py-3
-                          text-sm
+                          text-[16px]
+                          font-normal
+                          leading-[28px]
                           text-[#12372A]
                           outline-none
                           transition
@@ -409,16 +429,19 @@ export default function ContactPage() {
                           flex
                           items-center
                           gap-2
-                          text-[10px]
-                          font-semibold
+                          text-[12px]
+                          font-medium
+                          leading-[18px]
                           uppercase
                           tracking-[0.2em]
                           text-[#527568]
                         "
                       >
+
                         <Phone className="h-3.5 w-3.5" />
 
                         PHONE
+
                       </span>
 
 
@@ -441,7 +464,9 @@ export default function ContactPage() {
                           bg-transparent
                           px-0
                           py-3
-                          text-sm
+                          text-[16px]
+                          font-normal
+                          leading-[28px]
                           text-[#12372A]
                           outline-none
                           transition
@@ -465,16 +490,19 @@ export default function ContactPage() {
                         flex
                         items-center
                         gap-2
-                        text-[10px]
-                        font-semibold
+                        text-[12px]
+                        font-medium
+                        leading-[18px]
                         uppercase
                         tracking-[0.2em]
                         text-[#527568]
                       "
                     >
+
                       <Mail className="h-3.5 w-3.5" />
 
                       EMAIL ADDRESS
+
                     </span>
 
 
@@ -497,7 +525,9 @@ export default function ContactPage() {
                         bg-transparent
                         px-0
                         py-3
-                        text-sm
+                        text-[16px]
+                        font-normal
+                        leading-[28px]
                         text-[#12372A]
                         outline-none
                         transition
@@ -519,16 +549,19 @@ export default function ContactPage() {
                         flex
                         items-center
                         gap-2
-                        text-[10px]
-                        font-semibold
+                        text-[12px]
+                        font-medium
+                        leading-[18px]
                         uppercase
                         tracking-[0.2em]
                         text-[#527568]
                       "
                     >
+
                       <MessageCircle className="h-3.5 w-3.5" />
 
                       YOUR MESSAGE
+
                     </span>
 
 
@@ -552,8 +585,9 @@ export default function ContactPage() {
                         bg-transparent
                         px-0
                         py-3
-                        text-sm
-                        leading-6
+                        text-[16px]
+                        font-normal
+                        leading-[28px]
                         text-[#12372A]
                         outline-none
                         placeholder:text-[#9BAFA4]
@@ -565,7 +599,7 @@ export default function ContactPage() {
                   </label>
 
 
-                  {/* SEND */}
+                  {/* PRIMARY BUTTON — 16 / 24 / 600 */}
 
                   <button
                     type="submit"
@@ -578,8 +612,9 @@ export default function ContactPage() {
                       bg-[#12372A]
                       px-7
                       py-3.5
-                      text-sm
+                      text-[16px]
                       font-semibold
+                      leading-[24px]
                       text-white
                       transition
                       hover:-translate-y-0.5
@@ -637,9 +672,9 @@ export default function ContactPage() {
               "
             >
 
-              {/* Newsletter heading */}
-
               <div className="mb-7">
+
+                {/* LABEL — 12 / 18 / 500 */}
 
                 <p
                   className="
@@ -647,8 +682,9 @@ export default function ContactPage() {
                     flex
                     items-center
                     gap-2
-                    text-[10px]
-                    font-semibold
+                    text-[12px]
+                    font-medium
+                    leading-[18px]
                     uppercase
                     tracking-[0.28em]
                     text-[#16865F]
@@ -664,15 +700,17 @@ export default function ContactPage() {
                 </p>
 
 
+                {/* H2 — 48 / 60 / 700 */}
+
                 <h2
-                  className={`
-                    ${playfairDisplay.className}
-                    text-3xl
-                    font-semibold
-                    leading-tight
+                  className="
+                    text-[36px]
+                    font-bold
+                    leading-[44px]
                     text-[#12372A]
-                    sm:text-4xl
-                  `}
+                    sm:text-[48px]
+                    sm:leading-[60px]
+                  "
                 >
                   Subscribe to our
                   <br />
@@ -680,18 +718,21 @@ export default function ContactPage() {
                 </h2>
 
 
+                {/* BODY — 18 / 30 / 400 */}
+
                 <p
                   className="
                     mt-3
                     max-w-xl
-                    text-sm
-                    leading-6
+                    text-[18px]
+                    font-normal
+                    leading-[30px]
                     text-[#527568]
                   "
                 >
                   Stay connected with our work, opportunities,
                   stories and initiatives for sustainable
-                  development. 🌱
+                  development.
                 </p>
 
               </div>
@@ -729,18 +770,28 @@ export default function ContactPage() {
 
 
                     <h3
-                      className={`
-                        ${playfairDisplay.className}
-                        text-2xl
+                      className="
+                        text-[30px]
                         font-semibold
+                        leading-[40px]
                         text-[#12372A]
-                      `}
+                        sm:text-[36px]
+                        sm:leading-[48px]
+                      "
                     >
                       You&apos;re connected!
                     </h3>
 
 
-                    <p className="mt-2 text-sm text-[#527568]">
+                    <p
+                      className="
+                        mt-2
+                        text-[18px]
+                        font-normal
+                        leading-[30px]
+                        text-[#527568]
+                      "
+                    >
                       Thank you for joining our journey.
                     </p>
 
@@ -771,8 +822,9 @@ export default function ContactPage() {
                         className="
                           mb-2
                           block
-                          text-[10px]
-                          font-semibold
+                          text-[12px]
+                          font-medium
+                          leading-[18px]
                           uppercase
                           tracking-[0.2em]
                           text-[#527568]
@@ -801,7 +853,9 @@ export default function ContactPage() {
                           bg-transparent
                           px-0
                           py-3
-                          text-sm
+                          text-[16px]
+                          font-normal
+                          leading-[28px]
                           text-[#12372A]
                           outline-none
                           transition
@@ -821,8 +875,9 @@ export default function ContactPage() {
                         className="
                           mb-2
                           block
-                          text-[10px]
-                          font-semibold
+                          text-[12px]
+                          font-medium
+                          leading-[18px]
                           uppercase
                           tracking-[0.2em]
                           text-[#527568]
@@ -851,7 +906,9 @@ export default function ContactPage() {
                           bg-transparent
                           px-0
                           py-3
-                          text-sm
+                          text-[16px]
+                          font-normal
+                          leading-[28px]
                           text-[#12372A]
                           outline-none
                           transition
@@ -875,8 +932,9 @@ export default function ContactPage() {
                         flex
                         items-center
                         gap-2
-                        text-[10px]
-                        font-semibold
+                        text-[12px]
+                        font-medium
+                        leading-[18px]
                         uppercase
                         tracking-[0.2em]
                         text-[#527568]
@@ -909,7 +967,9 @@ export default function ContactPage() {
                         bg-transparent
                         px-0
                         py-3
-                        text-sm
+                        text-[16px]
+                        font-normal
+                        leading-[28px]
                         text-[#12372A]
                         outline-none
                         transition
@@ -921,65 +981,9 @@ export default function ContactPage() {
                   </label>
 
 
-                  {/* MESSAGE */}
-
-                  <label className="block">
-
-                    <span
-                      className="
-                        mb-2
-                        flex
-                        items-center
-                        gap-2
-                        text-[10px]
-                        font-semibold
-                        uppercase
-                        tracking-[0.2em]
-                        text-[#527568]
-                      "
-                    >
-
-                      <MessageCircle className="h-3.5 w-3.5" />
-
-                      MESSAGE
-
-                    </span>
 
 
-                    <textarea
-                      rows={4}
-                      value={newsletterForm.message}
-                      onChange={(e) =>
-                        setNewsletterForm((current) => ({
-                          ...current,
-                          message: e.target.value,
-                        }))
-                      }
-                      placeholder="What would you like to hear about?"
-                      required
-                      className="
-                        w-full
-                        resize-none
-                        border-0
-                        border-b
-                        border-[#BFD5C8]
-                        bg-transparent
-                        px-0
-                        py-3
-                        text-sm
-                        leading-6
-                        text-[#12372A]
-                        outline-none
-                        placeholder:text-[#9BAFA4]
-                        transition
-                        focus:border-[#16865F]
-                      "
-                    />
-
-                  </label>
-
-
-                  {/* SUBSCRIBE */}
+                  {/* BUTTON — 16 / 24 / 600 */}
 
                   <button
                     type="submit"
@@ -992,8 +996,9 @@ export default function ContactPage() {
                       bg-[#16865F]
                       px-7
                       py-3.5
-                      text-sm
+                      text-[16px]
                       font-semibold
+                      leading-[24px]
                       text-white
                       transition
                       hover:-translate-y-0.5
@@ -1025,6 +1030,86 @@ export default function ContactPage() {
         </div>
 
       </section>
+
+
+      {/* =====================================================
+          CONTACT INFORMATION STRIP
+      ===================================================== */}
+
+      <section className="bg-[#F8F5E9]">
+
+        <div
+          className="
+            mx-auto
+            flex
+            max-w-7xl
+            flex-col
+            items-center
+            justify-center
+            px-6
+            py-3
+            text-center
+          "
+        >
+
+          <div
+            className="
+              flex
+              flex-wrap
+              items-center
+              justify-center
+              text-[14px]
+              font-normal
+              leading-[22px]
+              text-[#527568]
+            "
+          >
+
+            <a
+              href="mailto:contact@stepupforsdg.org"
+              className="px-4 transition-colors hover:text-[#16865F]"
+            >
+              ✉ contact@stepupforsdg.org
+            </a>
+
+            <span className="h-3 w-px bg-[#BFD5C8]" />
+
+            <a
+              href="mailto:info@stepupforsdg.org"
+              className="px-4 transition-colors hover:text-[#16865F]"
+            >
+              ✉ info@stepupforsdg.org
+            </a>
+
+            <span className="h-3 w-px bg-[#BFD5C8]" />
+
+            <a
+              href="mailto:partner@stepupforsdg.org"
+              className="px-4 transition-colors hover:text-[#16865F]"
+            >
+              ✉ partner@stepupforsdg.org
+            </a>
+
+          </div>
+
+
+          <p
+            className="
+              mt-1
+              text-[14px]
+              font-normal
+              leading-[22px]
+              text-[#78939A]
+            "
+          >
+            © 2026 Pushkar Foundation • Empowering Students through the
+            Sustainable Development Goals
+          </p>
+
+        </div>
+
+      </section>
+
 
     </main>
   );
