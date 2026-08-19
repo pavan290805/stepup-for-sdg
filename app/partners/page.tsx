@@ -6,8 +6,16 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useIn
 
 /* --- GLOBAL STYLES --------------------------------------------------------- */
 const GLOBAL_STYLES = `
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-  *, *::before, *::after { box-sizing: border-box; }
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,600;1,700&family=Manrope:wght@400;500;600;700;800&family=Ruluko&display=swap');
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .font-quote {
+    font-family: 'Cormorant Garamond', 'Ruluko', Georgia, serif;
+  }
 
   @keyframes marquee {
     from { transform: translateX(0); }
@@ -24,6 +32,166 @@ const GLOBAL_STYLES = `
   @keyframes border-glow {
     0%, 100% { opacity: 0.4; }
     50%       { opacity: 1; }
+  }
+
+  .space-bg {
+    background:
+      /* centered soft blue glow */
+      radial-gradient(
+        ellipse 75% 60% at 50% 40%,
+        rgba(21, 93, 252, 0.32),
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 50% 40% at 50% 42%,
+        rgba(0, 194, 255, 0.14),
+        transparent 60%
+      ),
+      /* vignette: darken all four edges */
+      radial-gradient(
+        ellipse 120% 105% at 50% 50%,
+        transparent 42%,
+        rgba(2, 6, 16, 0.7) 100%
+      ),
+      /* base linear depth (top/bottom darker) */
+      linear-gradient(180deg, #040912 0%, #07101f 50%, #040912 100%);
+  }
+
+  .stars-layer {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 2% 5%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 5% 18%, #fff, transparent),
+      radial-gradient(1px 1px at 8% 32%, #fff, transparent),
+      radial-gradient(2px 2px at 11% 47%, #fff, transparent),
+      radial-gradient(1px 1px at 14% 61%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 17% 75%, #fff, transparent),
+      radial-gradient(1px 1px at 20% 88%, #fff, transparent),
+      radial-gradient(1px 1px at 23% 12%, #fff, transparent),
+      radial-gradient(2px 2px at 26% 28%, #fff, transparent),
+      radial-gradient(1px 1px at 29% 43%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 32% 57%, #fff, transparent),
+      radial-gradient(1px 1px at 35% 71%, #fff, transparent),
+      radial-gradient(1px 1px at 38% 84%, #fff, transparent),
+      radial-gradient(2px 2px at 41% 96%, #fff, transparent),
+      radial-gradient(1px 1px at 44% 8%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 47% 22%, #fff, transparent),
+      radial-gradient(1px 1px at 50% 36%, #fff, transparent),
+      radial-gradient(1px 1px at 53% 50%, #fff, transparent),
+      radial-gradient(2px 2px at 56% 64%, #fff, transparent),
+      radial-gradient(1px 1px at 59% 78%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 62% 91%, #fff, transparent),
+      radial-gradient(1px 1px at 65% 14%, #fff, transparent),
+      radial-gradient(1px 1px at 68% 29%, #fff, transparent),
+      radial-gradient(2px 2px at 71% 44%, #fff, transparent),
+      radial-gradient(1px 1px at 74% 58%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 77% 72%, #fff, transparent),
+      radial-gradient(1px 1px at 80% 86%, #fff, transparent),
+      radial-gradient(1px 1px at 83% 7%, #fff, transparent),
+      radial-gradient(2px 2px at 86% 21%, #fff, transparent),
+      radial-gradient(1px 1px at 89% 35%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 92% 49%, #fff, transparent),
+      radial-gradient(1px 1px at 95% 63%, #fff, transparent),
+      radial-gradient(1px 1px at 98% 77%, #fff, transparent),
+      radial-gradient(2px 2px at 3% 90%, #fff, transparent),
+      radial-gradient(1px 1px at 7% 55%, rgba(200, 220, 255, 0.9), transparent),
+      radial-gradient(
+        1.5px 1.5px at 13% 40%,
+        rgba(200, 220, 255, 0.8),
+        transparent
+      ),
+      radial-gradient(1px 1px at 19% 25%, rgba(200, 220, 255, 0.9), transparent),
+      radial-gradient(1px 1px at 25% 68%, rgba(200, 220, 255, 0.7), transparent),
+      radial-gradient(2px 2px at 31% 82%, rgba(200, 220, 255, 0.8), transparent),
+      radial-gradient(1px 1px at 37% 15%, rgba(200, 220, 255, 0.9), transparent),
+      radial-gradient(
+        1.5px 1.5px at 43% 52%,
+        rgba(200, 220, 255, 0.7),
+        transparent
+      ),
+      radial-gradient(1px 1px at 49% 93%, rgba(200, 220, 255, 0.8), transparent),
+      radial-gradient(1px 1px at 55% 38%, rgba(200, 220, 255, 0.9), transparent),
+      radial-gradient(2px 2px at 61% 6%, rgba(200, 220, 255, 0.7), transparent),
+      radial-gradient(1px 1px at 67% 74%, rgba(200, 220, 255, 0.8), transparent),
+      radial-gradient(
+        1.5px 1.5px at 73% 19%,
+        rgba(200, 220, 255, 0.9),
+        transparent
+      ),
+      radial-gradient(1px 1px at 79% 55%, rgba(200, 220, 255, 0.7), transparent),
+      radial-gradient(1px 1px at 85% 88%, rgba(200, 220, 255, 0.8), transparent),
+      radial-gradient(2px 2px at 91% 33%, rgba(200, 220, 255, 0.9), transparent),
+      radial-gradient(1px 1px at 97% 66%, rgba(200, 220, 255, 0.7), transparent),
+      radial-gradient(
+        1.5px 1.5px at 4% 42%,
+        rgba(180, 210, 255, 0.8),
+        transparent
+      ),
+      radial-gradient(1px 1px at 10% 76%, rgba(180, 210, 255, 0.7), transparent),
+      radial-gradient(1px 1px at 16% 9%, rgba(180, 210, 255, 0.9), transparent),
+      radial-gradient(2px 2px at 22% 53%, rgba(180, 210, 255, 0.8), transparent),
+      radial-gradient(1px 1px at 28% 87%, rgba(180, 210, 255, 0.7), transparent),
+      radial-gradient(
+        1.5px 1.5px at 34% 31%,
+        rgba(180, 210, 255, 0.9),
+        transparent
+      ),
+      radial-gradient(1px 1px at 40% 65%, rgba(180, 210, 255, 0.8), transparent),
+      radial-gradient(1px 1px at 46% 4%, rgba(180, 210, 255, 0.7), transparent),
+      radial-gradient(2px 2px at 52% 79%, rgba(180, 210, 255, 0.9), transparent),
+      radial-gradient(1px 1px at 58% 23%, rgba(180, 210, 255, 0.8), transparent),
+      radial-gradient(
+        1.5px 1.5px at 64% 47%,
+        rgba(180, 210, 255, 0.7),
+        transparent
+      ),
+      radial-gradient(1px 1px at 70% 83%, rgba(180, 210, 255, 0.9), transparent),
+      radial-gradient(1px 1px at 76% 11%, rgba(180, 210, 255, 0.8), transparent),
+      radial-gradient(2px 2px at 82% 59%, rgba(180, 210, 255, 0.7), transparent),
+      radial-gradient(1px 1px at 88% 95%, rgba(180, 210, 255, 0.9), transparent),
+      radial-gradient(
+        1.5px 1.5px at 94% 27%,
+        rgba(180, 210, 255, 0.8),
+        transparent
+      );
+    background-size: 100% 100%;
+    animation: twinkle 6s ease-in-out infinite alternate;
+    pointer-events: none;
+    opacity: 0.85;
+  }
+
+  @keyframes twinkle {
+    0% {
+      opacity: 0.4;
+    }
+    100% {
+      opacity: 0.95;
+    }
+  }
+
+  .streak {
+    position: absolute;
+    width: 140px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00c2ff, transparent);
+    opacity: 0;
+    animation: streak 6s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes streak {
+    0% {
+      transform: translate(-200px, 0) rotate(20deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.9;
+    }
+    100% {
+      transform: translate(120vw, 200px) rotate(20deg);
+      opacity: 0;
+    }
   }
 
   .logo-pill {
@@ -51,33 +219,36 @@ const GLOBAL_STYLES = `
     animation: shimmer-bg 1.4s ease infinite;
   }
   .bg-grid-pattern {
-    background-size: 24px 24px;
+    background-size: 28px 28px;
     background-image: radial-gradient(circle, var(--grid-color) 1.2px, transparent 1.2px);
   }
 `;
 
 /* --- THEMES ---------------------------------------------------------------- */
 const DARK = {
-  pageBg: "#060a10",
-  sectionAlt: "#070c14",
-  card: "#0d1625",
-  cardHover: "#101c2e",
-  footer: "#040810",
-  border: "#1a2537",
-  borderSubtle: "#111b28",
-  text: "#f0f4f8",
-  textSub: "#c8d4e0",
-  muted: "#6b8099",
-  dim: "#3d5166",
-  accent: "#0ea5c9",
-  accentGlow: "rgba(14,165,201,0.2)",
+  pageBg: "#040912",
+  sectionAlt: "#07101f",
+  card: "#0b1630",
+  cardHover: "#101f42",
+  footer: "#040912",
+  border: "rgba(21, 93, 252, 0.22)",
+  borderSubtle: "rgba(255, 255, 255, 0.08)",
+  text: "#ffffff",
+  textSub: "rgba(255, 255, 255, 0.7)",
+  muted: "rgba(255, 255, 255, 0.55)",
+  dim: "rgba(255, 255, 255, 0.35)",
+  accent: "#00c2ff",
+  accentGlow: "rgba(0, 194, 255, 0.25)",
+  electric: "#155dfc",
+  cyan: "#00c2ff",
+  teal: "#00d084",
   accentRed: "#ef4444",
-  inputBg: "#080f1a",
-  glass: "rgba(13,22,37,0.82)",
-  glassBorder: "rgba(14,165,201,0.2)",
-  glow: "rgba(14,165,201,0.15)",
-  overlay: "rgba(4,8,16,0.88)",
-  gridLine: "rgba(255,255,255,0.03)",
+  inputBg: "#07101f",
+  glass: "rgba(11, 22, 48, 0.85)",
+  glassBorder: "rgba(0, 194, 255, 0.2)",
+  glow: "rgba(21, 93, 252, 0.3)",
+  overlay: "rgba(4, 9, 18, 0.9)",
+  gridLine: "rgba(0, 194, 255, 0.03)",
 };
 
 const LIGHT = {
@@ -92,13 +263,16 @@ const LIGHT = {
   textSub: "#374151",
   muted: "#6b7280",
   dim: "#9ca3af",
-  accent: "#0284c7",
-  accentGlow: "rgba(2,132,199,0.15)",
+  accent: "#155dfc",
+  accentGlow: "rgba(21,93,252,0.15)",
+  electric: "#155dfc",
+  cyan: "#0088bb",
+  teal: "#007a9a",
   accentRed: "#dc2626",
   inputBg: "#f8fafc",
   glass: "rgba(255,255,255,0.92)",
-  glassBorder: "rgba(2,132,199,0.2)",
-  glow: "rgba(2,132,199,0.08)",
+  glassBorder: "rgba(21,93,252,0.2)",
+  glow: "rgba(21,93,252,0.08)",
   overlay: "rgba(0,0,0,0.75)",
   gridLine: "rgba(0,0,0,0.025)",
 };
@@ -140,12 +314,12 @@ const typeConfig: Record<
   }
 > = {
   School: {
-    color: "#34d399",
-    bg: "rgba(16,185,129,0.08)",
-    border: "rgba(52,211,153,0.25)",
-    badgeBg: "rgba(16,185,129,0.12)",
-    badgeText: "#34d399",
-    gradient: "linear-gradient(135deg, rgba(16,185,129,0.12) 0%, rgba(6,182,212,0.06) 100%)",
+    color: "#00d084",
+    bg: "rgba(0,208,132,0.08)",
+    border: "rgba(0,208,132,0.25)",
+    badgeBg: "rgba(0,208,132,0.12)",
+    badgeText: "#00d084",
+    gradient: "linear-gradient(135deg, rgba(0,208,132,0.14) 0%, rgba(0,194,255,0.06) 100%)",
     IconEl: ({ className = "w-[18px] h-[18px]", style }) => (
       <svg
         viewBox="0 0 24 24"
@@ -163,12 +337,12 @@ const typeConfig: Record<
     ),
   },
   NGO: {
-    color: "#38bdf8",
-    bg: "rgba(56,189,248,0.08)",
-    border: "rgba(56,189,248,0.25)",
-    badgeBg: "rgba(56,189,248,0.12)",
-    badgeText: "#38bdf8",
-    gradient: "linear-gradient(135deg, rgba(56,189,248,0.1) 0%, rgba(99,102,241,0.06) 100%)",
+    color: "#00c2ff",
+    bg: "rgba(0,194,255,0.08)",
+    border: "rgba(0,194,255,0.25)",
+    badgeBg: "rgba(0,194,255,0.12)",
+    badgeText: "#00c2ff",
+    gradient: "linear-gradient(135deg, rgba(0,194,255,0.14) 0%, rgba(21,93,252,0.08) 100%)",
     IconEl: ({ className = "w-[18px] h-[18px]", style }) => (
       <svg
         viewBox="0 0 24 24"
@@ -185,12 +359,12 @@ const typeConfig: Record<
     ),
   },
   Company: {
-    color: "#f87171",
-    bg: "rgba(248,113,113,0.08)",
-    border: "rgba(248,113,113,0.25)",
-    badgeBg: "rgba(248,113,113,0.12)",
-    badgeText: "#f87171",
-    gradient: "linear-gradient(135deg, rgba(248,113,113,0.1) 0%, rgba(251,146,60,0.06) 100%)",
+    color: "#155dfc",
+    bg: "rgba(21,93,252,0.08)",
+    border: "rgba(21,93,252,0.3)",
+    badgeBg: "rgba(21,93,252,0.15)",
+    badgeText: "#155dfc",
+    gradient: "linear-gradient(135deg, rgba(21,93,252,0.16) 0%, rgba(0,194,255,0.08) 100%)",
     IconEl: ({ className = "w-[18px] h-[18px]", style }) => (
       <svg
         viewBox="0 0 24 24"
@@ -213,7 +387,7 @@ const typeConfig: Record<
     border: "rgba(251,191,36,0.25)",
     badgeBg: "rgba(251,191,36,0.12)",
     badgeText: "#fbbf24",
-    gradient: "linear-gradient(135deg, rgba(251,191,36,0.1) 0%, rgba(249,115,22,0.06) 100%)",
+    gradient: "linear-gradient(135deg, rgba(251,191,36,0.12) 0%, rgba(249,115,22,0.06) 100%)",
     IconEl: ({ className = "w-[18px] h-[18px]", style }) => (
       <svg
         viewBox="0 0 24 24"
@@ -410,21 +584,21 @@ const audienceCards: { title: string; type: PartnerType; benefits: string[]; hre
   {
     title: "For Companies",
     type: "Company",
-    href: "/get-involved/sponsor",
+    href: "mailto:companies@stepupsdg.in",
     btnLabel: "Get started",
     benefits: ["Verified impact reports for your board", "Direct line to 12,000+ students", "Brand visibility across 6 states"],
   },
   {
     title: "For Educational Institutes",
     type: "School",
-    href: "/get-involved/school",
+    href: "mailto:schools@stepupsdg.in",
     btnLabel: "Join as an institute",
     benefits: ["Ready SDG curriculum and materials", "Funded workshops at zero cost", "Student leadership opportunities"],
   },
   {
     title: "For NGOs",
     type: "NGO",
-    href: "/get-involved/ngo-partner",
+    href: "mailto:ngos@stepupsdg.in",
     btnLabel: "Partner with us",
     benefits: ["Co-design programs with companies", "Reach across 8 partner cities", "Joint grant opportunities"],
   },
@@ -542,6 +716,40 @@ const Icon = {
       <path d="M19 17c1.72-2.14 1.72-5.86 0-8" />
     </svg>
   ),
+  Handshake: ({ className = "w-4 h-4", style }: { className?: string; style?: React.CSSProperties }) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} style={style}>
+      <path d="m11 17 2 2a1 1 0 0 0 1.4 0l4.3-4.3a1 1 0 0 0 0-1.4l-2-2" />
+      <path d="m14 14 2.5 2.5a1 1 0 0 0 1.4 0l2.8-2.8a1 1 0 0 0 0-1.4l-3.3-3.3" />
+      <path d="M18 10 9 1 2 8l5 5" />
+      <path d="m2 8 7 7 4-4" />
+      <path d="m9 15 2 2" />
+    </svg>
+  ),
+  BarChart: ({ className = "w-4 h-4", style }: { className?: string; style?: React.CSSProperties }) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} style={style}>
+      <line x1="12" y1="20" x2="12" y2="10" />
+      <line x1="18" y1="20" x2="18" y2="4" />
+      <line x1="6" y1="20" x2="6" y2="16" />
+    </svg>
+  ),
+  Target: ({ className = "w-4 h-4", style }: { className?: string; style?: React.CSSProperties }) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} style={style}>
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="12" r="6" />
+      <circle cx="12" cy="12" r="2" />
+    </svg>
+  ),
+  Rupee: ({ className = "w-4 h-4", style }: { className?: string; style?: React.CSSProperties }) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} style={style}>
+      <path d="M6 3h12M6 8h12M6 13l8.5 8M6 13h3a4 4 0 0 0 0-8" />
+    </svg>
+  ),
+  Leaf: ({ className = "w-4 h-4", style }: { className?: string; style?: React.CSSProperties }) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} style={style}>
+      <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+      <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+    </svg>
+  ),
 };
 
 /* --- MULTI-SOURCE IMAGE ---------------------------------------------------- */
@@ -585,14 +793,13 @@ function MultiSourceImg({
           alignItems: "center",
           justifyContent: "center",
           border: `1px solid ${border}`,
-          borderRadius: 16,
-          width: "90%",
-          height: "100%",
-          minHeight: 64,
+          borderRadius: "50%",
+          width: 56,
+          height: 56,
           ...style,
         }}
       >
-        <span style={{ color, fontWeight: 900, fontSize: "22px", letterSpacing: "-0.03em" }}>
+        <span style={{ color, fontWeight: 900, fontSize: "14px", letterSpacing: "-0.02em" }}>
           {initials}
         </span>
       </div>
@@ -621,18 +828,75 @@ function MultiSourceImg({
 }
 
 /* --- SCROLL REVEAL --------------------------------------------------------- */
-function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+function Reveal({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
   return (
     <motion.div
       ref={ref}
+      className={className}
       initial={{ opacity: 0, y: 24 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.55, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
     >
       {children}
     </motion.div>
+  );
+}
+
+/* --- ROLLING NUMBER COUNTER ------------------------------------------------ */
+function RollingNumber({
+  to,
+  decimals = 0,
+  prefix = "",
+  suffix = "",
+  duration = 1800,
+}: {
+  to: number;
+  decimals?: number;
+  prefix?: string;
+  suffix?: string;
+  duration?: number;
+}) {
+  const [val, setVal] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    if (inView && !hasAnimated.current) {
+      hasAnimated.current = true;
+      const start = performance.now();
+      const tick = (now: number) => {
+        const p = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const current = p === 1 ? to : eased * to;
+        setVal(current);
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+  }, [inView, to, duration]);
+
+  const formatted =
+    decimals > 0
+      ? val.toFixed(decimals)
+      : Math.round(val).toLocaleString();
+
+  return (
+    <span ref={ref}>
+      {prefix}
+      {formatted}
+      {suffix}
+    </span>
   );
 }
 
@@ -688,8 +952,8 @@ function PartnerCard({
 
       {/* Partner Name */}
       <span
-        className="text-xs font-bold text-center mt-3 tracking-tight transition-colors duration-300 line-clamp-1 px-2"
-        style={{ color: hovered ? theme.accent : theme.text }}
+        className="text-[14px] sm:text-[15px] font-bold text-center mt-3 tracking-tight transition-colors duration-300 line-clamp-1 px-2"
+        style={{ color: hovered ? "#155dfc" : theme.text }}
       >
         {partner.name}
       </span>
@@ -745,21 +1009,22 @@ function PartnerModal({
               style={{ width: 56, height: 56, borderRadius: 14, flexShrink: 0 }}
             />
             <div>
-              <div className="text-[17px] font-bold tracking-tight" style={{ color: theme.text }}>{partner.name}</div>
-              <div className="flex items-center gap-1.5 mt-1 text-xs" style={{ color: theme.muted }}>
-                <Icon.MapPin className="w-3 h-3" />
+              {/* Modal Title (Card Heading H4) - Manrope 24px/30px */}
+              <div className="text-[20px] sm:text-[24px] font-semibold leading-[28px] sm:leading-[32px] tracking-tight" style={{ color: theme.text }}>{partner.name}</div>
+              <div className="flex items-center gap-1.5 mt-1 text-[14px] font-normal leading-[22px]" style={{ color: theme.muted }}>
+                <Icon.MapPin className="w-3.5 h-3.5" />
                 {partner.city} • Since {partner.since}
               </div>
               <div className="flex items-center gap-2 mt-2">
                 <span
-                  className="rounded-full px-2.5 py-[3px] text-[11px] font-semibold"
+                  className="rounded-full px-3 py-1 text-[12px] font-medium leading-[18px]"
                   style={{ background: cfg.badgeBg, color: cfg.badgeText }}
                 >
                   {partner.type}
                 </span>
                 {partner.tier && (
                   <span
-                    className="flex items-center gap-1 rounded-full px-2.5 py-[3px] text-[11px] font-bold"
+                    className="flex items-center gap-1 rounded-full px-3 py-1 text-[12px] font-semibold leading-[18px]"
                     style={{ color: tierConfig[partner.tier].color, background: tierConfig[partner.tier].bg }}
                   >
                     <Icon.Star />
@@ -781,10 +1046,11 @@ function PartnerModal({
         </div>
         <div className="flex flex-col gap-5 p-6">
           <div className="rounded-2xl p-5" style={{ background: theme.pageBg, border: `1px solid ${theme.border}` }}>
-            <div className="mb-2 text-[10px] font-semibold uppercase tracking-widest" style={{ color: theme.muted }}>
+            <div className="mb-2 text-[12px] font-medium uppercase tracking-widest leading-[18px]" style={{ color: theme.muted }}>
               The story so far
             </div>
-            <p className="text-[13px] leading-relaxed" style={{ color: theme.textSub }}>
+            {/* Body Small - Manrope 16px / 400 / 28px */}
+            <p className="text-[15px] sm:text-[16px] font-normal leading-[24px] sm:leading-[28px]" style={{ color: theme.textSub }}>
               {partner.story}
             </p>
           </div>
@@ -793,14 +1059,14 @@ function PartnerModal({
             style={{ border: "1px solid rgba(34,197,94,0.2)", background: "rgba(34,197,94,0.06)" }}
           >
             <Icon.Shield className="w-4 h-4" style={{ color: "#22c55e" }} />
-            <span className="text-[13px] font-semibold" style={{ color: "#22c55e" }}>
+            <span className="text-[14px] font-semibold leading-[20px]" style={{ color: "#22c55e" }}>
               Verified Partner
             </span>
-            <span className="ml-auto text-[11px]" style={{ color: "#4ade80" }}>
+            <span className="ml-auto text-[12px] font-medium leading-[18px]" style={{ color: "#4ade80" }}>
               Audited • Impact verified
             </span>
           </div>
-          <div className="grid grid-cols-3 gap-2.5">
+          <div className="grid grid-cols-3 gap-3">
             {metrics.map(([val, label]) => (
               <motion.div
                 key={label}
@@ -810,10 +1076,12 @@ function PartnerModal({
                 className="rounded-2xl p-4 text-center"
                 style={{ background: cfg.gradient, border: `1px solid ${cfg.border}` }}
               >
-                <div className="text-[22px] font-black tracking-tight leading-none" style={{ color: cfg.color }}>
+                {/* Metric Number */}
+                <div className="text-[24px] sm:text-[28px] font-extrabold tracking-tight leading-none" style={{ color: cfg.color }}>
                   {val}
                 </div>
-                <div className="mt-1 text-[11px] leading-snug" style={{ color: theme.muted }}>
+                {/* Metric Label */}
+                <div className="mt-1.5 text-[13px] sm:text-[14px] font-medium leading-[18px] sm:leading-[20px]" style={{ color: theme.muted }}>
                   {label}
                 </div>
               </motion.div>
@@ -821,7 +1089,7 @@ function PartnerModal({
           </div>
           {partner.type === "Company" && (
             <div>
-              <div className="mb-3 text-[10px] font-semibold uppercase tracking-widest" style={{ color: theme.muted }}>
+              <div className="mb-3 text-[12px] font-medium uppercase tracking-widest leading-[18px]" style={{ color: theme.muted }}>
                 Funding journey
               </div>
               {COMPANY_PROJECTS.map((p, i) => (
@@ -833,20 +1101,20 @@ function PartnerModal({
                     className="z-10 mt-1 h-3.5 w-3.5 shrink-0 rounded-full border-2"
                     style={{ borderColor: cfg.color, background: p.status === "Completed" ? cfg.color : "transparent" }}
                   />
-                  <div className="flex-1 rounded-xl p-3" style={{ background: theme.pageBg, border: `1px solid ${theme.border}` }}>
+                  <div className="flex-1 rounded-xl p-3.5" style={{ background: theme.pageBg, border: `1px solid ${theme.border}` }}>
                     <div className="flex items-center justify-between">
-                      <span className="text-[13px] font-medium" style={{ color: theme.text }}>
+                      <span className="text-[14px] sm:text-[16px] font-medium leading-[22px]" style={{ color: theme.text }}>
                         {p.name}
                       </span>
-                      <span className="text-[13px] font-bold" style={{ color: cfg.color }}>
+                      <span className="text-[14px] sm:text-[16px] font-bold leading-[22px]" style={{ color: cfg.color }}>
                         {p.amount}
                       </span>
                     </div>
-                    <div className="mt-1 flex items-center gap-2 text-[11px]" style={{ color: theme.muted }}>
+                    <div className="mt-1 flex items-center gap-2 text-[12px] leading-[18px]" style={{ color: theme.muted }}>
                       <span>{p.status}</span>
                       {p.verified && (
-                        <span className="flex items-center gap-1" style={{ color: theme.accent }}>
-                          <Icon.Check className="w-3 h-3" />
+                        <span className="flex items-center gap-1 font-medium" style={{ color: theme.accent }}>
+                          <Icon.Check className="w-3.5 h-3.5" />
                           Verified
                         </span>
                       )}
@@ -881,139 +1149,200 @@ export default function PartnersPage() {
 
   return (
     <div
-      className="min-h-screen theme-transition flex flex-col relative bg-grid-pattern overflow-hidden"
+      className={`min-h-screen theme-transition flex flex-col relative overflow-hidden ${
+        isDark ? "space-bg" : "bg-grid-pattern"
+      }`}
       style={{
-        background: theme.pageBg,
+        background: isDark ? undefined : theme.pageBg,
         color: theme.text,
         fontFamily: "'Inter',system-ui,sans-serif",
-        "--grid-color": isDark ? "rgba(255,255,255,0.02)" : "rgba(15,23,42,0.035)",
+        "--grid-color": isDark ? "rgba(0,194,255,0.03)" : "rgba(15,23,42,0.035)",
       } as React.CSSProperties}
     >
       <style>{GLOBAL_STYLES}</style>
 
-      {/* -- BACKDROP RADIAL GLOW BLOBS -- */}
-      {/* Top Left Glow */}
-      <div
-        className="absolute top-[-8%] left-[-12%] w-[550px] h-[550px] rounded-full blur-[140px] pointer-events-none opacity-40 transition-opacity duration-300"
-        style={{
-          background: isDark
-            ? "radial-gradient(circle, rgba(14,165,201,0.16) 0%, transparent 70%)"
-            : "radial-gradient(circle, rgba(2,132,199,0.11) 0%, transparent 70%)"
-        }}
-      />
-      {/* Center Right Glow */}
-      <div
-        className="absolute top-[35%] right-[-15%] w-[650px] h-[650px] rounded-full blur-[150px] pointer-events-none opacity-35 transition-opacity duration-300"
-        style={{
-          background: isDark
-            ? "radial-gradient(circle, rgba(99,102,241,0.11) 0%, transparent 70%)"
-            : "radial-gradient(circle, rgba(129,140,248,0.08) 0%, transparent 70%)"
-        }}
-      />
-      {/* Bottom Left Glow */}
-      <div
-        className="absolute bottom-[-10%] left-[-15%] w-[550px] h-[550px] rounded-full blur-[140px] pointer-events-none opacity-40 transition-opacity duration-300"
-        style={{
-          background: isDark
-            ? "radial-gradient(circle, rgba(16,185,129,0.09) 0%, transparent 70%)"
-            : "radial-gradient(circle, rgba(52,211,153,0.07) 0%, transparent 70%)"
-        }}
-      />
+      {/* -- SPACE STARS & STREAKS (DARK MODE) -- */}
+      {isDark && (
+        <>
+          <div className="stars-layer" aria-hidden="true" />
+          <div
+            className="streak"
+            style={{ top: "20%", left: "10%", animationDelay: "0.5s", opacity: 0.6 }}
+            aria-hidden="true"
+          />
+          <div
+            className="streak"
+            style={{ top: "60%", left: "30%", animationDelay: "3.2s", opacity: 0.5 }}
+            aria-hidden="true"
+          />
+          <div
+            className="streak"
+            style={{ top: "85%", left: "15%", animationDelay: "5.5s", opacity: 0.4 }}
+            aria-hidden="true"
+          />
+        </>
+      )}
 
       {/* -- ECOSYSTEM CONSTELLATION HERO -- */}
-      <section className="px-6 md:px-12 lg:px-20 py-16 md:py-24 flex flex-col items-center justify-center relative border-b overflow-hidden z-10"
-        style={{ borderColor: theme.border, background: "transparent" }}>
-        
-        {/* Glow Backdrops */}
-        <div className="pointer-events-none absolute rounded-full blur-[140px]"
-          style={{
-            width: 600,
-            height: 450,
-            top: "-10%",
-            left: "50%",
-            transform: "translateX(-50%)",
-            background: isDark
-              ? "radial-gradient(circle, rgba(14,165,201,0.12) 0%, transparent 70%)"
-              : "radial-gradient(circle, rgba(2,132,199,0.08) 0%, transparent 70%)"
-          }}
-        />
-
+      <section
+        className="px-6 md:px-12 lg:px-20 pt-6 pb-24 md:pt-8 md:pb-32 flex flex-col items-center justify-center relative overflow-hidden z-10"
+        style={{ background: "transparent" }}
+      >
         {/* Two-Column Hero Container */}
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-          
           {/* Left Column: Copy & CTAs */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
-
-
-            <Reveal delay={0.1}>
-              <h1 className="font-display font-black tracking-tight text-[36px] sm:text-[44px] lg:text-[52px] leading-[1.08] mb-5"
+            {/* Top SDG 17 Badge */}
+            <Reveal delay={0.05}>
+              <div
+                className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[12px] font-medium leading-[18px] mb-6 border shadow-sm transition hover:scale-[1.02]"
                 style={{
-                  background: isDark 
-                    ? "linear-gradient(135deg,#ffffff 30%,#38bdf8 100%)" 
-                    : "linear-gradient(135deg,#0f172a 30%,#1e40af 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent"
-                }}>
-                Coordinating action for a sustainable future
+                  background: isDark ? "rgba(21,93,252,0.12)" : "rgba(21,93,252,0.06)",
+                  borderColor: isDark ? "rgba(0,194,255,0.3)" : "rgba(21,93,252,0.2)",
+                  color: isDark ? "#00c2ff" : "#155dfc",
+                }}
+              >
+                <Icon.Handshake className="w-3.5 h-3.5" />
+                <span className="tracking-wider uppercase text-[12px] font-medium leading-[18px]">SDG 17 — Partnerships for the Goals</span>
+              </div>
+            </Reveal>
+
+            {/* Page Heading (H1) - Manrope 56px / 700 / 68px */}
+            <Reveal delay={0.1}>
+              <h1
+                className="font-bold tracking-tight text-[36px] sm:text-[46px] lg:text-[56px] leading-[44px] sm:leading-[56px] lg:leading-[68px] mb-5"
+                style={{ color: theme.text }}
+              >
+                Coordinating action <br />
+                for a{" "}
+                <span
+                  style={{
+                    background: "linear-gradient(135deg, #155dfc 0%, #00c2ff 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  sustainable
+                </span>{" "}
+                <span
+                  style={{
+                    background: "linear-gradient(135deg, #00c2ff 0%, #00d084 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  future
+                </span>
               </h1>
             </Reveal>
 
+            {/* Accent divider line */}
+            <Reveal delay={0.12}>
+              <div
+                className="h-1 w-20 rounded-full mb-6"
+                style={{
+                  background: "linear-gradient(90deg, #155dfc 0%, #00c2ff 50%, #00d084 100%)",
+                }}
+              />
+            </Reveal>
+
+            {/* Hero Description / Body Large - Manrope 20px / 400 / 34px */}
             <Reveal delay={0.15}>
-              <p className="text-sm sm:text-base leading-relaxed mb-8 max-w-xl" style={{ color: theme.muted }}>
+              <p
+                className="text-[17px] sm:text-[20px] font-normal leading-[28px] sm:leading-[34px] mb-8 max-w-xl"
+                style={{ color: theme.textSub }}
+              >
                 StepUp for SDG drives grassroots educational action under UN SDG 17. We match corporate funding, university research, and NGO fieldwork to deliver quality learning infrastructure where it is needed most.
               </p>
             </Reveal>
 
-            {/* CTAs */}
+            {/* CTAs - Manrope 16px / 600 / 24px */}
             <Reveal delay={0.2}>
-              <div className="flex flex-wrap gap-4 mb-8">
+              <div className="flex flex-wrap items-center gap-4 mb-8">
                 <a
                   href="#directory"
-                  className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-xs font-bold text-white transition hover:opacity-95 shadow-sm"
-                  style={{ background: `linear-gradient(135deg,${theme.accent},#818cf8)` }}
+                  className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[16px] font-semibold leading-[24px] text-white transition hover:opacity-95 shadow-md hover:scale-[1.02] active:scale-[0.98]"
+                  style={{
+                    background: `linear-gradient(135deg, #155dfc, #00c2ff)`,
+                    boxShadow: "0 8px 24px rgba(21,93,252,0.3)",
+                  }}
                 >
-                  Explore Partners <Icon.Arrow className="w-3.5 h-3.5 rotate-90" />
+                  Explore Partners <Icon.Arrow className="w-4 h-4" />
                 </a>
                 <a
                   href="/work-with-us"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-xs font-bold transition cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border px-7 py-3.5 text-[16px] font-semibold leading-[24px] transition hover:bg-black/5 dark:hover:bg-white/5 hover:scale-[1.02] active:scale-[0.98]"
                   style={{
                     borderColor: theme.border,
                     color: theme.text,
-                    background: isDark ? "rgba(255,255,255,0.03)" : "rgba(15,23,42,0.02)"
+                    background: isDark ? "rgba(11,22,48,0.5)" : "rgba(255,255,255,0.7)",
                   }}
                 >
-                  Join Ecosystem
+                  Join Ecosystem <Icon.Arrow className="w-4 h-4" />
                 </a>
               </div>
             </Reveal>
 
+            {/* 3 Proof Points under buttons */}
+            <Reveal delay={0.25}>
+              <div className="flex flex-wrap items-center gap-6 pt-2">
+                <div className="flex items-center gap-2.5">
+                  <span
+                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full"
+                    style={{ background: "rgba(0,208,132,0.12)", color: "#00d084", border: "1px solid rgba(0,208,132,0.25)" }}
+                  >
+                    <Icon.Shield className="w-3.5 h-3.5" />
+                  </span>
+                  <div>
+                    <div className="text-[14px] font-semibold leading-[20px]" style={{ color: theme.text }}>Trusted Partnerships</div>
+                    <div className="text-[12px] font-normal leading-[18px]" style={{ color: theme.muted }}>Built on transparency</div>
+                  </div>
+                </div>
 
+                <div className="flex items-center gap-2.5">
+                  <span
+                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full"
+                    style={{ background: "rgba(21,93,252,0.12)", color: "#155dfc", border: "1px solid rgba(21,93,252,0.25)" }}
+                  >
+                    <Icon.BarChart className="w-3.5 h-3.5" />
+                  </span>
+                  <div>
+                    <div className="text-[14px] font-semibold leading-[20px]" style={{ color: theme.text }}>Measurable Impact</div>
+                    <div className="text-[12px] font-normal leading-[18px]" style={{ color: theme.muted }}>Results that matter</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2.5">
+                  <span
+                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full"
+                    style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.25)" }}
+                  >
+                    <Icon.Target className="w-3.5 h-3.5" />
+                  </span>
+                  <div>
+                    <div className="text-[14px] font-semibold leading-[20px]" style={{ color: theme.text }}>SDG Aligned</div>
+                    <div className="text-[12px] font-normal leading-[18px]" style={{ color: theme.muted }}>Driving SDG 17 goals</div>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
           </div>
 
           {/* Right Column: Interactive Constellation Map */}
           <div className="lg:col-span-5 flex justify-center w-full relative">
-            {/* Constellation Glow Backdrop */}
-            <div className="absolute rounded-full blur-[100px] pointer-events-none opacity-40"
-              style={{
-                width: 320,
-                height: 320,
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                background: `radial-gradient(circle, ${theme.accent}20 0%, transparent 70%)`
-              }}
-            />
-            
             <div className="relative w-[340px] xs:w-[380px] md:w-[420px] h-[360px] mx-auto scale-95 xs:scale-100">
               {/* SVG Connection Lines */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 420 360" preserveAspectRatio="xMidYMid meet">
-                {([
-                  { x1: 80, y1: 70, x2: 210, y2: 180, color: typeConfig["School"].color, delay: 0.3 },
-                  { x1: 340, y1: 70, x2: 210, y2: 180, color: typeConfig["NGO"].color, delay: 0.6 },
-                  { x1: 80, y1: 290, x2: 210, y2: 180, color: typeConfig["Company"].color, delay: 0.9 },
-                  { x1: 340, y1: 290, x2: 210, y2: 180, color: typeConfig["University"].color, delay: 1.2 },
-                ]).map((l, i) => (
+              <svg
+                className="absolute inset-0 w-full h-full pointer-events-none z-0"
+                viewBox="0 0 420 360"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                {[
+                  { x1: 58, y1: 58, x2: 172, y2: 148, color: typeConfig["School"].color, delay: 0.3 },
+                  { x1: 362, y1: 58, x2: 248, y2: 148, color: typeConfig["NGO"].color, delay: 0.6 },
+                  { x1: 58, y1: 285, x2: 172, y2: 212, color: typeConfig["Company"].color, delay: 0.9 },
+                  { x1: 362, y1: 285, x2: 248, y2: 212, color: typeConfig["University"].color, delay: 1.2 },
+                ].map((l, i) => (
                   <g key={i}>
                     <line x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} stroke={theme.border} strokeWidth="1.5" />
                     <motion.line
@@ -1039,40 +1368,70 @@ export default function PartnersPage() {
               </svg>
 
               {/* 4 Corner Nodes */}
-              {([
+              {[
                 { type: "School" as PartnerType, title: "Educational Institutes", role: "SDG education & awareness", style: { top: "0%", left: "0%" }, align: "flex-start" as const, textAlign: "left" as const, delay: 0.3 },
                 { type: "NGO" as PartnerType, title: "NGOs", role: "Ground execution & community impact", style: { top: "0%", right: "0%" }, align: "flex-end" as const, textAlign: "right" as const, delay: 0.6 },
                 { type: "Company" as PartnerType, title: "Companies", role: "Funding & resources", style: { bottom: "0%", left: "0%" }, align: "flex-start" as const, textAlign: "left" as const, delay: 0.9 },
                 { type: "University" as PartnerType, title: "Universities", role: "Research, innovation & volunteers", style: { bottom: "0%", right: "0%" }, align: "flex-end" as const, textAlign: "right" as const, delay: 1.2 },
-              ]).map((node) => {
+              ].map((node) => {
                 const cfg = typeConfig[node.type];
                 const rd = node.delay + 0.5;
                 return (
-                  <div key={node.title} className="absolute flex flex-col gap-1.5"
-                    style={{ ...node.style, width: 130, alignItems: node.align, textAlign: node.textAlign }}>
+                  <div
+                    key={node.title}
+                    className="absolute flex flex-col gap-1.5 z-10"
+                    style={{ ...node.style, width: 130, alignItems: node.align, textAlign: node.textAlign }}
+                  >
                     <div className="relative flex items-center justify-center">
-                      <motion.div className="absolute rounded-full pointer-events-none"
-                        initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: [0.8, 1.8], opacity: [0.8, 0] }}
-                        viewport={{ once: true }} transition={{ duration: 0.65, delay: rd, ease: "easeOut" }}
-                        style={{ width: 64, height: 64, border: `2px solid ${cfg.color}`, borderRadius: "50%" }} />
-                      <motion.div className="absolute rounded-full pointer-events-none"
+                      <motion.div
+                        className="absolute rounded-full pointer-events-none"
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        whileInView={{ scale: [0.8, 1.8], opacity: [0.8, 0] }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.65, delay: rd, ease: "easeOut" }}
+                        style={{ width: 64, height: 64, border: `2px solid ${cfg.color}`, borderRadius: "50%" }}
+                      />
+                      <motion.div
+                        className="absolute rounded-full pointer-events-none"
                         animate={{ scale: [1, 1.5, 1], opacity: [0.55, 0, 0.55] }}
                         transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: rd + 0.8 }}
-                        style={{ width: 64, height: 64, border: `1.5px solid ${cfg.color}`, borderRadius: "50%" }} />
-                      <motion.div whileHover={{ scale: 1.1, y: -2, boxShadow: `0 0 24px ${cfg.color}40` }}
-                        initial={{ opacity: 0, scale: 0.4, y: 16 }} whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                        viewport={{ once: true }} transition={{ duration: 0.55, delay: rd, type: "spring", stiffness: 240, damping: 18 }}
-                        className="relative flex h-16 w-16 items-center justify-center rounded-full border border-slate-700 shadow-sm cursor-default"
-                        style={{ background: cfg.gradient, borderColor: cfg.color }}>
-                        <motion.span animate={{ rotate: [0, 8, -8, 0], scale: [1, 1.1, 1] }}
+                        style={{ width: 64, height: 64, border: `1.5px solid ${cfg.color}`, borderRadius: "50%" }}
+                      />
+                      <motion.div
+                        whileHover={{ scale: 1.1, y: -2, boxShadow: `0 0 24px ${cfg.color}50` }}
+                        initial={{ opacity: 0, scale: 0.4, y: 16 }}
+                        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.55, delay: rd, type: "spring", stiffness: 240, damping: 18 }}
+                        className="relative flex h-16 w-16 items-center justify-center rounded-full border shadow-sm cursor-default"
+                        style={{ background: cfg.gradient, borderColor: cfg.color }}
+                      >
+                        <motion.span
+                          animate={{ rotate: [0, 8, -8, 0], scale: [1, 1.1, 1] }}
                           transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: node.delay }}
-                          style={{ color: cfg.color }}><cfg.IconEl className="w-6 h-6" /></motion.span>
+                          style={{ color: cfg.color }}
+                        >
+                          <cfg.IconEl className="w-6 h-6" />
+                        </motion.span>
                       </motion.div>
                     </div>
-                    <motion.div initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: rd + 0.15 }}>
-                      <div className="text-[11px] font-bold" style={{ color: theme.text }}>{node.title}</div>
-                      <div className="text-[9px] leading-snug mt-0.5" style={{ color: theme.muted }}>{node.role}</div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: rd + 0.15 }}
+                      className="relative z-20 px-1 py-0.5 rounded"
+                      style={{
+                        background: isDark ? "rgba(4,9,18,0.7)" : "rgba(255,255,255,0.75)",
+                        backdropFilter: "blur(4px)",
+                      }}
+                    >
+                      <div className="text-[12px] font-bold" style={{ color: theme.text }}>
+                        {node.title}
+                      </div>
+                      <div className="text-[10px] leading-snug mt-0.5" style={{ color: theme.muted }}>
+                        {node.role}
+                      </div>
                     </motion.div>
                   </div>
                 );
@@ -1083,22 +1442,38 @@ export default function PartnersPage() {
                 const color = theme.accent;
                 const rd = 0.15;
                 return (
-                  <div className="absolute flex flex-col items-center gap-1.5 text-center"
-                    style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 150 }}>
+                  <div
+                    className="absolute flex flex-col items-center gap-1.5 text-center"
+                    style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 150 }}
+                  >
                     <div className="relative flex items-center justify-center">
-                      <motion.div className="absolute rounded-full pointer-events-none"
-                        initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: [0.8, 1.8], opacity: [0.8, 0] }}
-                        viewport={{ once: true }} transition={{ duration: 0.65, delay: rd, ease: "easeOut" }}
-                        style={{ width: 96, height: 96, border: `2px solid ${color}`, borderRadius: "50%" }} />
-                      <motion.div className="absolute rounded-full pointer-events-none"
+                      <motion.div
+                        className="absolute rounded-full pointer-events-none"
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        whileInView={{ scale: [0.8, 1.8], opacity: [0.8, 0] }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.65, delay: rd, ease: "easeOut" }}
+                        style={{ width: 96, height: 96, border: `2px solid ${color}`, borderRadius: "50%" }}
+                      />
+                      <motion.div
+                        className="absolute rounded-full pointer-events-none"
                         animate={{ scale: [1, 1.5, 1], opacity: [0.55, 0, 0.55] }}
                         transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: rd + 0.8 }}
-                        style={{ width: 96, height: 96, border: `1.5px solid ${color}`, borderRadius: "50%" }} />
-                      <motion.div whileHover={{ scale: 1.08, boxShadow: `0 0 36px ${color}50` }}
-                        initial={{ opacity: 0, scale: 0.4 }} whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }} transition={{ duration: 0.55, delay: rd, type: "spring", stiffness: 240, damping: 18 }}
+                        style={{ width: 96, height: 96, border: `1.5px solid ${color}`, borderRadius: "50%" }}
+                      />
+                      <motion.div
+                        whileHover={{ scale: 1.08, boxShadow: `0 0 36px ${color}60` }}
+                        initial={{ opacity: 0, scale: 0.4 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.55, delay: rd, type: "spring", stiffness: 240, damping: 18 }}
                         className="relative flex h-24 w-24 items-center justify-center rounded-full border overflow-hidden shadow-md cursor-default"
-                        style={{ background: isDark ? "rgba(13,22,37,0.95)" : "#ffffff", borderColor: color, padding: 0 }}>
+                        style={{
+                          background: isDark ? "#0b1630" : "#ffffff",
+                          borderColor: color,
+                          padding: 0,
+                        }}
+                      >
                         <img
                           src="/assets/SDG_LOGO-removebg-preview.png"
                           alt="StepUp SDG"
@@ -1106,12 +1481,19 @@ export default function PartnersPage() {
                         />
                       </motion.div>
                     </div>
-                    <motion.div initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: rd + 0.15 }}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: rd + 0.15 }}
+                    >
                       <div className="text-[12px] font-bold">
-                        <span style={{ color: theme.accent }}>StepUp</span> <span style={{ color: "#ef4444" }}>For SDG</span>
+                        <span style={{ color: theme.accent }}>StepUp</span>{" "}
+                        <span style={{ color: "#00d084" }}>For SDG</span>
                       </div>
-                      <div className="text-[9px] mt-0.5" style={{ color: theme.muted }}>Coordination & impact</div>
+                      <div className="text-[10px] mt-0.5" style={{ color: theme.muted }}>
+                        Coordination & impact
+                      </div>
                     </motion.div>
                   </div>
                 );
@@ -1120,75 +1502,201 @@ export default function PartnersPage() {
           </div>
         </div>
 
-        {/* Professional Metrics Stats Grid */}
-        <Reveal delay={0.3}>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto mt-20 w-full relative z-10 px-4">
-            {([
-              { value: "9", label: "Verified Partners", color: "#38bdf8" },
-              { value: "6", label: "States Reached", color: "#34d399" },
-              { value: "Rs 1.2 Cr", label: "CSR Co-funding", color: "#f87171" },
-              { value: "12,000+", label: "Students Impacted", color: "#fbbf24" },
-            ]).map((stat) => (
-              <div
-                key={stat.label}
-                className="flex flex-col items-center justify-center p-5 rounded-2xl border"
-                style={{
-                  background: isDark ? "rgba(13,22,37,0.3)" : "rgba(255,255,255,0.45)",
-                  borderColor: isDark ? "rgba(255,255,255,0.05)" : "rgba(15,23,42,0.06)",
-                  backdropFilter: "blur(8px)",
-                }}
-              >
-                <span className="text-[20px] md:text-[26px] font-black tracking-tight leading-none" style={{ color: stat.color }}>
-                  {stat.value}
-                </span>
-                <span className="text-[10px] md:text-[11px] font-medium mt-1.5 text-center" style={{ color: theme.muted }}>
-                  {stat.label}
-                </span>
+        {/* Unified Metrics Stats Card Bar */}
+        <Reveal delay={0.3} className="w-full max-w-7xl mx-auto">
+          <div
+            className="w-full mt-16 rounded-2xl border p-6 sm:p-8 shadow-sm backdrop-blur-md"
+            style={{
+              background: isDark ? "rgba(11, 22, 48, 0.75)" : "rgba(255, 255, 255, 0.9)",
+              borderColor: isDark ? "rgba(21, 93, 252, 0.25)" : "rgba(15,23,42,0.08)",
+              boxShadow: isDark ? "0 12px 36px rgba(4,9,18,0.5)" : "0 8px 30px rgba(0,0,0,0.04)",
+            }}
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-4 lg:gap-6">
+              {/* Stat 1: 9 Verified Partners */}
+              <div className="flex items-center gap-4 px-3 sm:px-4 lg:border-r border-slate-200 dark:border-slate-800/80">
+                <div
+                  className="flex h-13 w-13 shrink-0 items-center justify-center rounded-full"
+                  style={{ background: "rgba(0,194,255,0.12)", color: "#00c2ff", border: "1.5px solid rgba(0,194,255,0.25)", width: 52, height: 52 }}
+                >
+                  <Icon.Users className="w-6 h-6" />
+                </div>
+                <div className="flex flex-col">
+                  <div className="text-[32px] sm:text-[38px] font-extrabold tracking-tight leading-none" style={{ color: "#00c2ff" }}>
+                    <RollingNumber to={9} duration={1800} />
+                  </div>
+                  <div className="text-[15px] sm:text-[16px] font-bold mt-1.5 leading-tight whitespace-nowrap" style={{ color: theme.text }}>
+                    Verified Partners
+                  </div>
+                  <div className="text-[13px] font-normal leading-tight mt-0.5" style={{ color: theme.muted }}>
+                    Trusted collaborators
+                  </div>
+                </div>
               </div>
-            ))}
+
+              {/* Stat 2: 6 States Reached */}
+              <div className="flex items-center gap-4 px-3 sm:px-4 lg:border-r border-slate-200 dark:border-slate-800/80">
+                <div
+                  className="flex h-13 w-13 shrink-0 items-center justify-center rounded-full"
+                  style={{ background: "rgba(0,208,132,0.12)", color: "#00d084", border: "1.5px solid rgba(0,208,132,0.25)", width: 52, height: 52 }}
+                >
+                  <Icon.MapPin className="w-6 h-6" />
+                </div>
+                <div className="flex flex-col">
+                  <div className="text-[32px] sm:text-[38px] font-extrabold tracking-tight leading-none" style={{ color: "#00d084" }}>
+                    <RollingNumber to={6} duration={1800} />
+                  </div>
+                  <div className="text-[15px] sm:text-[16px] font-bold mt-1.5 leading-tight whitespace-nowrap" style={{ color: theme.text }}>
+                    States Reached
+                  </div>
+                  <div className="text-[13px] font-normal leading-tight mt-0.5" style={{ color: theme.muted }}>
+                    Across India
+                  </div>
+                </div>
+              </div>
+
+              {/* Stat 3: Rs 1.2 Cr CSR Co-funding */}
+              <div className="flex items-center gap-4 px-3 sm:px-4 lg:border-r border-slate-200 dark:border-slate-800/80">
+                <div
+                  className="flex h-13 w-13 shrink-0 items-center justify-center rounded-full"
+                  style={{ background: "rgba(21,93,252,0.12)", color: "#155dfc", border: "1.5px solid rgba(21,93,252,0.25)", width: 52, height: 52 }}
+                >
+                  <Icon.Rupee className="w-6 h-6" />
+                </div>
+                <div className="flex flex-col">
+                  <div className="text-[30px] sm:text-[36px] font-extrabold tracking-tight leading-none whitespace-nowrap" style={{ color: "#155dfc" }}>
+                    <RollingNumber to={1.2} decimals={1} prefix="Rs " suffix=" Cr" duration={1800} />
+                  </div>
+                  <div className="text-[15px] sm:text-[16px] font-bold mt-1.5 leading-tight whitespace-nowrap" style={{ color: theme.text }}>
+                    CSR Co-funding
+                  </div>
+                  <div className="text-[13px] font-normal leading-tight mt-0.5" style={{ color: theme.muted }}>
+                    Resources mobilized
+                  </div>
+                </div>
+              </div>
+
+              {/* Stat 4: 12,000+ Students Impacted */}
+              <div className="flex items-center gap-4 px-3 sm:px-4">
+                <div
+                  className="flex h-13 w-13 shrink-0 items-center justify-center rounded-full"
+                  style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1.5px solid rgba(251,191,36,0.25)", width: 52, height: 52 }}
+                >
+                  <Icon.Star className="w-6 h-6" />
+                </div>
+                <div className="flex flex-col">
+                  <div className="text-[32px] sm:text-[38px] font-extrabold tracking-tight leading-none whitespace-nowrap" style={{ color: "#fbbf24" }}>
+                    <RollingNumber to={12000} suffix="+" duration={1800} />
+                  </div>
+                  <div className="text-[15px] sm:text-[16px] font-bold mt-1.5 leading-tight whitespace-nowrap" style={{ color: theme.text }}>
+                    Students Impacted
+                  </div>
+                  <div className="text-[13px] font-normal leading-tight mt-0.5" style={{ color: theme.muted }}>
+                    Lives positively influenced
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Quote / Motto - Cormorant Garamond Italic / Ruluko 26px / 400 / 38px */}
+          <div className="flex items-center justify-center gap-2.5 mt-12 mb-10 text-center" style={{ color: theme.muted }}>
+            <Icon.Leaf className="w-5 h-5 text-emerald-500 shrink-0" />
+            <span className="font-quote italic text-[18px] sm:text-[24px] lg:text-[26px] font-normal leading-[28px] sm:leading-[34px] lg:leading-[38px]">
+              Together, we can build a more{" "}
+              <strong className="font-bold not-italic text-blue-600 dark:text-blue-400">equitable</strong>,{" "}
+              <strong className="font-bold not-italic text-teal-600 dark:text-teal-400">inclusive</strong> and{" "}
+              <strong className="font-bold not-italic text-emerald-600 dark:text-emerald-400">sustainable</strong> future.
+            </span>
           </div>
         </Reveal>
       </section>
 
       {/* -- PARTNER DIRECTORY SECTION -- */}
-      <section id="directory" className="max-w-7xl mx-auto py-16 px-6 md:px-12 lg:px-20 relative z-10" style={{ background: "transparent" }}>
+      <section id="directory" className="max-w-7xl mx-auto pt-28 pb-14 sm:pt-36 sm:pb-16 px-6 sm:px-10 lg:px-12 relative z-10" style={{ background: "transparent" }}>
+        {/* Subtle Ambient Particle Glow on Left & Right */}
+        <div
+          className="pointer-events-none absolute -left-20 top-20 w-[450px] h-[450px] rounded-full blur-3xl opacity-40 dark:opacity-25"
+          style={{ background: "radial-gradient(circle, #00c2ff 0%, rgba(21,93,252,0.15) 50%, transparent 75%)" }}
+          aria-hidden="true"
+        />
+        <div
+          className="pointer-events-none absolute -right-20 top-40 w-[450px] h-[450px] rounded-full blur-3xl opacity-35 dark:opacity-20"
+          style={{ background: "radial-gradient(circle, #155dfc 0%, rgba(0,208,132,0.15) 50%, transparent 75%)" }}
+          aria-hidden="true"
+        />
+
         <Reveal>
-          <div className="text-center mb-10">
-            <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: theme.muted }}>Verified Network</span>
-            <h2 className="text-2xl md:text-3xl font-black tracking-tight mt-1 mb-2" style={{ color: theme.text }}>
-              Partner directory
+          <div className="text-center mb-12 relative z-10">
+            {/* Top Pill Badge: OUR PARTNER ECOSYSTEM */}
+            <div
+              className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[12px] font-bold tracking-wider uppercase leading-[18px] mb-4 border shadow-sm"
+              style={{
+                background: isDark ? "rgba(21,93,252,0.15)" : "rgba(21,93,252,0.08)",
+                borderColor: isDark ? "rgba(0,194,255,0.3)" : "rgba(21,93,252,0.2)",
+                color: isDark ? "#00c2ff" : "#155dfc",
+              }}
+            >
+              <Icon.Shield className="w-3.5 h-3.5" />
+              <span>Our Partner Ecosystem</span>
+            </div>
+
+            {/* Page Heading (H2) - Building Impact, Together. */}
+            <h2 className="text-[36px] sm:text-[48px] lg:text-[54px] font-extrabold tracking-tight leading-[44px] sm:leading-[56px] lg:leading-[64px] mb-3" style={{ color: theme.text }}>
+              Building Impact,<br />
+              <span style={{ color: "#155dfc" }}>Together.</span>
             </h2>
-            <div className="w-12 h-0.5 mx-auto rounded-full" style={{ background: theme.accent }} />
+
+            {/* Subtitle - Body Large */}
+            <p className="max-w-xl mx-auto text-[16px] sm:text-[18px] font-normal leading-[26px] sm:leading-[30px]" style={{ color: theme.muted }}>
+              Meet the organizations and institutions<br className="hidden sm:inline" />
+              {" "}driving meaningful change with us.
+            </p>
+
+            {/* Divider Line with Gradient and Dot */}
+            <div className="flex items-center justify-center gap-2 mt-5">
+              <div className="w-16 h-1 rounded-full" style={{ background: "linear-gradient(90deg, #155dfc, #00c2ff)" }} />
+              <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#00c2ff" }} />
+            </div>
           </div>
         </Reveal>
 
-        <Reveal>
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-            <div className="relative">
-              <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2" style={{ color: theme.muted }}>
-                <motion.span animate={{ scale: searchFocused ? 1.1 : 1 }} transition={{ duration: 0.2 }}>
-                  <Icon.Search className="w-3.5 h-3.5" />
-                </motion.span>
+        {/* Search & Segmented Tabs Bar */}
+        <Reveal delay={0.1}>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-12 w-full">
+            {/* Search Input Pill - Expanded & Proportional */}
+            <div className="relative flex-1 w-full max-w-md lg:max-w-xl">
+              <span
+                className="pointer-events-none absolute left-4.5 top-1/2 -translate-y-1/2 flex items-center justify-center z-10"
+                style={{ color: theme.muted }}
+              >
+                <Icon.Search className="w-4 h-4" />
               </span>
               <input
                 type="text"
-                placeholder="Search by name or city..."
+                placeholder="Search by partner name, organization, or city..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => setSearchFocused(true)}
                 onBlur={() => setSearchFocused(false)}
-                className="glass-input rounded-full py-2.5 pl-[38px] pr-4 text-[13px] w-[280px] border shadow-sm"
+                className="w-full rounded-full py-3.5 pr-6 text-[15px] sm:text-[16px] font-normal leading-[24px] border shadow-sm outline-none transition-all"
                 style={{
-                  background: theme.card,
-                  borderColor: searchFocused ? theme.accent : theme.border,
+                  paddingLeft: "46px",
+                  background: isDark ? "rgba(11, 22, 48, 0.85)" : "#ffffff",
+                  borderColor: searchFocused ? "#155dfc" : isDark ? "rgba(21,93,252,0.25)" : "rgba(15,23,42,0.1)",
                   color: theme.text,
-                  boxShadow: searchFocused ? `0 0 0 3px ${theme.accent}15` : "none",
+                  boxShadow: searchFocused ? `0 0 0 3px rgba(21,93,252,0.2)` : "0 2px 10px rgba(0,0,0,0.02)",
                 }}
               />
             </div>
+
+            {/* Segmented Filter Pills */}
             <div
-              className="relative flex rounded-full p-1 border shadow-sm"
-              style={{ background: theme.sectionAlt, borderColor: theme.border }}
+              className="relative flex items-center rounded-full p-1.5 border shadow-sm shrink-0"
+              style={{
+                background: isDark ? "rgba(7, 16, 31, 0.85)" : "#ffffff",
+                borderColor: isDark ? "rgba(21,93,252,0.25)" : "rgba(15,23,42,0.08)",
+              }}
             >
               {tabs.map((tab) => {
                 const isActive = activeTab === tab;
@@ -1196,17 +1704,18 @@ export default function PartnersPage() {
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className="segmented-tab relative rounded-full px-4 py-1.5 text-[13px] font-medium z-10"
-                    style={{ color: isActive ? (isDark ? "#fff" : "#0d1829") : theme.muted }}
+                    className="relative rounded-full px-5 py-2.5 text-[14px] sm:text-[15px] font-semibold leading-[20px] z-10 transition-colors whitespace-nowrap"
+                    style={{
+                      color: isActive ? "#ffffff" : isDark ? "rgba(255,255,255,0.7)" : "#475569",
+                    }}
                   >
                     {isActive && (
                       <motion.span
                         layoutId="tab-indicator"
                         className="absolute inset-0 rounded-full z-0"
                         style={{
-                          background: isDark ? theme.card : "#ffffff",
-                          border: `1px solid ${theme.border}`,
-                          boxShadow: "0 1px 4px rgba(0,0,0,0.12)",
+                          background: "#155dfc",
+                          boxShadow: "0 2px 10px rgba(21,93,252,0.35)",
                         }}
                         transition={{ type: "spring", stiffness: 500, damping: 35 }}
                       />
@@ -1221,13 +1730,13 @@ export default function PartnersPage() {
 
         {filtered.length === 0 ? (
           <div
-            className="rounded-2xl py-12 text-center text-sm"
+            className="rounded-2xl py-16 text-center text-[16px] font-normal leading-[28px]"
             style={{ border: `1px dashed ${theme.border}`, color: theme.muted }}
           >
             No partners found for &ldquo;{searchQuery}&rdquo;
           </div>
         ) : (
-          <motion.div layout className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <motion.div layout className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-12 mt-6">
             <AnimatePresence mode="popLayout">
               {filtered.map((partner, idx) => (
                 <motion.div
@@ -1252,23 +1761,38 @@ export default function PartnersPage() {
       </section>
 
       {/* -- AUDIENCE CALL-OUT CARDS SECTION -- */}
-      <section className="px-6 md:px-12 lg:px-20 py-20 border-t relative overflow-hidden z-10"
-        style={{ borderColor: theme.border, background: "transparent" }}>
-        
-        {/* Glow Blob */}
-        <div className="pointer-events-none absolute rounded-full blur-[120px] opacity-[0.06] bottom-0 left-0"
-          style={{ width: 400, height: 400, background: theme.accent }} />
-
+      <section
+        className="px-6 sm:px-10 lg:px-12 pt-20 pb-28 sm:pt-24 sm:pb-36 relative overflow-hidden z-10"
+        style={{ background: "transparent" }}
+      >
         <div className="relative z-10 text-center mb-16">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest mb-4"
-              style={{ background: isDark ? "rgba(14,165,201,0.12)" : "rgba(2,132,199,0.1)", border: `1px solid ${theme.accent}35`, color: theme.accent }}>
+            {/* Label - Manrope 12px / 500 / 18px */}
+            <span
+              className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[12px] font-medium uppercase tracking-widest leading-[18px] mb-4"
+              style={{
+                background: isDark ? "rgba(0,194,255,0.12)" : "rgba(21,93,252,0.1)",
+                border: `1px solid ${theme.accent}35`,
+                color: theme.accent,
+              }}
+            >
               Join the ecosystem
             </span>
-            <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4" style={{ color: theme.text }}>
-              Partner with <span style={{ background: `linear-gradient(135deg,${theme.accent},#818cf8)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>StepUp For SDG</span>
+            {/* Section Heading (H2) - Manrope 48px / 700 / 60px */}
+            <h2 className="text-[32px] sm:text-[42px] lg:text-[48px] font-bold tracking-tight leading-[40px] sm:leading-[52px] lg:leading-[60px] mb-4" style={{ color: theme.text }}>
+              Partner with{" "}
+              <span
+                style={{
+                  background: `linear-gradient(135deg, #155dfc, #00c2ff, #00d084)`,
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                StepUp For SDG
+              </span>
             </h2>
-            <p className="max-w-xl mx-auto text-sm md:text-base leading-relaxed" style={{ color: theme.muted }}>
+            {/* Body - Manrope 18px / 400 / 30px */}
+            <p className="max-w-2xl mx-auto text-[16px] sm:text-[18px] font-normal leading-[26px] sm:leading-[30px]" style={{ color: theme.textSub }}>
               Whether you're a school, NGO, company or volunteer — there's a place for you in building a future where every child creates real-world impact.
             </p>
           </Reveal>
@@ -1286,47 +1810,51 @@ export default function PartnersPage() {
                     className="relative overflow-hidden rounded-[24px] p-8 h-full flex flex-col border"
                     style={{
                       background: isDark
-                        ? `linear-gradient(145deg,rgba(13,22,37,0.95) 0%,rgba(8,14,28,0.98) 100%)`
-                        : `linear-gradient(145deg,#ffffff 0%,${cfg.color}08 100%)`,
-                      borderColor: `${cfg.color}35`,
+                        ? `linear-gradient(145deg, rgba(11,22,48,0.92) 0%, rgba(7,16,31,0.96) 100%)`
+                        : `#ffffff`,
+                      borderColor: isDark ? "rgba(21, 93, 252, 0.25)" : theme.border,
                       boxShadow: isDark
-                        ? `0 0 0 1px ${cfg.color}15, 0 20px 48px -12px ${cfg.color}25`
-                        : `0 0 0 1px ${cfg.color}10, 0 16px 40px -10px ${cfg.color}15`,
+                        ? `0 16px 40px -12px rgba(4,9,18,0.6)`
+                        : `0 8px 30px rgba(0,0,0,0.04)`,
                     }}
                   >
-                    {/* color wash top */}
-                    <div className="pointer-events-none absolute top-0 left-0 right-0 h-28 rounded-t-[24px]"
-                      style={{ background: `linear-gradient(180deg,${cfg.color}12 0%,transparent 100%)` }} />
-                    
                     {/* watermark background icon */}
                     <div className="pointer-events-none absolute -right-6 -top-6 opacity-[0.05]">
                       <cfg.IconEl className="w-32 h-32" style={{ color: cfg.color }} />
                     </div>
 
-                    <div className="relative z-10 mb-4 text-base font-bold" style={{ color: theme.text }}>
+                    {/* Card Heading (H4) - Manrope 30px / 600 / 40px */}
+                    <div className="relative z-10 mb-4 text-[22px] sm:text-[26px] lg:text-[30px] font-semibold leading-[30px] sm:leading-[36px] lg:leading-[40px]" style={{ color: theme.text }}>
                       {card.title}
                     </div>
-                    
+
+                    {/* Body Small - Manrope 16px / 400 / 28px */}
                     <ul className="relative z-10 flex flex-col gap-3 mb-8 flex-1">
                       {card.benefits.map((b) => (
-                        <li key={b} className="flex items-start gap-2.5 text-[13px] leading-snug" style={{ color: theme.textSub }}>
-                          <span className="mt-[3px] flex h-4 w-4 shrink-0 items-center justify-center rounded-full"
-                            style={{ background: `${cfg.color}18`, border: `1px solid ${cfg.color}30` }}>
-                            <Icon.Check className="w-2.5 h-2.5" style={{ color: cfg.color }} />
+                        <li key={b} className="flex items-start gap-3 text-[15px] sm:text-[16px] font-normal leading-[24px] sm:leading-[28px]" style={{ color: theme.textSub }}>
+                          <span
+                            className="mt-[4px] flex h-5 w-5 shrink-0 items-center justify-center rounded-full"
+                            style={{ background: isDark ? "rgba(0,194,255,0.15)" : "rgba(21,93,252,0.08)", border: `1px solid ${isDark ? "#00c2ff40" : "#155dfc30"}` }}
+                          >
+                            <Icon.Check className="w-3 h-3" style={{ color: isDark ? "#00c2ff" : "#155dfc" }} />
                           </span>
                           {b}
                         </li>
                       ))}
                     </ul>
 
+                    {/* Primary Button - Manrope 16px / 600 / 24px */}
                     <motion.a
                       href={card.href}
                       whileHover={{ scale: 1.03 }}
                       whileTap={{ scale: 0.98 }}
-                      className="relative z-10 inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-xs font-bold text-white shadow-sm"
-                      style={{ background: `linear-gradient(135deg,${cfg.color},${cfg.color}d5)` }}
+                      className="relative z-10 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-[16px] font-semibold leading-[24px] text-white shadow-sm"
+                      style={{
+                        background: `linear-gradient(135deg, #155dfc, #00c2ff)`,
+                        boxShadow: "0 4px 16px rgba(21,93,252,0.3)",
+                      }}
                     >
-                      {card.btnLabel} <Icon.Arrow className="w-3.5 h-3.5" />
+                      {card.btnLabel} <Icon.Arrow className="w-4 h-4" />
                     </motion.a>
                   </motion.div>
                 </Reveal>
@@ -1336,54 +1864,68 @@ export default function PartnersPage() {
         </div>
 
         {/* -- OUR PARTNERSHIP MODELS -- */}
-        <div className="relative z-10 max-w-6xl mx-auto mt-8 pt-8 border-t" style={{ borderColor: `${theme.border}70` }}>
+        <div className="relative z-10 max-w-6xl mx-auto mt-12 pt-12 border-t" style={{ borderColor: `${theme.border}70` }}>
           <Reveal>
-            <div className="text-left mb-6">
-              <span className="text-[10px] font-bold uppercase tracking-widest block" style={{ color: theme.muted }}>
+            <div className="text-left mb-8">
+              {/* Sub Heading (H3) - Manrope 36px / 600 / 48px */}
+              <h3 className="text-[26px] sm:text-[32px] lg:text-[36px] font-semibold leading-[34px] sm:leading-[42px] lg:leading-[48px]" style={{ color: theme.text }}>
                 Our Partnership Models
-              </span>
+              </h3>
             </div>
           </Reveal>
 
           <div className="grid gap-6 md:grid-cols-3">
-            {([
+            {[
               {
                 title: "Sponsorship",
                 desc: "Fund SDG workshops and receive CSR compliance reports.",
-                icon: "Heart"
+                icon: "Heart",
               },
               {
                 title: "Co-Hosted Programs",
                 desc: "Run joint programs designed around your vision and SDG goals.",
-                icon: "Users"
+                icon: "Users",
               },
               {
                 title: "Awareness Campaigns",
                 desc: "Create custom advocacy campaigns across partner schools.",
-                icon: "Megaphone"
-              }
-            ]).map((model, idx) => (
+                icon: "Megaphone",
+              },
+            ].map((model, idx) => (
               <Reveal key={model.title} delay={idx * 0.1}>
                 <div
-                  className="rounded-[20px] p-6 flex flex-col border h-full transition-all duration-300 hover:-translate-y-1"
+                  className="rounded-[20px] p-7 flex flex-col border h-full transition-all duration-300 hover:-translate-y-1"
                   style={{
-                    background: isDark ? "rgba(13,22,37,0.35)" : "#ffffff",
+                    background: isDark ? "rgba(11, 22, 48, 0.75)" : "#ffffff",
                     borderColor: theme.border,
-                    boxShadow: isDark ? "none" : "0 4px 12px rgba(0,0,0,0.02)",
+                    boxShadow: isDark ? "0 4px 20px rgba(4,9,18,0.4)" : "0 4px 12px rgba(0,0,0,0.02)",
                   }}
                 >
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
-                      style={{ background: isDark ? "rgba(56,189,248,0.1)" : "rgba(21,93,252,0.06)", border: `1px solid ${isDark ? "#38bdf8" : "#155DFC"}20` }}>
-                      {model.icon === "Heart" && <Icon.Heart className="w-4 h-4" style={{ color: isDark ? "#38bdf8" : "#155DFC" }} />}
-                      {model.icon === "Users" && <Icon.Users className="w-4 h-4" style={{ color: isDark ? "#38bdf8" : "#155DFC" }} />}
-                      {model.icon === "Megaphone" && <Icon.Megaphone className="w-4 h-4" style={{ color: isDark ? "#38bdf8" : "#155DFC" }} />}
+                  <div className="flex items-center gap-3.5 mb-3.5">
+                    <span
+                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
+                      style={{
+                        background: isDark ? "rgba(0,194,255,0.12)" : "rgba(21,93,252,0.06)",
+                        border: `1px solid ${isDark ? "#00c2ff" : "#155DFC"}30`,
+                      }}
+                    >
+                      {model.icon === "Heart" && (
+                        <Icon.Heart className="w-4 h-4" style={{ color: isDark ? "#00c2ff" : "#155DFC" }} />
+                      )}
+                      {model.icon === "Users" && (
+                        <Icon.Users className="w-4 h-4" style={{ color: isDark ? "#00c2ff" : "#155DFC" }} />
+                      )}
+                      {model.icon === "Megaphone" && (
+                        <Icon.Megaphone className="w-4 h-4" style={{ color: isDark ? "#00c2ff" : "#155DFC" }} />
+                      )}
                     </span>
-                    <h4 className="text-sm font-extrabold" style={{ color: theme.text }}>
+                    {/* Small Heading (H5) - Manrope 24px / 600 / 34px */}
+                    <h4 className="text-[18px] sm:text-[22px] lg:text-[24px] font-semibold leading-[26px] sm:leading-[30px] lg:leading-[34px]" style={{ color: theme.text }}>
                       {model.title}
                     </h4>
                   </div>
-                  <p className="text-[12px] leading-relaxed text-left flex-1" style={{ color: theme.muted }}>
+                  {/* Body Small - Manrope 16px / 400 / 28px */}
+                  <p className="text-[15px] sm:text-[16px] font-normal leading-[24px] sm:leading-[28px] text-left flex-1" style={{ color: theme.textSub }}>
                     {model.desc}
                   </p>
                 </div>
@@ -1391,15 +1933,18 @@ export default function PartnersPage() {
             ))}
           </div>
 
-          {/* Centered Work With Us CTA button */}
+          {/* Centered Work With Us CTA button - Manrope 16px / 600 / 24px */}
           <Reveal delay={0.3}>
-            <div className="flex justify-center mt-12">
+            <div className="flex justify-center mt-12 mb-8 sm:mb-12">
               <a
-                href="/work-with-us"
-                className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-3 text-xs font-bold text-white transition hover:scale-[1.03] active:scale-[0.98] shadow-md"
-                style={{ background: `linear-gradient(135deg,#155DFC,#1e40af)` }}
+                href="mailto:partners@stepupsdg.in"
+                className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 text-[16px] font-semibold leading-[24px] text-white transition hover:scale-[1.03] active:scale-[0.98] shadow-md"
+                style={{
+                  background: `linear-gradient(135deg, #155dfc, #00c2ff)`,
+                  boxShadow: "0 8px 24px rgba(21,93,252,0.35)",
+                }}
               >
-                Work with us <Icon.Arrow className="w-3.5 h-3.5" />
+                Work with us <Icon.Arrow className="w-4 h-4" />
               </a>
             </div>
           </Reveal>
