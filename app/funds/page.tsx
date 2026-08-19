@@ -1,22 +1,27 @@
 'use client'
 
 import Image from 'next/image'
-import { useState, type FormEvent } from 'react'
+import { useEffect, useState, type FormEvent } from 'react'
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  type Variants,
+} from 'framer-motion'
 import {
   BadgeCheck,
+  BookOpen,
   Check,
   CreditCard,
-  GraduationCap,
-  HandHeart,
+  Heart,
   HeartHandshake,
   Landmark,
   LockKeyhole,
   Mail,
   ShieldCheck,
+  Sparkles,
   Smartphone,
-  Users,
   X,
-  type LucideIcon,
 } from 'lucide-react'
 import { addDonation } from '@/app/lib/adminStore'
 
@@ -31,32 +36,6 @@ const communityProfiles = [
   '/team/pavan.png',
   '/team/vijay.png',
   '/team/eswar.png',
-]
-
-const impactCards: {
-  label: string
-  value: string
-  icon: LucideIcon
-  accent: string
-}[] = [
-  {
-    label: 'Students Supported',
-    value: '10,000+',
-    icon: GraduationCap,
-    accent: '#155DFC',
-  },
-  {
-    label: 'Projects Funded',
-    value: '200+',
-    icon: HandHeart,
-    accent: '#00A86B',
-  },
-  {
-    label: 'Communities Impacted',
-    value: '1,000+',
-    icon: Users,
-    accent: '#0099CC',
-  },
 ]
 
 const contactItems = [
@@ -88,6 +67,63 @@ const paymentInputClass =
 
 const labelClass =
   'mb-2 block text-[11px] font-bold uppercase tracking-[0.18em] text-[#64748B]'
+
+const coinDrops = [
+  { id: 'coin-1', left: 28, delay: 0, rotate: 26 },
+  { id: 'coin-2', left: 52, delay: 0.62, rotate: -18 },
+  { id: 'coin-3', left: 40, delay: 1.24, rotate: 34 },
+  { id: 'coin-4', left: 61, delay: 1.86, rotate: -28 },
+  { id: 'coin-5', left: 35, delay: 2.48, rotate: 20 },
+]
+
+const printedBooks = [
+  { id: 'printed-1', color: '#155DFC', delay: 2.25 },
+  { id: 'printed-2', color: '#00A86B', delay: 3.05 },
+  { id: 'printed-3', color: '#F59E0B', delay: 3.85 },
+]
+
+const flyingBooks = [
+  { id: 'flying-1', color: '#155DFC', delay: 4.2, top: 26, rotate: -10 },
+  { id: 'flying-2', color: '#00A86B', delay: 4.92, top: 42, rotate: 8 },
+  { id: 'flying-3', color: '#F59E0B', delay: 5.64, top: 34, rotate: -4 },
+]
+
+const celebrationBits = [
+  { id: 'spark-1', Icon: Sparkles, left: 8, top: 28, delay: 6.1, color: '#155DFC' },
+  { id: 'heart-1', Icon: Heart, left: 18, top: 62, delay: 6.35, color: '#00A86B' },
+  { id: 'spark-2', Icon: Sparkles, left: 78, top: 24, delay: 6.6, color: '#F59E0B' },
+  { id: 'heart-2', Icon: Heart, left: 72, top: 66, delay: 6.85, color: '#0099CC' },
+]
+
+const storyMoments = [
+  'Donation gathered',
+  'Books printed',
+  'Support delivered',
+  'Joy shared',
+]
+
+const storyContainerVariants: Variants = {
+  hidden: { opacity: 0, y: 22 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.72,
+      ease: 'easeOut',
+      staggerChildren: 0.16,
+    },
+  },
+}
+
+const storyItemVariants: Variants = {
+  hidden: { opacity: 0, y: 16, scale: 0.98 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.58, ease: 'easeOut' },
+  },
+}
 
 function FundsPageStyles() {
   return (
@@ -137,6 +173,494 @@ function FundsPageStyles() {
         }
       }
     `}</style>
+  )
+}
+
+function StoryBook({ color }: { color: string }) {
+  return (
+    <div
+      className="relative h-8 w-11 overflow-hidden rounded-[7px] border border-white/70 shadow-[0_10px_24px_-16px_rgba(15,23,42,0.55)]"
+      style={{ background: color }}
+    >
+      <div className="absolute inset-y-1 left-1 w-1.5 rounded-full bg-white/45" />
+      <div className="absolute right-1.5 top-2 h-1 w-5 rounded-full bg-white/55" />
+      <div className="absolute bottom-2 right-1.5 h-1 w-4 rounded-full bg-white/35" />
+    </div>
+  )
+}
+
+function DonationBoxScene({
+  shouldReduceMotion,
+}: {
+  shouldReduceMotion: boolean | null
+}) {
+  return (
+    <motion.div
+      variants={storyItemVariants}
+      className="relative flex min-h-[175px] w-full max-w-[154px] shrink-0 items-end justify-center"
+    >
+      <div className="absolute inset-x-0 top-0 mx-auto h-28 w-full" aria-hidden="true">
+        {coinDrops.map((coin) => (
+          <motion.div
+            key={coin.id}
+            className="absolute top-0 grid h-6 w-6 place-items-center rounded-full border border-[#E0A11B] bg-[radial-gradient(circle_at_34%_26%,#FFF7C2_0%,#F7C948_44%,#D99A17_100%)] text-[10px] font-black text-[#915A00] shadow-[0_10px_18px_-12px_rgba(145,90,0,0.7)]"
+            style={{ left: `${coin.left}%` }}
+            initial={{ opacity: 0, y: -12, rotate: 0 }}
+            animate={
+              shouldReduceMotion
+                ? { opacity: [0.42, 0.78, 0.42] }
+                : {
+                    y: [-12, 76, 88, 80, 86],
+                    opacity: [0, 1, 1, 1, 0],
+                    rotate: [0, coin.rotate, coin.rotate + 18],
+                    scale: [0.82, 1, 1.08, 0.98, 0.86],
+                  }
+            }
+            transition={{
+              duration: 4.7,
+              delay: coin.delay,
+              repeat: Infinity,
+              repeatDelay: 0.9,
+              ease: 'easeInOut',
+            }}
+          >
+            {currencySymbol}
+          </motion.div>
+        ))}
+      </div>
+
+      <motion.div
+        className="relative h-[118px] w-[148px]"
+        whileHover={shouldReduceMotion ? undefined : { y: -3, scale: 1.02 }}
+        transition={{ type: 'spring', stiffness: 180, damping: 18 }}
+      >
+        <motion.div
+          className="absolute left-1/2 top-4 z-20 h-4 w-24 -translate-x-1/2 rounded-full bg-[#CFE4FF] shadow-[inset_0_2px_7px_rgba(15,23,42,0.16)]"
+          animate={
+            shouldReduceMotion
+              ? undefined
+              : { scaleX: [1, 1.08, 1], opacity: [0.82, 1, 0.82] }
+          }
+          transition={{
+            duration: 2.1,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+        <div className="absolute bottom-0 h-24 w-full overflow-hidden rounded-[22px] border border-[#D8E8F7] bg-white shadow-[0_24px_55px_-34px_rgba(15,23,42,0.52)]">
+          <motion.div
+            className="absolute inset-x-0 bottom-0 bg-[linear-gradient(180deg,rgba(34,197,94,0.2)_0%,rgba(0,168,107,0.38)_100%)]"
+            initial={{ height: '24%' }}
+            animate={
+              shouldReduceMotion
+                ? { height: '50%' }
+                : { height: ['24%', '46%', '67%', '52%', '30%', '24%'] }
+            }
+            transition={{
+              duration: 8.5,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+          <div className="absolute inset-x-5 top-3 h-2 rounded-full bg-[#EAF4FF]" />
+          <div className="absolute inset-0 grid place-items-center">
+            <motion.div
+              className="grid h-14 w-14 place-items-center rounded-2xl bg-[#EAFBF4] text-[#00A86B] shadow-[inset_0_1px_0_rgba(255,255,255,0.82)]"
+              animate={
+                shouldReduceMotion
+                  ? undefined
+                  : { scale: [1, 1.08, 1], rotate: [0, -3, 0] }
+              }
+              transition={{
+                duration: 2.8,
+                delay: 0.8,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            >
+              <Heart className="h-8 w-8 fill-current" />
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  )
+}
+
+function FlowConnector({
+  shouldReduceMotion,
+}: {
+  shouldReduceMotion: boolean | null
+}) {
+  return (
+    <motion.div
+      variants={storyItemVariants}
+      className="relative flex h-12 w-10 shrink-0 items-center justify-center md:h-20 md:w-8"
+      aria-hidden="true"
+    >
+      <div className="hidden h-px w-full rounded-full bg-[linear-gradient(90deg,rgba(21,93,252,0.18),rgba(0,168,107,0.7))] md:block" />
+      <div className="h-full w-px rounded-full bg-[linear-gradient(180deg,rgba(21,93,252,0.18),rgba(0,168,107,0.7))] md:hidden" />
+      <motion.div
+        className="absolute h-2.5 w-2.5 rounded-full bg-[#00A86B] shadow-[0_0_18px_rgba(0,168,107,0.46)]"
+        animate={
+          shouldReduceMotion
+            ? { opacity: [0.45, 0.8, 0.45] }
+            : {
+                x: [0, 10, 0],
+                y: [-16, 0, 16],
+                opacity: [0, 1, 0],
+                scale: [0.75, 1, 0.75],
+              }
+        }
+        transition={{
+          duration: 2.8,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      />
+      <motion.div
+        className="absolute hidden h-2.5 w-2.5 rounded-full bg-[#155DFC] shadow-[0_0_18px_rgba(21,93,252,0.42)] md:block"
+        animate={
+          shouldReduceMotion
+            ? { opacity: [0.45, 0.8, 0.45] }
+            : {
+                x: [-14, 0, 14],
+                opacity: [0, 1, 0],
+                scale: [0.75, 1, 0.75],
+              }
+        }
+        transition={{
+          duration: 2.8,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      />
+    </motion.div>
+  )
+}
+
+function BookMachineScene({
+  shouldReduceMotion,
+}: {
+  shouldReduceMotion: boolean | null
+}) {
+  return (
+    <motion.div
+      variants={storyItemVariants}
+      className="relative flex min-h-[175px] w-full max-w-[172px] shrink-0 items-center justify-center"
+    >
+      <motion.div
+        className="relative h-[130px] w-[168px]"
+        animate={
+          shouldReduceMotion
+            ? undefined
+            : {
+                x: [0, 0.8, -0.8, 0],
+                y: [0, -0.6, 0.6, 0],
+              }
+        }
+        transition={{
+          duration: 0.34,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+        whileHover={shouldReduceMotion ? undefined : { scale: 1.02 }}
+      >
+        <motion.div
+          className="absolute inset-0 rounded-[24px] border border-[#BBDCFB] bg-white shadow-[0_24px_58px_-34px_rgba(21,93,252,0.55)]"
+          animate={
+            shouldReduceMotion
+              ? undefined
+              : {
+                  boxShadow: [
+                    '0 24px 58px -34px rgba(21,93,252,0.44)',
+                    '0 28px 68px -32px rgba(0,168,107,0.5)',
+                    '0 24px 58px -34px rgba(21,93,252,0.44)',
+                  ],
+                }
+          }
+          transition={{
+            duration: 3.2,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+        <div className="absolute left-4 top-4 grid h-14 w-20 place-items-center rounded-[18px] bg-[#EAF4FF] text-[#155DFC] shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">
+          <BookOpen className="h-8 w-8" />
+        </div>
+        <div className="absolute left-5 top-[86px] flex gap-1.5">
+          {[0, 1, 2].map((bar) => (
+            <motion.span
+              key={bar}
+              className="h-2 w-6 rounded-full bg-[#D9ECFF]"
+              animate={
+                shouldReduceMotion
+                  ? undefined
+                  : { opacity: [0.42, 1, 0.42], scaleX: [0.72, 1, 0.72] }
+              }
+              transition={{
+                duration: 1.2,
+                delay: bar * 0.18,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            />
+          ))}
+        </div>
+        <div className="absolute right-3 top-12 h-16 w-16 rounded-[18px] bg-[#0F172A] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)]">
+          <div className="absolute left-2 right-2 top-3 h-2 rounded-full bg-[#64748B]" />
+          <div className="absolute -right-6 top-8 h-4 w-9 rounded-r-full bg-[#155DFC]" />
+          {printedBooks.map((book, index) => (
+            <motion.div
+              key={book.id}
+              className="absolute -right-7 top-5"
+              initial={{ opacity: 0, x: -8, scale: 0.72 }}
+              animate={
+                shouldReduceMotion
+                  ? { opacity: [0.4, 0.82, 0.4] }
+                  : {
+                      opacity: [0, 1, 1, 0],
+                      x: [-8, 18, 32, 40],
+                      scale: [0.72, 1, 1, 0.92],
+                    }
+              }
+              transition={{
+                duration: 3.35,
+                delay: book.delay,
+                repeat: Infinity,
+                repeatDelay: 2.9,
+                ease: 'easeInOut',
+              }}
+              style={{ zIndex: printedBooks.length - index }}
+            >
+              <StoryBook color={book.color} />
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    </motion.div>
+  )
+}
+
+function BookFlightConnector({
+  shouldReduceMotion,
+}: {
+  shouldReduceMotion: boolean | null
+}) {
+  return (
+    <motion.div
+      variants={storyItemVariants}
+      className="relative flex h-20 w-12 shrink-0 items-center justify-center md:w-14"
+      aria-hidden="true"
+    >
+      <div className="hidden h-px w-full rounded-full bg-[linear-gradient(90deg,rgba(21,93,252,0.16),rgba(245,158,11,0.56),rgba(0,168,107,0.68))] md:block" />
+      <div className="h-full w-px rounded-full bg-[linear-gradient(180deg,rgba(21,93,252,0.16),rgba(245,158,11,0.56),rgba(0,168,107,0.68))] md:hidden" />
+      {flyingBooks.map((book) => (
+        <motion.div
+          key={book.id}
+          className="absolute"
+          style={{ top: `${book.top}%` }}
+          initial={{ opacity: 0, x: -20, y: 0, rotate: 0, scale: 0.76 }}
+          animate={
+            shouldReduceMotion
+              ? { opacity: [0.35, 0.86, 0.35] }
+              : {
+                  x: [-20, 2, 22, 42],
+                  y: [0, -8, 4, 10],
+                  opacity: [0, 1, 1, 0],
+                  rotate: [0, book.rotate, book.rotate * -0.35, 4],
+                  scale: [0.76, 1, 1, 0.84],
+                }
+          }
+          transition={{
+            duration: 3.55,
+            delay: book.delay,
+            repeat: Infinity,
+            repeatDelay: 2.45,
+            ease: 'easeInOut',
+          }}
+        >
+          <StoryBook color={book.color} />
+        </motion.div>
+      ))}
+    </motion.div>
+  )
+}
+
+function StudentScene({
+  shouldReduceMotion,
+}: {
+  shouldReduceMotion: boolean | null
+}) {
+  return (
+    <motion.div
+      variants={storyItemVariants}
+      className="relative flex min-h-[184px] w-full max-w-[158px] shrink-0 items-center justify-center"
+    >
+      {celebrationBits.map(({ id, Icon, left, top, delay, color }) => (
+        <motion.div
+          key={id}
+          className="absolute"
+          style={{ left: `${left}%`, top: `${top}%`, color }}
+          initial={{ opacity: 0, scale: 0.65, y: 6, rotate: 0 }}
+          animate={
+            shouldReduceMotion
+              ? { opacity: [0.38, 0.78, 0.38] }
+              : {
+                  opacity: [0, 1, 0],
+                  scale: [0.65, 1, 0.82],
+                  y: [6, -12, -24],
+                  rotate: [0, 18, 38],
+                }
+          }
+          transition={{
+            duration: 2.8,
+            delay,
+            repeat: Infinity,
+            repeatDelay: 4.2,
+            ease: 'easeInOut',
+          }}
+          aria-hidden="true"
+        >
+          <Icon className="h-5 w-5 fill-current" />
+        </motion.div>
+      ))}
+
+      <motion.div
+        className="relative flex flex-col items-center"
+        animate={
+          shouldReduceMotion
+            ? undefined
+            : { y: [0, -3, 0], scale: [1, 1.035, 1] }
+        }
+        transition={{
+          duration: 2.45,
+          delay: 6.15,
+          repeat: Infinity,
+          repeatDelay: 3.85,
+          ease: 'easeInOut',
+        }}
+        whileHover={shouldReduceMotion ? undefined : { y: -4, scale: 1.04 }}
+      >
+        <div className="relative h-20 w-20 rounded-full bg-[#F6C39E] shadow-[0_18px_36px_-24px_rgba(120,53,15,0.58)]">
+          <div className="absolute -top-1 left-2 h-9 w-16 rounded-t-full bg-[#29364A]" />
+          <div className="absolute left-5 top-9 h-2 w-2 rounded-full bg-[#0F172A]" />
+          <div className="absolute right-5 top-9 h-2 w-2 rounded-full bg-[#0F172A]" />
+          <motion.div
+            className="absolute bottom-5 left-1/2 h-3 w-8 -translate-x-1/2 rounded-b-full border-b-2 border-[#7A3D20]"
+            animate={shouldReduceMotion ? undefined : { scaleX: [0.76, 1.14, 1] }}
+            transition={{
+              duration: 2,
+              delay: 6.2,
+              repeat: Infinity,
+              repeatDelay: 4.3,
+              ease: 'easeInOut',
+            }}
+          />
+        </div>
+        <div className="-mt-1 h-14 w-24 rounded-t-[28px] bg-[linear-gradient(135deg,#155DFC_0%,#0099CC_58%,#00A86B_100%)] shadow-[0_22px_46px_-30px_rgba(21,93,252,0.58)]" />
+        <div className="absolute bottom-7 left-1 h-3 w-12 rotate-[-16deg] rounded-full bg-[#F6C39E]" />
+        <div className="absolute bottom-7 right-1 h-3 w-12 rotate-[16deg] rounded-full bg-[#F6C39E]" />
+        <motion.div
+          className="absolute bottom-6 flex -space-x-8"
+          initial={{ opacity: 0, y: 10, scale: 0.82 }}
+          animate={
+            shouldReduceMotion
+              ? { opacity: 1, y: 0, scale: 1 }
+              : {
+                  opacity: [0, 1, 1, 0.85],
+                  y: [10, -1, 0, 0],
+                  scale: [0.82, 1.08, 1, 1],
+                }
+          }
+          transition={{
+            duration: 3.35,
+            delay: 5.85,
+            repeat: Infinity,
+            repeatDelay: 3.35,
+            ease: 'easeInOut',
+          }}
+        >
+          <StoryBook color="#155DFC" />
+          <StoryBook color="#00A86B" />
+          <StoryBook color="#F59E0B" />
+        </motion.div>
+      </motion.div>
+    </motion.div>
+  )
+}
+
+function DonationImpactStory() {
+  const shouldReduceMotion = useReducedMotion()
+  const [momentIndex, setMomentIndex] = useState(0)
+
+  useEffect(() => {
+    if (shouldReduceMotion) return
+
+    const interval = window.setInterval(() => {
+      setMomentIndex((current) => (current + 1) % storyMoments.length)
+    }, 1900)
+
+    return () => window.clearInterval(interval)
+  }, [shouldReduceMotion])
+
+  return (
+    <motion.div
+      className="relative mt-7 overflow-hidden rounded-[24px] border border-white/80 bg-[linear-gradient(135deg,rgba(255,255,255,0.92)_0%,rgba(248,251,255,0.9)_46%,rgba(236,253,245,0.88)_100%)] p-5 shadow-[0_26px_72px_-46px_rgba(21,93,252,0.45)] backdrop-blur-xl sm:p-6"
+      variants={storyContainerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.35 }}
+      whileHover={shouldReduceMotion ? undefined : { y: -3 }}
+      transition={{ type: 'spring', stiffness: 160, damping: 20 }}
+      role="img"
+      aria-label="Donation impact story showing coins becoming printed books for a student"
+    >
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(21,93,252,0.06)_0%,transparent_34%,rgba(0,168,107,0.08)_100%)]" />
+      <motion.div
+        variants={storyItemVariants}
+        className="relative flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div>
+          <h2 className="font-display text-2xl font-extrabold leading-tight text-[#0F172A] sm:text-3xl">
+            A Donation Becomes Learning
+          </h2>
+          <p className="mt-2 max-w-md text-sm font-semibold leading-6 text-[#475569]">
+            Every rupee moves through a quiet chain of care, from giving to books
+            in a child&apos;s hands.
+          </p>
+        </div>
+        <div
+          className="inline-flex w-fit items-center gap-2 rounded-full border border-[#D7EAFE] bg-white/80 px-3.5 py-2 text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#155DFC] shadow-[0_14px_34px_-28px_rgba(21,93,252,0.5)]"
+          aria-hidden="true"
+        >
+          <Sparkles className="h-4 w-4 text-[#00A86B]" />
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.span
+              key={storyMoments[momentIndex]}
+              initial={{ opacity: 0, y: 5 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -5 }}
+              transition={{ duration: 0.28, ease: 'easeOut' }}
+            >
+              {storyMoments[momentIndex]}
+            </motion.span>
+          </AnimatePresence>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="relative mt-6 flex min-h-[620px] flex-col items-center justify-between gap-4 overflow-hidden rounded-[22px] border border-[#E5F0FF] bg-white/58 px-4 py-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.82)] sm:min-h-[660px] md:min-h-[240px] md:flex-row md:px-4 md:py-5"
+        variants={storyItemVariants}
+      >
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(234,244,255,0.55),rgba(255,255,255,0.18)_42%,rgba(236,253,245,0.46))]" />
+        <DonationBoxScene shouldReduceMotion={shouldReduceMotion} />
+        <FlowConnector shouldReduceMotion={shouldReduceMotion} />
+        <BookMachineScene shouldReduceMotion={shouldReduceMotion} />
+        <BookFlightConnector shouldReduceMotion={shouldReduceMotion} />
+        <StudentScene shouldReduceMotion={shouldReduceMotion} />
+      </motion.div>
+    </motion.div>
   )
 }
 
@@ -413,34 +937,6 @@ export default function FundsPage() {
               </div>
             </div>
 
-            <div className="mt-7">
-              <div className="grid gap-3 sm:grid-cols-3">
-                {impactCards.map(({ icon: Icon, value, label, accent }) => (
-                  <div
-                    key={label}
-                    className="rounded-[20px] border border-white/75 bg-white/85 p-5 shadow-[0_20px_55px_-40px_rgba(15,23,42,0.45)] backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_28px_70px_-42px_rgba(21,93,252,0.45)]"
-                  >
-                    <div
-                      className="grid h-11 w-11 place-items-center rounded-2xl text-white shadow-[0_14px_30px_-18px_rgba(15,23,42,0.7)]"
-                      style={{ background: accent }}
-                    >
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <div className="mt-4 text-2xl font-extrabold text-[#0F172A]">
-                      {value}
-                    </div>
-                    <div className="mt-1 text-xs font-bold uppercase tracking-[0.16em] text-[#64748B]">
-                      {label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <blockquote className="mt-7 border-l-4 border-[#00A86B] pl-5 text-base font-semibold italic leading-7 text-[#334155]">
-                &quot;Small acts, when multiplied by millions of people, can
-                transform the world.&quot;
-              </blockquote>
-            </div>
           </div>
 
           <div className="funds-fade funds-delay-1 flex h-full">
