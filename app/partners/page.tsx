@@ -410,21 +410,21 @@ const audienceCards: { title: string; type: PartnerType; benefits: string[]; hre
   {
     title: "For Companies",
     type: "Company",
-    href: "mailto:companies@stepupsdg.in",
+    href: "/get-involved/sponsor",
     btnLabel: "Get started",
     benefits: ["Verified impact reports for your board", "Direct line to 12,000+ students", "Brand visibility across 6 states"],
   },
   {
     title: "For Educational Institutes",
     type: "School",
-    href: "mailto:schools@stepupsdg.in",
+    href: "/get-involved/school",
     btnLabel: "Join as an institute",
     benefits: ["Ready SDG curriculum and materials", "Funded workshops at zero cost", "Student leadership opportunities"],
   },
   {
     title: "For NGOs",
     type: "NGO",
-    href: "mailto:ngos@stepupsdg.in",
+    href: "/get-involved/ngo-partner",
     btnLabel: "Partner with us",
     benefits: ["Co-design programs with companies", "Reach across 8 partner cities", "Joint grant opportunities"],
   },
@@ -585,13 +585,14 @@ function MultiSourceImg({
           alignItems: "center",
           justifyContent: "center",
           border: `1px solid ${border}`,
-          borderRadius: "50%",
-          width: 56,
-          height: 56,
+          borderRadius: 16,
+          width: "90%",
+          height: "100%",
+          minHeight: 64,
           ...style,
         }}
       >
-        <span style={{ color, fontWeight: 900, fontSize: "14px", letterSpacing: "-0.02em" }}>
+        <span style={{ color, fontWeight: 900, fontSize: "22px", letterSpacing: "-0.03em" }}>
           {initials}
         </span>
       </div>
@@ -975,7 +976,7 @@ export default function PartnersPage() {
                 </a>
                 <a
                   href="/work-with-us"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-xs font-bold transition"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-xs font-bold transition cursor-pointer"
                   style={{
                     borderColor: theme.border,
                     color: theme.text,
@@ -1394,7 +1395,7 @@ export default function PartnersPage() {
           <Reveal delay={0.3}>
             <div className="flex justify-center mt-12">
               <a
-                href="mailto:partners@stepupsdg.in"
+                href="/work-with-us"
                 className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-3 text-xs font-bold text-white transition hover:scale-[1.03] active:scale-[0.98] shadow-md"
                 style={{ background: `linear-gradient(135deg,#155DFC,#1e40af)` }}
               >
