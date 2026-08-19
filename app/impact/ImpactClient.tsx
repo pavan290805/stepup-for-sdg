@@ -23,8 +23,11 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-const headingFont =
-  '"Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif';
+const manropeFont =
+  '"Manrope", sans-serif';
+
+const displayFont =
+  '"Ruluko", "Cormorant Garamond", serif';
 
 type ImpactMetric = {
   icon: string;
@@ -41,8 +44,15 @@ type ImpactSection = {
   metrics: ImpactMetric[];
 };
 
-function MetricCard({ metric, animate }: { metric: ImpactMetric; animate?: boolean }) {
+function MetricCard({
+  metric,
+  animate,
+}: {
+  metric: ImpactMetric;
+  animate?: boolean;
+}) {
   const IconName = metric.icon;
+
   const iconsMap: Record<string, LucideIcon> = {
     Award,
     Briefcase,
@@ -60,7 +70,9 @@ function MetricCard({ metric, animate }: { metric: ImpactMetric; animate?: boole
     Trees,
     Users,
   };
+
   const Icon = (iconsMap[IconName] ?? Users) as LucideIcon;
+
   const [display, setDisplay] = useState(metric.value);
   const hasAnimated = useRef(false);
 
@@ -83,12 +95,16 @@ function MetricCard({ metric, animate }: { metric: ImpactMetric; animate?: boole
 
     function step(ts: number) {
       if (!start) start = ts;
+
       const progress = Math.min((ts - start) / duration, 1);
       const eased = easeOutCubic(progress);
       const current = Math.floor(eased * target);
+
       setDisplay(formatter.format(current) + suffix);
-      if (progress < 1) requestAnimationFrame(step);
-      else {
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
         hasAnimated.current = true;
         setDisplay(formatter.format(Math.round(target)) + suffix);
       }
@@ -116,21 +132,36 @@ function MetricCard({ metric, animate }: { metric: ImpactMetric; animate?: boole
         >
           <Icon className="h-6 w-6" strokeWidth={2.1} />
         </div>
+
         <div className="flex-1">
+          {/* Statistics Number */}
           <div
-            className="text-[2rem] font-semibold leading-none md:text-[2.25rem]"
-            style={{ color: "var(--foreground)", fontFamily: headingFont }}
+            className="font-extrabold leading-[64px] text-[56px]"
+            style={{
+              color: "var(--foreground)",
+              fontFamily: manropeFont,
+            }}
           >
             {display}
           </div>
-          <p className="mt-2 text-sm font-medium" style={{ color: "var(--muted-text)" }}>
+
+          {/* Statistics Label */}
+          <p
+            className="mt-2 font-medium text-[18px] leading-[28px]"
+            style={{
+              color: "var(--muted-text)",
+              fontFamily: manropeFont,
+            }}
+          >
             {metric.label}
           </p>
         </div>
       </div>
     </div>
   );
-}function ImpactBlock({
+}
+
+function ImpactBlock({
   section,
   reverse,
 }: {
@@ -193,7 +224,6 @@ function MetricCard({ metric, animate }: { metric: ImpactMetric; animate?: boole
           reverse ? "lg:[&>div:first-child]:order-2" : ""
         }`}
       >
-
         {/* IMAGE */}
         <div className="w-full">
           <div
@@ -205,8 +235,7 @@ function MetricCard({ metric, animate }: { metric: ImpactMetric; animate?: boole
             }`}
             style={{
               background: "#fff",
-              boxShadow:
-                "0 25px 60px rgba(0,0,0,0.14)",
+              boxShadow: "0 25px 60px rgba(0,0,0,0.14)",
             }}
           >
             <Image
@@ -226,15 +255,15 @@ function MetricCard({ metric, animate }: { metric: ImpactMetric; animate?: boole
           </div>
         </div>
 
-
         {/* CONTENT */}
         <div className="flex flex-col justify-center">
-
           <div className="flex items-center gap-4">
+            {/* Project Number */}
             <span
-              className="text-[1.8rem] font-semibold"
+              className="font-medium text-[12px] leading-[18px]"
               style={{
                 color: "var(--gold)",
+                fontFamily: manropeFont,
               }}
             >
               {section.number}
@@ -248,17 +277,16 @@ function MetricCard({ metric, animate }: { metric: ImpactMetric; animate?: boole
             />
           </div>
 
-
+          {/* Section Heading H2 */}
           <h2
-            className="mt-4 text-[2.8rem] leading-tight md:text-[3.4rem]"
+            className="mt-4 font-bold text-[48px] leading-[60px]"
             style={{
               color: "var(--foreground)",
-              fontFamily: headingFont,
+              fontFamily: manropeFont,
             }}
           >
             {section.title}
           </h2>
-
 
           <div className="mt-7 grid gap-4 sm:grid-cols-2">
             {section.metrics.map((metric) => (
@@ -270,28 +298,31 @@ function MetricCard({ metric, animate }: { metric: ImpactMetric; animate?: boole
             ))}
           </div>
 
-
+          {/* Secondary Button */}
           <div className="mt-7">
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 rounded-full border px-7 py-3 text-sm font-semibold transition hover:-translate-y-1"
+              className="inline-flex items-center gap-2 rounded-full border px-7 py-3 transition hover:-translate-y-1"
               style={{
                 background: "#ffffff",
                 borderColor: "var(--gold)",
                 color: "var(--gold)",
+                fontFamily: manropeFont,
+                fontSize: "16px",
+                fontWeight: 600,
+                lineHeight: "24px",
               }}
             >
               See More
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-
         </div>
-
       </div>
     </section>
   );
 }
+
 export default function ImpactClient({
   sections,
   heroImage,
@@ -305,97 +336,114 @@ export default function ImpactClient({
         background:
           "linear-gradient(180deg, color-mix(in srgb, var(--background) 92%, var(--electric) 8%) 0%, var(--background) 100%)",
         color: "var(--foreground)",
+        fontFamily: manropeFont,
       }}
-    >{/* Hero */}
-<section
-  className="relative isolate h-screen overflow-hidden text-white"
-  style={{ background: "var(--navy)" }}
->
-  <div className="absolute inset-0">
-    <Image
-      src={heroImage}
-      alt="Students in a classroom on the StepUp for SDG impact page"
-      fill
-      priority
-      sizes="100vw"
-      className="object-cover object-center"
-    />
-  </div>
-
-  <div
-    className="absolute inset-0"
-    style={{
-      background:
-        "radial-gradient(circle at 72% 42%, rgba(21,93,252,.1), transparent 22%), linear-gradient(90deg, rgba(5,11,24,.96) 0%, rgba(5,11,24,.9) 34%, rgba(16,29,51,.54) 58%, rgba(16,29,51,.12) 100%)",
-    }}
-  />
-
-  <div
-    className="absolute inset-x-0 bottom-0 h-40"
-    style={{
-      background:
-        "linear-gradient(to top, rgba(5,11,24,1) 0%, rgba(5,11,24,.5) 48%, transparent 100%)",
-    }}
-  />
-
-  <div className="relative mx-auto flex h-full max-w-[1380px] items-center px-6">
-    <div className="max-w-3xl">
-
-      <p
-        className="text-sm font-semibold uppercase tracking-[0.2em]"
-        style={{ color: "var(--gold)" }}
+    >
+      {/* Hero */}
+      <section
+        className="relative isolate h-screen overflow-hidden text-white"
+        style={{ background: "var(--navy)" }}
       >
-        Our Impact
-      </p>
+        <div className="absolute inset-0">
+          <Image
+            src={heroImage}
+            alt="Students in a classroom on the StepUp for SDG impact page"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
 
-      <h1
-        className="mt-5 text-[3rem] leading-[1.02] md:text-[4.2rem]"
-        style={{ fontFamily: headingFont }}
-      >
-        Every Step We Take,
-        <br />
-        Moves a{" "}
-        <span style={{ color: "var(--gold)" }}>
-          Life Forward
-        </span>
-      </h1>
-
-      <p className="mt-5 max-w-2xl text-lg leading-8 text-white/80">
-        Beyond the numbers, this is where real change shows up in
-        classrooms, communities, and countless acts of possibility for a
-        better tomorrow.
-      </p>
-
-      <div className="mt-8">
-        <Link
-          href="/work-with-us"
-          className="inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold text-white transition hover:brightness-110"
+        <div
+          className="absolute inset-0"
           style={{
-            background: "var(--cta)",
+            background:
+              "radial-gradient(circle at 72% 42%, rgba(21,93,252,.1), transparent 22%), linear-gradient(90deg, rgba(5,11,24,.96) 0%, rgba(5,11,24,.9) 34%, rgba(16,29,51,.54) 58%, rgba(16,29,51,.12) 100%)",
           }}
-        >
-          Work With Us
-          <ArrowRight className="h-4 w-4" />
-        </Link>
-      </div>
+        />
 
+        <div
+          className="absolute inset-x-0 bottom-0 h-40"
+          style={{
+            background:
+              "linear-gradient(to top, rgba(5,11,24,1) 0%, rgba(5,11,24,.5) 48%, transparent 100%)",
+          }}
+        />
+
+        <div className="relative mx-auto flex h-full max-w-[1380px] items-center px-6">
+          <div className="max-w-3xl">
+            {/* Label */}
+            <p
+              className="font-medium text-[12px] uppercase leading-[18px] tracking-[0.2em]"
+              style={{
+                color: "var(--gold)",
+                fontFamily: manropeFont,
+              }}
+            >
+              Our Impact
+            </p>
+
+            {/* Hero Title */}
+            <h1
+              className="mt-5 font-extrabold text-[72px] leading-[84px]"
+              style={{
+                fontFamily: manropeFont,
+              }}
+            >
+              Every Step We Take,
+              <br />
+              Moves a{" "}
+              <span style={{ color: "var(--gold)" }}>
+                Life Forward
+              </span>
+            </h1>
+
+            {/* Hero Description / Body Large */}
+            <p
+              className="mt-5 max-w-2xl font-normal text-[20px] leading-[34px] text-white/80"
+              style={{
+                fontFamily: manropeFont,
+              }}
+            >
+              Beyond the numbers, this is where real change shows up in
+              classrooms, communities, and countless acts of possibility for a
+              better tomorrow.
+            </p>
+
+            {/* Primary Button */}
+            <div className="mt-8">
+              <Link
+                href="/work-with-us"
+                className="inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-white transition hover:brightness-110"
+                style={{
+                  background: "var(--cta)",
+                  fontFamily: manropeFont,
+                  fontSize: "16px",
+                  fontWeight: 600,
+                  lineHeight: "24px",
+                }}
+              >
+                Work With Us
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Programs */}
+      <section id="impact-programs">
+        <div className="mx-auto max-w-[1380px] px-6 py-14">
+          {sections.map((section, index) => (
+            <ImpactBlock
+              key={section.number}
+              section={section}
+              reverse={index % 2 === 1}
+            />
+          ))}
+        </div>
+      </section>
     </div>
-  </div>
-</section>
-
-
-{/* Programs */}
-<section id="impact-programs">
-  <div className="mx-auto max-w-[1380px] px-6 py-14">
-    {sections.map((section, index) => (
-      <ImpactBlock
-        key={section.number}
-        section={section}
-        reverse={index % 2 === 1}
-      />
-    ))}
-  </div>
-</section>
-</div>
   );
 }

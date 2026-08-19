@@ -209,7 +209,7 @@ export default function ContactPage() {
 
               <div className="mb-7">
 
-                {/* LABEL — 12 / 18 / 500 */}
+                {/* LABEL — Manrope 12 / 18 / 500 */}
 
                 <p
                   className="
@@ -233,16 +233,14 @@ export default function ContactPage() {
                 </p>
 
 
-                {/* H2 — 48 / 60 / 700 */}
+                {/* H2 — Manrope 48 / 60 / 700 */}
 
                 <h2
                   className="
-                    text-[36px]
+                    text-[48px]
                     font-bold
-                    leading-[44px]
+                    leading-[60px]
                     text-[#12372A]
-                    sm:text-[48px]
-                    sm:leading-[60px]
                   "
                 >
                   Let&apos;s create
@@ -251,7 +249,7 @@ export default function ContactPage() {
                 </h2>
 
 
-                {/* BODY — 18 / 30 / 400 */}
+                {/* BODY — Manrope 18 / 30 / 400 */}
 
                 <p
                   className="
@@ -299,23 +297,21 @@ export default function ContactPage() {
                     </div>
 
 
-                    {/* H3 — 36 / 48 / 600 */}
+                    {/* H3 — Manrope 36 / 48 / 600 */}
 
                     <h3
                       className="
-                        text-[30px]
+                        text-[36px]
                         font-semibold
-                        leading-[40px]
+                        leading-[48px]
                         text-[#12372A]
-                        sm:text-[36px]
-                        sm:leading-[48px]
                       "
                     >
                       Thank you!
                     </h3>
 
 
-                    {/* BODY */}
+                    {/* BODY — Manrope 18 / 30 / 400 */}
 
                     <p
                       className="
@@ -599,7 +595,7 @@ export default function ContactPage() {
                   </label>
 
 
-                  {/* PRIMARY BUTTON — 16 / 24 / 600 */}
+                  {/* PRIMARY BUTTON — Manrope 16 / 24 / 600 */}
 
                   <button
                     type="submit"
@@ -674,7 +670,7 @@ export default function ContactPage() {
 
               <div className="mb-7">
 
-                {/* LABEL — 12 / 18 / 500 */}
+                {/* LABEL — Manrope 12 / 18 / 500 */}
 
                 <p
                   className="
@@ -700,16 +696,14 @@ export default function ContactPage() {
                 </p>
 
 
-                {/* H2 — 48 / 60 / 700 */}
+                {/* H2 — Manrope 48 / 60 / 700 */}
 
                 <h2
                   className="
-                    text-[36px]
+                    text-[48px]
                     font-bold
-                    leading-[44px]
+                    leading-[60px]
                     text-[#12372A]
-                    sm:text-[48px]
-                    sm:leading-[60px]
                   "
                 >
                   Subscribe to our
@@ -718,7 +712,7 @@ export default function ContactPage() {
                 </h2>
 
 
-                {/* BODY — 18 / 30 / 400 */}
+                {/* BODY — Manrope 18 / 30 / 400 */}
 
                 <p
                   className="
@@ -769,19 +763,21 @@ export default function ContactPage() {
                     </div>
 
 
+                    {/* H3 — Manrope 36 / 48 / 600 */}
+
                     <h3
                       className="
-                        text-[30px]
+                        text-[36px]
                         font-semibold
-                        leading-[40px]
+                        leading-[48px]
                         text-[#12372A]
-                        sm:text-[36px]
-                        sm:leading-[48px]
                       "
                     >
                       You&apos;re connected!
                     </h3>
 
+
+                    {/* BODY — Manrope 18 / 30 / 400 */}
 
                     <p
                       className="
@@ -981,9 +977,7 @@ export default function ContactPage() {
                   </label>
 
 
-
-
-                  {/* BUTTON — 16 / 24 / 600 */}
+                  {/* BUTTON — Manrope 16 / 24 / 600 */}
 
                   <button
                     type="submit"
