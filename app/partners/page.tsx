@@ -952,7 +952,7 @@ function PartnerCard({
 
       {/* Partner Name */}
       <span
-        className="text-[14px] sm:text-[15px] font-bold text-center mt-3 tracking-tight transition-colors duration-300 line-clamp-1 px-2"
+        className="text-[14px] sm:text-[16px] font-semibold text-center mt-3 tracking-tight transition-colors duration-300 line-clamp-1 px-2"
         style={{ color: hovered ? "#155dfc" : theme.text }}
       >
         {partner.name}
@@ -1011,7 +1011,7 @@ function PartnerModal({
             <div>
               {/* Modal Title (Card Heading H4) - Manrope 24px/30px */}
               <div className="text-[20px] sm:text-[24px] font-semibold leading-[28px] sm:leading-[32px] tracking-tight" style={{ color: theme.text }}>{partner.name}</div>
-              <div className="flex items-center gap-1.5 mt-1 text-[14px] font-normal leading-[22px]" style={{ color: theme.muted }}>
+              <div className="flex items-center gap-1.5 mt-1 text-[16px] font-normal leading-[28px]" style={{ color: theme.muted }}>
                 <Icon.MapPin className="w-3.5 h-3.5" />
                 {partner.city} • Since {partner.since}
               </div>
@@ -1050,7 +1050,7 @@ function PartnerModal({
               The story so far
             </div>
             {/* Body Small - Manrope 16px / 400 / 28px */}
-            <p className="text-[15px] sm:text-[16px] font-normal leading-[24px] sm:leading-[28px]" style={{ color: theme.textSub }}>
+            <p className="text-[16px] font-normal leading-[28px]" style={{ color: theme.textSub }}>
               {partner.story}
             </p>
           </div>
@@ -1210,7 +1210,7 @@ export default function PartnersPage() {
             {/* Page Heading (H1) - Manrope 56px / 700 / 68px */}
             <Reveal delay={0.1}>
               <h1
-                className="font-bold tracking-tight text-[36px] sm:text-[46px] lg:text-[56px] leading-[44px] sm:leading-[56px] lg:leading-[68px] mb-5"
+                className="font-bold tracking-tight text-[40px] sm:text-[48px] lg:text-[72px] leading-[48px] sm:leading-[60px] lg:leading-[84px] mb-5"
                 style={{ color: theme.text }}
               >
                 Coordinating action <br />
@@ -1249,7 +1249,7 @@ export default function PartnersPage() {
             {/* Hero Description / Body Large - Manrope 20px / 400 / 34px */}
             <Reveal delay={0.15}>
               <p
-                className="text-[17px] sm:text-[20px] font-normal leading-[28px] sm:leading-[34px] mb-8 max-w-xl"
+                className="text-[18px] sm:text-[20px] font-normal leading-[30px] sm:leading-[34px] mb-8 max-w-xl"
                 style={{ color: theme.textSub }}
               >
                 StepUp for SDG drives grassroots educational action under UN SDG 17. We match corporate funding, university research, and NGO fieldwork to deliver quality learning infrastructure where it is needed most.
@@ -1261,7 +1261,7 @@ export default function PartnersPage() {
               <div className="flex flex-wrap items-center gap-4 mb-8">
                 <a
                   href="#directory"
-                  className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[16px] font-semibold leading-[24px] text-white transition hover:opacity-95 shadow-md hover:scale-[1.02] active:scale-[0.98]"
+                  className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[16px] font-semibold leading-[24px] tracking-tight text-white transition hover:opacity-95 shadow-md hover:scale-[1.02] active:scale-[0.98]"
                   style={{
                     background: `linear-gradient(135deg, #155dfc, #00c2ff)`,
                     boxShadow: "0 8px 24px rgba(21,93,252,0.3)",
@@ -1271,7 +1271,7 @@ export default function PartnersPage() {
                 </a>
                 <a
                   href="/work-with-us"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border px-7 py-3.5 text-[16px] font-semibold leading-[24px] transition hover:bg-black/5 dark:hover:bg-white/5 hover:scale-[1.02] active:scale-[0.98]"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border px-7 py-3.5 text-[16px] font-semibold leading-[24px] tracking-tight transition hover:bg-black/5 dark:hover:bg-white/5 hover:scale-[1.02] active:scale-[0.98]"
                   style={{
                     borderColor: theme.border,
                     color: theme.text,
@@ -1522,13 +1522,13 @@ export default function PartnersPage() {
                   <Icon.Users className="w-6 h-6" />
                 </div>
                 <div className="flex flex-col">
-                  <div className="text-[32px] sm:text-[38px] font-extrabold tracking-tight leading-none" style={{ color: "#00c2ff" }}>
+                  <div className="text-[56px] sm:text-[64px] font-extrabold tracking-tight leading-none" style={{ color: "#00c2ff" }}>
                     <RollingNumber to={9} duration={1800} />
                   </div>
-                  <div className="text-[15px] sm:text-[16px] font-bold mt-1.5 leading-tight whitespace-nowrap" style={{ color: theme.text }}>
+                  <div className="text-[18px] sm:text-[18px] font-medium mt-1.5 leading-[28px] whitespace-nowrap" style={{ color: theme.text }}>
                     Verified Partners
                   </div>
-                  <div className="text-[13px] font-normal leading-tight mt-0.5" style={{ color: theme.muted }}>
+                  <div className="text-[18px] font-normal leading-[28px] mt-0.5" style={{ color: theme.muted }}>
                     Trusted collaborators
                   </div>
                 </div>
@@ -1543,13 +1543,13 @@ export default function PartnersPage() {
                   <Icon.MapPin className="w-6 h-6" />
                 </div>
                 <div className="flex flex-col">
-                  <div className="text-[32px] sm:text-[38px] font-extrabold tracking-tight leading-none" style={{ color: "#00d084" }}>
+                  <div className="text-[56px] sm:text-[64px] font-extrabold tracking-tight leading-none" style={{ color: "#00d084" }}>
                     <RollingNumber to={6} duration={1800} />
                   </div>
-                  <div className="text-[15px] sm:text-[16px] font-bold mt-1.5 leading-tight whitespace-nowrap" style={{ color: theme.text }}>
+                  <div className="text-[18px] font-medium mt-1.5 leading-[28px] whitespace-nowrap" style={{ color: theme.text }}>
                     States Reached
                   </div>
-                  <div className="text-[13px] font-normal leading-tight mt-0.5" style={{ color: theme.muted }}>
+                  <div className="text-[18px] font-normal leading-[28px] mt-0.5" style={{ color: theme.muted }}>
                     Across India
                   </div>
                 </div>
@@ -1564,13 +1564,13 @@ export default function PartnersPage() {
                   <Icon.Rupee className="w-6 h-6" />
                 </div>
                 <div className="flex flex-col">
-                  <div className="text-[30px] sm:text-[36px] font-extrabold tracking-tight leading-none whitespace-nowrap" style={{ color: "#155dfc" }}>
+                  <div className="text-[52px] sm:text-[60px] font-extrabold tracking-tight leading-none whitespace-nowrap" style={{ color: "#155dfc" }}>
                     <RollingNumber to={1.2} decimals={1} prefix="Rs " suffix=" Cr" duration={1800} />
                   </div>
-                  <div className="text-[15px] sm:text-[16px] font-bold mt-1.5 leading-tight whitespace-nowrap" style={{ color: theme.text }}>
+                  <div className="text-[18px] font-medium mt-1.5 leading-[28px] whitespace-nowrap" style={{ color: theme.text }}>
                     CSR Co-funding
                   </div>
-                  <div className="text-[13px] font-normal leading-tight mt-0.5" style={{ color: theme.muted }}>
+                  <div className="text-[18px] font-normal leading-[28px] mt-0.5" style={{ color: theme.muted }}>
                     Resources mobilized
                   </div>
                 </div>
@@ -1585,13 +1585,13 @@ export default function PartnersPage() {
                   <Icon.Star className="w-6 h-6" />
                 </div>
                 <div className="flex flex-col">
-                  <div className="text-[32px] sm:text-[38px] font-extrabold tracking-tight leading-none whitespace-nowrap" style={{ color: "#fbbf24" }}>
+                  <div className="text-[56px] sm:text-[64px] font-extrabold tracking-tight leading-none whitespace-nowrap" style={{ color: "#fbbf24" }}>
                     <RollingNumber to={12000} suffix="+" duration={1800} />
                   </div>
-                  <div className="text-[15px] sm:text-[16px] font-bold mt-1.5 leading-tight whitespace-nowrap" style={{ color: theme.text }}>
+                  <div className="text-[18px] font-medium mt-1.5 leading-[28px] whitespace-nowrap" style={{ color: theme.text }}>
                     Students Impacted
                   </div>
-                  <div className="text-[13px] font-normal leading-tight mt-0.5" style={{ color: theme.muted }}>
+                  <div className="text-[18px] font-normal leading-[28px] mt-0.5" style={{ color: theme.muted }}>
                     Lives positively influenced
                   </div>
                 </div>
@@ -1602,7 +1602,7 @@ export default function PartnersPage() {
           {/* Quote / Motto - Cormorant Garamond Italic / Ruluko 26px / 400 / 38px */}
           <div className="flex items-center justify-center gap-2.5 mt-12 mb-10 text-center" style={{ color: theme.muted }}>
             <Icon.Leaf className="w-5 h-5 text-emerald-500 shrink-0" />
-            <span className="font-quote italic text-[18px] sm:text-[24px] lg:text-[26px] font-normal leading-[28px] sm:leading-[34px] lg:leading-[38px]">
+            <span className="font-quote italic text-[22px] sm:text-[26px] lg:text-[26px] font-normal leading-[32px] sm:leading-[38px] lg:leading-[38px]">
               Together, we can build a more{" "}
               <strong className="font-bold not-italic text-blue-600 dark:text-blue-400">equitable</strong>,{" "}
               <strong className="font-bold not-italic text-teal-600 dark:text-teal-400">inclusive</strong> and{" "}
@@ -1642,13 +1642,13 @@ export default function PartnersPage() {
             </div>
 
             {/* Page Heading (H2) - Building Impact, Together. */}
-            <h2 className="text-[36px] sm:text-[48px] lg:text-[54px] font-extrabold tracking-tight leading-[44px] sm:leading-[56px] lg:leading-[64px] mb-3" style={{ color: theme.text }}>
+            <h2 className="text-[40px] sm:text-[48px] lg:text-[56px] font-bold tracking-tight leading-[48px] sm:leading-[60px] lg:leading-[68px] mb-3" style={{ color: theme.text }}>
               Building Impact,<br />
               <span style={{ color: "#155dfc" }}>Together.</span>
             </h2>
 
             {/* Subtitle - Body Large */}
-            <p className="max-w-xl mx-auto text-[16px] sm:text-[18px] font-normal leading-[26px] sm:leading-[30px]" style={{ color: theme.muted }}>
+            <p className="max-w-xl mx-auto text-[18px] sm:text-[20px] font-normal leading-[28px] sm:leading-[34px]" style={{ color: theme.muted }}>
               Meet the organizations and institutions<br className="hidden sm:inline" />
               {" "}driving meaningful change with us.
             </p>
@@ -1679,7 +1679,7 @@ export default function PartnersPage() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => setSearchFocused(true)}
                 onBlur={() => setSearchFocused(false)}
-                className="w-full rounded-full py-3.5 pr-6 text-[15px] sm:text-[16px] font-normal leading-[24px] border shadow-sm outline-none transition-all"
+                className="w-full rounded-full py-3.5 pr-6 text-[16px] font-medium leading-[24px] border shadow-sm outline-none transition-all"
                 style={{
                   paddingLeft: "46px",
                   background: isDark ? "rgba(11, 22, 48, 0.85)" : "#ffffff",
@@ -1704,7 +1704,7 @@ export default function PartnersPage() {
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className="relative rounded-full px-5 py-2.5 text-[14px] sm:text-[15px] font-semibold leading-[20px] z-10 transition-colors whitespace-nowrap"
+                    className="relative rounded-full px-5 py-2.5 text-[16px] font-medium leading-[24px] z-10 transition-colors whitespace-nowrap"
                     style={{
                       color: isActive ? "#ffffff" : isDark ? "rgba(255,255,255,0.7)" : "#475569",
                     }}
@@ -1792,7 +1792,7 @@ export default function PartnersPage() {
               </span>
             </h2>
             {/* Body - Manrope 18px / 400 / 30px */}
-            <p className="max-w-2xl mx-auto text-[16px] sm:text-[18px] font-normal leading-[26px] sm:leading-[30px]" style={{ color: theme.textSub }}>
+            <p className="max-w-2xl mx-auto text-[18px] font-normal leading-[30px]" style={{ color: theme.textSub }}>
               Whether you're a school, NGO, company or volunteer — there's a place for you in building a future where every child creates real-world impact.
             </p>
           </Reveal>
@@ -1824,14 +1824,14 @@ export default function PartnersPage() {
                     </div>
 
                     {/* Card Heading (H4) - Manrope 30px / 600 / 40px */}
-                    <div className="relative z-10 mb-4 text-[22px] sm:text-[26px] lg:text-[30px] font-semibold leading-[30px] sm:leading-[36px] lg:leading-[40px]" style={{ color: theme.text }}>
+                    <div className="relative z-10 mb-4 text-[24px] sm:text-[28px] lg:text-[30px] font-semibold leading-[32px] sm:leading-[36px] lg:leading-[40px]" style={{ color: theme.text }}>
                       {card.title}
                     </div>
 
                     {/* Body Small - Manrope 16px / 400 / 28px */}
                     <ul className="relative z-10 flex flex-col gap-3 mb-8 flex-1">
                       {card.benefits.map((b) => (
-                        <li key={b} className="flex items-start gap-3 text-[15px] sm:text-[16px] font-normal leading-[24px] sm:leading-[28px]" style={{ color: theme.textSub }}>
+                        <li key={b} className="flex items-start gap-3 text-[16px] font-normal leading-[28px]" style={{ color: theme.textSub }}>
                           <span
                             className="mt-[4px] flex h-5 w-5 shrink-0 items-center justify-center rounded-full"
                             style={{ background: isDark ? "rgba(0,194,255,0.15)" : "rgba(21,93,252,0.08)", border: `1px solid ${isDark ? "#00c2ff40" : "#155dfc30"}` }}
@@ -1848,7 +1848,7 @@ export default function PartnersPage() {
                       href={card.href}
                       whileHover={{ scale: 1.03 }}
                       whileTap={{ scale: 0.98 }}
-                      className="relative z-10 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-[16px] font-semibold leading-[24px] text-white shadow-sm"
+                      className="relative z-10 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-[16px] font-semibold leading-[24px] tracking-tight text-white shadow-sm"
                       style={{
                         background: `linear-gradient(135deg, #155dfc, #00c2ff)`,
                         boxShadow: "0 4px 16px rgba(21,93,252,0.3)",
@@ -1868,7 +1868,7 @@ export default function PartnersPage() {
           <Reveal>
             <div className="text-left mb-8">
               {/* Sub Heading (H3) - Manrope 36px / 600 / 48px */}
-              <h3 className="text-[26px] sm:text-[32px] lg:text-[36px] font-semibold leading-[34px] sm:leading-[42px] lg:leading-[48px]" style={{ color: theme.text }}>
+              <h3 className="text-[28px] sm:text-[32px] lg:text-[36px] font-semibold leading-[36px] sm:leading-[42px] lg:leading-[48px]" style={{ color: theme.text }}>
                 Our Partnership Models
               </h3>
             </div>
@@ -1920,12 +1920,12 @@ export default function PartnersPage() {
                       )}
                     </span>
                     {/* Small Heading (H5) - Manrope 24px / 600 / 34px */}
-                    <h4 className="text-[18px] sm:text-[22px] lg:text-[24px] font-semibold leading-[26px] sm:leading-[30px] lg:leading-[34px]" style={{ color: theme.text }}>
+                    <h4 className="text-[20px] sm:text-[22px] lg:text-[24px] font-semibold leading-[28px] sm:leading-[30px] lg:leading-[34px]" style={{ color: theme.text }}>
                       {model.title}
                     </h4>
                   </div>
                   {/* Body Small - Manrope 16px / 400 / 28px */}
-                  <p className="text-[15px] sm:text-[16px] font-normal leading-[24px] sm:leading-[28px] text-left flex-1" style={{ color: theme.textSub }}>
+                  <p className="text-[16px] font-normal leading-[28px] text-left flex-1" style={{ color: theme.textSub }}>
                     {model.desc}
                   </p>
                 </div>
@@ -1938,7 +1938,7 @@ export default function PartnersPage() {
             <div className="flex justify-center mt-12 mb-8 sm:mb-12">
               <a
                 href="mailto:partners@stepupsdg.in"
-                className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 text-[16px] font-semibold leading-[24px] text-white transition hover:scale-[1.03] active:scale-[0.98] shadow-md"
+                className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 text-[16px] font-semibold leading-[24px] tracking-tight text-white transition hover:scale-[1.03] active:scale-[0.98] shadow-md"
                 style={{
                   background: `linear-gradient(135deg, #155dfc, #00c2ff)`,
                   boxShadow: "0 8px 24px rgba(21,93,252,0.35)",
