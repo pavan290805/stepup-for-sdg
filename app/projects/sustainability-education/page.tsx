@@ -1,5 +1,22 @@
 'use client';
 
+const T = {
+  label:   { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '12px',  fontWeight: 600, lineHeight: '18px',  letterSpacing: '0.28em', textTransform: 'uppercase' as const },
+  title:   { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '56px',  fontWeight: 800, lineHeight: '64px' },
+  subtitle:{ fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '22px',  fontWeight: 400, lineHeight: '34px' },
+  overviewH:{ fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '40px', fontWeight: 700, lineHeight: '50px' },
+  overviewB:{ fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '18px', fontWeight: 400, lineHeight: '50px' },
+  focusH:  { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '28px',  fontWeight: 600, lineHeight: '50px' },
+  focusB:  { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '16px',  fontWeight: 400, lineHeight: '50px' },
+  impactH: { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '40px',  fontWeight: 700, lineHeight: '50px' },
+  impactN: { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '48px',  fontWeight: 800, lineHeight: '50px' },
+  impactL: { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '16px',  fontWeight: 500, lineHeight: '50px' },
+  programS:{ fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '24px',  fontWeight: 600, lineHeight: '50px' },
+  programB:{ fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '18px',  fontWeight: 400, lineHeight: '50px' },
+  ctaH:    { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '32px',  fontWeight: 700, lineHeight: '50px' },
+  ctaB:    { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '18px',  fontWeight: 400, lineHeight: '50px' },
+};
+
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -113,10 +130,11 @@ export default function SustainabilityEducationPage() {
               <Link href="/projects" className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-600 transition hover:bg-slate-50">
                 ← Back to Projects
               </Link>
-                <h1 className="text-5xl font-bold tracking-tight text-slate-950 sm:text-6xl" style={{ fontFamily: headingFont }}>
+                <p style={{ ...T.label, color: '#0fae83' }}>PROJECT 02 / EDUCATION</p>
+                <h1 className="mt-4 tracking-tight text-slate-950" style={T.title}>
                   Sustainable <span className="text-[#0fae83]">Education</span> Program
                 </h1>
-                <p className="mt-6 max-w-xl text-base leading-8 text-slate-600 sm:text-lg">
+                <p className="mt-6 max-w-xl" style={{ ...T.subtitle, color: '#475569' }}>
                   A free global learning journey to master the 17 UN Sustainable Development Goals through curated video lessons, official UN internship courses, and verifiable certification.
                 </p>
 
@@ -138,10 +156,10 @@ export default function SustainabilityEducationPage() {
                     const isSymbol = !match;
                     return (
                       <div key={stat.label} className="text-center">
-                        <p className="text-4xl font-semibold text-slate-950">
+                        <p style={{ ...T.impactN, color: '#0f172a' }}>
                           {isSymbol ? stat.value : <Counter to={num} suffix={suffix} />}
                         </p>
-                        <p className="mt-3 text-xs uppercase tracking-[0.2em] text-slate-500">{stat.label}</p>
+                        <p className="mt-3" style={{ ...T.impactL, color: '#64748b' }}>{stat.label}</p>
                       </div>
                     );
                   })}
@@ -172,7 +190,7 @@ export default function SustainabilityEducationPage() {
       <section className="mx-auto max-w-365 px-5 pb-24 lg:px-8">
         <FadeUp>
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+            <h2 className="mt-4" style={{ ...T.overviewH, color: '#0f172a' }}>
               Three simple steps take you from curiosity to a UN-recognized certification pathway.
             </h2>
           </div>
@@ -200,8 +218,8 @@ export default function SustainabilityEducationPage() {
                     {step.icon}
                   </div>
                 </div>
-                <h3 className="mt-8 text-center text-xl font-bold text-slate-950">{step.title}</h3>
-                <p className="mt-4 text-center text-sm leading-7 text-slate-500">{step.description}</p>
+                <h3 className="mt-8 text-center" style={{ ...T.programS, color: '#0f172a' }}>{step.title}</h3>
+                <p className="mt-4 text-center" style={{ ...T.programB, color: '#64748b' }}>{step.description}</p>
               </div>
             </FadeUp>
           ))}
@@ -217,8 +235,8 @@ export default function SustainabilityEducationPage() {
               const suffix = match ? match[2] : '';
               return (
                 <div key={metric.label} className="rounded-[28px] bg-white/10 px-6 py-8 text-center shadow-xl shadow-slate-950/10">
-                  <p className="mt-5 text-3xl font-semibold"><Counter to={num} suffix={suffix} /></p>
-                  <p className="mt-2 text-sm uppercase tracking-[0.2em] text-white/80">{metric.label}</p>
+                  <p style={T.impactN}><Counter to={num} suffix={suffix} /></p>
+                  <p className="mt-2" style={{ ...T.impactL, color: 'rgba(255,255,255,0.8)' }}>{metric.label}</p>
                 </div>
               );
             })}

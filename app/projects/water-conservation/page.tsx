@@ -1,5 +1,25 @@
 'use client';
 
+const T = {
+  label:    { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '12px',  fontWeight: 600, lineHeight: '18px',  letterSpacing: '0.28em', textTransform: 'uppercase' as const },
+  title:    { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '56px',  fontWeight: 800, lineHeight: '64px' },
+  subtitle: { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '22px',  fontWeight: 400, lineHeight: '34px' },
+  overviewH:{ fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '40px',  fontWeight: 700, lineHeight: '50px' },
+  overviewB:{ fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '18px',  fontWeight: 400, lineHeight: '50px' },
+  focusH:   { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '28px',  fontWeight: 600, lineHeight: '50px' },
+  focusB:   { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '16px',  fontWeight: 400, lineHeight: '50px' },
+  impactH:  { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '40px',  fontWeight: 700, lineHeight: '50px' },
+  impactN:  { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '48px',  fontWeight: 800, lineHeight: '50px' },
+  impactL:  { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '16px',  fontWeight: 500, lineHeight: '50px' },
+  programH: { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '40px',  fontWeight: 700, lineHeight: '50px' },
+  programS: { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '24px',  fontWeight: 600, lineHeight: '50px' },
+  programB: { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '18px',  fontWeight: 400, lineHeight: '50px' },
+  timelineH:{ fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '24px',  fontWeight: 600, lineHeight: '50px' },
+  timelineT:{ fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '16px',  fontWeight: 400, lineHeight: '50px' },
+  ctaH:     { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '32px',  fontWeight: 700, lineHeight: '50px' },
+  ctaB:     { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '18px',  fontWeight: 400, lineHeight: '50px' },
+};
+
 import Link from 'next/link';
 import { ArrowRight, CheckCircle2, Droplets, Globe2, MapPin, School, Users, Calendar } from 'lucide-react';
 import { Counter } from '@/app/components/site/Counter';
@@ -181,10 +201,10 @@ export default function WaterConservationPage() {
               <Link href="/projects" className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-600 transition hover:bg-slate-50">
                 ← Back to Projects
               </Link>
-              <h1 className="mt-6 text-5xl font-bold tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
+              <h1 className="mt-6 tracking-tight text-slate-950" style={T.title}>
                 Water Conservation <span style={{ color: BLUE }}>Program</span>
               </h1>
-              <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
+              <p className="mt-6 max-w-xl" style={{ ...T.subtitle, color: '#475569' }}>
                 Promoting sustainable water conservation by implementing rainwater harvesting systems in schools and communities across India.
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -248,7 +268,7 @@ export default function WaterConservationPage() {
         <FadeUp>
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.28em]" style={{ color: BLUE }}>How it works</p>
-            <h2 className="mt-3 text-3xl font-bold text-slate-950 sm:text-4xl">Three steps to water security.</h2>
+            <h2 className="mt-3" style={{ ...T.overviewH, color: '#0f172a' }}>Three steps to water security.</h2>
           </div>
         </FadeUp>
 
@@ -272,8 +292,8 @@ export default function WaterConservationPage() {
                     {STEP_ICONS[i]}
                   </div>
                   <div>
-                    <h3 className="text-base font-bold text-slate-950">{title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-500">{desc}</p>
+                    <h3 className="" style={{ ...T.programS, color: '#0f172a' }}>{title}</h3>
+                  <p className="mt-2" style={{ ...T.programB, color: '#64748b' }}>{desc}</p>
                   </div>
                 </div>
               </div>
@@ -307,7 +327,7 @@ export default function WaterConservationPage() {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.28em]" style={{ color: BLUE }}>Get involved</p>
-              <h2 className="mt-2 text-4xl font-bold text-slate-950 sm:text-5xl">Upcoming events.</h2>
+              <h2 className="mt-2" style={{ ...T.impactH, color: '#0f172a' }}>Upcoming events.</h2>
             </div>
             <p className="max-w-sm text-sm leading-7 text-slate-500">Workshops, drives, summits and volunteer events — join and make a water impact.</p>
           </div>
@@ -333,8 +353,8 @@ export default function WaterConservationPage() {
                   </div>
                 </div>
 
-                <h3 className="mt-5 text-lg font-bold text-slate-950">{ev.title}</h3>
-                <p className="mt-1 text-sm text-slate-500">{ev.organizer}</p>
+                <h3 className="mt-5" style={{ ...T.focusH, color: '#0f172a' }}>{ev.title}</h3>
+                <p className="mt-1" style={{ ...T.focusB, color: '#64748b' }}>{ev.organizer}</p>
 
                 <div className="mt-4 space-y-2 text-sm text-slate-600">
                   <p className="flex items-center gap-2"><MapPin className="h-4 w-4 text-slate-400" />{ev.location}</p>
@@ -370,7 +390,7 @@ export default function WaterConservationPage() {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.28em]" style={{ color: BLUE }}>From the field</p>
-              <h2 className="mt-2 text-4xl font-bold text-slate-950 sm:text-5xl">Latest articles.</h2>
+              <h2 className="mt-2" style={{ ...T.impactH, color: '#0f172a' }}>Latest articles.</h2>
             </div>
             <p className="max-w-sm text-sm leading-7 text-slate-500">Insights, guides and stories on water conservation and SDG 6.</p>
           </div>
@@ -384,8 +404,8 @@ export default function WaterConservationPage() {
                   <span className="self-start rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em]" style={{ background: '#e0f2fe', color: BLUE }}>
                     {b.tag}
                   </span>
-                  <h3 className="mt-4 text-base font-bold leading-snug text-slate-950">{b.title}</h3>
-                  <p className="mt-3 flex-1 text-sm leading-7 text-slate-500">{b.excerpt}</p>
+                  <h3 className="mt-4" style={{ ...T.timelineH, color: '#0f172a' }}>{b.title}</h3>
+                  <p className="mt-3 flex-1" style={{ ...T.timelineT, color: '#64748b' }}>{b.excerpt}</p>
                   <div className="mt-6 flex items-center justify-between border-t border-slate-100 pt-4">
                     <div>
                       <p className="text-xs font-semibold text-slate-950">{b.author}</p>
@@ -408,7 +428,7 @@ export default function WaterConservationPage() {
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.28em]" style={{ color: BLUE }}>What you get</p>
-              <h2 className="mt-3 text-3xl font-bold text-slate-950 sm:text-4xl">Benefits of joining.</h2>
+              <h2 className="mt-3" style={{ ...T.ctaH, color: '#0f172a' }}>Benefits of joining.</h2>
               <ul className="mt-8 space-y-4">
                 {BENEFITS.map((b) => (
                   <li key={b} className="flex items-start gap-3">
@@ -423,8 +443,8 @@ export default function WaterConservationPage() {
 
             <div className="rounded-[32px] border bg-white p-10 shadow-sm" style={{ borderColor: '#bae6fd' }}>
               <p className="text-xs font-semibold uppercase tracking-[0.28em]" style={{ color: BLUE }}>Get involved</p>
-              <h3 className="mt-3 text-2xl font-bold text-slate-950">Ready to make a difference?</h3>
-              <p className="mt-3 text-sm leading-7 text-slate-600">
+              <h3 className="mt-3" style={{ ...T.ctaH, color: '#0f172a' }}>Ready to make a difference?</h3>
+              <p className="mt-3" style={{ ...T.ctaB, color: '#475569' }}>
                 Register your school or community to receive a free site assessment and join India's growing network of water-conscious institutions.
               </p>
 

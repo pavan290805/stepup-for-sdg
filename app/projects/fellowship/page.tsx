@@ -1,5 +1,25 @@
 'use client';
 
+const T = {
+  label:    { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '12px',  fontWeight: 600, lineHeight: '18px',  letterSpacing: '0.28em', textTransform: 'uppercase' as const },
+  title:    { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '56px',  fontWeight: 800, lineHeight: '64px' },
+  subtitle: { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '22px',  fontWeight: 400, lineHeight: '34px' },
+  overviewH:{ fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '40px',  fontWeight: 700, lineHeight: '50px' },
+  overviewB:{ fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '18px',  fontWeight: 400, lineHeight: '50px' },
+  focusH:   { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '28px',  fontWeight: 600, lineHeight: '50px' },
+  focusB:   { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '16px',  fontWeight: 400, lineHeight: '50px' },
+  impactH:  { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '40px',  fontWeight: 700, lineHeight: '50px' },
+  impactN:  { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '48px',  fontWeight: 800, lineHeight: '50px' },
+  impactL:  { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '16px',  fontWeight: 500, lineHeight: '50px' },
+  programH: { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '40px',  fontWeight: 700, lineHeight: '50px' },
+  programS: { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '24px',  fontWeight: 600, lineHeight: '50px' },
+  programB: { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '18px',  fontWeight: 400, lineHeight: '50px' },
+  timelineH:{ fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '24px',  fontWeight: 600, lineHeight: '50px' },
+  timelineT:{ fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '16px',  fontWeight: 400, lineHeight: '50px' },
+  ctaH:     { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '32px',  fontWeight: 700, lineHeight: '50px' },
+  ctaB:     { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '18px',  fontWeight: 400, lineHeight: '50px' },
+};
+
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -54,7 +74,7 @@ function PostFellowshipForm({ onClose }: { onClose: () => void }) {
           {/* How it works */}
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-700">How it works</p>
-            <h3 className="mt-2 text-2xl font-bold text-slate-950">Three steps to your next opportunity.</h3>
+            <h3 className="mt-2" style={{ ...T.ctaH, color: '#0f172a' }}>Three steps to your next opportunity.</h3>
             <div className="mt-8 grid gap-6 sm:grid-cols-3">
               {[
                 { step: '01', title: 'Explore listings', desc: 'Browse fellowships, internships, and research roles curated for sustainability impact.' },
@@ -63,8 +83,8 @@ function PostFellowshipForm({ onClose }: { onClose: () => void }) {
               ].map(({ step, title, desc }) => (
                 <div key={step} className="border-t-2 border-[#0f3e1f] pt-5">
                   <p className="text-4xl font-bold text-slate-100">{step}</p>
-                  <h4 className="mt-1 text-base font-bold text-slate-950">{title}</h4>
-                  <p className="mt-2 text-xs leading-6 text-slate-500">{desc}</p>
+                  <h4 className="mt-1" style={{ ...T.timelineH, color: '#0f172a' }}>{title}</h4>
+                  <p className="mt-2" style={{ ...T.timelineT, color: '#64748b' }}>{desc}</p>
                 </div>
               ))}
             </div>
@@ -74,7 +94,7 @@ function PostFellowshipForm({ onClose }: { onClose: () => void }) {
           <div className="grid gap-10 sm:grid-cols-2">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-700">What you get</p>
-              <h3 className="mt-2 text-xl font-bold text-slate-950">Benefits of the StepUp Fellowship.</h3>
+              <h3 className="mt-2" style={{ ...T.programS, color: '#0f172a' }}>Benefits of the StepUp Fellowship.</h3>
               <ul className="mt-6 space-y-4">
                 {BENEFITS.map(({ icon: Icon, text }) => (
                   <li key={text} className="flex items-start gap-3">
@@ -88,7 +108,7 @@ function PostFellowshipForm({ onClose }: { onClose: () => void }) {
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-700">Who can apply</p>
-              <h3 className="mt-2 text-xl font-bold text-slate-950">Eligibility criteria.</h3>
+              <h3 className="mt-2" style={{ ...T.programS, color: '#0f172a' }}>Eligibility criteria.</h3>
               <ul className="mt-6 space-y-4">
                 {ELIGIBILITY.map(({ icon: Icon, text }) => (
                   <li key={text} className="flex items-start gap-3">
@@ -201,10 +221,10 @@ export default function FellowshipPage() {
       <section className="bg-[#fdfcf9] text-slate-950">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 py-16 md:px-8 lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:py-20">
           <div className="max-w-2xl">
-            <h1 className="mt-6 text-5xl font-bold tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
+            <h1 className="mt-6 tracking-tight text-slate-950" style={T.title}>
               Build your future. <span className="text-[#14532d]">Create real-world impact.</span>
             </h1>
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl">
+            <p className="mt-8 max-w-2xl" style={{ ...T.subtitle, color: '#475569' }}>
               Find fellowships, internships, and research opportunities with teams shaping a more sustainable world.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -245,8 +265,8 @@ export default function FellowshipPage() {
       {/* Opportunities */}
       <section id="opportunities" className="mx-auto max-w-7xl px-5 pb-20 md:px-8 bg-[#fdfcf9]">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_0.5fr] lg:items-end">
-          <h2 className="text-5xl font-bold tracking-tight text-slate-950 sm:text-6xl">Opportunities with purpose built in.</h2>
-          <p className="max-w-xl text-sm leading-7 text-slate-600 lg:text-right">Every listing is a chance to learn, contribute, and move the needle on the issues that matter.</p>
+          <h2 className="tracking-tight text-slate-950" style={T.overviewH}>Opportunities with purpose built in.</h2>
+          <p className="max-w-xl lg:text-right" style={{ ...T.overviewB, color: '#475569' }}>Every listing is a chance to learn, contribute, and move the needle on the issues that matter.</p>
         </div>
 
         <div className="mt-10 grid gap-4 xl:grid-cols-[1.75fr_0.9fr_0.9fr_0.9fr]">
@@ -285,8 +305,8 @@ export default function FellowshipPage() {
                 <span className="rounded-full bg-emerald-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-emerald-700">{o.category}</span>
                 {o.verified && <span className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">Verified</span>}
               </div>
-              <h3 className="mt-4 text-xl font-semibold text-slate-950">{o.title}</h3>
-              <p className="mt-2 text-sm text-slate-500">{o.organization}</p>
+              <h3 className="mt-4" style={{ ...T.programS, color: '#0f172a' }}>{o.title}</h3>
+              <p className="mt-2" style={{ ...T.focusB, color: '#64748b' }}>{o.organization}</p>
               <div className="mt-5 space-y-3 text-sm text-slate-600">
                 <p className="flex items-center gap-2"><MapPin className="h-4 w-4 text-slate-400" />{o.location}</p>
                 <p className="flex items-center gap-2"><Clock className="h-4 w-4 text-slate-400" />{o.duration}</p>

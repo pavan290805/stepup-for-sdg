@@ -1,6 +1,27 @@
 'use client';
 
 import Link from 'next/link';
+
+const MF = 'Manrope, system-ui, sans-serif';
+const T = {
+  label:   { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '12px',  fontWeight: 600, lineHeight: '18px',  letterSpacing: '0.28em', textTransform: 'uppercase' as const },
+  title:   { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '56px',  fontWeight: 800, lineHeight: '64px' },
+  subtitle:{ fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '22px',  fontWeight: 400, lineHeight: '34px' },
+  overviewH:{ fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '40px', fontWeight: 700, lineHeight: '50px' },
+  overviewB:{ fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '18px', fontWeight: 400, lineHeight: '50px' },
+  focusH:  { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '28px',  fontWeight: 600, lineHeight: '50px' },
+  focusB:  { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '16px',  fontWeight: 400, lineHeight: '50px' },
+  impactH: { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '40px',  fontWeight: 700, lineHeight: '50px' },
+  impactN: { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '48px',  fontWeight: 800, lineHeight: '50px' },
+  impactL: { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '16px',  fontWeight: 500, lineHeight: '50px' },
+  programH:{ fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '40px',  fontWeight: 700, lineHeight: '50px' },
+  programS:{ fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '24px',  fontWeight: 600, lineHeight: '50px' },
+  programB:{ fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '18px',  fontWeight: 400, lineHeight: '50px' },
+  ctaH:    { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '32px',  fontWeight: 700, lineHeight: '50px' },
+  ctaB:    { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '18px',  fontWeight: 400, lineHeight: '50px' },
+  cardT:   { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '24px',  fontWeight: 600, lineHeight: '50px' },
+  cardB:   { fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '16px',  fontWeight: 400, lineHeight: '50px' },
+};
 import { ArrowRight, CheckCircle2, Users, BookOpen, Award, Globe2, MapPin, Calendar } from 'lucide-react';
 import { Counter } from '@/app/components/site/Counter';
 import { FadeUp } from '@/app/components/site/FadeUp';
@@ -97,10 +118,11 @@ export default function SDGEducationPage() {
               <Link href="/projects" className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-600 transition hover:bg-slate-50">
                 ← Back to Projects
               </Link>
-              <h1 className="mt-6 text-5xl font-bold tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
+              <p style={T.label}>PROJECT 01 / EDUCATION</p>
+              <h1 className="mt-4 tracking-tight text-slate-950" style={T.title}>
                 SDG Education <span style={{ color: BLUE }}>for Students</span>
               </h1>
-              <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
+              <p className="mt-6 max-w-xl" style={{ ...T.subtitle, color: '#475569' }}>
                 Empower students with knowledge of the 17 Sustainable Development Goals. Build environmental awareness through engaging classroom activities and real-world learning.
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -125,10 +147,10 @@ export default function SDGEducationPage() {
                   const suffix = match ? match[2] : '';
                   return (
                     <div key={label} className="text-center">
-                      <p className="text-2xl font-bold text-slate-950">
+                      <p style={{ ...T.impactN, color: '#0f172a' }}>
                         <Counter to={num} suffix={suffix} />
                       </p>
-                      <p className="mt-1 text-[10px] uppercase tracking-[0.22em] text-slate-500">{label}</p>
+                      <p className="mt-1" style={{ ...T.impactL, color: '#64748b' }}>{label}</p>
                     </div>
                   );
                 })}
@@ -157,9 +179,9 @@ export default function SDGEducationPage() {
       <section className="mx-auto max-w-7xl px-5 py-20 md:px-8 bg-[#eff6ff]">
         <FadeUp>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em]" style={{ color: BLUE }}>What's included</p>
-            <h2 className="mt-3 text-3xl font-bold text-slate-950 sm:text-4xl">Everything your school needs.</h2>
-            <p className="mt-4 text-sm leading-7 text-slate-500">One program. Six powerful components. Zero compromise on quality.</p>
+            <p style={T.label}>What's included</p>
+            <h2 className="mt-3" style={{ ...T.overviewH, color: '#0f172a' }}>Everything your school needs.</h2>
+            <p className="mt-4" style={{ ...T.overviewB, color: '#64748b' }}>One program. Six powerful components. Zero compromise on quality.</p>
           </div>
         </FadeUp>
         <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -170,8 +192,8 @@ export default function SDGEducationPage() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={img} alt={title} style={{ width: 80, height: 80, objectFit: 'contain' }} />
                 </div>
-                <h3 className="mt-6 text-xl font-bold text-slate-950">{title}</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-500">{desc}</p>
+                <h3 className="mt-6" style={{ ...T.programS, color: '#0f172a' }}>{title}</h3>
+                <p className="mt-3" style={{ ...T.programB, color: '#64748b' }}>{desc}</p>
               </div>
             </FadeUp>
           ))}
@@ -183,7 +205,7 @@ export default function SDGEducationPage() {
         <div className="mx-auto max-w-7xl">
           <FadeUp>
             <div className="mx-auto max-w-2xl text-center">
-              <h2 className="mt-3 text-3xl font-bold text-slate-950 sm:text-4xl">Three steps to SDG-certified students.</h2>
+              <h2 className="mt-3" style={{ ...T.overviewH, color: '#0f172a' }}>Three steps to SDG-certified students.</h2>
             </div>
           </FadeUp>
           <div className="relative mt-12 grid gap-6 md:grid-cols-3">
@@ -203,8 +225,8 @@ export default function SDGEducationPage() {
                   <div className="my-6 flex h-20 w-20 items-center justify-center rounded-full" style={{ background: BLUE_LIGHT }}>
                     {STEP_ICONS[i]}
                   </div>
-                  <h3 className="text-xl font-bold text-slate-950">{title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-500">{desc}</p>
+                  <h3 style={{ ...T.programS, color: '#0f172a' }}>{title}</h3>
+                  <p className="mt-3" style={{ ...T.programB, color: '#64748b' }}>{desc}</p>
                 </div>
               </FadeUp>
             ))}
@@ -222,8 +244,8 @@ export default function SDGEducationPage() {
               const suffix = match ? match[2] : '';
               return (
                 <div key={label} className="rounded-[24px] bg-white/10 px-6 py-8 text-center shadow-xl">
-                  <p className="text-3xl font-bold"><Counter to={num} suffix={suffix} /></p>
-                  <p className="mt-2 text-xs uppercase tracking-[0.2em] text-white/80">{label}</p>
+                  <p style={T.impactN}><Counter to={num} suffix={suffix} /></p>
+                  <p className="mt-2" style={{ ...T.impactL, color: 'rgba(255,255,255,0.8)' }}>{label}</p>
                 </div>
               );
             })}
@@ -236,8 +258,8 @@ export default function SDGEducationPage() {
         <FadeUp>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.28em]" style={{ color: BLUE }}>Get involved</p>
-              <h2 className="mt-2 text-4xl font-bold text-slate-950 sm:text-5xl">Upcoming events.</h2>
+              <p style={T.label}>Get involved</p>
+              <h2 className="mt-2" style={{ ...T.impactH, color: '#0f172a' }}>Upcoming events.</h2>
             </div>
             <p className="max-w-sm text-sm leading-7 text-slate-500">Workshops, school drives, certification camps and youth summits — join and make an impact.</p>
           </div>
@@ -261,8 +283,8 @@ export default function SDGEducationPage() {
                     )}
                   </div>
                 </div>
-                <h3 className="mt-5 text-lg font-bold text-slate-950">{ev.title}</h3>
-                <p className="mt-1 text-sm text-slate-500">{ev.organizer}</p>
+                <h3 className="mt-5" style={{ ...T.focusH, color: '#0f172a' }}>{ev.title}</h3>
+                <p className="mt-1" style={{ ...T.focusB, color: '#64748b' }}>{ev.organizer}</p>
                 <div className="mt-4 space-y-2 text-sm text-slate-600">
                   <p className="flex items-center gap-2"><MapPin className="h-4 w-4 text-slate-400" />{ev.location}</p>
                   <p className="flex items-center gap-2"><Calendar className="h-4 w-4 text-slate-400" />{ev.date}</p>
@@ -295,8 +317,8 @@ export default function SDGEducationPage() {
           <FadeUp>
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.28em]" style={{ color: BLUE }}>From the classroom</p>
-                <h2 className="mt-2 text-4xl font-bold text-slate-950 sm:text-5xl">Latest articles.</h2>
+                <p style={T.label}>From the classroom</p>
+                <h2 className="mt-2" style={{ ...T.impactH, color: '#0f172a' }}>Latest articles.</h2>
               </div>
               <p className="max-w-sm text-sm leading-7 text-slate-500">Guides, stories and insights on SDG education and student impact.</p>
             </div>
@@ -310,8 +332,8 @@ export default function SDGEducationPage() {
                     <span className="self-start rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em]" style={{ background: BLUE_LIGHT, color: BLUE }}>
                       {b.tag}
                     </span>
-                    <h3 className="mt-4 text-base font-bold leading-snug text-slate-950">{b.title}</h3>
-                    <p className="mt-3 flex-1 text-sm leading-7 text-slate-500">{b.excerpt}</p>
+                    <h3 className="mt-4" style={{ ...T.cardT, color: '#0f172a' }}>{b.title}</h3>
+                    <p className="mt-3 flex-1" style={{ ...T.cardB, color: '#64748b' }}>{b.excerpt}</p>
                     <div className="mt-6 flex items-center justify-between border-t border-slate-200 pt-4">
                       <div>
                         <p className="text-xs font-semibold text-slate-950">{b.author}</p>
@@ -334,8 +356,8 @@ export default function SDGEducationPage() {
         <FadeUp>
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.28em]" style={{ color: BLUE }}>What you get</p>
-              <h2 className="mt-3 text-3xl font-bold text-slate-950 sm:text-4xl">Benefits of joining.</h2>
+              <p style={T.label}>What you get</p>
+              <h2 className="mt-3" style={{ ...T.ctaH, color: '#0f172a' }}>Benefits of joining.</h2>
               <ul className="mt-8 space-y-4">
                 {BENEFITS.map((b) => (
                   <li key={b} className="flex items-start gap-3">
@@ -348,9 +370,9 @@ export default function SDGEducationPage() {
               </ul>
             </div>
             <div className="rounded-[32px] border bg-white p-10 shadow-sm" style={{ borderColor: '#bfdbfe' }}>
-              <p className="text-xs font-semibold uppercase tracking-[0.28em]" style={{ color: BLUE }}>Get involved</p>
-              <h3 className="mt-3 text-2xl font-bold text-slate-950">Ready to inspire young changemakers?</h3>
-              <p className="mt-3 text-sm leading-7 text-slate-600">
+              <p style={T.label}>Get involved</p>
+              <h3 className="mt-3" style={{ ...T.ctaH, color: '#0f172a' }}>Ready to inspire young changemakers?</h3>
+              <p className="mt-3" style={{ ...T.ctaB, color: '#475569' }}>
                 Register your school to receive a free SDG workshop, stationery kits for students, and official certification — all in one program.
               </p>
               <div className="mt-8 space-y-4">
