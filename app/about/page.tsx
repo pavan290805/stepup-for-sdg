@@ -64,7 +64,7 @@ export default function AboutPage() {
               Non-Profit · Education · SDGs
             </span>
 
-            <h1 className="mt-5 font-display text-4xl md:text-[3.4rem] font-bold leading-[1.1] text-[#0d1b3e]">
+            <h1 className="mt-5 font-display font-bold text-[#0d1b3e]" style={{fontSize:"56px",lineHeight:"68px"}}>
               Purpose-driven{" "}
               <span className="relative inline-block">
                 partnerships
@@ -75,20 +75,20 @@ export default function AboutPage() {
               <br />for a better tomorrow
             </h1>
 
-            <p className="mt-6 max-w-lg leading-relaxed text-[#4a5980]">
+            <p className="mt-6 max-w-lg font-normal text-[#4a5980]" style={{fontSize:"20px",lineHeight:"34px"}}>
               Educating students on the UN Sustainable Development Goals, empowering them to adopt sustainable lifestyles, make informed choices, explore meaningful careers, and drive positive change in their families and communities.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 href="/work-with-us"
-                className="rounded-full bg-[#0d1b3e] px-7 py-3 text-sm font-bold text-white shadow-md transition hover:bg-[#155dfc]"
+                className="rounded-full bg-[#0d1b3e] px-7 py-3 font-semibold text-white shadow-md transition hover:bg-[#155dfc]" style={{fontSize:"16px",lineHeight:"24px"}}
               >
                 Work With Us
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-full border border-[#0d1b3e] px-7 py-3 text-sm font-semibold text-[#0d1b3e] transition hover:bg-[#0d1b3e] hover:text-white"
+                className="inline-flex items-center gap-2 rounded-full border border-[#0d1b3e] px-7 py-3 font-semibold text-[#0d1b3e] transition hover:bg-[#0d1b3e] hover:text-white" style={{fontSize:"16px",lineHeight:"24px"}}
               >
                 Discover <span className="text-base">→</span>
               </Link>
@@ -121,8 +121,8 @@ export default function AboutPage() {
               {/* floating stat badge — bottom right */}
               <div className="absolute bottom-4 -right-6 z-20 flex items-center gap-3 rounded-2xl px-5 py-3 shadow-2xl" style={{ background: "linear-gradient(135deg,#155dfc,#00c2ff)" }}>
                 <div className="text-left">
-                  <p className="font-display text-3xl font-black text-white leading-none"><CountUp to={17} /></p>
-                  <p className="text-[10px] font-semibold text-white/80 mt-0.5 leading-snug">UN SDGs<br/>Covered</p>
+                  <p className="font-display font-black text-white" style={{fontSize:"56px",lineHeight:"64px"}}><CountUp to={17} /></p>
+                  <p className="font-medium text-white/80 mt-0.5" style={{fontSize:"18px",lineHeight:"28px"}}>UN SDGs<br/>Covered</p>
                 </div>
                 <span className="text-3xl">🌐</span>
               </div>
@@ -143,7 +143,7 @@ export default function AboutPage() {
               <div className="h-px w-10 bg-[#155dfc] opacity-40" />
               <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#155dfc]">Who We Are</span>
             </div>
-            <h2 className="font-display font-black text-[#0d1b3e] leading-none" style={{ fontSize: "clamp(2.8rem,6vw,5rem)" }}>
+            <h2 className="font-display font-bold text-[#0d1b3e]" style={{fontSize:"48px",lineHeight:"60px"}}>
               Our{" "}
               <span className="relative inline-block">
                 Story
@@ -194,17 +194,17 @@ export default function AboutPage() {
               <div className="flex flex-col gap-7">
 
                 {/* story paragraphs */}
-                <div className="space-y-4 text-[15px] leading-relaxed">
-                  <p className="text-[#0d1b3e] font-semibold text-lg leading-snug">
+                <div className="space-y-4" style={{fontSize:"18px",lineHeight:"30px"}}>
+                  <p className="text-[#0d1b3e] font-semibold" style={{fontSize:"20px",lineHeight:"34px"}}>
                     StepUp for SDG began with a simple conviction: that quality education is the most powerful lever for lasting change.
                   </p>
-                  <p className="text-[#4a5980]">
+                  <p className="text-[#4a5980]" style={{fontSize:"18px",lineHeight:"30px"}}>
                     What started as a handful of volunteers supporting local schools has grown into a collaborative platform uniting students, educators, NGOs and companies around a shared mission.
                   </p>
-                  <p className="text-[#4a5980]">
+                  <p className="text-[#4a5980]" style={{fontSize:"18px",lineHeight:"30px"}}>
                     Today we connect partners across regions to fund, design and deliver transparent educational initiatives — turning intention into measurable impact for the children who need it most.
                   </p>
-                  <p className="text-[#4a5980]">
+                  <p className="text-[#4a5980]" style={{fontSize:"18px",lineHeight:"30px"}}>
                     We believe progress should be visible. Every project we support is tracked, reported, and built to last, so every contribution becomes a real opportunity for a learner.
                   </p>
                 </div>
@@ -226,7 +226,7 @@ export default function AboutPage() {
               <span className="inline-block rounded-full border border-[rgba(21,93,252,0.2)] bg-[rgba(21,93,252,0.06)] px-4 py-1 text-xs font-semibold uppercase tracking-widest text-[#155dfc]">
                 Who We Are
               </span>
-              <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold text-[#0d1b3e]">
+              <h2 className="mt-4 font-display font-bold text-[#0d1b3e]" style={{fontSize:"48px",lineHeight:"60px"}}>
                 Vision &amp; Mission
               </h2>
               <div className="mt-3 mx-auto h-1 w-16 rounded-full" style={{ background: "linear-gradient(90deg,#155dfc,#00c2ff)" }} />
@@ -245,19 +245,19 @@ export default function AboutPage() {
 
                   <div>
                       <p className="text-xs font-semibold uppercase tracking-widest text-[#155dfc]">Our Vision</p>
-                      <h3 className="mt-1 font-display text-xl font-bold text-[#0d1b3e] leading-snug">
+                      <h3 className="mt-1 font-display font-semibold text-[#0d1b3e]" style={{fontSize:"36px",lineHeight:"48px"}}>
                         Empowering Every Learner to Build a Better Tomorrow
                       </h3>
                     </div>
 
-                  <div className="flex flex-col gap-3 text-[#4a5980] text-sm leading-relaxed">
+                  <div className="flex flex-col gap-3 text-[#4a5980]" style={{fontSize:"18px",lineHeight:"30px"}}>
                     <p>We envision a future where every child, regardless of geography, income, or background, has equal access to quality education, technology, and opportunities that unlock their full potential.</p>
                     <p>StepUp for SDG aims to create inclusive schools, empowered educators, and connected communities that inspire lifelong learning and sustainable development.</p>
                   </div>
 
                   {/* quote */}
                   <div className="mt-auto rounded-2xl bg-[#f0f4ff] px-5 py-4 border-l-4 border-[#155dfc]">
-                    <p className="text-sm font-medium italic text-[#155dfc]">&ldquo;Education is the foundation for lasting change.&rdquo;</p>
+                    <p className="font-normal italic text-[#155dfc]" style={{fontSize:"26px",lineHeight:"38px"}}>&ldquo;Education is the foundation for lasting change.&rdquo;</p>
                   </div>
                 </div>
               </div>
@@ -272,19 +272,19 @@ export default function AboutPage() {
 
                   <div>
                       <p className="text-xs font-semibold uppercase tracking-widest text-[#00a89a]">Our Mission</p>
-                      <h3 className="mt-1 font-display text-xl font-bold text-[#0d1b3e] leading-snug">
+                      <h3 className="mt-1 font-display font-semibold text-[#0d1b3e]" style={{fontSize:"36px",lineHeight:"48px"}}>
                         Transforming Partnerships into Measurable Educational Impact
                       </h3>
                     </div>
 
-                  <div className="flex flex-col gap-3 text-[#4a5980] text-sm leading-relaxed">
+                  <div className="flex flex-col gap-3 text-[#4a5980]" style={{fontSize:"18px",lineHeight:"30px"}}>
                     <p>Our mission is to connect schools, NGOs, companies, volunteers, and communities through one collaborative platform that enables transparent educational initiatives, innovation, and measurable social impact.</p>
                     <p>Every contribution helps children gain knowledge, confidence, and opportunities for a brighter future.</p>
                   </div>
 
                   {/* quote */}
                   <div className="mt-auto rounded-2xl bg-[#f0f4ff] px-5 py-4 border-l-4 border-[#00c2ff]">
-                    <p className="text-sm font-medium italic text-[#00a89a]">&ldquo;Together we create opportunities that transform lives.&rdquo;</p>
+                    <p className="font-normal italic text-[#00a89a]" style={{fontSize:"26px",lineHeight:"38px"}}>&ldquo;Together we create opportunities that transform lives.&rdquo;</p>
                   </div>
                 </div>
               </div>
@@ -312,10 +312,10 @@ export default function AboutPage() {
           {/* heading */}
           <FadeUp>
             <div className="text-center mb-12">
-              <h2 className="font-display text-4xl md:text-5xl font-black text-[#0d1b3e] leading-tight">
+              <h2 className="font-display font-bold text-[#0d1b3e]" style={{fontSize:"48px",lineHeight:"60px"}}>
                 The 5 Pillars<br/>That Build Our Future
               </h2>
-              <p className="mt-4 text-[#6b7a99] max-w-sm mx-auto text-[15px] leading-relaxed">
+              <p className="mt-4 text-[#6b7a99] max-w-sm mx-auto font-normal" style={{fontSize:"18px",lineHeight:"30px"}}>
                 The Sustainable Development Goals are built on<br/>5 interconnected pillars.
               </p>
             </div>
@@ -406,8 +406,8 @@ export default function AboutPage() {
                   }}
                 >
                   <div>{icon}</div>
-                  <h3 className="font-display text-[18px] font-black tracking-widest" style={{ color }}>{title}</h3>
-                  <p className="text-[15px] leading-relaxed flex-1 text-[#6b7a99]">{desc}</p>
+                  <h3 className="font-display font-semibold tracking-widest" style={{color,fontSize:"20px",lineHeight:"30px"}}>{title}</h3>
+                  <p className="flex-1 text-[#6b7a99] font-normal" style={{fontSize:"18px",lineHeight:"30px"}}>{desc}</p>
                 </div>
               </FadeUp>
             ))}
@@ -422,7 +422,7 @@ export default function AboutPage() {
           <FadeUp>
             <div className="text-center mb-16">
               <span className="inline-block rounded-full border border-[rgba(21,93,252,0.2)] bg-[rgba(21,93,252,0.06)] px-4 py-1 text-xs font-semibold uppercase tracking-widest text-[#155dfc]">The People Behind It</span>
-              <h2 className="mt-4 font-display text-4xl md:text-5xl font-black text-[#0d1b3e]">
+              <h2 className="mt-4 font-display font-bold text-[#0d1b3e]" style={{fontSize:"48px",lineHeight:"60px"}}>
                 Meet Our{" "}
                 <span className="relative inline-block">
                   Team
@@ -462,14 +462,13 @@ export default function AboutPage() {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={src} alt={name} className="h-full w-full object-cover object-top" />
                   </div>
-                  <h3 className="font-display text-base font-bold text-[#0d1b3e]">{name}</h3>
-                  <p className="mt-1 text-xs text-[#4a5980]">{role}</p>
+                  <h3 className="font-display font-semibold text-[#0d1b3e]" style={{fontSize:"24px",lineHeight:"34px"}}>{name}</h3>
+                  <p className="mt-1 text-[#4a5980] font-normal" style={{fontSize:"16px",lineHeight:"28px"}}>{role}</p>
                   <a
                     href={linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 text-xs font-semibold hover:underline"
-                    style={{ color: "#d4af37" }}
+                    className="mt-4 font-medium hover:underline" style={{fontSize:"14px",lineHeight:"22px",color:"#d4af37"}}
                   >
                     LinkedIn →
                   </a>
@@ -484,10 +483,10 @@ export default function AboutPage() {
       <section id="join" className="px-6 pt-6 pb-16 scroll-mt-20" style={{ background: "transparent" }}>
         <FadeUp>
           <div className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl p-10 text-center md:p-14" style={{ background: "linear-gradient(135deg,#0d1b3e 0%,#1a2f6e 60%,#0d1b3e 100%)" }}>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white">
+            <h2 className="font-display font-bold text-white" style={{fontSize:"48px",lineHeight:"60px"}}>
               Join Our <span style={{ background: "linear-gradient(90deg,#ff7a00,#ffb347)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Mission</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-[#a0aec0]">
+            <p className="mx-auto mt-4 max-w-xl text-[#a0aec0] font-normal" style={{fontSize:"18px",lineHeight:"30px"}}>
               Whether you&apos;re a school, NGO, company or volunteer, there&apos;s
               a place for you in building a future where every child has access
               to quality education.
@@ -495,15 +494,13 @@ export default function AboutPage() {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/work-with-us"
-                className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white transition hover:brightness-110"
-                style={{ background: "#ff7a00", boxShadow: "0 0 24px rgba(255,122,0,0.45)" }}
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold text-white transition hover:brightness-110" style={{fontSize:"16px",lineHeight:"24px",background:"#ff7a00",boxShadow:"0 0 24px rgba(255,122,0,0.45)"}}
               >
                 Work With Us
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-full border px-6 py-3 text-sm font-semibold transition hover:text-[#00c2ff]"
-                style={{ borderColor: "rgba(255,255,255,0.25)", color: "#ffffff" }}
+                className="inline-flex items-center gap-2 rounded-full border px-6 py-3 font-semibold transition hover:text-[#00c2ff]" style={{fontSize:"16px",lineHeight:"24px",borderColor:"rgba(255,255,255,0.25)",color:"#ffffff"}}
               >
                 Get in Touch
               </Link>
