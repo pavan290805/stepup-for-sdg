@@ -26,16 +26,53 @@ const initialForm = {
 const CSRFormSection = () => {
   const [form, setForm] = useState(initialForm);
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
+  const formRef = React.useRef(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((curr) => ({ ...curr, [name]: value }));
+
+    // Clear a field's error as soon as its value becomes valid.
+    const field = e.target;
+    if (field.validity.valid) {
+      setErrors((curr) => {
+        if (!curr[name]) return curr;
+        const next = { ...curr };
+        delete next[name];
+        return next;
+      });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const fields = Array.from(formRef.current.querySelectorAll('input, select, textarea'));
+    const invalidFields = fields.filter((field) => !field.validity.valid);
+
+    if (invalidFields.length > 0) {
+      const nextErrors = Object.fromEntries(
+        invalidFields.map((field) => [
+          field.name,
+          field.validity.valueMissing
+            ? 'This field is required.'
+            : field.type === 'email'
+              ? 'Please enter a valid email address.'
+              : field.type === 'url'
+                ? 'Please enter a valid website URL.'
+                : 'Please check this field.',
+        ])
+      );
+      setErrors(nextErrors);
+
+      const firstInvalidField = invalidFields[0];
+      firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      window.setTimeout(() => firstInvalidField.focus(), 300);
+      return;
+    }
+
+    setErrors({});
     setSubmitted(true);
-    window.scrollTo({ top: 150, behavior: 'smooth' });
   };
 
   if (submitted) {
@@ -59,7 +96,7 @@ const CSRFormSection = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 font-poppins text-[#071B4A]">
+    <form ref={formRef} noValidate onSubmit={handleSubmit} className="space-y-5 font-poppins text-[#071B4A]">
 
       {/* 1. COMPANY INFORMATION */}
       <div>
@@ -76,12 +113,17 @@ const CSRFormSection = () => {
             <input
               type="text"
               name="companyName"
+              aria-invalid={Boolean(errors.companyName)}
+              aria-describedby={errors.companyName ? "companyName-error" : undefined}
               value={form.companyName}
               onChange={handleChange}
+              className={`w-full rounded-lg border bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#2563EB] focus:bg-white focus:ring-2 focus:ring-blue-500/10 ${errors.companyName ? 'border-red-500 ring-2 ring-red-100' : 'border-gray-200'}`}
               placeholder="Company name"
-              className="w-full rounded-lg border border-gray-200 bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#2563EB] focus:bg-white focus:ring-2 focus:ring-blue-500/10"
               required
             />
+            {errors.companyName && (
+              <p id="companyName-error" className="mt-1 text-xs text-red-600">{errors.companyName}</p>
+            )}
           </div>
 
           <div>
@@ -91,12 +133,17 @@ const CSRFormSection = () => {
             <input
               type="text"
               name="industrySector"
+              aria-invalid={Boolean(errors.industrySector)}
+              aria-describedby={errors.industrySector ? "industrySector-error" : undefined}
               value={form.industrySector}
               onChange={handleChange}
+              className={`w-full rounded-lg border bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#2563EB] focus:bg-white focus:ring-2 focus:ring-blue-500/10 ${errors.industrySector ? 'border-red-500 ring-2 ring-red-100' : 'border-gray-200'}`}
               placeholder="e.g. IT, Tech, FMCG"
-              className="w-full rounded-lg border border-gray-200 bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#2563EB] focus:bg-white focus:ring-2 focus:ring-blue-500/10"
               required
             />
+            {errors.industrySector && (
+              <p id="industrySector-error" className="mt-1 text-xs text-red-600">{errors.industrySector}</p>
+            )}
           </div>
 
           <div>
@@ -106,11 +153,16 @@ const CSRFormSection = () => {
             <input
               type="url"
               name="website"
+              aria-invalid={Boolean(errors.website)}
+              aria-describedby={errors.website ? "website-error" : undefined}
               value={form.website}
               onChange={handleChange}
               placeholder="https://company.com"
-              className="w-full rounded-lg border border-gray-200 bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#2563EB] focus:bg-white focus:ring-2 focus:ring-blue-500/10"
+              className={`w-full rounded-lg border bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#2563EB] focus:bg-white focus:ring-2 focus:ring-blue-500/10 ${errors.website ? 'border-red-500 ring-2 ring-red-100' : 'border-gray-200'}`}
             />
+            {errors.website && (
+              <p id="website-error" className="mt-1 text-xs text-red-600">{errors.website}</p>
+            )}
           </div>
 
           <div>
@@ -162,12 +214,17 @@ const CSRFormSection = () => {
             <input
               type="text"
               name="contactName"
+              aria-invalid={Boolean(errors.contactName)}
+              aria-describedby={errors.contactName ? "contactName-error" : undefined}
               value={form.contactName}
               onChange={handleChange}
+              className={`w-full rounded-lg border bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#2563EB] focus:bg-white focus:ring-2 focus:ring-blue-500/10 ${errors.contactName ? 'border-red-500 ring-2 ring-red-100' : 'border-gray-200'}`}
               placeholder="Full name"
-              className="w-full rounded-lg border border-gray-200 bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#2563EB] focus:bg-white focus:ring-2 focus:ring-blue-500/10"
               required
             />
+            {errors.contactName && (
+              <p id="contactName-error" className="mt-1 text-xs text-red-600">{errors.contactName}</p>
+            )}
           </div>
 
           <div>
@@ -177,12 +234,17 @@ const CSRFormSection = () => {
             <input
               type="text"
               name="designation"
+              aria-invalid={Boolean(errors.designation)}
+              aria-describedby={errors.designation ? "designation-error" : undefined}
               value={form.designation}
               onChange={handleChange}
+              className={`w-full rounded-lg border bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#2563EB] focus:bg-white focus:ring-2 focus:ring-blue-500/10 ${errors.designation ? 'border-red-500 ring-2 ring-red-100' : 'border-gray-200'}`}
               placeholder="e.g. CSR Head"
-              className="w-full rounded-lg border border-gray-200 bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#2563EB] focus:bg-white focus:ring-2 focus:ring-blue-500/10"
               required
             />
+            {errors.designation && (
+              <p id="designation-error" className="mt-1 text-xs text-red-600">{errors.designation}</p>
+            )}
           </div>
 
           <div>
@@ -192,12 +254,17 @@ const CSRFormSection = () => {
             <input
               type="email"
               name="email"
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? "email-error" : undefined}
               value={form.email}
               onChange={handleChange}
+              className={`w-full rounded-lg border bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#2563EB] focus:bg-white focus:ring-2 focus:ring-blue-500/10 ${errors.email ? 'border-red-500 ring-2 ring-red-100' : 'border-gray-200'}`}
               placeholder="csr@company.com"
-              className="w-full rounded-lg border border-gray-200 bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#2563EB] focus:bg-white focus:ring-2 focus:ring-blue-500/10"
               required
             />
+            {errors.email && (
+              <p id="email-error" className="mt-1 text-xs text-red-600">{errors.email}</p>
+            )}
           </div>
 
           <div>
@@ -207,12 +274,17 @@ const CSRFormSection = () => {
             <input
               type="tel"
               name="phone"
+              aria-invalid={Boolean(errors.phone)}
+              aria-describedby={errors.phone ? "phone-error" : undefined}
               value={form.phone}
               onChange={handleChange}
+              className={`w-full rounded-lg border bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#2563EB] focus:bg-white focus:ring-2 focus:ring-blue-500/10 ${errors.phone ? 'border-red-500 ring-2 ring-red-100' : 'border-gray-200'}`}
               placeholder="+91 98765 43210"
-              className="w-full rounded-lg border border-gray-200 bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#2563EB] focus:bg-white focus:ring-2 focus:ring-blue-500/10"
               required
             />
+            {errors.phone && (
+              <p id="phone-error" className="mt-1 text-xs text-red-600">{errors.phone}</p>
+            )}
           </div>
         </div>
       </div>
@@ -369,7 +441,7 @@ const CSRFormSection = () => {
           type="submit"
           className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-[#2563EB] via-[#3B82F6] to-[#10B981] text-white font-bold text-xs sm:text-sm shadow-lg hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] transition-all duration-300"
         >
-          <span>Submit CSR Partnership Request</span>
+          <span>Submit CSR Partnership Request .</span>
         </button>
       </div>
 

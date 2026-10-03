@@ -46,10 +46,23 @@ const initialForm = {
 const VolunteerFormSection = () => {
   const [form, setForm] = useState(initialForm);
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
+  const formRef = React.useRef(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((curr) => ({ ...curr, [name]: value }));
+
+    // Clear a field's error once its current value is valid.
+    const field = e.target;
+    if (field.validity.valid) {
+      setErrors((curr) => {
+        if (!curr[name]) return curr;
+        const next = { ...curr };
+        delete next[name];
+        return next;
+      });
+    }
   };
 
   const handleSkillsToggle = (item) => {
@@ -74,8 +87,32 @@ const VolunteerFormSection = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const fields = Array.from(formRef.current.querySelectorAll('input, select, textarea'));
+    const invalidFields = fields.filter((field) => !field.validity.valid);
+
+    if (invalidFields.length > 0) {
+      const nextErrors = Object.fromEntries(
+        invalidFields.map((field) => [
+          field.name,
+          field.validity.valueMissing
+            ? 'This field is required.'
+            : field.type === 'email'
+              ? 'Please enter a valid email address.'
+              : field.type === 'url'
+                ? 'Please enter a valid website URL.'
+                : 'Please check this field.',
+        ])
+      );
+      setErrors(nextErrors);
+
+      const firstInvalidField = invalidFields[0];
+      firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      window.setTimeout(() => firstInvalidField.focus(), 300);
+      return;
+    }
+
+    setErrors({});
     setSubmitted(true);
-    window.scrollTo({ top: 150, behavior: 'smooth' });
   };
 
   if (submitted) {
@@ -99,7 +136,7 @@ const VolunteerFormSection = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 font-poppins text-[#071B4A]">
+    <form ref={formRef} noValidate onSubmit={handleSubmit} className="space-y-5 font-poppins text-[#071B4A]">
 
       {/* 1. PERSONAL INFORMATION */}
       <div>
@@ -116,12 +153,17 @@ const VolunteerFormSection = () => {
             <input
               type="text"
               name="fullName"
+              aria-invalid={Boolean(errors.fullName)}
+              aria-describedby={errors.fullName ? "fullName-error" : undefined}
               value={form.fullName}
               onChange={handleChange}
+              className={`w-full rounded-lg border bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#3B82F6] focus:bg-white focus:ring-2 focus:ring-blue-500/10 ${errors.fullName ? 'border-red-500 ring-2 ring-red-100' : 'border-gray-200'}`}
               placeholder="Full name"
-              className="w-full rounded-lg border border-gray-200 bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#3B82F6] focus:bg-white focus:ring-2 focus:ring-blue-500/10"
               required
             />
+            {errors.fullName && (
+              <p id="fullName-error" className="mt-1 text-xs text-red-600">{errors.fullName}</p>
+            )}
           </div>
 
           <div>
@@ -131,12 +173,17 @@ const VolunteerFormSection = () => {
             <input
               type="email"
               name="email"
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? "email-error" : undefined}
               value={form.email}
               onChange={handleChange}
+              className={`w-full rounded-lg border bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#3B82F6] focus:bg-white focus:ring-2 focus:ring-blue-500/10 ${errors.email ? 'border-red-500 ring-2 ring-red-100' : 'border-gray-200'}`}
               placeholder="email@example.com"
-              className="w-full rounded-lg border border-gray-200 bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#3B82F6] focus:bg-white focus:ring-2 focus:ring-blue-500/10"
               required
             />
+            {errors.email && (
+              <p id="email-error" className="mt-1 text-xs text-red-600">{errors.email}</p>
+            )}
           </div>
 
           <div>
@@ -146,12 +193,17 @@ const VolunteerFormSection = () => {
             <input
               type="tel"
               name="phone"
+              aria-invalid={Boolean(errors.phone)}
+              aria-describedby={errors.phone ? "phone-error" : undefined}
               value={form.phone}
               onChange={handleChange}
+              className={`w-full rounded-lg border bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#3B82F6] focus:bg-white focus:ring-2 focus:ring-blue-500/10 ${errors.phone ? 'border-red-500 ring-2 ring-red-100' : 'border-gray-200'}`}
               placeholder="+91 98765 43210"
-              className="w-full rounded-lg border border-gray-200 bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#3B82F6] focus:bg-white focus:ring-2 focus:ring-blue-500/10"
               required
             />
+            {errors.phone && (
+              <p id="phone-error" className="mt-1 text-xs text-red-600">{errors.phone}</p>
+            )}
           </div>
 
           <div>
@@ -372,7 +424,7 @@ const VolunteerFormSection = () => {
           type="submit"
           className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-[#3B82F6] via-[#2563EB] to-[#10B981] text-white font-bold text-xs sm:text-sm shadow-lg hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] transition-all duration-300"
         >
-          <span>Join as a Volunteer</span>
+          <span>Join as a Volunteer .</span>
         </button>
       </div>
 

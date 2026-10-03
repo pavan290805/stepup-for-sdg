@@ -32,10 +32,23 @@ const initialForm = {
 const NGOFormSection = () => {
   const [form, setForm] = useState(initialForm);
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
+  const formRef = React.useRef(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((curr) => ({ ...curr, [name]: value }));
+
+    // Clear a field's error once its current value is valid.
+    const field = e.target;
+    if (field.validity.valid) {
+      setErrors((curr) => {
+        if (!curr[name]) return curr;
+        const next = { ...curr };
+        delete next[name];
+        return next;
+      });
+    }
   };
 
   const handleCheckboxToggle = (item) => {
@@ -50,8 +63,32 @@ const NGOFormSection = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const fields = Array.from(formRef.current.querySelectorAll('input, select, textarea'));
+    const invalidFields = fields.filter((field) => !field.validity.valid);
+
+    if (invalidFields.length > 0) {
+      const nextErrors = Object.fromEntries(
+        invalidFields.map((field) => [
+          field.name,
+          field.validity.valueMissing
+            ? 'This field is required.'
+            : field.type === 'email'
+              ? 'Please enter a valid email address.'
+              : field.type === 'url'
+                ? 'Please enter a valid website URL.'
+                : 'Please check this field.',
+        ])
+      );
+      setErrors(nextErrors);
+
+      const firstInvalidField = invalidFields[0];
+      firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      window.setTimeout(() => firstInvalidField.focus(), 300);
+      return;
+    }
+
+    setErrors({});
     setSubmitted(true);
-    window.scrollTo({ top: 150, behavior: 'smooth' });
   };
 
   if (submitted) {
@@ -75,7 +112,7 @@ const NGOFormSection = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 font-poppins text-[#071B4A]">
+    <form ref={formRef} noValidate onSubmit={handleSubmit} className="space-y-5 font-poppins text-[#071B4A]">
 
       {/* 1. ORGANIZATION DETAILS */}
       <div>
@@ -92,12 +129,17 @@ const NGOFormSection = () => {
             <input
               type="text"
               name="ngoName"
+              aria-invalid={Boolean(errors.ngoName)}
+              aria-describedby={errors.ngoName ? "ngoName-error" : undefined}
               value={form.ngoName}
               onChange={handleChange}
+              className={`w-full rounded-lg border bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#10B981] focus:bg-white focus:ring-2 focus:ring-emerald-500/10 ${errors.ngoName ? 'border-red-500 ring-2 ring-red-100' : 'border-gray-200'}`}
               placeholder="e.g. Rural Literacy Trust"
-              className="w-full rounded-lg border border-gray-200 bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#10B981] focus:bg-white focus:ring-2 focus:ring-emerald-500/10"
               required
             />
+            {errors.ngoName && (
+              <p id="ngoName-error" className="mt-1 text-xs text-red-600">{errors.ngoName}</p>
+            )}
           </div>
 
           <div>
@@ -107,12 +149,17 @@ const NGOFormSection = () => {
             <input
               type="text"
               name="registrationNumber"
+              aria-invalid={Boolean(errors.registrationNumber)}
+              aria-describedby={errors.registrationNumber ? "registrationNumber-error" : undefined}
               value={form.registrationNumber}
               onChange={handleChange}
+              className={`w-full rounded-lg border bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#10B981] focus:bg-white focus:ring-2 focus:ring-emerald-500/10 ${errors.registrationNumber ? 'border-red-500 ring-2 ring-red-100' : 'border-gray-200'}`}
               placeholder="12A/80G / DARPAN ID"
-              className="w-full rounded-lg border border-gray-200 bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#10B981] focus:bg-white focus:ring-2 focus:ring-emerald-500/10"
               required
             />
+            {errors.registrationNumber && (
+              <p id="registrationNumber-error" className="mt-1 text-xs text-red-600">{errors.registrationNumber}</p>
+            )}
           </div>
 
           <div>
@@ -121,9 +168,11 @@ const NGOFormSection = () => {
             </label>
             <select
               name="ngoType"
+              aria-invalid={Boolean(errors.ngoType)}
+              aria-describedby={errors.ngoType ? "ngoType-error" : undefined}
               value={form.ngoType}
               onChange={handleChange}
-              className="w-full rounded-lg border border-gray-200 bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#10B981] focus:bg-white focus:ring-2 focus:ring-emerald-500/10"
+              className={`w-full rounded-lg border bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#10B981] focus:bg-white focus:ring-2 focus:ring-emerald-500/10 ${errors.ngoType ? 'border-red-500 ring-2 ring-red-100' : 'border-gray-200'}`}
               required
             >
               <option value="">Select type</option>
@@ -132,6 +181,9 @@ const NGOFormSection = () => {
               <option value="Section8">Section 8 Non-Profit</option>
               <option value="International">International Branch</option>
             </select>
+            {errors.ngoType && (
+              <p id="ngoType-error" className="mt-1 text-xs text-red-600">{errors.ngoType}</p>
+            )}
           </div>
         </div>
       </div>
@@ -151,12 +203,17 @@ const NGOFormSection = () => {
             <input
               type="text"
               name="contactName"
+              aria-invalid={Boolean(errors.contactName)}
+              aria-describedby={errors.contactName ? "contactName-error" : undefined}
               value={form.contactName}
               onChange={handleChange}
+              className={`w-full rounded-lg border bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#10B981] focus:bg-white focus:ring-2 focus:ring-emerald-500/10 ${errors.contactName ? 'border-red-500 ring-2 ring-red-100' : 'border-gray-200'}`}
               placeholder="Full name"
-              className="w-full rounded-lg border border-gray-200 bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#10B981] focus:bg-white focus:ring-2 focus:ring-emerald-500/10"
               required
             />
+            {errors.contactName && (
+              <p id="contactName-error" className="mt-1 text-xs text-red-600">{errors.contactName}</p>
+            )}
           </div>
 
           <div>
@@ -166,12 +223,17 @@ const NGOFormSection = () => {
             <input
               type="text"
               name="role"
+              aria-invalid={Boolean(errors.role)}
+              aria-describedby={errors.role ? "role-error" : undefined}
               value={form.role}
               onChange={handleChange}
+              className={`w-full rounded-lg border bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#10B981] focus:bg-white focus:ring-2 focus:ring-emerald-500/10 ${errors.role ? 'border-red-500 ring-2 ring-red-100' : 'border-gray-200'}`}
               placeholder="e.g. Executive Director"
-              className="w-full rounded-lg border border-gray-200 bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#10B981] focus:bg-white focus:ring-2 focus:ring-emerald-500/10"
               required
             />
+            {errors.role && (
+              <p id="role-error" className="mt-1 text-xs text-red-600">{errors.role}</p>
+            )}
           </div>
 
           <div>
@@ -181,12 +243,17 @@ const NGOFormSection = () => {
             <input
               type="email"
               name="email"
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? "email-error" : undefined}
               value={form.email}
               onChange={handleChange}
+              className={`w-full rounded-lg border bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#10B981] focus:bg-white focus:ring-2 focus:ring-emerald-500/10 ${errors.email ? 'border-red-500 ring-2 ring-red-100' : 'border-gray-200'}`}
               placeholder="contact@ngo.org"
-              className="w-full rounded-lg border border-gray-200 bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#10B981] focus:bg-white focus:ring-2 focus:ring-emerald-500/10"
               required
             />
+            {errors.email && (
+              <p id="email-error" className="mt-1 text-xs text-red-600">{errors.email}</p>
+            )}
           </div>
 
           <div>
@@ -196,12 +263,17 @@ const NGOFormSection = () => {
             <input
               type="tel"
               name="phone"
+              aria-invalid={Boolean(errors.phone)}
+              aria-describedby={errors.phone ? "phone-error" : undefined}
               value={form.phone}
               onChange={handleChange}
+              className={`w-full rounded-lg border bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#10B981] focus:bg-white focus:ring-2 focus:ring-emerald-500/10 ${errors.phone ? 'border-red-500 ring-2 ring-red-100' : 'border-gray-200'}`}
               placeholder="+91 98765 43210"
-              className="w-full rounded-lg border border-gray-200 bg-slate-50/80 px-3 py-2 text-xs text-gray-800 outline-none transition focus:border-[#10B981] focus:bg-white focus:ring-2 focus:ring-emerald-500/10"
               required
             />
+            {errors.phone && (
+              <p id="phone-error" className="mt-1 text-xs text-red-600">{errors.phone}</p>
+            )}
           </div>
         </div>
       </div>
@@ -341,7 +413,7 @@ const NGOFormSection = () => {
           type="submit"
           className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-[#10B981] via-[#0D9488] to-[#0284C7] text-white font-bold text-xs sm:text-sm shadow-lg hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] transition-all duration-300"
         >
-          <span>Become an NGO Partner</span>
+          <span>Become an NGO Partner .</span>
         </button>
       </div>
 
