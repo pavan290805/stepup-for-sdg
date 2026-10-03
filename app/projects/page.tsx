@@ -298,7 +298,7 @@ export default function ProjectsPage() {
               </h2>
               <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
                 <Link
-                  href="/get-involved/volunteer"
+                  href="/work-with-us/volunteers"
                   className="inline-flex items-center justify-center rounded-full bg-cta px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_-16px_rgba(255,122,0,0.9)] transition hover:-translate-y-0.5 hover:brightness-110"
                 >
                   Become a Volunteer
@@ -310,7 +310,8 @@ export default function ProjectsPage() {
                   Partner with STEPUP
                 </Link>
                 <Link
-                  href="/get-involved/sponsor"
+                  // href="/get-involved/sponsor"
+                  href="/work-with-us/corporate"
                   className="inline-flex items-center justify-center rounded-full border border-[#CBD5E1] bg-white px-6 py-3 text-sm font-semibold text-[#0F172A] shadow-[0_12px_30px_-22px_rgba(15,23,42,0.32)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-[#93C5FD] hover:bg-[#F8FAFC]"
                 >
                   CSR Partnership
