@@ -75,21 +75,21 @@ function LanguageSelect() {
     setOpen(false);
     if (lang.code === "en") {
       writeGoogleTranslateCookie(
-        "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+        "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;",
       );
       writeGoogleTranslateCookie(
         "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=." +
-        location.hostname +
-        "; path=/;"
+          location.hostname +
+          "; path=/;",
       );
     } else {
       writeGoogleTranslateCookie("googtrans=/en/" + lang.code + "; path=/;");
       writeGoogleTranslateCookie(
         "googtrans=/en/" +
-        lang.code +
-        "; domain=." +
-        location.hostname +
-        "; path=/;"
+          lang.code +
+          "; domain=." +
+          location.hostname +
+          "; path=/;",
       );
     }
     location.reload();
@@ -135,15 +135,116 @@ function LanguageSelect() {
   );
 }
 
+// export function Navbar() {
+//   const [mobileOpen, setMobileOpen] = useState(false);
+//   const pathname = usePathname();
+
+//   return (
+//     <header className="sticky top-0 z-50 backdrop-blur-xl bg-[#F8FBFF]/78 border-b border-[#BFD9D8]/40">
+//       <div className="flex h-24 w-full items-center justify-between px-32 lg:px-44">
+//         <Link href="/" className="shrink-0 flex items-center group">
+//           <span className="inline-flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-white shadow-sm border border-[#E2E8F0]">
+//             <img
+//               src="/assets/SDG_LOGO-removebg-preview.png"
+//               alt="StepUp for SDG"
+//               className="h-full w-full object-contain"
+//             />
+//           </span>
+//         </Link>
+
+//         <nav className="hidden md:flex items-center gap-6 xl:gap-8">
+//           {navLinks.map((l) =>
+//             l.disabled ? (
+//               <span
+//                 key={l.to}
+//                 className="text-base font-semibold text-[#475569] cursor-default select-none whitespace-nowrap"
+//               >
+//                 {l.label}
+//               </span>
+//             ) : (
+//               <Link
+//                 key={l.to}
+//                 href={l.to}
+//                 className={`text-base font-semibold whitespace-nowrap transition-colors ${
+//                   (l.to === "/" ? pathname === "/" : pathname.startsWith(l.to))
+//                     ? "text-[#155DFC]"
+//                     : "text-[#0F172A]/80 hover:text-[#0F172A]"
+//                 }`}
+//               >
+//                 {l.label}
+//               </Link>
+//             ),
+//           )}
+//         </nav>
+
+//         <div className="hidden md:flex items-center gap-3 shrink-0">
+//           <LanguageSelect />
+//           <Link
+//             href="/funds"
+//             className="inline-flex items-center whitespace-nowrap rounded-full bg-[#155DFC] px-5 py-2.5 text-base font-semibold text-white shadow-[0_0_20px_rgba(21,93,252,0.45)] hover:brightness-110 transition"
+//           >
+//             Funds
+//           </Link>
+//           <Link
+//             href="/work-with-us"
+//             className="inline-flex items-center whitespace-nowrap rounded-full bg-[#E86A00] px-5 py-2.5 text-base font-semibold text-white shadow-[0_0_20px_rgba(232,106,0,0.45)] hover:brightness-110 transition"
+//           >
+//             Work With Us
+//           </Link>
+//         </div>
+
+//         <div className="md:hidden flex items-center gap-2">
+//           <LanguageSelect />
+//           <button
+//             onClick={() => setMobileOpen((v) => !v)}
+//             aria-label="Toggle menu"
+//           >
+//             {mobileOpen ? <X /> : <Menu />}
+//           </button>
+//         </div>
+//       </div>
+
+//       {mobileOpen && (
+//         <div className="md:hidden border-t border-[#BFD9D8]/40 bg-[#F8FBFF]/92 px-6 py-4 space-y-3">
+//           {navLinks.map((l) =>
+//             l.disabled ? (
+//               <span
+//                 key={l.to}
+//                 className="block text-[#475569] cursor-default select-none"
+//               >
+//                 {l.label}
+//               </span>
+//             ) : (
+//               <Link
+//                 key={l.to}
+//                 href={l.to}
+//                 onClick={() => setMobileOpen(false)}
+//                 className={`block transition-colors ${
+//                   (l.to === "/" ? pathname === "/" : pathname.startsWith(l.to))
+//                     ? "text-[#155DFC]"
+//                     : "text-[#475569] hover:text-[#0F172A]"
+//                 }`}
+//               >
+//                 {l.label}
+//               </Link>
+//             ),
+//           )}
+//         </div>
+//       )}
+//     </header>
+//   );
+// }
+
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-[#F8FBFF]/78 border-b border-[#BFD9D8]/40">
-      <div className="flex h-24 w-full items-center justify-between px-32 lg:px-44">
+      <div className="flex min-h-20 lg:h-24 w-full items-center justify-between px-4 sm:px-6 md:px-8 lg:px-32 xl:px-44">
+        {/* Logo */}
         <Link href="/" className="shrink-0 flex items-center group">
-          <span className="inline-flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-white shadow-sm border border-[#E2E8F0]">
+          <span className="inline-flex h-14 w-14 sm:h-16 sm:w-16 lg:h-20 lg:w-20 items-center justify-center overflow-hidden rounded-full bg-white shadow-sm border border-[#E2E8F0]">
             <img
               src="/assets/SDG_LOGO-removebg-preview.png"
               alt="StepUp for SDG"
@@ -152,7 +253,8 @@ export function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-6 xl:gap-8">
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center gap-5 xl:gap-8">
           {navLinks.map((l) =>
             l.disabled ? (
               <span
@@ -166,9 +268,11 @@ export function Navbar() {
                 key={l.to}
                 href={l.to}
                 className={`text-base font-semibold whitespace-nowrap transition-colors ${
-                  (l.to === "/" ? pathname === "/" : pathname.startsWith(l.to))
-                    ? "text-[#155DFC]"
-                    : "text-[#0F172A]/80 hover:text-[#0F172A]"
+                  l.to === "/"
+                    ? pathname === "/"
+                    : pathname.startsWith(l.to)
+                      ? "text-[#155DFC]"
+                      : "text-[#0F172A]/80 hover:text-[#0F172A]"
                 }`}
               >
                 {l.label}
@@ -177,14 +281,17 @@ export function Navbar() {
           )}
         </nav>
 
-        <div className="hidden md:flex items-center gap-3 shrink-0">
+        {/* Desktop Actions */}
+        <div className="hidden lg:flex items-center gap-3 shrink-0">
           <LanguageSelect />
+
           <Link
             href="/funds"
             className="inline-flex items-center whitespace-nowrap rounded-full bg-[#155DFC] px-5 py-2.5 text-base font-semibold text-white shadow-[0_0_20px_rgba(21,93,252,0.45)] hover:brightness-110 transition"
           >
             Funds
           </Link>
+
           <Link
             href="/work-with-us"
             className="inline-flex items-center whitespace-nowrap rounded-full bg-[#E86A00] px-5 py-2.5 text-base font-semibold text-white shadow-[0_0_20px_rgba(232,106,0,0.45)] hover:brightness-110 transition"
@@ -193,42 +300,73 @@ export function Navbar() {
           </Link>
         </div>
 
-        <div className="md:hidden flex items-center gap-2">
+        {/* Tablet / Mobile Controls */}
+        <div className="lg:hidden flex items-center gap-2 sm:gap-3">
           <LanguageSelect />
+
           <button
+            type="button"
             onClick={() => setMobileOpen((v) => !v)}
-            aria-label="Toggle menu"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            className="inline-flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-lg text-[#0F172A] hover:bg-[#EAF2FF] transition"
           >
-            {mobileOpen ? <X /> : <Menu />}
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
+      {/* Tablet / Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-[#BFD9D8]/40 bg-[#F8FBFF]/92 px-6 py-4 space-y-3">
-          {navLinks.map((l) =>
-            l.disabled ? (
-              <span
-                key={l.to}
-                className="block text-[#475569] cursor-default select-none"
-              >
-                {l.label}
-              </span>
-            ) : (
+        <div className="lg:hidden border-t border-[#BFD9D8]/40 bg-[#F8FBFF]/95 backdrop-blur-xl">
+          <div className="px-4 sm:px-6 md:px-8 py-4 sm:py-5">
+            <nav className="flex flex-col gap-1">
+              {navLinks.map((l) =>
+                l.disabled ? (
+                  <span
+                    key={l.to}
+                    className="block px-3 py-3 text-sm sm:text-base font-semibold text-[#475569] cursor-default select-none"
+                  >
+                    {l.label}
+                  </span>
+                ) : (
+                  <Link
+                    key={l.to}
+                    href={l.to}
+                    onClick={() => setMobileOpen(false)}
+                    className={`block rounded-lg px-3 py-3 text-sm sm:text-base font-semibold transition-colors ${
+                      l.to === "/"
+                        ? pathname === "/"
+                        : pathname.startsWith(l.to)
+                          ? "text-[#155DFC] bg-[#EAF2FF]"
+                          : "text-[#475569] hover:text-[#0F172A] hover:bg-[#F1F5F9]"
+                    }`}
+                  >
+                    {l.label}
+                  </Link>
+                ),
+              )}
+            </nav>
+
+            {/* Mobile / Tablet CTA buttons */}
+            <div className="mt-4 flex flex-col sm:flex-row gap-3 border-t border-[#BFD9D8]/30 pt-4">
               <Link
-                key={l.to}
-                href={l.to}
+                href="/funds"
                 onClick={() => setMobileOpen(false)}
-                className={`block transition-colors ${
-                  (l.to === "/" ? pathname === "/" : pathname.startsWith(l.to))
-                    ? "text-[#155DFC]"
-                    : "text-[#475569] hover:text-[#0F172A]"
-                }`}
+                className="flex flex-1 items-center justify-center rounded-full bg-[#155DFC] px-5 py-3 text-sm sm:text-base font-semibold text-white shadow-[0_0_20px_rgba(21,93,252,0.35)] hover:brightness-110 transition"
               >
-                {l.label}
+                Funds
               </Link>
-            ),
-          )}
+
+              <Link
+                href="/work-with-us"
+                onClick={() => setMobileOpen(false)}
+                className="flex flex-1 items-center justify-center rounded-full bg-[#E86A00] px-5 py-3 text-sm sm:text-base font-semibold text-white shadow-[0_0_20px_rgba(232,106,0,0.35)] hover:brightness-110 transition"
+              >
+                Work With Us
+              </Link>
+            </div>
+          </div>
         </div>
       )}
     </header>
