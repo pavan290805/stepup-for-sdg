@@ -1,13 +1,13 @@
-'use client'
+"use client";
 
-import Image from 'next/image'
-import { useEffect, useState, type FormEvent } from 'react'
+import Image from "next/image";
+import { useEffect, useState, type FormEvent } from "react";
 import {
   AnimatePresence,
   motion,
   useReducedMotion,
   type Variants,
-} from 'framer-motion'
+} from "framer-motion";
 import {
   BadgeCheck,
   BookOpen,
@@ -22,121 +22,121 @@ import {
   Sparkles,
   Smartphone,
   X,
-} from 'lucide-react'
-import { addDonation } from '@/app/lib/adminStore'
+} from "lucide-react";
+import { addDonation } from "@/app/lib/adminStore";
 
-const currencySymbol = '\u20B9'
-const rightArrow = '\u2192'
-const checkMark = '\u2713'
+const currencySymbol = "\u20B9";
+const rightArrow = "\u2192";
+const checkMark = "\u2713";
 
-const presetAmounts = [500, 1000, 2500, 5000]
-const featuredVideoId = 'BMgAM-PG0_I'
+const presetAmounts = [500, 1000, 2500, 5000];
+const featuredVideoId = "BMgAM-PG0_I";
 
 const communityProfiles = [
-  '/team/pavan.png',
-  '/team/vijay.png',
-  '/team/eswar.png',
-]
+  "/team/pavan.png",
+  "/team/vijay.png",
+  "/team/eswar.png",
+];
 
 const contactItems = [
   {
-    label: 'General Enquiry',
-    email: 'contact@stepupforsdg.org',
+    label: "General Enquiry",
+    email: "contact@stepupforsdg.org",
   },
   {
-    label: 'Information',
-    email: 'info@stepupforsdg.org',
+    label: "Information",
+    email: "info@stepupforsdg.org",
   },
   {
-    label: 'Partnerships',
-    email: 'partner@stepupforsdg.org',
+    label: "Partnerships",
+    email: "partner@stepupforsdg.org",
   },
-]
+];
 
 const newsletterBenefits = [
-  'We respect your privacy.',
-  'No spam.',
-  'Unsubscribe anytime.',
-]
+  "We respect your privacy.",
+  "No spam.",
+  "Unsubscribe anytime.",
+];
 
 /* =========================================================
    DESIGN SYSTEM
    ========================================================= */
 
 const inputClass =
-  'type-body-small w-full rounded-2xl border border-[#D7E0EA] bg-white px-4 py-3.5 text-[#0F172A] outline-none transition placeholder:text-[#94A3B8] focus:border-[#155DFC] focus:ring-4 focus:ring-[#155DFC]/10'
+  "type-body-small w-full rounded-2xl border border-[#D7E0EA] bg-white px-4 py-3.5 text-[#0F172A] outline-none transition placeholder:text-[#94A3B8] focus:border-[#155DFC] focus:ring-4 focus:ring-[#155DFC]/10";
 
 const paymentInputClass =
-  'type-body-small w-full rounded-xl border border-[#D7E0EA] bg-[#F8FAFC] px-3.5 py-3 text-[#0F172A] outline-none transition placeholder:text-[#94A3B8] focus:border-[#155DFC] focus:ring-4 focus:ring-[#155DFC]/10'
+  "type-body-small w-full rounded-xl border border-[#D7E0EA] bg-[#F8FAFC] px-3.5 py-3 text-[#0F172A] outline-none transition placeholder:text-[#94A3B8] focus:border-[#155DFC] focus:ring-4 focus:ring-[#155DFC]/10";
 
 const labelClass =
-  'type-label mb-2 block uppercase tracking-[0.18em] text-[#64748B]'
+  "type-label mb-2 block uppercase tracking-[0.18em] text-[#64748B]";
 
 /* =========================================================
    DONATION STORY
    ========================================================= */
 
 const coinDrops = [
-  { id: 'coin-1', left: 28, delay: 0, rotate: 26 },
-  { id: 'coin-2', left: 52, delay: 0.62, rotate: -18 },
-  { id: 'coin-3', left: 40, delay: 1.24, rotate: 34 },
-  { id: 'coin-4', left: 61, delay: 1.86, rotate: -28 },
-  { id: 'coin-5', left: 35, delay: 2.48, rotate: 20 },
-]
+  { id: "coin-1", left: 28, delay: 0, rotate: 26 },
+  { id: "coin-2", left: 52, delay: 0.62, rotate: -18 },
+  { id: "coin-3", left: 40, delay: 1.24, rotate: 34 },
+  { id: "coin-4", left: 61, delay: 1.86, rotate: -28 },
+  { id: "coin-5", left: 35, delay: 2.48, rotate: 20 },
+];
 
 const printedBooks = [
-  { id: 'printed-1', color: '#155DFC', delay: 2.25 },
-  { id: 'printed-2', color: '#00A86B', delay: 3.05 },
-  { id: 'printed-3', color: '#F59E0B', delay: 3.85 },
-]
+  { id: "printed-1", color: "#155DFC", delay: 2.25 },
+  { id: "printed-2", color: "#00A86B", delay: 3.05 },
+  { id: "printed-3", color: "#F59E0B", delay: 3.85 },
+];
 
 const flyingBooks = [
-  { id: 'flying-1', color: '#155DFC', delay: 4.2, top: 26, rotate: -10 },
-  { id: 'flying-2', color: '#00A86B', delay: 4.92, top: 42, rotate: 8 },
-  { id: 'flying-3', color: '#F59E0B', delay: 5.64, top: 34, rotate: -4 },
-]
+  { id: "flying-1", color: "#155DFC", delay: 4.2, top: 26, rotate: -10 },
+  { id: "flying-2", color: "#00A86B", delay: 4.92, top: 42, rotate: 8 },
+  { id: "flying-3", color: "#F59E0B", delay: 5.64, top: 34, rotate: -4 },
+];
 
 const celebrationBits = [
   {
-    id: 'spark-1',
+    id: "spark-1",
     Icon: Sparkles,
     left: 8,
     top: 28,
     delay: 6.1,
-    color: '#155DFC',
+    color: "#155DFC",
   },
   {
-    id: 'heart-1',
+    id: "heart-1",
     Icon: Heart,
     left: 18,
     top: 62,
     delay: 6.35,
-    color: '#00A86B',
+    color: "#00A86B",
   },
   {
-    id: 'spark-2',
+    id: "spark-2",
     Icon: Sparkles,
     left: 78,
     top: 24,
     delay: 6.6,
-    color: '#F59E0B',
+    color: "#F59E0B",
   },
   {
-    id: 'heart-2',
+    id: "heart-2",
     Icon: Heart,
     left: 72,
     top: 66,
     delay: 6.85,
-    color: '#0099CC',
+    color: "#0099CC",
   },
-]
+];
 
 const storyMoments = [
-  'Donation gathered',
-  'Books printed',
-  'Support delivered',
-  'Joy shared',
-]
+  "Donation gathered",
+  "Books printed",
+  "Support delivered",
+  "Joy shared",
+];
 
 const storyContainerVariants: Variants = {
   hidden: { opacity: 0, y: 22 },
@@ -145,11 +145,11 @@ const storyContainerVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.72,
-      ease: 'easeOut',
+      ease: "easeOut",
       staggerChildren: 0.16,
     },
   },
-}
+};
 
 const storyItemVariants: Variants = {
   hidden: { opacity: 0, y: 16, scale: 0.98 },
@@ -159,10 +159,10 @@ const storyItemVariants: Variants = {
     scale: 1,
     transition: {
       duration: 0.58,
-      ease: 'easeOut',
+      ease: "easeOut",
     },
   },
-}
+};
 
 /* =========================================================
    PAGE ANIMATION STYLES
@@ -218,7 +218,7 @@ function FundsPageStyles() {
         }
       }
     `}</style>
-  )
+  );
 }
 
 /* =========================================================
@@ -235,7 +235,7 @@ function StoryBook({ color }: { color: string }) {
       <div className="absolute right-1.5 top-2 h-1 w-5 rounded-full bg-white/55" />
       <div className="absolute bottom-2 right-1.5 h-1 w-4 rounded-full bg-white/35" />
     </div>
-  )
+  );
 }
 
 /* =========================================================
@@ -245,7 +245,7 @@ function StoryBook({ color }: { color: string }) {
 function DonationBoxScene({
   shouldReduceMotion,
 }: {
-  shouldReduceMotion: boolean | null
+  shouldReduceMotion: boolean | null;
 }) {
   return (
     <motion.div
@@ -283,7 +283,7 @@ function DonationBoxScene({
               delay: coin.delay,
               repeat: Infinity,
               repeatDelay: 0.9,
-              ease: 'easeInOut',
+              ease: "easeInOut",
             }}
           >
             {currencySymbol}
@@ -302,7 +302,7 @@ function DonationBoxScene({
               }
         }
         transition={{
-          type: 'spring',
+          type: "spring",
           stiffness: 180,
           damping: 18,
         }}
@@ -320,32 +320,25 @@ function DonationBoxScene({
           transition={{
             duration: 2.1,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           }}
         />
 
         <div className="absolute bottom-0 h-24 w-full overflow-hidden rounded-[22px] border border-[#D8E8F7] bg-white shadow-[0_24px_55px_-34px_rgba(15,23,42,0.52)]">
           <motion.div
             className="absolute inset-x-0 bottom-0 bg-[linear-gradient(180deg,rgba(34,197,94,0.2)_0%,rgba(0,168,107,0.38)_100%)]"
-            initial={{ height: '24%' }}
+            initial={{ height: "24%" }}
             animate={
               shouldReduceMotion
-                ? { height: '50%' }
+                ? { height: "50%" }
                 : {
-                    height: [
-                      '24%',
-                      '46%',
-                      '67%',
-                      '52%',
-                      '30%',
-                      '24%',
-                    ],
+                    height: ["24%", "46%", "67%", "52%", "30%", "24%"],
                   }
             }
             transition={{
               duration: 8.5,
               repeat: Infinity,
-              ease: 'easeInOut',
+              ease: "easeInOut",
             }}
           />
 
@@ -366,7 +359,7 @@ function DonationBoxScene({
                 duration: 2.8,
                 delay: 0.8,
                 repeat: Infinity,
-                ease: 'easeInOut',
+                ease: "easeInOut",
               }}
             >
               <Heart className="h-8 w-8 fill-current" />
@@ -375,7 +368,7 @@ function DonationBoxScene({
         </div>
       </motion.div>
     </motion.div>
-  )
+  );
 }
 
 /* =========================================================
@@ -385,7 +378,7 @@ function DonationBoxScene({
 function FlowConnector({
   shouldReduceMotion,
 }: {
-  shouldReduceMotion: boolean | null
+  shouldReduceMotion: boolean | null;
 }) {
   return (
     <motion.div
@@ -414,7 +407,7 @@ function FlowConnector({
         transition={{
           duration: 2.8,
           repeat: Infinity,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         }}
       />
 
@@ -434,11 +427,11 @@ function FlowConnector({
         transition={{
           duration: 2.8,
           repeat: Infinity,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         }}
       />
     </motion.div>
-  )
+  );
 }
 
 /* =========================================================
@@ -448,7 +441,7 @@ function FlowConnector({
 function BookMachineScene({
   shouldReduceMotion,
 }: {
-  shouldReduceMotion: boolean | null
+  shouldReduceMotion: boolean | null;
 }) {
   return (
     <motion.div
@@ -468,7 +461,7 @@ function BookMachineScene({
         transition={{
           duration: 0.34,
           repeat: Infinity,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         }}
         whileHover={
           shouldReduceMotion
@@ -485,16 +478,16 @@ function BookMachineScene({
               ? undefined
               : {
                   boxShadow: [
-                    '0 24px 58px -34px rgba(21,93,252,0.44)',
-                    '0 28px 68px -32px rgba(0,168,107,0.5)',
-                    '0 24px 58px -34px rgba(21,93,252,0.44)',
+                    "0 24px 58px -34px rgba(21,93,252,0.44)",
+                    "0 28px 68px -32px rgba(0,168,107,0.5)",
+                    "0 24px 58px -34px rgba(21,93,252,0.44)",
                   ],
                 }
           }
           transition={{
             duration: 3.2,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           }}
         />
 
@@ -519,7 +512,7 @@ function BookMachineScene({
                 duration: 1.2,
                 delay: bar * 0.18,
                 repeat: Infinity,
-                ease: 'easeInOut',
+                ease: "easeInOut",
               }}
             />
           ))}
@@ -555,7 +548,7 @@ function BookMachineScene({
                 delay: book.delay,
                 repeat: Infinity,
                 repeatDelay: 2.9,
-                ease: 'easeInOut',
+                ease: "easeInOut",
               }}
               style={{
                 zIndex: printedBooks.length - index,
@@ -567,7 +560,7 @@ function BookMachineScene({
         </div>
       </motion.div>
     </motion.div>
-  )
+  );
 }
 
 /* =========================================================
@@ -577,7 +570,7 @@ function BookMachineScene({
 function BookFlightConnector({
   shouldReduceMotion,
 }: {
-  shouldReduceMotion: boolean | null
+  shouldReduceMotion: boolean | null;
 }) {
   return (
     <motion.div
@@ -621,14 +614,14 @@ function BookFlightConnector({
             delay: book.delay,
             repeat: Infinity,
             repeatDelay: 2.45,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           }}
         >
           <StoryBook color={book.color} />
         </motion.div>
       ))}
     </motion.div>
-  )
+  );
 }
 
 /* =========================================================
@@ -638,54 +631,52 @@ function BookFlightConnector({
 function StudentScene({
   shouldReduceMotion,
 }: {
-  shouldReduceMotion: boolean | null
+  shouldReduceMotion: boolean | null;
 }) {
   return (
     <motion.div
       variants={storyItemVariants}
       className="relative flex min-h-[184px] w-full max-w-[158px] shrink-0 items-center justify-center"
     >
-      {celebrationBits.map(
-        ({ id, Icon, left, top, delay, color }) => (
-          <motion.div
-            key={id}
-            className="absolute"
-            style={{
-              left: `${left}%`,
-              top: `${top}%`,
-              color,
-            }}
-            initial={{
-              opacity: 0,
-              scale: 0.65,
-              y: 6,
-              rotate: 0,
-            }}
-            animate={
-              shouldReduceMotion
-                ? {
-                    opacity: [0.38, 0.78, 0.38],
-                  }
-                : {
-                    opacity: [0, 1, 0],
-                    scale: [0.65, 1, 0.82],
-                    y: [6, -12, -24],
-                    rotate: [0, 18, 38],
-                  }
-            }
-            transition={{
-              duration: 2.8,
-              delay,
-              repeat: Infinity,
-              repeatDelay: 4.2,
-              ease: 'easeInOut',
-            }}
-            aria-hidden="true"
-          >
-            <Icon className="h-5 w-5 fill-current" />
-          </motion.div>
-        ),
-      )}
+      {celebrationBits.map(({ id, Icon, left, top, delay, color }) => (
+        <motion.div
+          key={id}
+          className="absolute"
+          style={{
+            left: `${left}%`,
+            top: `${top}%`,
+            color,
+          }}
+          initial={{
+            opacity: 0,
+            scale: 0.65,
+            y: 6,
+            rotate: 0,
+          }}
+          animate={
+            shouldReduceMotion
+              ? {
+                  opacity: [0.38, 0.78, 0.38],
+                }
+              : {
+                  opacity: [0, 1, 0],
+                  scale: [0.65, 1, 0.82],
+                  y: [6, -12, -24],
+                  rotate: [0, 18, 38],
+                }
+          }
+          transition={{
+            duration: 2.8,
+            delay,
+            repeat: Infinity,
+            repeatDelay: 4.2,
+            ease: "easeInOut",
+          }}
+          aria-hidden="true"
+        >
+          <Icon className="h-5 w-5 fill-current" />
+        </motion.div>
+      ))}
 
       <motion.div
         className="relative flex flex-col items-center"
@@ -702,7 +693,7 @@ function StudentScene({
           delay: 6.15,
           repeat: Infinity,
           repeatDelay: 3.85,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         }}
         whileHover={
           shouldReduceMotion
@@ -734,7 +725,7 @@ function StudentScene({
               delay: 6.2,
               repeat: Infinity,
               repeatDelay: 4.3,
-              ease: 'easeInOut',
+              ease: "easeInOut",
             }}
           />
         </div>
@@ -770,7 +761,7 @@ function StudentScene({
             delay: 5.85,
             repeat: Infinity,
             repeatDelay: 3.35,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           }}
         >
           <StoryBook color="#155DFC" />
@@ -779,7 +770,7 @@ function StudentScene({
         </motion.div>
       </motion.div>
     </motion.div>
-  )
+  );
 }
 
 /* =========================================================
@@ -787,20 +778,18 @@ function StudentScene({
    ========================================================= */
 
 function DonationImpactStory() {
-  const shouldReduceMotion = useReducedMotion()
-  const [momentIndex, setMomentIndex] = useState(0)
+  const shouldReduceMotion = useReducedMotion();
+  const [momentIndex, setMomentIndex] = useState(0);
 
   useEffect(() => {
-    if (shouldReduceMotion) return
+    if (shouldReduceMotion) return;
 
     const interval = window.setInterval(() => {
-      setMomentIndex(
-        (current) => (current + 1) % storyMoments.length,
-      )
-    }, 1900)
+      setMomentIndex((current) => (current + 1) % storyMoments.length);
+    }, 1900);
 
-    return () => window.clearInterval(interval)
-  }, [shouldReduceMotion])
+    return () => window.clearInterval(interval);
+  }, [shouldReduceMotion]);
 
   return (
     <motion.div
@@ -820,7 +809,7 @@ function DonationImpactStory() {
             }
       }
       transition={{
-        type: 'spring',
+        type: "spring",
         stiffness: 160,
         damping: 20,
       }}
@@ -867,7 +856,7 @@ function DonationImpactStory() {
               }}
               transition={{
                 duration: 0.28,
-                ease: 'easeOut',
+                ease: "easeOut",
               }}
             >
               {storyMoments[momentIndex]}
@@ -882,28 +871,18 @@ function DonationImpactStory() {
       >
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(234,244,255,0.55),rgba(255,255,255,0.18)_42%,rgba(236,253,245,0.46))]" />
 
-        <DonationBoxScene
-          shouldReduceMotion={shouldReduceMotion}
-        />
+        <DonationBoxScene shouldReduceMotion={shouldReduceMotion} />
 
-        <FlowConnector
-          shouldReduceMotion={shouldReduceMotion}
-        />
+        <FlowConnector shouldReduceMotion={shouldReduceMotion} />
 
-        <BookMachineScene
-          shouldReduceMotion={shouldReduceMotion}
-        />
+        <BookMachineScene shouldReduceMotion={shouldReduceMotion} />
 
-        <BookFlightConnector
-          shouldReduceMotion={shouldReduceMotion}
-        />
+        <BookFlightConnector shouldReduceMotion={shouldReduceMotion} />
 
-        <StudentScene
-          shouldReduceMotion={shouldReduceMotion}
-        />
+        <StudentScene shouldReduceMotion={shouldReduceMotion} />
       </motion.div>
     </motion.div>
-  )
+  );
 }
 
 /* =========================================================
@@ -911,19 +890,17 @@ function DonationImpactStory() {
    ========================================================= */
 
 function NewsletterSubscription() {
-  const [newsletterEmail, setNewsletterEmail] = useState('')
-  const [isSubscribed, setIsSubscribed] = useState(false)
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [isSubscribed, setIsSubscribed] = useState(false);
 
-  const handleNewsletterSubmit = (
-    e: FormEvent<HTMLFormElement>,
-  ) => {
-    e.preventDefault()
-    if (!newsletterEmail.trim()) return
-    import('@/app/lib/adminStore').then(({ addNewsletterSubscriber }) => {
-      addNewsletterSubscriber(newsletterEmail, 'Funds Page')
-    })
-    setIsSubscribed(true)
-  }
+  const handleNewsletterSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!newsletterEmail.trim()) return;
+    import("@/app/lib/adminStore").then(({ addNewsletterSubscriber }) => {
+      addNewsletterSubscriber(newsletterEmail, "Funds Page");
+    });
+    setIsSubscribed(true);
+  };
 
   return (
     <section className="relative z-10 px-5 pb-4 sm:px-6 lg:px-8">
@@ -938,14 +915,12 @@ function NewsletterSubscription() {
             </span>
 
             <div>
-              <h2 className="type-h2 text-[#0F172A]">
-                Stay Updated
-              </h2>
+              <h2 className="type-h2 text-[#0F172A]">Stay Updated</h2>
 
               <p className="type-body mt-3 max-w-2xl text-[#475569]">
                 Subscribe to our newsletter and receive updates about SDG
-                projects, community impact, volunteering opportunities,
-                success stories, and upcoming initiatives.
+                projects, community impact, volunteering opportunities, success
+                stories, and upcoming initiatives.
               </p>
             </div>
           </div>
@@ -956,8 +931,8 @@ function NewsletterSubscription() {
               type="email"
               value={newsletterEmail}
               onChange={(e) => {
-                setNewsletterEmail(e.target.value)
-                setIsSubscribed(false)
+                setNewsletterEmail(e.target.value);
+                setIsSubscribed(false);
               }}
               placeholder="Enter your email address"
               className="type-body-small h-14 w-full rounded-2xl border border-[#D7E0EA] bg-white/95 px-5 text-[#0F172A] outline-none shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] transition placeholder:text-[#94A3B8] focus:border-[#155DFC] focus:ring-4 focus:ring-[#155DFC]/15"
@@ -994,7 +969,7 @@ function NewsletterSubscription() {
         </form>
       </div>
     </section>
-  )
+  );
 }
 
 /* =========================================================
@@ -1030,7 +1005,7 @@ function ContactInformation() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 /* =========================================================
@@ -1040,9 +1015,11 @@ function ContactInformation() {
 function CopyrightLine() {
   return (
     <div className="type-caption relative z-10 px-5 pb-10 pt-5 text-center text-[#64748B] sm:px-6">
-      {'\u00A9 2026 Pavdhan Foundation \u2022 Empowering Students through the Sustainable Development Goals'}
+      {
+        "\u00A9 2026 Pavdhan Foundation \u2022 Empowering Students through the Sustainable Development Goals"
+      }
     </div>
-  )
+  );
 }
 
 /* =========================================================
@@ -1050,43 +1027,41 @@ function CopyrightLine() {
    ========================================================= */
 
 export default function FundsPage() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
-  const [amount, setAmount] = useState('')
-  const [customAmount, setCustomAmount] = useState('')
-  const [message, setMessage] = useState('')
-  const [submitted, setSubmitted] = useState(false)
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [amount, setAmount] = useState("");
+  const [customAmount, setCustomAmount] = useState("");
+  const [message, setMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
-  const [showPayModal, setShowPayModal] = useState(false)
+  const [showPayModal, setShowPayModal] = useState(false);
 
-  const [payTab, setPayTab] = useState<
-    'upi' | 'card' | 'netbanking'
-  >('upi')
+  const [payTab, setPayTab] = useState<"upi" | "card" | "netbanking">("upi");
 
-  const [upiId, setUpiId] = useState('')
+  const [upiId, setUpiId] = useState("");
 
-  const [cardNo, setCardNo] = useState('')
-  const [cardExp, setCardExp] = useState('')
-  const [cardCvv, setCardCvv] = useState('')
-  const [cardName, setCardName] = useState('')
+  const [cardNo, setCardNo] = useState("");
+  const [cardExp, setCardExp] = useState("");
+  const [cardCvv, setCardCvv] = useState("");
+  const [cardName, setCardName] = useState("");
 
-  const [selectedBank, setSelectedBank] = useState('')
+  const [selectedBank, setSelectedBank] = useState("");
 
-  const [paying, setPaying] = useState(false)
+  const [paying, setPaying] = useState(false);
 
-  const finalAmount = customAmount || amount
+  const finalAmount = customAmount || amount;
 
   const handleSubmit = (e: FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    if (!finalAmount) return
+    if (!finalAmount) return;
 
-    setShowPayModal(true)
-  }
+    setShowPayModal(true);
+  };
 
   const handlePay = () => {
-    setPaying(true)
+    setPaying(true);
 
     setTimeout(() => {
       addDonation({
@@ -1096,13 +1071,13 @@ export default function FundsPage() {
         amount: Number(finalAmount),
         message,
         method: payTab,
-      })
+      });
 
-      setPaying(false)
-      setShowPayModal(false)
-      setSubmitted(true)
-    }, 2000)
-  }
+      setPaying(false);
+      setShowPayModal(false);
+      setSubmitted(true);
+    }, 2000);
+  };
 
   /* =======================================================
      SUCCESS STATE
@@ -1135,9 +1110,7 @@ export default function FundsPage() {
               Donation Successful
             </div>
 
-            <h1 className="type-h2 mt-5 text-[#0F172A]">
-              Thank You, {name}!
-            </h1>
+            <h1 className="type-h2 mt-5 text-[#0F172A]">Thank You, {name}!</h1>
 
             <p className="type-stat-number mt-3 text-[#155DFC]">
               {currencySymbol}
@@ -1145,22 +1118,19 @@ export default function FundsPage() {
             </p>
 
             <p className="type-body-small mx-auto mt-4 max-w-xs text-[#64748B]">
-              Confirmation will be sent to{' '}
-              <strong className="font-bold text-[#0F172A]">
-                {email}
-              </strong>
-              .
+              Confirmation will be sent to{" "}
+              <strong className="font-bold text-[#0F172A]">{email}</strong>.
             </p>
 
             <button
               onClick={() => {
-                setSubmitted(false)
-                setName('')
-                setEmail('')
-                setPhone('')
-                setAmount('')
-                setCustomAmount('')
-                setMessage('')
+                setSubmitted(false);
+                setName("");
+                setEmail("");
+                setPhone("");
+                setAmount("");
+                setCustomAmount("");
+                setMessage("");
               }}
               className="type-button mt-7 inline-flex items-center justify-center rounded-full bg-[#155DFC] px-7 py-3 text-white shadow-[0_16px_36px_-20px_rgba(21,93,252,0.8)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#0F46CC]"
             >
@@ -1175,7 +1145,7 @@ export default function FundsPage() {
 
         <CopyrightLine />
       </div>
-    )
+    );
   }
 
   /* =======================================================
@@ -1199,7 +1169,6 @@ export default function FundsPage() {
 
       <section className="relative z-10 px-5 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <div className="mx-auto grid max-w-7xl items-stretch gap-8 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,0.55fr)] lg:gap-10">
-
           {/* =================================================
               LEFT SIDE
               ================================================= */}
@@ -1209,15 +1178,14 @@ export default function FundsPage() {
               <h1 className="type-hero-title mt-7 text-[#0F172A]">
                 Your Support.
                 <br />
-
                 <span className="bg-[linear-gradient(90deg,#155DFC_0%,#00A86B_82%)] bg-clip-text text-transparent">
                   Their Tomorrow.
                 </span>
               </h1>
 
               <p className="type-body-large mt-6 max-w-xl text-[#475569]">
-                Every contribution you make helps build a better, more equal
-                and sustainable India.
+                Every contribution you make helps build a better, more equal and
+                sustainable India.
               </p>
 
               <div className="mt-7 flex flex-col gap-4 rounded-[22px] border border-white/75 bg-white/70 p-4 shadow-[0_22px_60px_-42px_rgba(15,23,42,0.38)] backdrop-blur-xl sm:flex-row sm:items-center">
@@ -1265,14 +1233,11 @@ export default function FundsPage() {
 
           <div className="funds-fade funds-delay-1 flex h-full">
             <div className="flex h-full w-full flex-col overflow-hidden rounded-[24px] border border-white/80 bg-white shadow-[0_34px_90px_-44px_rgba(15,23,42,0.5)]">
-
               {/* Header */}
 
               <div className="flex items-center justify-between gap-4 bg-[linear-gradient(135deg,#155DFC_0%,#0099CC_58%,#00A86B_100%)] px-5 py-5 sm:px-7">
                 <div>
-                  <h2 className="type-h3 text-white">
-                    Make a Donation
-                  </h2>
+                  <h2 className="type-h3 text-white">Make a Donation</h2>
 
                   <p className="type-caption mt-1 text-white/78">
                     100% goes directly to SDG projects
@@ -1297,9 +1262,7 @@ export default function FundsPage() {
                 {/* Your Details */}
 
                 <div>
-                  <label className={labelClass}>
-                    Your Details
-                  </label>
+                  <label className={labelClass}>Your Details</label>
 
                   <div className="grid gap-3 sm:grid-cols-2">
                     <input
@@ -1340,14 +1303,10 @@ export default function FundsPage() {
                   <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                     {presetAmounts.map((presetAmount) => {
                       const selected =
-                        amount === String(presetAmount) &&
-                        !customAmount
+                        amount === String(presetAmount) && !customAmount;
 
                       return (
-                        <div
-                          key={presetAmount}
-                          className="relative pt-2"
-                        >
+                        <div key={presetAmount} className="relative pt-2">
                           {presetAmount === 1000 && (
                             <span className="type-label absolute left-1/2 top-0 z-10 -translate-x-1/2 rounded-full bg-[#00A86B] px-2.5 py-1 uppercase tracking-[0.16em] text-white shadow-[0_10px_22px_-14px_rgba(0,168,107,0.9)]">
                               Popular
@@ -1357,20 +1316,20 @@ export default function FundsPage() {
                           <button
                             type="button"
                             onClick={() => {
-                              setAmount(String(presetAmount))
-                              setCustomAmount('')
+                              setAmount(String(presetAmount));
+                              setCustomAmount("");
                             }}
                             className={`type-button h-14 w-full rounded-2xl border transition duration-300 hover:-translate-y-0.5 ${
                               selected
-                                ? 'border-[#155DFC] bg-[linear-gradient(135deg,#155DFC,#0099CC)] text-white shadow-[0_18px_36px_-24px_rgba(21,93,252,0.9)]'
-                                : 'border-[#D7E0EA] bg-[#F8FAFC] text-[#334155] hover:border-[#BBDCFB] hover:bg-white'
+                                ? "border-[#155DFC] bg-[linear-gradient(135deg,#155DFC,#0099CC)] text-white shadow-[0_18px_36px_-24px_rgba(21,93,252,0.9)]"
+                                : "border-[#D7E0EA] bg-[#F8FAFC] text-[#334155] hover:border-[#BBDCFB] hover:bg-white"
                             }`}
                           >
                             {currencySymbol}
                             {presetAmount.toLocaleString()}
                           </button>
                         </div>
-                      )
+                      );
                     })}
                   </div>
 
@@ -1382,8 +1341,8 @@ export default function FundsPage() {
                     <input
                       value={customAmount}
                       onChange={(e) => {
-                        setCustomAmount(e.target.value)
-                        setAmount('')
+                        setCustomAmount(e.target.value);
+                        setAmount("");
                       }}
                       placeholder="Enter custom amount"
                       type="number"
@@ -1397,7 +1356,7 @@ export default function FundsPage() {
 
                 <div className="mt-7">
                   <label className={labelClass}>
-                    Message{' '}
+                    Message{" "}
                     <span className="font-normal normal-case tracking-normal text-[#94A3B8]">
                       (Optional)
                     </span>
@@ -1419,9 +1378,7 @@ export default function FundsPage() {
                     <LockKeyhole className="h-4 w-4" />
                   </span>
 
-                  <span>
-                    Your donation is secure and tax-deductible.
-                  </span>
+                  <span>Your donation is secure and tax-deductible.</span>
                 </div>
 
                 {/* Selected amount */}
@@ -1444,12 +1401,7 @@ export default function FundsPage() {
                 <div className="mt-auto pt-5">
                   <button
                     type="submit"
-                    disabled={
-                      !finalAmount ||
-                      !name ||
-                      !email ||
-                      !phone
-                    }
+                    disabled={!finalAmount || !name || !email || !phone}
                     className="type-button inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[linear-gradient(135deg,#155DFC_0%,#0099CC_58%,#00A86B_100%)] px-6 py-4 text-white shadow-[0_22px_48px_-28px_rgba(21,93,252,0.85)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_26px_58px_-30px_rgba(0,168,107,0.85)] disabled:cursor-not-allowed disabled:opacity-45 disabled:hover:translate-y-0 disabled:hover:shadow-none"
                   >
                     Donate Securely {rightArrow}
@@ -1491,7 +1443,6 @@ export default function FundsPage() {
       {showPayModal && (
         <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-[#0F172A]/55 p-5 backdrop-blur-md">
           <div className="w-full max-w-md overflow-hidden rounded-[24px] bg-white shadow-[0_34px_90px_-34px_rgba(15,23,42,0.7)]">
-
             {/* Modal Header */}
 
             <div className="flex items-center justify-between gap-4 bg-[linear-gradient(135deg,#155DFC,#0099CC)] px-5 py-4">
@@ -1526,9 +1477,9 @@ export default function FundsPage() {
             <div className="grid grid-cols-3 border-b border-[#E2E8F0]">
               {(
                 [
-                  ['upi', 'UPI', Smartphone],
-                  ['card', 'Card', CreditCard],
-                  ['netbanking', 'Net Banking', Landmark],
+                  ["upi", "UPI", Smartphone],
+                  ["card", "Card", CreditCard],
+                  ["netbanking", "Net Banking", Landmark],
                 ] as const
               ).map(([id, label, Icon]) => (
                 <button
@@ -1537,8 +1488,8 @@ export default function FundsPage() {
                   onClick={() => setPayTab(id)}
                   className={`type-label flex items-center justify-center gap-1.5 px-2 py-3 font-bold transition ${
                     payTab === id
-                      ? 'bg-white text-[#155DFC] shadow-[inset_0_-3px_0_#155DFC]'
-                      : 'bg-[#F8FAFC] text-[#64748B] hover:bg-white'
+                      ? "bg-white text-[#155DFC] shadow-[inset_0_-3px_0_#155DFC]"
+                      : "bg-[#F8FAFC] text-[#64748B] hover:bg-white"
                   }`}
                 >
                   <Icon className="h-4 w-4" />
@@ -1548,12 +1499,11 @@ export default function FundsPage() {
             </div>
 
             <div className="p-5">
-
               {/* =================================================
                   UPI
                   ================================================= */}
 
-              {payTab === 'upi' && (
+              {payTab === "upi" && (
                 <div className="flex flex-col gap-4">
                   <div className="text-center">
                     <div className="type-body-small font-bold text-[#0F172A]">
@@ -1565,152 +1515,12 @@ export default function FundsPage() {
                     </div>
                   </div>
 
-                  <div className="mx-auto grid h-36 w-36 place-items-center rounded-2xl border border-[#E2E8F0] bg-white p-2 shadow-[0_18px_45px_-35px_rgba(15,23,42,0.55)]">
-                    <svg
-                      width="120"
-                      height="120"
-                      viewBox="0 0 120 120"
-                      fill="none"
-                    >
-                      <rect
-                        x="4"
-                        y="4"
-                        width="34"
-                        height="34"
-                        rx="3"
-                        fill="#155DFC"
-                      />
-
-                      <rect
-                        x="11"
-                        y="11"
-                        width="20"
-                        height="20"
-                        rx="1.5"
-                        fill="white"
-                      />
-
-                      <rect
-                        x="15"
-                        y="15"
-                        width="12"
-                        height="12"
-                        rx="1"
-                        fill="#155DFC"
-                      />
-
-                      <rect
-                        x="82"
-                        y="4"
-                        width="34"
-                        height="34"
-                        rx="3"
-                        fill="#155DFC"
-                      />
-
-                      <rect
-                        x="89"
-                        y="11"
-                        width="20"
-                        height="20"
-                        rx="1.5"
-                        fill="white"
-                      />
-
-                      <rect
-                        x="93"
-                        y="15"
-                        width="12"
-                        height="12"
-                        rx="1"
-                        fill="#155DFC"
-                      />
-
-                      <rect
-                        x="4"
-                        y="82"
-                        width="34"
-                        height="34"
-                        rx="3"
-                        fill="#155DFC"
-                      />
-
-                      <rect
-                        x="11"
-                        y="89"
-                        width="20"
-                        height="20"
-                        rx="1.5"
-                        fill="white"
-                      />
-
-                      <rect
-                        x="15"
-                        y="93"
-                        width="12"
-                        height="12"
-                        rx="1"
-                        fill="#155DFC"
-                      />
-
-                      {[46, 54, 62, 70, 46, 62, 70, 50, 58, 66, 50, 66].map(
-                        (x, i) => (
-                          <rect
-                            key={i}
-                            x={x}
-                            y={
-                              [
-                                4,
-                                4,
-                                4,
-                                4,
-                                14,
-                                14,
-                                14,
-                                24,
-                                24,
-                                24,
-                                34,
-                                34,
-                              ][i]
-                            }
-                            width="6"
-                            height="6"
-                            rx="1"
-                            fill="#155DFC"
-                          />
-                        ),
-                      )}
-
-                      {[46, 54, 62, 70, 46, 54, 62, 70, 46, 54, 62, 70].map(
-                        (x, i) => (
-                          <rect
-                            key={i + 20}
-                            x={x}
-                            y={
-                              [
-                                46,
-                                46,
-                                46,
-                                46,
-                                56,
-                                56,
-                                56,
-                                56,
-                                66,
-                                66,
-                                66,
-                                66,
-                              ][i]
-                            }
-                            width="6"
-                            height="6"
-                            rx="1"
-                            fill="#155DFC"
-                          />
-                        ),
-                      )}
-                    </svg>
+                  <div className="mx-auto grid h-36 w-36 place-items-center overflow-hidden rounded-2xl border border-[#E2E8F0] bg-white p-2 shadow-[0_18px_45px_-35px_rgba(15,23,42,0.55)]">
+                    <img
+                      src="/sdg/qrImage.png"
+                      alt="UPI QR code"
+                      className="h-full w-full object-contain"
+                    />
                   </div>
 
                   <div className="flex gap-2">
@@ -1731,18 +1541,16 @@ export default function FundsPage() {
                   </div>
 
                   <div className="flex flex-wrap justify-center gap-2">
-                    {['GPay', 'PhonePe', 'Paytm', 'BHIM'].map(
-                      (app) => (
-                        <button
-                          key={app}
-                          type="button"
-                          onClick={handlePay}
-                          className="type-caption rounded-full border border-[#CFE4FF] bg-[#EAF4FF] px-3 py-1.5 font-bold text-[#155DFC] transition hover:bg-white"
-                        >
-                          {app}
-                        </button>
-                      ),
-                    )}
+                    {["GPay", "PhonePe", "Paytm", "BHIM"].map((app) => (
+                      <button
+                        key={app}
+                        type="button"
+                        onClick={handlePay}
+                        className="type-caption rounded-full border border-[#CFE4FF] bg-[#EAF4FF] px-3 py-1.5 font-bold text-[#155DFC] transition hover:bg-white"
+                      >
+                        {app}
+                      </button>
+                    ))}
                   </div>
                 </div>
               )}
@@ -1751,7 +1559,7 @@ export default function FundsPage() {
                   CARD
                   ================================================= */}
 
-              {payTab === 'card' && (
+              {payTab === "card" && (
                 <div className="flex flex-col gap-3">
                   <input
                     value={cardName}
@@ -1765,9 +1573,9 @@ export default function FundsPage() {
                     onChange={(e) =>
                       setCardNo(
                         e.target.value
-                          .replace(/\D/g, '')
+                          .replace(/\D/g, "")
                           .slice(0, 16)
-                          .replace(/(\d{4})/g, '$1 ')
+                          .replace(/(\d{4})/g, "$1 ")
                           .trim(),
                       )
                     }
@@ -1778,20 +1586,14 @@ export default function FundsPage() {
                   <div className="grid grid-cols-2 gap-3">
                     <input
                       value={cardExp}
-                      onChange={(e) =>
-                        setCardExp(e.target.value)
-                      }
+                      onChange={(e) => setCardExp(e.target.value)}
                       placeholder="MM / YY"
                       className={paymentInputClass}
                     />
 
                     <input
                       value={cardCvv}
-                      onChange={(e) =>
-                        setCardCvv(
-                          e.target.value.slice(0, 3),
-                        )
-                      }
+                      onChange={(e) => setCardCvv(e.target.value.slice(0, 3))}
                       placeholder="CVV"
                       type="password"
                       className={paymentInputClass}
@@ -1804,40 +1606,38 @@ export default function FundsPage() {
                   NET BANKING
                   ================================================= */}
 
-              {payTab === 'netbanking' && (
+              {payTab === "netbanking" && (
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                   {[
                     {
-                      name: 'SBI',
-                      color: '#1A3A8F',
+                      name: "SBI",
+                      color: "#1A3A8F",
                     },
                     {
-                      name: 'HDFC',
-                      color: '#004C8F',
+                      name: "HDFC",
+                      color: "#004C8F",
                     },
                     {
-                      name: 'ICICI',
-                      color: '#B5261E',
+                      name: "ICICI",
+                      color: "#B5261E",
                     },
                     {
-                      name: 'Axis',
-                      color: '#97144D',
+                      name: "Axis",
+                      color: "#97144D",
                     },
                     {
-                      name: 'Kotak',
-                      color: '#E8222B',
+                      name: "Kotak",
+                      color: "#E8222B",
                     },
                     {
-                      name: 'Others',
-                      color: '#475569',
+                      name: "Others",
+                      color: "#475569",
                     },
                   ].map((bank) => (
                     <button
                       key={bank.name}
                       type="button"
-                      onClick={() =>
-                        setSelectedBank(bank.name)
-                      }
+                      onClick={() => setSelectedBank(bank.name)}
                       className="type-body-small rounded-xl border px-3 py-3 font-bold transition hover:-translate-y-0.5"
                       style={{
                         borderColor:
@@ -1868,7 +1668,7 @@ export default function FundsPage() {
                 className="type-button mt-5 inline-flex w-full items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#155DFC,#0099CC)] px-5 py-3.5 text-white shadow-[0_18px_42px_-26px_rgba(21,93,252,0.8)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
               >
                 {paying
-                  ? 'Processing...'
+                  ? "Processing..."
                   : `Pay ${currencySymbol}${Number(
                       finalAmount,
                     ).toLocaleString()}`}
@@ -1876,16 +1676,13 @@ export default function FundsPage() {
 
               <div className="type-caption mt-3 flex items-center justify-center gap-1.5 font-semibold text-[#64748B]">
                 <ShieldCheck className="h-4 w-4 text-[#155DFC]" />
-
-                Secured by{' '}
-                <span className="font-bold text-[#155DFC]">
-                  Razorpay
-                </span>
+                Secured by{" "}
+                <span className="font-bold text-[#155DFC]">Razorpay</span>
               </div>
             </div>
           </div>
         </div>
       )}
     </div>
-  )
+  );
 }
