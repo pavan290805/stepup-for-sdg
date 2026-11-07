@@ -40,7 +40,7 @@ export default function AboutPage() {
   return (
     <div style={{ background: "linear-gradient(160deg, #f0faf0 0%, #f7fbf7 40%, #fafffe 70%, #ffffff 100%)" }}>
       {/* 1. Hero */}
-      <section className="relative overflow-hidden min-h-[88vh] flex items-center px-6 py-8">
+      <section className="relative overflow-hidden flex items-center px-6 py-10">
         {/* soft light blobs */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute -top-20 -left-20 h-96 w-96 rounded-full bg-[rgba(21,93,252,0.07)] blur-[100px]" />

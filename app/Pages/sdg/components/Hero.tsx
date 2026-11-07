@@ -26,7 +26,7 @@ export default function Hero() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: reduceMotion ? 0.15 : 0.65, ease: [0.22, 1, 0.36, 1] }}
       >
-        <section className="relative flex min-h-[80vh] items-center overflow-hidden px-5 py-8 sm:px-8 lg:px-12">
+        <section id="hero" className="relative flex min-h-[80vh] items-center overflow-hidden px-5 py-8 sm:px-8 lg:px-12">
           <div
             aria-hidden="true"
             className="absolute right-0 top-1/2 -translate-y-1/2 w-[75vw] max-w-[950px] overflow-hidden"

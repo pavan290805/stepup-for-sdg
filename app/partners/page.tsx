@@ -1185,7 +1185,7 @@ export default function PartnersPage() {
 
       {/* -- ECOSYSTEM CONSTELLATION HERO -- */}
       <section
-        className="px-6 md:px-12 lg:px-20 pt-6 pb-24 md:pt-8 md:pb-32 flex flex-col items-center justify-center relative overflow-hidden z-10"
+        className="px-6 md:px-12 lg:px-20 pt-6 pb-8 md:pt-8 md:pb-10 flex flex-col items-center justify-center relative overflow-hidden z-10"
         style={{ background: "transparent" }}
       >
         {/* Two-Column Hero Container */}
@@ -1494,7 +1494,7 @@ export default function PartnersPage() {
 
 
       {/* -- PARTNER DIRECTORY SECTION -- */}
-      <section id="directory" className="hidden max-w-7xl mx-auto pt-8 pb-14 px-6 sm:px-10 lg:px-12 relative z-10" style={{ background: "transparent" }}>
+      <section id="directory" className="max-w-7xl mx-auto pt-8 pb-14 px-6 sm:px-10 lg:px-12 relative z-10" style={{ background: "transparent", display: "none" }}>
         <div
           className="pointer-events-none absolute -left-20 top-20 w-[450px] h-[450px] rounded-full blur-3xl opacity-40 dark:opacity-25"
           style={{ background: "radial-gradient(circle, #00c2ff 0%, rgba(21,93,252,0.15) 50%, transparent 75%)" }}
@@ -1601,7 +1601,7 @@ export default function PartnersPage() {
 
       {/* -- AUDIENCE CALL-OUT CARDS SECTION -- */}
       <section
-        className="px-6 sm:px-10 lg:px-12 pt-20 pb-28 sm:pt-24 sm:pb-36 relative overflow-hidden z-10"
+        className="px-6 sm:px-10 lg:px-12 pt-8 pb-16 relative overflow-hidden z-10"
         style={{ background: "transparent" }}
       >
         <div className="relative z-10 text-center mb-16">

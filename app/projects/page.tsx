@@ -71,7 +71,7 @@ const projects: Project[] = [
     sdgs: ["Affordable & Clean Energy", "Climate Action"],
     icon: Sun,
     color: "#FCC30B",
-    backgroundImage: "/sdg/ld.png",
+    backgroundImage: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=800&q=80",
     sdgIcon: "/sdg/goal-07.png",
     href: "/projects/sustainability-education",
   },
@@ -254,7 +254,7 @@ export default function ProjectsPage() {
                 clean energy, climate action, economic growth, and biodiversity.
               </p>
               <Link
-                href="/sdg"
+                href="/sdg#hero"
                 className="btn-arrow mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-cta px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_-16px_rgba(255,122,0,0.9)] transition duration-300 hover:brightness-110"
               >
                 Explore Goals <ArrowRight className="arr h-4 w-4" />

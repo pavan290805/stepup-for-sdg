@@ -89,7 +89,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <div style={{ padding: '24px 20px 20px', borderBottom: '1px solid rgba(255,255,255,.06)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <div style={{ width: 64, height: 64, borderRadius: 14, overflow: 'hidden', flexShrink: 0 }}>
-                <img src="/SDG_LOGO-removebg-preview.png" alt="SDG Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                <img src="/assets/images/6302929889627149391.jpg" alt="SDG Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
               </div>
               <div>
                 <div style={{ fontSize: 15, fontWeight: 700, color: '#fff', lineHeight: 1 }}>StepUp SDG</div>

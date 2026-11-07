@@ -1,8 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import sdgClassroomImg from '../../assets/images/sdg-classroom.jpg';
-import childrenStudyImg from '../../assets/images/image3.png';
-import classroomChildrenImg from '../../assets/images/classroom-children.jpg';
 import communityEarthImg from '../../assets/images/community-earth.png';
 
 export default function HeroCollage() {
@@ -33,8 +31,8 @@ export default function HeroCollage() {
       parallaxFactor: 1.2,
     },
     {
-      title: 'Classroom Learning',
-      src: classroomChildrenImg.src,
+      title: 'Certificate Program',
+      src: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=600&q=80',
       className: 'top-[8%] right-[2%] w-[42%] h-[38%] rotate-4 z-30',
       parallaxFactor: -1.5,
     },
@@ -51,8 +49,8 @@ export default function HeroCollage() {
       parallaxFactor: 1.6,
     },
     {
-      title: 'Children Education',
-      src: childrenStudyImg.src,
+      title: 'Certificate Program',
+      src: 'https://images.unsplash.com/photo-1627556704302-624286467c65?auto=format&fit=crop&w=600&q=80',
       className: 'bottom-[1%] left-[26%] w-[46%] h-[36%] -rotate-3 z-20',
       parallaxFactor: -1.2,
     },

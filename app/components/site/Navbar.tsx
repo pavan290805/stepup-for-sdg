@@ -239,20 +239,13 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-[#BFD9D8]/40">
-      <div className="flex min-h-20 lg:h-24 w-full items-center justify-between px-4 sm:px-6 md:px-8 lg:px-32 xl:px-44">
+      <div className="flex h-20 lg:h-24 w-full items-center justify-between px-4 sm:px-6 md:px-8 lg:px-16 xl:px-24">
         {/* Logo */}
-        <Link href="/" className="shrink-0 flex items-center gap-3 group">
-          <span className="inline-flex h-14 w-14 sm:h-16 sm:w-16 lg:h-20 lg:w-20 items-center justify-center overflow-hidden rounded-full bg-white shadow-sm border border-[#E2E8F0]">
-            <img
-              src="/assets/SDG_LOGO-removebg-preview.png"
-              alt="StepUp for SDG"
-              className="h-full w-full object-contain"
-            />
-          </span>
+        <Link href="/" className="shrink-0 flex items-center group h-full py-1">
           <img
             src="/assets/images/image.png"
             alt="Educating Students. Creating Sustainable Impact."
-            className="hidden sm:block h-16 lg:h-24 w-auto object-contain"
+            className="h-full w-auto object-contain"
           />
         </Link>
 
@@ -292,7 +285,7 @@ export function Navbar() {
             href="/funds"
             className="inline-flex items-center whitespace-nowrap rounded-full bg-[#155DFC] px-5 py-2.5 text-base font-semibold text-white shadow-[0_0_20px_rgba(21,93,252,0.45)] hover:brightness-110 transition"
           >
-            Funds
+            Fund Us
           </Link>
 
           <Link
@@ -358,7 +351,7 @@ export function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className="flex flex-1 items-center justify-center rounded-full bg-[#155DFC] px-5 py-3 text-sm sm:text-base font-semibold text-white shadow-[0_0_20px_rgba(21,93,252,0.35)] hover:brightness-110 transition"
               >
-                Funds
+                Fund Us
               </Link>
 
               <Link

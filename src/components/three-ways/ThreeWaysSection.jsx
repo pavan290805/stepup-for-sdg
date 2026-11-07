@@ -11,7 +11,7 @@ const fadeUp = {
 
 const ThreeWaysSection = () => {
   return (
-    <section id="our-work" className="py-12 bg-gradient-to-b from-brand-bg via-[#F0F6FF] to-white overflow-hidden relative font-poppins scroll-mt-24 md:scroll-mt-28">
+    <section id="our-work" className="py-6 bg-gradient-to-b from-brand-bg via-[#F0F6FF] to-white overflow-hidden relative font-poppins scroll-mt-24 md:scroll-mt-28">
       <div id="about" className="scroll-mt-24" />
       <div id="about-us" className="scroll-mt-24" />
       <div id="work-with-us" className="scroll-mt-24" />
@@ -19,7 +19,7 @@ const ThreeWaysSection = () => {
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-6">
           <div className="flex items-center justify-center gap-3 mb-2">
             <span className="w-8 h-[1px] bg-brand-blue/30"></span>
             <span className="section-subtitle text-xs tracking-widest font-bold text-[#0A5BFF] uppercase">PARTNERSHIP OPTIONS</span>

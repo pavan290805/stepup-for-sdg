@@ -6,7 +6,8 @@ import classroomImg from '../../assets/images/image1.png';
 import environmentImg from '../../assets/images/image5.png';
 import waterHandsImg from '../../assets/images/image6.png';
 import presentationImg from '../../assets/images/image7.png';
-import childrenSlatesImg from '../../assets/images/image3.png';
+
+const childrenSlatesImg = { src: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=800&q=80' };
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },

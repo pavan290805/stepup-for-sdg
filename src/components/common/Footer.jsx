@@ -52,8 +52,8 @@ const Footer = () => {
             </div>
 
             <div>
-              <div className="text-sm font-semibold text-[#071B4A]">StepUp For SDG</div>
-              <div className="text-xs text-[#374151]">Educating Students. Creating Sustainable Impact.</div>
+              <div className="text-sm font-semibold text-[#071B4A]">StepUp for SDG</div>
+              <div className="text-xs text-[#374151]">Educating Students.<br />Creating Sustainable Impact.</div>
             </div>
           </div>
 

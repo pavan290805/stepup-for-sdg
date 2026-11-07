@@ -39,7 +39,11 @@ const Navbar = () => {
     <nav className={`site-navbar sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${navBackgroundClass}`}>
       <div className={`max-w-7xl mx-auto px-6 md:px-8 lg:px-10 flex justify-between items-center ${navHeightClass}`}>
         <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center cursor-pointer group h-full">
-          <img src="/SDG_LOGO-removebg-preview.png" alt="StepUp For SDG" className="h-12 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105 mr-3" />
+          <img src="/assets/images/6302929889627149391.jpg" alt="StepUp for SDG" className="h-12 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105 mr-3" />
+          <div className="flex flex-col">
+            <span className="text-sm font-semibold text-[#071B4A] leading-tight">StepUp for SDG</span>
+            <span className="text-xs text-[#374151] leading-tight">Educating Students.<br />Creating Sustainable Impact.</span>
+          </div>
         </Link>
 
         <div className="hidden lg:flex items-center gap-8">
