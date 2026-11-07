@@ -307,7 +307,7 @@ export default function AboutPage() {
                 The 5 Pillars<br/>That Build Our Future
               </h2>
               <p className="mt-4 text-[#6b7a99] max-w-sm mx-auto font-normal" style={{fontSize:"18px",lineHeight:"30px"}}>
-                The Sustainable Development Goals are built on<br/>5 interconnected pillars.
+                The Sustainable Development Goals are built on five interconnected pillars that guide us towards a better and more sustainable world.
               </p>
             </div>
           </FadeUp>
@@ -412,7 +412,6 @@ export default function AboutPage() {
         <div className="relative mx-auto max-w-6xl">
           <FadeUp>
             <div className="text-center mb-16">
-              <span className="inline-block rounded-full border border-[rgba(21,93,252,0.2)] bg-[rgba(21,93,252,0.06)] px-4 py-1 text-xs font-semibold uppercase tracking-widest text-[#155dfc]">The People Behind It</span>
               <h2 className="mt-4 font-display font-bold text-[#0d1b3e]" style={{fontSize:"48px",lineHeight:"60px"}}>
                 Meet Our{" "}
                 <span className="relative inline-block">
