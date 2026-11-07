@@ -179,7 +179,7 @@ export default function AboutPage() {
                 {/* floating founded card */}
                 <div className="absolute -top-4 -right-4 z-10 rounded-2xl bg-white px-4 py-3 shadow-[0_12px_40px_rgba(13,27,62,0.14)] border border-[rgba(13,27,62,0.06)]">
                   <p className="text-[10px] font-semibold uppercase tracking-widest text-[#155dfc]">Est.</p>
-                  <p className="font-display text-2xl font-black text-[#0d1b3e]">2019</p>
+                  <p className="font-display text-2xl font-black text-[#0d1b3e]">2026</p>
                   <p className="text-[10px] text-[#4a5980]">Founded</p>
                 </div>
               </div>
@@ -192,16 +192,13 @@ export default function AboutPage() {
                 {/* story paragraphs */}
                 <div className="space-y-4" style={{fontSize:"18px",lineHeight:"30px"}}>
                   <p className="text-[#0d1b3e] font-semibold" style={{fontSize:"20px",lineHeight:"34px"}}>
-                    StepUp for SDG began with a simple conviction: that quality education is the most powerful lever for lasting change.
+                    At StepUp for SDG, we believe that educating young minds is the first step towards a sustainable future.
                   </p>
                   <p className="text-[#4a5980]" style={{fontSize:"18px",lineHeight:"30px"}}>
-                    What started as a handful of volunteers supporting local schools has grown into a collaborative platform uniting students, educators, NGOs and companies around a shared mission.
+                    We aim to inspire students to learn, adopt sustainability and cleanliness, and use them as a medium to share knowledge and create meaningful impact in their communities too.
                   </p>
-                  <p className="text-[#4a5980]" style={{fontSize:"18px",lineHeight:"30px"}}>
-                    Today we connect partners across regions to fund, design and deliver transparent educational initiatives — turning intention into measurable impact for the children who need it most.
-                  </p>
-                  <p className="text-[#4a5980]" style={{fontSize:"18px",lineHeight:"30px"}}>
-                    We believe progress should be visible. Every project we support is tracked, reported, and built to last, so every contribution becomes a real opportunity for a learner.
+                  <p className="text-[#0d1b3e] font-semibold" style={{fontSize:"20px",lineHeight:"34px"}}>
+                    Today's children are tomorrow's future. Together, let's empower them to make the world a better place.
                   </p>
                 </div>
 
@@ -242,13 +239,12 @@ export default function AboutPage() {
                   <div>
                       <p className="text-xs font-semibold uppercase tracking-widest text-[#155dfc]">Our Vision</p>
                       <h3 className="mt-1 font-display font-semibold text-[#0d1b3e]" style={{fontSize:"36px",lineHeight:"48px"}}>
-                        Empowering Every Learner to Build a Better Tomorrow
+                        Educating Every Student to Build a Better Tomorrow
                       </h3>
                     </div>
 
                   <div className="flex flex-col gap-3 text-[#4a5980]" style={{fontSize:"18px",lineHeight:"30px"}}>
-                    <p>We envision a future where every child, regardless of geography, income, or background, has equal access to quality education, technology, and opportunities that unlock their full potential.</p>
-                    <p>StepUp for SDG aims to create inclusive schools, empowered educators, and connected communities that inspire lifelong learning and sustainable development.</p>
+                    <p>To help every student understand sustainability and the UN SDGs before they finish high school, adopt them in their daily lives, explore careers that make a difference, and spread awareness in their communities to build a better world.</p>
                   </div>
 
                   {/* quote */}
@@ -269,18 +265,17 @@ export default function AboutPage() {
                   <div>
                       <p className="text-xs font-semibold uppercase tracking-widest text-[#00a89a]">Our Mission</p>
                       <h3 className="mt-1 font-display font-semibold text-[#0d1b3e]" style={{fontSize:"36px",lineHeight:"48px"}}>
-                        Transforming Partnerships into Measurable Educational Impact
+                        Transforming Partnerships into Measurable Impact
                       </h3>
                     </div>
 
                   <div className="flex flex-col gap-3 text-[#4a5980]" style={{fontSize:"18px",lineHeight:"30px"}}>
-                    <p>Our mission is to connect schools, NGOs, companies, volunteers, and communities through one collaborative platform that enables transparent educational initiatives, innovation, and measurable social impact.</p>
-                    <p>Every contribution helps children gain knowledge, confidence, and opportunities for a brighter future.</p>
+                    <p>We teach sustainability through workshops and group activities, partnering with schools, local bodies, and companies to reach every part of India by 2047 and inspire students to create lasting change in their communities.</p>
                   </div>
 
                   {/* quote */}
                   <div className="mt-auto rounded-2xl bg-[#f0f4ff] px-5 py-4 border-l-4 border-[#00c2ff]">
-                    <p className="font-normal italic text-[#00a89a]" style={{fontSize:"26px",lineHeight:"38px"}}>&ldquo;Together we create opportunities that transform lives.&rdquo;</p>
+                    <p className="font-normal italic text-[#00a89a]" style={{fontSize:"26px",lineHeight:"38px"}}>&ldquo;Together we create a future that transform lives.&rdquo;</p>
                   </div>
                 </div>
               </div>
@@ -325,7 +320,7 @@ export default function AboutPage() {
                 color: "#2196f3",
                 glow: "rgba(33,150,243,0.18)",
                 border: "rgba(33,150,243,0.35)",
-                desc: "End poverty and hunger in all forms and ensure dignity and equality.",
+                desc: "Educate   every student with sustainability education.",
                 icon: (
                   <svg width="68" height="68" viewBox="0 0 52 52" fill="none">
                     <circle cx="26" cy="16" r="8" fill="#2196f3"/>
@@ -342,7 +337,7 @@ export default function AboutPage() {
                 color: "#4caf50",
                 glow: "rgba(76,175,80,0.18)",
                 border: "rgba(76,175,80,0.35)",
-                desc: "Protect the planet's natural resources and climate for future generations.",
+                desc: "	Protect nature and inspire students to live sustainably.",
                 icon: (
                   <svg width="68" height="68" viewBox="0 0 52 52" fill="none">
                     <path d="M26 6 C18 6 10 14 10 26 C10 34 14 40 20 44 C20 44 18 36 22 30 C24 26 28 26 30 22 C32 18 28 12 26 6Z" fill="#4caf50"/>
@@ -356,7 +351,7 @@ export default function AboutPage() {
                 color: "#ff9800",
                 glow: "rgba(255,152,0,0.18)",
                 border: "rgba(255,152,0,0.35)",
-                desc: "Ensure prosperous and fulfilling lives in harmony with nature.",
+                desc: "Explore sustainable careers and create opportunities for a better future.",
                 icon: (
                   <svg width="68" height="68" viewBox="0 0 52 52" fill="none">
                     <rect x="6" y="30" width="8" height="16" rx="2" fill="#ff9800"/>
@@ -371,7 +366,7 @@ export default function AboutPage() {
                 color: "#9c27b0",
                 glow: "rgba(156,39,176,0.18)",
                 border: "rgba(156,39,176,0.35)",
-                desc: "Foster peaceful, just and inclusive societies free from fear and violence.",
+                desc: "Build a world of respect, equality, and understanding.",
                 icon: (
                   <svg width="68" height="68" viewBox="0 0 52 52" fill="none">
                     <path d="M26 8 C22 6 16 8 14 14 C12 20 16 26 20 28 L26 44 L32 28 C36 26 40 20 38 14 C36 8 30 6 26 8Z" fill="#9c27b0"/>
@@ -384,7 +379,7 @@ export default function AboutPage() {
                 color: "#e91e8c",
                 glow: "rgba(233,30,140,0.18)",
                 border: "rgba(233,30,140,0.35)",
-                desc: "Strengthen global solidarity through partnerships and collaboration.",
+                desc: "Unite schools, NGOs, and companies to create change.",
                 icon: (
                   <svg width="68" height="68" viewBox="0 0 52 52" fill="none">
                     <path d="M10 30 C10 24 14 20 18 20 C20 20 22 21 24 23 L26 26 L28 23 C30 21 32 20 34 20 C38 20 42 24 42 30 C42 34 40 37 36 40 L26 48 L16 40 C12 37 10 34 10 30Z" fill="#e91e8c"/>
