@@ -40,16 +40,8 @@ const communityProfiles = [
 
 const contactItems = [
   {
-    label: "General Enquiry",
-    email: "contact@stepupforsdg.org",
-  },
-  {
     label: "Information",
     email: "info@stepupforsdg.org",
-  },
-  {
-    label: "Partnerships",
-    email: "partner@stepupforsdg.org",
   },
 ];
 
@@ -1016,7 +1008,7 @@ function CopyrightLine() {
   return (
     <div className="type-caption relative z-10 px-5 pb-10 pt-5 text-center text-[#64748B] sm:px-6">
       {
-        "\u00A9 2026 Pavdhan Foundation \u2022 Empowering Students through the Sustainable Development Goals"
+        "\u00A9 2026 Pavdhan Foundation \u2022 Educating Students. Creating Sustainable Impact."
       }
     </div>
   );
