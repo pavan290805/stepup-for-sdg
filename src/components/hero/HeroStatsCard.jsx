@@ -7,9 +7,8 @@ const HeroStatsCard = () => {
   const stats = [
     {
       icon: FiUsers,
-      number: 1,
-      suffix: 'M+',
-      label: 'Students Empowered',
+      number: 93,
+      label: 'Students Educated',
       subtitle: 'Across India',
       color: 'text-[#00A3FF]',
       borderColor: 'bg-[#00A3FF]',
@@ -18,8 +17,7 @@ const HeroStatsCard = () => {
     },
     {
       icon: FiHome,
-      number: 5000,
-      suffix: '+',
+      number: 1,
       label: 'Schools Supported',
       subtitle: 'Across India',
       color: 'text-[#10B981]',
@@ -29,25 +27,13 @@ const HeroStatsCard = () => {
     },
     {
       icon: FiFolder,
-      number: 850,
-      suffix: '+',
+      number: 1,
       label: 'Projects Completed',
       subtitle: 'Across India',
       color: 'text-[#F59E0B]',
       borderColor: 'bg-[#F59E0B]',
       iconBg: 'bg-amber-50 text-[#F59E0B] border-amber-100',
       lineColor: 'bg-[#F59E0B]',
-    },
-    {
-      icon: FiGlobe,
-      number: 25,
-      suffix: '+',
-      label: 'Countries Impact',
-      subtitle: 'Worldwide',
-      color: 'text-[#8B5CF6]',
-      borderColor: 'bg-[#8B5CF6]',
-      iconBg: 'bg-purple-50 text-[#8B5CF6] border-purple-100',
-      lineColor: 'bg-[#8B5CF6]',
     },
   ];
 
