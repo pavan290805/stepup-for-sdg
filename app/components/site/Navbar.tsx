@@ -238,7 +238,7 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl bg-white border-b border-[#BFD9D8]/40">
+    <header className="sticky top-0 z-50 bg-white border-b border-[#BFD9D8]/40">
       <div className="flex min-h-20 lg:h-24 w-full items-center justify-between px-4 sm:px-6 md:px-8 lg:px-32 xl:px-44">
         {/* Logo */}
         <Link href="/" className="shrink-0 flex items-center gap-3 group">
@@ -321,7 +321,7 @@ export function Navbar() {
 
       {/* Tablet / Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden border-t border-[#BFD9D8]/40 bg-[#F8FBFF]/95 backdrop-blur-xl">
+        <div className="lg:hidden border-t border-[#BFD9D8]/40 bg-white">
           <div className="px-4 sm:px-6 md:px-8 py-4 sm:py-5">
             <nav className="flex flex-col gap-1">
               {navLinks.map((l) =>

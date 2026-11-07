@@ -1688,11 +1688,9 @@ body {
 /* Premium glass navigation shared by the public site. */
 .rahini-unified-page .site-navbar,
 .rahini-unified-page header {
-  background: rgba(248, 251, 255, 0.78) !important;
+  background: #ffffff !important;
   border-color: rgba(126, 170, 190, 0.18) !important;
   box-shadow: 0 10px 35px rgba(20, 75, 100, 0.06);
-  backdrop-filter: blur(20px) saturate(135%);
-  -webkit-backdrop-filter: blur(20px) saturate(135%);
 }
 
 /* Same surface language for the public footer. */
