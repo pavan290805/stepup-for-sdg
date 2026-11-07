@@ -16,4 +16,4 @@ export const SDG_COLORS = [
   '#00689D', '#19486A'
 ];
 
-export const NAV_LINKS = ['Home', 'About', 'Our Work', 'Impact', 'SDG Goals', 'Partners', 'Contact'];
+export const NAV_LINKS = ['Home', 'About', 'Our Work', 'SDG Goals', 'Partners', 'Contact'];

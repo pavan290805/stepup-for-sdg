@@ -1,5 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
+import sdgClassroomImg from '../../assets/images/sdg-classroom.jpg';
 import childrenStudyImg from '../../assets/images/image3.png';
 import classroomChildrenImg from '../../assets/images/classroom-children.jpg';
 import communityEarthImg from '../../assets/images/community-earth.png';
@@ -27,7 +28,7 @@ export default function HeroCollage() {
   const floatingCards = [
     {
       title: 'Quality Education',
-      src: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=400&q=75',
+      src: sdgClassroomImg.src,
       className: 'top-[2%] left-[4%] w-[46%] h-[42%] -rotate-3 z-20',
       parallaxFactor: 1.2,
     },

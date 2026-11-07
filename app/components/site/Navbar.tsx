@@ -8,9 +8,7 @@ import { Menu, X, Globe, ChevronDown } from "lucide-react";
 const navLinks = [
   { to: "/", label: "Home", disabled: false },
   { to: "/about", label: "About Us", disabled: false },
-  { to: "/impact", label: "Impact", disabled: false },
   { to: "/projects", label: "Projects", disabled: false },
-  { to: "/sdg", label: "SDG", disabled: false },
   { to: "/partners", label: "Partners", disabled: false },
   { to: "/contact", label: "Contact", disabled: false },
 ] as const;
@@ -240,10 +238,10 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl bg-[#F8FBFF]/78 border-b border-[#BFD9D8]/40">
+    <header className="sticky top-0 z-50 backdrop-blur-xl bg-white border-b border-[#BFD9D8]/40">
       <div className="flex min-h-20 lg:h-24 w-full items-center justify-between px-4 sm:px-6 md:px-8 lg:px-32 xl:px-44">
         {/* Logo */}
-        <Link href="/" className="shrink-0 flex items-center group">
+        <Link href="/" className="shrink-0 flex items-center gap-3 group">
           <span className="inline-flex h-14 w-14 sm:h-16 sm:w-16 lg:h-20 lg:w-20 items-center justify-center overflow-hidden rounded-full bg-white shadow-sm border border-[#E2E8F0]">
             <img
               src="/assets/SDG_LOGO-removebg-preview.png"
@@ -251,6 +249,11 @@ export function Navbar() {
               className="h-full w-full object-contain"
             />
           </span>
+          <img
+            src="/assets/images/image.png"
+            alt="Educating Students. Creating Sustainable Impact."
+            className="hidden sm:block h-16 lg:h-24 w-auto object-contain"
+          />
         </Link>
 
         {/* Desktop Navigation */}

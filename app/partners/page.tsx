@@ -1192,20 +1192,7 @@ export default function PartnersPage() {
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
           {/* Left Column: Copy & CTAs */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
-            {/* Top SDG 17 Badge */}
-            <Reveal delay={0.05}>
-              <div
-                className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[12px] font-medium leading-[18px] mb-6 border shadow-sm transition hover:scale-[1.02]"
-                style={{
-                  background: isDark ? "rgba(21,93,252,0.12)" : "rgba(21,93,252,0.06)",
-                  borderColor: isDark ? "rgba(0,194,255,0.3)" : "rgba(21,93,252,0.2)",
-                  color: isDark ? "#00c2ff" : "#155dfc",
-                }}
-              >
-                <Icon.Handshake className="w-3.5 h-3.5" />
-                <span className="tracking-wider uppercase text-[12px] font-medium leading-[18px]">SDG 17 — Partnerships for the Goals</span>
-              </div>
-            </Reveal>
+
 
             {/* Page Heading (H1) - Manrope 56px / 700 / 68px */}
             <Reveal delay={0.1}>
@@ -1502,95 +1489,12 @@ export default function PartnersPage() {
           </div>
         </div>
 
-        {/* Unified Metrics Stats Card Bar */}
-        <Reveal delay={0.3} className="w-full max-w-7xl mx-auto">
-          <div
-            className="w-full mt-16 rounded-2xl border p-6 sm:p-8 shadow-sm backdrop-blur-md"
-            style={{
-              background: isDark ? "rgba(11, 22, 48, 0.75)" : "rgba(255, 255, 255, 0.9)",
-              borderColor: isDark ? "rgba(21, 93, 252, 0.25)" : "rgba(15,23,42,0.08)",
-              boxShadow: isDark ? "0 12px 36px rgba(4,9,18,0.5)" : "0 8px 30px rgba(0,0,0,0.04)",
-            }}
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-4 lg:gap-6">
-              {/* Stat 1: 9 Verified Partners */}
-              <div className="flex items-center gap-4 px-3 sm:px-4 lg:border-r border-slate-200 dark:border-slate-800/80">
-                <div className="flex flex-col">
-                  <div className="text-[56px] sm:text-[64px] font-extrabold tracking-tight leading-none" style={{ color: "#00c2ff" }}>
-                    <RollingNumber to={9} duration={1800} />
-                  </div>
-                  <div className="text-[18px] sm:text-[18px] font-medium mt-1.5 leading-[28px] whitespace-nowrap" style={{ color: theme.text }}>
-                    Verified Partners
-                  </div>
-                  <div className="text-[18px] font-normal leading-[28px] mt-0.5" style={{ color: theme.muted }}>
-                    Trusted collaborators
-                  </div>
-                </div>
-              </div>
-
-              {/* Stat 2: 6 States Reached */}
-              <div className="flex items-center gap-4 px-3 sm:px-4 lg:border-r border-slate-200 dark:border-slate-800/80">
-                <div className="flex flex-col">
-                  <div className="text-[56px] sm:text-[64px] font-extrabold tracking-tight leading-none" style={{ color: "#00d084" }}>
-                    <RollingNumber to={6} duration={1800} />
-                  </div>
-                  <div className="text-[18px] font-medium mt-1.5 leading-[28px] whitespace-nowrap" style={{ color: theme.text }}>
-                    States Reached
-                  </div>
-                  <div className="text-[18px] font-normal leading-[28px] mt-0.5" style={{ color: theme.muted }}>
-                    Across India
-                  </div>
-                </div>
-              </div>
-
-              {/* Stat 3: Rs 1.2 Cr CSR Co-funding */}
-              <div className="flex items-center gap-4 px-3 sm:px-4 lg:border-r border-slate-200 dark:border-slate-800/80">
-                <div className="flex flex-col">
-                  <div className="text-[52px] sm:text-[60px] font-extrabold tracking-tight leading-none whitespace-nowrap" style={{ color: "#155dfc" }}>
-                    <RollingNumber to={1.2} decimals={1} prefix="Rs " suffix=" Cr" duration={1800} />
-                  </div>
-                  <div className="text-[18px] font-medium mt-1.5 leading-[28px] whitespace-nowrap" style={{ color: theme.text }}>
-                    CSR Co-funding
-                  </div>
-                  <div className="text-[18px] font-normal leading-[28px] mt-0.5" style={{ color: theme.muted }}>
-                    Resources mobilized
-                  </div>
-                </div>
-              </div>
-
-              {/* Stat 4: 12,000+ Students Impacted */}
-              <div className="flex items-center gap-4 px-3 sm:px-4">
-                <div className="flex flex-col">
-                  <div className="text-[56px] sm:text-[64px] font-extrabold tracking-tight leading-none whitespace-nowrap" style={{ color: "#fbbf24" }}>
-                    <RollingNumber to={12000} suffix="+" duration={1800} />
-                  </div>
-                  <div className="text-[18px] font-medium mt-1.5 leading-[28px] whitespace-nowrap" style={{ color: theme.text }}>
-                    Students Impacted
-                  </div>
-                  <div className="text-[18px] font-normal leading-[28px] mt-0.5" style={{ color: theme.muted }}>
-                    Lives positively influenced
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Quote / Motto - Cormorant Garamond Italic / Ruluko 26px / 400 / 38px */}
-          <div className="flex items-center justify-center gap-2.5 mt-6 mb-4 text-center" style={{ color: theme.muted }}>
-            <Icon.Leaf className="w-5 h-5 text-emerald-500 shrink-0" />
-            <span className="font-quote italic text-[22px] sm:text-[26px] lg:text-[26px] font-normal leading-[32px] sm:leading-[38px] lg:leading-[38px]">
-              Together, we can build a more{" "}
-              <strong className="font-bold not-italic text-blue-600 dark:text-blue-400">equitable</strong>,{" "}
-              <strong className="font-bold not-italic text-teal-600 dark:text-teal-400">inclusive</strong> and{" "}
-              <strong className="font-bold not-italic text-emerald-600 dark:text-emerald-400">sustainable</strong> future.
-            </span>
-          </div>
-        </Reveal>
       </section>
 
+
+
       {/* -- PARTNER DIRECTORY SECTION -- */}
-      <section id="directory" className="max-w-7xl mx-auto pt-8 pb-14 px-6 sm:px-10 lg:px-12 relative z-10" style={{ background: "transparent" }}>
-        {/* Subtle Ambient Particle Glow on Left & Right */}
+      <section id="directory" className="hidden max-w-7xl mx-auto pt-8 pb-14 px-6 sm:px-10 lg:px-12 relative z-10" style={{ background: "transparent" }}>
         <div
           className="pointer-events-none absolute -left-20 top-20 w-[450px] h-[450px] rounded-full blur-3xl opacity-40 dark:opacity-25"
           style={{ background: "radial-gradient(circle, #00c2ff 0%, rgba(21,93,252,0.15) 50%, transparent 75%)" }}
@@ -1604,19 +1508,14 @@ export default function PartnersPage() {
 
         <Reveal>
           <div className="text-center mb-12 relative z-10">
-            {/* Page Heading (H2) - Building Impact, Together. */}
             <h2 className="text-[40px] sm:text-[48px] lg:text-[56px] font-bold tracking-tight leading-[48px] sm:leading-[60px] lg:leading-[68px] mb-3" style={{ color: theme.text }}>
               Building Impact,<br />
               <span style={{ color: "#155dfc" }}>Together.</span>
             </h2>
-
-            {/* Subtitle - Body Large */}
             <p className="max-w-xl mx-auto text-[18px] sm:text-[20px] font-normal leading-[28px] sm:leading-[34px]" style={{ color: theme.muted }}>
               Meet the organizations and institutions<br className="hidden sm:inline" />
               {" "}driving meaningful change with us.
             </p>
-
-            {/* Divider Line with Gradient and Dot */}
             <div className="flex items-center justify-center gap-2 mt-5">
               <div className="w-16 h-1 rounded-full" style={{ background: "linear-gradient(90deg, #155dfc, #00c2ff)" }} />
               <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#00c2ff" }} />
@@ -1624,15 +1523,10 @@ export default function PartnersPage() {
           </div>
         </Reveal>
 
-        {/* Search & Segmented Tabs Bar */}
         <Reveal delay={0.1}>
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-12 w-full">
-            {/* Search Input Pill - Expanded & Proportional */}
             <div className="relative flex-1 w-full max-w-md lg:max-w-xl">
-              <span
-                className="pointer-events-none absolute left-4.5 top-1/2 -translate-y-1/2 flex items-center justify-center z-10"
-                style={{ color: theme.muted }}
-              >
+              <span className="pointer-events-none absolute left-4.5 top-1/2 -translate-y-1/2 flex items-center justify-center z-10" style={{ color: theme.muted }}>
                 <Icon.Search className="w-4 h-4" />
               </span>
               <input
@@ -1652,14 +1546,9 @@ export default function PartnersPage() {
                 }}
               />
             </div>
-
-            {/* Segmented Filter Pills */}
             <div
               className="relative flex items-center rounded-full p-1.5 border shadow-sm shrink-0"
-              style={{
-                background: isDark ? "rgba(7, 16, 31, 0.85)" : "#ffffff",
-                borderColor: isDark ? "rgba(21,93,252,0.25)" : "rgba(15,23,42,0.08)",
-              }}
+              style={{ background: isDark ? "rgba(7, 16, 31, 0.85)" : "#ffffff", borderColor: isDark ? "rgba(21,93,252,0.25)" : "rgba(15,23,42,0.08)" }}
             >
               {tabs.map((tab) => {
                 const isActive = activeTab === tab;
@@ -1668,18 +1557,13 @@ export default function PartnersPage() {
                     key={tab}
                     onClick={() => setActiveTab(tab)}
                     className="relative rounded-full px-5 py-2.5 text-[16px] font-medium leading-[24px] z-10 transition-colors whitespace-nowrap"
-                    style={{
-                      color: isActive ? "#ffffff" : isDark ? "rgba(255,255,255,0.7)" : "#475569",
-                    }}
+                    style={{ color: isActive ? "#ffffff" : isDark ? "rgba(255,255,255,0.7)" : "#475569" }}
                   >
                     {isActive && (
                       <motion.span
                         layoutId="tab-indicator"
                         className="absolute inset-0 rounded-full z-0"
-                        style={{
-                          background: "#155dfc",
-                          boxShadow: "0 2px 10px rgba(21,93,252,0.35)",
-                        }}
+                        style={{ background: "#155dfc", boxShadow: "0 2px 10px rgba(21,93,252,0.35)" }}
                         transition={{ type: "spring", stiffness: 500, damping: 35 }}
                       />
                     )}
@@ -1692,10 +1576,7 @@ export default function PartnersPage() {
         </Reveal>
 
         {filtered.length === 0 ? (
-          <div
-            className="rounded-2xl py-16 text-center text-[16px] font-normal leading-[28px]"
-            style={{ border: `1px dashed ${theme.border}`, color: theme.muted }}
-          >
+          <div className="rounded-2xl py-16 text-center text-[16px] font-normal leading-[28px]" style={{ border: `1px dashed ${theme.border}`, color: theme.muted }}>
             No partners found for &ldquo;{searchQuery}&rdquo;
           </div>
         ) : (
@@ -1710,12 +1591,7 @@ export default function PartnersPage() {
                   exit={{ opacity: 0, scale: 0.94 }}
                   transition={{ duration: 0.35, delay: idx * 0.04, ease: "easeOut" }}
                 >
-                  <PartnerCard
-                    partner={partner}
-                    onSelect={() => setSelected(partner)}
-                    theme={theme}
-                    isDark={isDark}
-                  />
+                  <PartnerCard partner={partner} onSelect={() => setSelected(partner)} theme={theme} isDark={isDark} />
                 </motion.div>
               ))}
             </AnimatePresence>

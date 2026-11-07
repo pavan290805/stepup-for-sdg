@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FaLinkedinIn, FaInstagram } from 'react-icons/fa';
-import logoImg from '../../assets/images/image8.png';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -48,7 +47,7 @@ const Footer = () => {
           <div className="flex items-center gap-4">
             <div className="w-16 h-16 rounded-xl bg-white flex items-center justify-center shadow-sm">
               <Link href="/">
-                <img src={logoImg.src} alt="StepUp For SDG" className="h-12 w-12 object-contain" />
+                <img src="/SDG_LOGO-removebg-preview.png" alt="StepUp For SDG" className="h-12 w-12 object-contain" />
               </Link>
             </div>
 
@@ -58,34 +57,40 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Center: Contact / Policies / Newsletter */}
-          <nav className="hidden md:flex items-center gap-6 text-sm text-[#0B254B]">
-            <div className="flex items-center gap-2">
-              <svg className="w-5 h-5 text-[#0B254B]" fill="none" stroke="#0B254B" strokeWidth="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8.5V6a2 2 0 012-2h3.5M21 8.5V6a2 2 0 00-2-2h-3.5M3 8.5v8a2 2 0 002 2h14a2 2 0 002-2v-8M7 21v-8"/></svg>
-              <span>Contact</span>
-            </div>
-
+          {/* Center: Contact Info */}
+          <div className="hidden md:flex items-center gap-6 text-sm text-[#0B254B]">
+            <a href="mailto:info@stepupforsg.org" className="flex items-center gap-2 hover:text-[#0A5BFF] transition-colors">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25H4.5a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5H4.5a2.25 2.25 0 00-2.25 2.25m19.5 0l-9.75 6.75L2.25 6.75" /></svg>
+              info@stepupforsg.org
+            </a>
             <div className="h-6 border-l border-slate-200" />
-
-            <div className="flex items-center gap-2">
-              <svg className="w-5 h-5 text-[#0B254B]" fill="none" stroke="#0B254B" strokeWidth="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" d="M12 11c2.21 0 4-1.79 4-4S14.21 3 12 3 8 4.79 8 7s1.79 4 4 4zM6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
-              <span>Our Policies</span>
-            </div>
-
-            <div className="h-6 border-l border-slate-200" />
-
-            <div className="flex items-center gap-2">
-              <svg className="w-5 h-5 text-[#0B254B]" fill="none" stroke="#0B254B" strokeWidth="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8"/></svg>
-              <span>Newsletter</span>
-            </div>
-          </nav>
+            <a href="tel:8341011206" className="flex items-center gap-2 hover:text-[#0A5BFF] transition-colors">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 5.25v1.5z" /></svg>
+              8341011206
+            </a>
+          </div>
 
           {/* Right: Social Icons */}
           <div className="flex items-center gap-3">
-            <a href="#" aria-label="LinkedIn" className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm text-[#0B59FF]">
+            {/* LinkedIn */}
+            <a
+              href="https://www.linkedin.com/company/stepup-for-sdg/posts/?feedView=all"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm text-[#0B59FF]"
+            >
               <FaLinkedinIn />
             </a>
-            <a href="#" aria-label="Instagram" className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm text-[#0B59FF]">
+
+            {/* Instagram */}
+            <a
+              href="https://www.instagram.com/stepup_for_sdg/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm text-[#0B59FF]"
+            >
               <FaInstagram />
             </a>
           </div>

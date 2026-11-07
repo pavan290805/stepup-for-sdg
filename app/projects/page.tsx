@@ -31,7 +31,7 @@ type Project = {
   sdgs: string[];
   icon: LucideIcon;
   color: string;
-  backgroundImage: string;
+  backgroundImage: string | string[];
   sdgIcon: string;
   href?: string;
 };
@@ -58,7 +58,7 @@ const projects: Project[] = [
     sdgs: ["Quality Education", "Climate Action", "Life on Land"],
     icon: Award,
     color: "#155DFC",
-    backgroundImage: "/sdg/sdg certt.png",
+    backgroundImage: "/assets/images/1.jpg",
     sdgIcon: "/sdg/goal-04.png",
     href: "/projects/sdg-education",
   },
@@ -118,9 +118,9 @@ const projects: Project[] = [
 
 const supportedSdgs = [
   { id: 4, name: "Quality Education", image: "/sdg/goal-04.png" },
+  { id: 5, name: "Gender Equality", image: "/sdg/goal-05.png" },
   { id: 6, name: "Clean Water & Sanitation", image: "/sdg/goal-06.png" },
-  { id: 7, name: "Affordable & Clean Energy", image: "/sdg/goal-07.png" },
-  { id: 8, name: "Decent Work & Economic Growth", image: "/sdg/goal-08.png" },
+  { id: 11, name: "Sustainable Cities", image: "/sdg/goal-11.png" },
   { id: 13, name: "Climate Action", image: "/sdg/goal-13.png" },
   { id: 15, name: "Life on Land", image: "/sdg/goal-15.png" },
 ];

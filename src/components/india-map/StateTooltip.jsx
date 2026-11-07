@@ -9,7 +9,7 @@ const StateTooltip = React.memo(function StateTooltip({ activeState, data, posit
   const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
   const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
   const popupWidth = 260;
-  const popupHeight = 230;
+  const popupHeight = 180;
 
   const shouldPlaceLeft = position.x > viewportWidth / 2;
   const left = shouldPlaceLeft
@@ -57,20 +57,12 @@ const StateTooltip = React.memo(function StateTooltip({ activeState, data, posit
           {/* Stats List */}
           <div className="flex flex-col gap-2 text-xs">
             <div className="flex justify-between items-center text-slate-600 font-medium">
-              <span className="flex items-center gap-1.5">👨‍🎓 Students Impacted</span>
-              <span className="font-bold text-[#071B4A]">{data.students?.toLocaleString()}</span>
-            </div>
-            <div className="flex justify-between items-center text-slate-600 font-medium">
-              <span className="flex items-center gap-1.5">🌳 Trees Planted</span>
-              <span className="font-bold text-[#071B4A]">{data.trees?.toLocaleString()}</span>
-            </div>
-            <div className="flex justify-between items-center text-slate-600 font-medium">
-              <span className="flex items-center gap-1.5">💧 Water Projects</span>
-              <span className="font-bold text-[#071B4A]">{data.waterProjects?.toLocaleString()}</span>
-            </div>
-            <div className="flex justify-between items-center text-slate-600 font-medium">
               <span className="flex items-center gap-1.5">🏫 Schools Supported</span>
               <span className="font-bold text-[#071B4A]">{data.schools?.toLocaleString()}</span>
+            </div>
+            <div className="flex justify-between items-center text-slate-600 font-medium">
+              <span className="flex items-center gap-1.5">👨‍🎓 Students Educated</span>
+              <span className="font-bold text-[#071B4A]">{data.students?.toLocaleString()}</span>
             </div>
             <div className="flex justify-between items-center text-slate-600 font-medium">
               <span className="flex items-center gap-1.5">🎯 SDG Events</span>

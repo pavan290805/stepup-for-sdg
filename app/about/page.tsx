@@ -40,7 +40,7 @@ export default function AboutPage() {
   return (
     <div style={{ background: "linear-gradient(160deg, #f0faf0 0%, #f7fbf7 40%, #fafffe 70%, #ffffff 100%)" }}>
       {/* 1. Hero */}
-      <section className="relative overflow-hidden min-h-[88vh] flex items-center px-6 py-16">
+      <section className="relative overflow-hidden min-h-[88vh] flex items-center px-6 py-8">
         {/* soft light blobs */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute -top-20 -left-20 h-96 w-96 rounded-full bg-[rgba(21,93,252,0.07)] blur-[100px]" />
@@ -130,7 +130,7 @@ export default function AboutPage() {
       </section>
 
       {/* 2. Our Story */}
-      <section id="story" className="relative scroll-mt-20 overflow-hidden py-24 px-6">
+      <section id="story" className="relative scroll-mt-20 overflow-hidden py-10 px-6">
 
         <div className="relative mx-auto max-w-6xl">
           {/* heading */}
@@ -151,7 +151,7 @@ export default function AboutPage() {
           </FadeUp>
 
           {/* 2-col grid */}
-          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
 
             {/* LEFT — video */}
             <FadeUp delay={80}>
@@ -210,12 +210,12 @@ export default function AboutPage() {
       </section>
 
       {/* 3. Vision & Mission */}
-      <section className="relative px-6 py-20 scroll-mt-20 overflow-hidden">
+      <section className="relative px-6 py-10 scroll-mt-20 overflow-hidden">
 
         <div className="relative mx-auto max-w-6xl">
           {/* heading */}
           <FadeUp>
-            <div className="text-center mb-16">
+            <div className="text-center mb-8">
               <span className="inline-block rounded-full border border-[rgba(21,93,252,0.2)] bg-[rgba(21,93,252,0.06)] px-4 py-1 text-xs font-semibold uppercase tracking-widest text-[#155dfc]">
                 Who We Are
               </span>
@@ -287,7 +287,7 @@ export default function AboutPage() {
       </section>
 
       {/* 3. Five Pillars */}
-      <section id="5p" className="relative px-6 py-20 scroll-mt-20 overflow-hidden">
+      <section id="5p" className="relative px-6 py-10 scroll-mt-20 overflow-hidden">
         {/* decorative leaves top-left */}
         <svg aria-hidden="true" className="pointer-events-none absolute top-4 left-4 w-20 opacity-60" viewBox="0 0 100 100" fill="none">
           <path d="M15 85 Q10 40 55 10 Q80 5 85 15 Q90 25 60 35 Q35 45 25 75 Z" fill="#4C9F38" opacity="0.7"/>
@@ -302,7 +302,7 @@ export default function AboutPage() {
         <div className="relative mx-auto max-w-7xl">
           {/* heading */}
           <FadeUp>
-            <div className="text-center mb-12">
+            <div className="text-center mb-8">
               <h2 className="font-display font-bold text-[#0d1b3e]" style={{fontSize:"48px",lineHeight:"60px"}}>
                 The 5 Pillars<br/>That Build Our Future
               </h2>
@@ -407,11 +407,11 @@ export default function AboutPage() {
       </section>
 
       {/* 5. Our Team */}
-      <section id="team" className="relative px-6 py-24 scroll-mt-20 overflow-hidden">
+      <section id="team" className="relative px-6 py-10 scroll-mt-20 overflow-hidden">
 
         <div className="relative mx-auto max-w-6xl">
           <FadeUp>
-            <div className="text-center mb-16">
+            <div className="text-center mb-8">
               <h2 className="mt-4 font-display font-bold text-[#0d1b3e]" style={{fontSize:"48px",lineHeight:"60px"}}>
                 Meet Our{" "}
                 <span className="relative inline-block">
@@ -470,7 +470,7 @@ export default function AboutPage() {
       </section>
 
       {/* 6. Join Our Mission CTA */}
-      <section id="join" className="px-6 pt-6 pb-16 scroll-mt-20" style={{ background: "transparent" }}>
+      <section id="join" className="px-6 pt-4 pb-10 scroll-mt-20" style={{ background: "transparent" }}>
         <FadeUp>
           <div className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl p-10 text-center md:p-14" style={{ background: "linear-gradient(135deg,#0d1b3e 0%,#1a2f6e 60%,#0d1b3e 100%)" }}>
             <h2 className="font-display font-bold text-white" style={{fontSize:"48px",lineHeight:"60px"}}>

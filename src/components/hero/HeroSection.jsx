@@ -73,9 +73,11 @@ const HeroSection = () => {
               <h1 className="text-[48px] sm:text-[62px] lg:text-[72px] font-extrabold leading-[1.08] tracking-tight text-[#071B4A]">
                 StepUp For
               </h1>
-              <h1 className="text-[48px] sm:text-[62px] lg:text-[72px] font-extrabold leading-[1.08] tracking-tight sdg-color-cycle">
-                SDG
-              </h1>
+              <Link href="/sdg">
+                <h1 className="text-[48px] sm:text-[62px] lg:text-[72px] font-extrabold leading-[1.08] tracking-tight sdg-color-cycle cursor-pointer hover:opacity-80 transition-opacity">
+                  SDG
+                </h1>
+              </Link>
               <div className="mt-2">
                 <ColorAccentLine className="max-w-[220px]" />
               </div>
@@ -108,7 +110,7 @@ const HeroSection = () => {
         </div>
 
         {/* Full-width Stats Bar */}
-        <motion.div custom={6} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={fadeUp} className="w-full mt-14 lg:mt-18 relative z-20">
+        <motion.div custom={6} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={fadeUp} className="w-full mt-14 lg:mt-18 relative z-20 flex justify-center">
           <HeroStatsCard />
         </motion.div>
 

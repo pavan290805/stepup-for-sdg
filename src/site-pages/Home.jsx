@@ -13,7 +13,7 @@ export default function Home() {
       <HeroSection />
       <ThreeWaysSection />
       <IndiaMapSection />
-      <PartnersMarquee />
+      {/* <PartnersMarquee /> */}
       <ViksitIndiaSection />
     </div>
   );

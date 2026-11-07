@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation';
 import { HiMenu, HiX } from 'react-icons/hi';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NAV_LINKS } from '../../utils/constants';
-import logoImg from '../../assets/images/image8.png';
 
 const ROUTES = {
   Home: '/',
@@ -40,7 +39,7 @@ const Navbar = () => {
     <nav className={`site-navbar sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${navBackgroundClass}`}>
       <div className={`max-w-7xl mx-auto px-6 md:px-8 lg:px-10 flex justify-between items-center ${navHeightClass}`}>
         <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center cursor-pointer group h-full">
-          <img src={logoImg.src} alt="StepUp For SDG" className="h-12 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105 mr-3" />
+          <img src="/SDG_LOGO-removebg-preview.png" alt="StepUp For SDG" className="h-12 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105 mr-3" />
         </Link>
 
         <div className="hidden lg:flex items-center gap-8">

@@ -41,9 +41,8 @@ export default function IndiaMapSection() {
 
   const activeData = hoveredState ? stateData[hoveredState] : null;
 
-  // Keep box inside container
   const BOX_W = 220;
-  const BOX_H = 180;
+  const BOX_H = 140;
   const OFFSET = 16;
 
   const getBoxStyle = () => {
@@ -130,10 +129,8 @@ export default function IndiaMapSection() {
                     {/* Stats */}
                     <div className="flex flex-col gap-1 text-[11px]">
                       {[
-                        { icon: '👨‍🎓', label: 'Students Impacted', value: activeData.students },
-                        { icon: '🌳', label: 'Trees Planted',      value: activeData.trees },
-                        { icon: '💧', label: 'Water Projects',     value: activeData.waterProjects },
                         { icon: '🏫', label: 'Schools Supported',  value: activeData.schools },
+                        { icon: '👨‍🎓', label: 'Students Educated', value: activeData.students },
                         { icon: '🎯', label: 'SDG Events',         value: activeData.sdgEvents },
                       ].map(({ icon, label, value }) => (
                         <div key={label} className="flex justify-between items-center">

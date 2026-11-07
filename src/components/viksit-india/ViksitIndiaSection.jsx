@@ -64,10 +64,6 @@ const ViksitIndiaSection = () => {
           
           {/* Left Column */}
           <div className="w-full lg:w-1/2 flex flex-col items-start gap-6">
-            <div className="inline-flex px-4 py-2 rounded-full bg-green-50 border border-green-200 text-green-700 text-xs font-semibold tracking-wider uppercase items-center gap-2">
-              United for Tomorrow
-            </div>
-            
             <h2 className="text-brand-navy text-5xl md:text-6xl font-extrabold leading-tight">
               Viksit Bharath <br/>
               <span className="bg-gradient-to-r from-green-600 to-teal-500 bg-clip-text text-transparent">2047 Vision</span>
@@ -199,7 +195,7 @@ const ViksitIndiaSection = () => {
         </div>
 
         {/* Stats Bar */}
-        <div className="mt-8">
+        {/* <div className="mt-8">
           <div className="glass-card bg-white/80 backdrop-blur-xl border border-white/60 rounded-2xl p-5 shadow-xl relative z-20">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 divide-y lg:divide-y-0 lg:divide-x divide-gray-200/60">
               
@@ -225,14 +221,14 @@ const ViksitIndiaSection = () => {
 
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Tagline */}
-        <div className="mt-6 text-center">
+        {/* <div className="mt-6 text-center">
           <p className="font-script text-2xl md:text-3xl text-green-700/80 italic">
             Together, we build a <span className="text-green-600 not-italic font-bold underline decoration-green-400 decoration-wavy underline-offset-4">better</span> tomorrow!
           </p>
-        </div>
+        </div> */}
 
       </div>
     </section>

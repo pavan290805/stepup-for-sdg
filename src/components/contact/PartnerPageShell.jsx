@@ -75,24 +75,13 @@ const PartnerPageShell = ({ themeKey = 'corporate', children }) => {
             >
               <Link 
                 href="/work-with-us"
-                className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-white shadow-md backdrop-blur-md transition hover:bg-white/20"
+                className="inline-flex items-center gap-1.5 rounded-full border border-black/20 bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-black shadow-md backdrop-blur-md transition hover:bg-white/20"
               >
                 <span>Back to Partnership Options</span>
               </Link>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3 }}
-              className="flex items-center gap-1.5 text-xs text-white/80 font-medium bg-black/25 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10"
-            >
-              <Link href="/" className="hover:text-white transition-colors">Home</Link>
-              <FiChevronRight className="text-white/40" />
-              <Link href="/work-with-us" className="hover:text-white transition-colors">Work With Us</Link>
-              <FiChevronRight className="text-white/40" />
-              <span className="text-white font-semibold">{theme.categoryLabel}</span>
-            </motion.div>
+
           </div>
 
           {/* Hero Banner Header */}
@@ -102,10 +91,10 @@ const PartnerPageShell = ({ themeKey = 'corporate', children }) => {
             transition={{ duration: 0.4, delay: 0.05 }}
             className="text-center mb-6 max-w-2xl mx-auto"
           >
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-2 drop-shadow-md">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-black tracking-tight mb-2 drop-shadow-md">
               {theme.heroTitle}
             </h1>
-            <p className="text-xs sm:text-sm text-white/90 leading-relaxed font-normal max-w-xl mx-auto">
+            <p className="text-xs sm:text-sm text-black leading-relaxed font-normal max-w-xl mx-auto">
               {theme.heroSubtitle}
             </p>
           </motion.div>

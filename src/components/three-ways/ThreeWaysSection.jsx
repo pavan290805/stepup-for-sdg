@@ -78,7 +78,8 @@ const ThreeWaysSection = () => {
                 href="/work-with-us/corporate"
                 className="flex items-center gap-2 font-semibold text-[#E5233B] hover:gap-3 transition-all duration-300 text-sm"
               >
-                <span>Corporate Form</span>
+                <span>Click here to know more</span>
+                <FiArrowRight className="text-base" />
               </Link>
             </div>
           </motion.div>
@@ -116,7 +117,8 @@ const ThreeWaysSection = () => {
                 href="/work-with-us/schools"
                 className="flex items-center gap-2 font-semibold text-[#FF9800] hover:gap-3 transition-all duration-300 text-sm"
               >
-                <span>School Form</span>
+                <span>Click here to know more</span>
+                <FiArrowRight className="text-base" />
               </Link>
             </div>
           </motion.div>
@@ -159,7 +161,8 @@ const ThreeWaysSection = () => {
                 href="/work-with-us/ngos"
                 className="flex items-center gap-2 font-semibold text-[#22C55E] hover:gap-3 transition-all duration-300 text-sm"
               >
-                <span>NGO Form</span>
+                <span>Click here to know more</span>
+                <FiArrowRight className="text-base" />
               </Link>
             </div>
           </motion.div>
@@ -196,7 +199,8 @@ const ThreeWaysSection = () => {
                 href="/work-with-us/volunteers"
                 className="flex items-center gap-2 font-semibold text-[#3B82F6] hover:gap-3 transition-all duration-300 text-sm"
               >
-                <span>Volunteer Form</span>
+                <span>Click here to know more</span>
+                <FiArrowRight className="text-base" />
               </Link>
             </div>
           </motion.div>

@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 type ProjectCardProject = {
   name: string;
   description: string;
-  backgroundImage: string;
+  backgroundImage: string | string[];
   sdgIcon?: string;
   href?: string;
 };
@@ -30,7 +30,16 @@ export function ProjectCard({
   const isReversed = index % 2 === 1;
   const imageOrder = isReversed ? "lg:order-2" : "lg:order-1";
   const contentOrder = isReversed ? "lg:order-1" : "lg:order-2";
-  const isVideo = /\.(mp4|webm|ogg)(\?.*)?$/i.test(project.backgroundImage);
+  const images = Array.isArray(project.backgroundImage)
+    ? project.backgroundImage
+    : [project.backgroundImage];
+  const [current, setCurrent] = useState(0);
+  useEffect(() => {
+    if (images.length < 2) return;
+    const t = setInterval(() => setCurrent((c) => (c + 1) % images.length), 3500);
+    return () => clearInterval(t);
+  }, [images.length]);
+  const isVideo = /\.(mp4|webm|ogg)(\?.*)?$/i.test(images[current]);
 
   return (
     <motion.article
@@ -57,17 +66,17 @@ export function ProjectCard({
             preload="metadata"
             className="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.035]"
           >
-            <source src={project.backgroundImage} type={getVideoType(project.backgroundImage)} />
+            <source src={images[current]} type={getVideoType(images[current])} />
           </video>
-        ) : (
+        ) : images[current] ? (
           <Image
-            src={project.backgroundImage}
+            src={images[current]}
             alt={`${project.name} project`}
             fill
             sizes="(min-width: 1024px) 46vw, 100vw"
-            className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.035]"
+            className="object-cover transition-all duration-700 ease-in-out group-hover:scale-[1.035]"
           />
-        )}
+        ) : null}
       </motion.div>
 
       <motion.div
@@ -91,14 +100,6 @@ export function ProjectCard({
           {project.description}
         </p>
 
-        <div className="mt-8">
-          <Link
-            href={project.href ?? "/work-with-us"}
-            className="inline-flex items-center justify-center rounded-full bg-cta px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_-16px_rgba(255,122,0,0.9)] transition duration-300 hover:scale-[1.02] hover:brightness-110 hover:shadow-[0_0_30px_rgba(232,106,0,0.42)]"
-          >
-            Start This Project
-          </Link>
-        </div>
       </motion.div>
     </motion.article>
   );

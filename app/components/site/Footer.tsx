@@ -89,7 +89,7 @@ const socialLinks: SocialLinkItem[] = [
     ),
   },
   {
-    href: "https://www.instagram.com/stepup_for_sdg/?hl=en",
+    href: "https://www.instagram.com/stepup_for_sdg/",
     label: "Instagram",
     ariaLabel: "Visit Instagram",
     icon: (
@@ -165,20 +165,18 @@ export function Footer() {
           </p>
           <div className="flex gap-3">
             {socialLinks.map(({ href, ariaLabel, icon, label }, index) => (
-              <a
+              <button
                 key={`${label}-${index}`}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={() => window.open(href, "_blank", "noopener,noreferrer")}
                 aria-label={ariaLabel}
-                className="h-10 w-10 grid place-items-center rounded-full transition-all duration-300 cursor-pointer hover:text-[#00D4FF] hover:border-[#00D4FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D4FF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F8FBFF]"
+                className="h-10 w-10 grid place-items-center rounded-full transition-all duration-300 cursor-pointer hover:text-[#00D4FF] hover:border-[#00D4FF]"
                 style={{
-                  border: "1px solid rgba(255,255,255,0.15)",
+                  border: "1px solid rgba(80,101,122,0.4)",
                   color: "#50657A",
                 }}
               >
                 {icon}
-              </a>
+              </button>
             ))}
           </div>
         </div>

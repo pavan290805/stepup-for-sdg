@@ -13,6 +13,7 @@ import {
   BookOpen,
   Check,
   CreditCard,
+  ExternalLink,
   Heart,
   HeartHandshake,
   Landmark,
@@ -30,7 +31,8 @@ const rightArrow = "\u2192";
 const checkMark = "\u2713";
 
 const presetAmounts = [500, 1000, 2500, 5000];
-const featuredVideoId = "BMgAM-PG0_I";
+const featuredVideoId = "YRX0DBfkLa8";
+const featuredVideoUrl = "https://www.youtube.com/watch?v=YRX0DBfkLa8&t=6s";
 
 const communityProfiles = [
   "/team/pavan.png",
@@ -42,6 +44,10 @@ const contactItems = [
   {
     label: "Information",
     email: "info@stepupforsdg.org",
+  },
+  {
+    label: "Phone",
+    email: "+91 83410 11206",
   },
 ];
 
@@ -976,8 +982,8 @@ function ContactInformation() {
           {contactItems.map((item) => (
             <a
               key={item.email}
-              href={`mailto:${item.email}`}
-              className="group flex items-center gap-4 rounded-[20px] border border-[#E2E8F0] bg-white px-5 py-5 shadow-[0_18px_45px_-36px_rgba(15,23,42,0.42)] transition duration-300 hover:-translate-y-1 hover:border-[#BBDCFB] hover:shadow-[0_26px_60px_-38px_rgba(21,93,252,0.42)]"
+              href={item.label === "Phone" ? `tel:+918341011206` : `mailto:${item.email}`}
+              className={`group flex items-center gap-4 rounded-[20px] border border-[#E2E8F0] bg-white px-5 py-5 shadow-[0_18px_45px_-36px_rgba(15,23,42,0.42)] transition duration-300 hover:-translate-y-1 hover:border-[#BBDCFB] hover:shadow-[0_26px_60px_-38px_rgba(21,93,252,0.42)] ${item.label === "Phone" ? "md:col-start-3" : ""}`}
             >
               <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[#EAF4FF] text-[#155DFC] transition duration-300 group-hover:bg-[#155DFC] group-hover:text-white">
                 <Mail className="h-5 w-5" />
@@ -1180,40 +1186,44 @@ export default function FundsPage() {
                 sustainable India.
               </p>
 
-              <div className="mt-7 flex flex-col gap-4 rounded-[22px] border border-white/75 bg-white/70 p-4 shadow-[0_22px_60px_-42px_rgba(15,23,42,0.38)] backdrop-blur-xl sm:flex-row sm:items-center">
-                <div className="flex -space-x-3">
-                  {communityProfiles.map((src, index) => (
-                    <Image
-                      key={src}
-                      src={src}
-                      alt=""
-                      width={48}
-                      height={48}
-                      sizes="48px"
-                      className="funds-profile-float h-12 w-12 rounded-full border-2 border-white object-cover shadow-[0_12px_26px_-18px_rgba(15,23,42,0.7)]"
-                      style={{
-                        animationDelay: `${index * 0.22}s`,
-                      }}
-                    />
-                  ))}
-                </div>
-
-                <p className="type-body-small max-w-sm font-semibold text-[#334155]">
-                  Join 12,000+ changemakers already making an impact.
-                </p>
-              </div>
 
               <div className="mt-7 overflow-hidden rounded-[24px] border border-white/70 bg-white shadow-[0_32px_80px_-42px_rgba(15,23,42,0.55)]">
-                <div className="relative aspect-video overflow-hidden bg-[#EAF4FF]">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${featuredVideoId}?autoplay=1&mute=1&loop=1&playlist=${featuredVideoId}&rel=0`}
-                    title="StepUp for SDG - Impact Video"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="h-full w-full object-cover"
-                  />
+                <div className="relative aspect-video overflow-hidden bg-[#EAF4FF]" style={{ position: "relative" }}>
+                  <a
+                    href={featuredVideoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block relative w-full h-full"
+                  >
+                    <img
+                      src={`https://img.youtube.com/vi/${featuredVideoId}/maxresdefault.jpg`}
+                      alt="StepUp for SDG - Impact Video"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition">
+                      <div className="h-16 w-16 rounded-full bg-red-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                        <svg viewBox="0 0 24 24" fill="white" className="h-7 w-7 ml-1">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </a>
+                </div>
 
-                  <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.04)_0%,rgba(15,23,42,0.28)_100%)]" />
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-t border-[#E2E8F0] bg-[#F8FAFC] px-4 py-3 text-xs sm:px-5">
+                  <div className="flex items-center gap-2 text-[#475569]">
+                    <span className="flex h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+                    <span className="font-semibold text-[#0F172A]">Watch on YouTube:</span>
+                  </div>
+                  <a
+                    href={featuredVideoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 font-semibold text-[#155DFC] hover:text-[#0C46C4] hover:underline transition-colors break-all"
+                  >
+                    <span>{featuredVideoUrl}</span>
+                    <ExternalLink className="h-3.5 w-3.5 shrink-0" />
+                  </a>
                 </div>
               </div>
             </div>
@@ -1225,196 +1235,70 @@ export default function FundsPage() {
 
           <div className="funds-fade funds-delay-1 flex h-full">
             <div className="flex h-full w-full flex-col overflow-hidden rounded-[24px] border border-white/80 bg-white shadow-[0_34px_90px_-44px_rgba(15,23,42,0.5)]">
-              {/* Header */}
 
+              {/* Header */}
               <div className="flex items-center justify-between gap-4 bg-[linear-gradient(135deg,#155DFC_0%,#0099CC_58%,#00A86B_100%)] px-5 py-5 sm:px-7">
                 <div>
                   <h2 className="type-h3 text-white">Make a Donation</h2>
-
-                  <p className="type-caption mt-1 text-white/78">
-                    100% goes directly to SDG projects
-                  </p>
+                  <p className="type-caption mt-1 text-white/78">Scan QR &amp; fill your details</p>
                 </div>
-
-                <div className="hidden items-center gap-2 rounded-full border border-white/25 bg-white/15 px-3.5 py-2 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22)] backdrop-blur-md sm:inline-flex">
+                <div className="hidden items-center gap-2 rounded-full border border-white/25 bg-white/15 px-3.5 py-2 text-white backdrop-blur-md sm:inline-flex">
                   <ShieldCheck className="h-4 w-4" />
-
-                  <span className="type-label font-bold uppercase tracking-[0.14em]">
-                    Razorpay Secure
-                  </span>
+                  <span className="type-label font-bold uppercase tracking-[0.14em]">Secure</span>
                 </div>
               </div>
 
-              {/* Form */}
+              <div className="flex flex-1 flex-col gap-5 overflow-y-auto p-5 sm:p-7">
 
-              <form
-                onSubmit={handleSubmit}
-                className="flex flex-1 flex-col p-5 sm:p-7"
-              >
-                {/* Your Details */}
+                {/* QR Code */}
+                <div className="flex flex-col items-center gap-3 rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-5">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-[#64748B]">Scan to Pay via UPI</p>
+                  <div className="rounded-xl border border-[#E2E8F0] bg-white p-3 shadow-[0_8px_24px_-12px_rgba(15,23,42,0.2)]">
+                    <img src="/assets/images/image copy.png" alt="Donation QR Code" className="h-80 w-80 object-contain" />
+                  </div>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    {["GPay", "PhonePe", "Paytm", "BHIM"].map((app) => (
+                      <span key={app} className="rounded-full border border-[#CFE4FF] bg-[#EAF4FF] px-3 py-1 text-xs font-bold text-[#155DFC]">{app}</span>
+                    ))}
+                  </div>
+                </div>
 
-                <div>
-                  <label className={labelClass}>Your Details</label>
+                {/* Donor Details Form */}
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                  <p className="text-xs font-bold uppercase tracking-widest text-[#64748B]">Your Details</p>
 
                   <div className="grid gap-3 sm:grid-cols-2">
-                    <input
-                      required
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="Full Name"
-                      className={inputClass}
-                    />
+                    <input required value={name} onChange={(e) => setName(e.target.value)} placeholder="Full Name" className={inputClass} />
+                    <input required value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone Number" type="tel" className={inputClass} />
+                  </div>
+                  <input required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email Address" type="email" className={inputClass} />
 
-                    <input
-                      required
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      placeholder="Phone Number"
-                      type="tel"
-                      className={inputClass}
-                    />
+
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-widest text-[#64748B] mb-2">Message <span className="font-normal normal-case text-[#94A3B8]">(Optional)</span></p>
+                    <textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Why are you donating?" rows={3} className={`${inputClass} resize-none`} />
                   </div>
 
-                  <input
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Email Address"
-                    type="email"
-                    className={`${inputClass} mt-3`}
-                  />
-                </div>
-
-                {/* Amount */}
-
-                <div className="mt-7">
-                  <label className={labelClass}>
-                    Donation Amount ({currencySymbol})
-                  </label>
-
-                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                    {presetAmounts.map((presetAmount) => {
-                      const selected =
-                        amount === String(presetAmount) && !customAmount;
-
-                      return (
-                        <div key={presetAmount} className="relative pt-2">
-                          {presetAmount === 1000 && (
-                            <span className="type-label absolute left-1/2 top-0 z-10 -translate-x-1/2 rounded-full bg-[#00A86B] px-2.5 py-1 uppercase tracking-[0.16em] text-white shadow-[0_10px_22px_-14px_rgba(0,168,107,0.9)]">
-                              Popular
-                            </span>
-                          )}
-
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setAmount(String(presetAmount));
-                              setCustomAmount("");
-                            }}
-                            className={`type-button h-14 w-full rounded-2xl border transition duration-300 hover:-translate-y-0.5 ${
-                              selected
-                                ? "border-[#155DFC] bg-[linear-gradient(135deg,#155DFC,#0099CC)] text-white shadow-[0_18px_36px_-24px_rgba(21,93,252,0.9)]"
-                                : "border-[#D7E0EA] bg-[#F8FAFC] text-[#334155] hover:border-[#BBDCFB] hover:bg-white"
-                            }`}
-                          >
-                            {currencySymbol}
-                            {presetAmount.toLocaleString()}
-                          </button>
-                        </div>
-                      );
-                    })}
+                  <div className="flex items-center gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700">
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-emerald-500 text-white">
+                      <LockKeyhole className="h-4 w-4" />
+                    </span>
+                    Your donation is secure and tax-deductible.
                   </div>
 
-                  <div className="relative mt-4">
-                    <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-sm font-extrabold text-[#64748B]">
-                      {currencySymbol}
-                    </span>
-
-                    <input
-                      value={customAmount}
-                      onChange={(e) => {
-                        setCustomAmount(e.target.value);
-                        setAmount("");
-                      }}
-                      placeholder="Enter custom amount"
-                      type="number"
-                      min="1"
-                      className={`${inputClass} pl-8`}
-                    />
-                  </div>
-                </div>
-
-                {/* Message */}
-
-                <div className="mt-7">
-                  <label className={labelClass}>
-                    Message{" "}
-                    <span className="font-normal normal-case tracking-normal text-[#94A3B8]">
-                      (Optional)
-                    </span>
-                  </label>
-
-                  <textarea
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Why are you donating? Leave a message..."
-                    rows={5}
-                    className={`${inputClass} resize-none`}
-                  />
-                </div>
-
-                {/* Security */}
-
-                <div className="type-body-small mt-5 flex items-center gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 font-semibold text-emerald-700">
-                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-emerald-500 text-white">
-                    <LockKeyhole className="h-4 w-4" />
-                  </span>
-
-                  <span>Your donation is secure and tax-deductible.</span>
-                </div>
-
-                {/* Selected amount */}
-
-                {finalAmount && (
-                  <div className="mt-4 flex items-center justify-between gap-3 rounded-2xl border border-[#D7E0EA] bg-[#F8FAFC] px-4 py-3">
-                    <span className="type-body-small font-semibold text-[#64748B]">
-                      Selected amount
-                    </span>
-
-                    <span className="type-h6 text-[#155DFC]">
-                      {currencySymbol}
-                      {Number(finalAmount).toLocaleString()}
-                    </span>
-                  </div>
-                )}
-
-                {/* Submit */}
-
-                <div className="mt-auto pt-5">
-                  <button
-                    type="submit"
-                    disabled={!finalAmount || !name || !email || !phone}
-                    className="type-button inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[linear-gradient(135deg,#155DFC_0%,#0099CC_58%,#00A86B_100%)] px-6 py-4 text-white shadow-[0_22px_48px_-28px_rgba(21,93,252,0.85)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_26px_58px_-30px_rgba(0,168,107,0.85)] disabled:cursor-not-allowed disabled:opacity-45 disabled:hover:translate-y-0 disabled:hover:shadow-none"
-                  >
-                    Donate Securely {rightArrow}
+                  <button type="submit" disabled={!name || !email || !phone || (!amount && !customAmount)}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[linear-gradient(135deg,#155DFC_0%,#0099CC_58%,#00A86B_100%)] px-6 py-4 text-base font-bold text-white shadow-[0_22px_48px_-28px_rgba(21,93,252,0.85)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-45">
+                    Confirm Donation {rightArrow}
                   </button>
-
-                  <div className="type-caption mt-3 flex items-center justify-center gap-2 font-semibold text-[#64748B]">
-                    <ShieldCheck className="h-4 w-4 text-[#155DFC]" />
-                    Powered by Razorpay
-                  </div>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
+
         </div>
       </section>
 
-      {/* =====================================================
-          NEWSLETTER
-          ===================================================== */}
-
-      <NewsletterSubscription />
+      {/* Newsletter hidden */}
 
       {/* =====================================================
           CONTACT
