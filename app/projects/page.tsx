@@ -40,7 +40,7 @@ const projects: Project[] = [
   {
     name: "SDG Education for Students",
     description:
-      "A comprehensive education and sustainability program that combines SDG awareness, school outreach, educational resources, certification, student engagement, and environmental activities.",
+      "Educating students on sustainability and UN SDGs, promoting awareness and taking it to their community.",
     includes: [
       "Teaching SDG",
       "SDG Certification",
@@ -65,7 +65,7 @@ const projects: Project[] = [
   {
     name: "Sustainability Education Program",
     description:
-      "Providing solar lamps to rural schools and underserved communities to improve access to clean energy.",
+      "Certification program for adults and teachers on sustainability, climate change etc. so that they are prepared to teach others.",
     includes: ["Solar Lamp Distribution"],
     costItems: [{ value: "Contact Us" }],
     sdgs: ["Affordable & Clean Energy", "Climate Action"],
@@ -76,9 +76,9 @@ const projects: Project[] = [
     href: "/projects/sustainability-education",
   },
   {
-    name: "Fellowship",
+    name: "Pavdhan Fellowship",
     description:
-      "Industry experts guide students toward future careers, innovation, entrepreneurship and higher education opportunities.",
+      "Young changemakers are given opprtunity to work on-ground to teach school kids, while going through a mentorship program.",
     includes: ["Career Exposure Program"],
     costItems: [{ value: "₹100 per participant" }],
     sdgs: ["Quality Education", "Decent Work & Economic Growth"],
@@ -307,14 +307,7 @@ export default function ProjectsPage() {
                   href="/work-with-us"
                   className="inline-flex items-center justify-center rounded-full border border-[#CBD5E1] bg-white px-6 py-3 text-sm font-semibold text-[#0F172A] shadow-[0_12px_30px_-22px_rgba(15,23,42,0.32)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-[#93C5FD] hover:bg-[#F8FAFC]"
                 >
-                  Partner with STEPUP
-                </Link>
-                <Link
-                  // href="/get-involved/sponsor"
-                  href="/work-with-us/corporate"
-                  className="inline-flex items-center justify-center rounded-full border border-[#CBD5E1] bg-white px-6 py-3 text-sm font-semibold text-[#0F172A] shadow-[0_12px_30px_-22px_rgba(15,23,42,0.32)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-[#93C5FD] hover:bg-[#F8FAFC]"
-                >
-                  CSR Partnership
+                  Partner with Us
                 </Link>
                 <Link
                   href="/contact"
